@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Enable only the servers you actually use.
+  "mcp": {
+    "codex": {
+      "type": "local",
+      "enabled": false,
+      "command": ["codex", "mcp-server"]
+    },
+    "zotero": {
+      "type": "local",
+      "enabled": false,
+      "command": ["zotero-mcp"]
+    },
+    "obsidian-vault": {
+      "type": "local",
+      "enabled": false,
+      "command": ["npx", "-y", "@bitbonsai/mcpvault", "/path/to/your/vault"]
+    }
+  }
+}
