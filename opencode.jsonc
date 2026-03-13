@@ -5,7 +5,7 @@
   "mcp": {
     "codex": {
       "type": "local",
-      "enabled": false,
+      "enabled": true,
       "command": ["codex", "mcp-server"]
     },
     "zotero": {

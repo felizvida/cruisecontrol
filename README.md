@@ -20,14 +20,14 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
 - `.opencode/skills/` — 18 upstream research skills copied from ARIS
 - `.opencode/commands/` — OpenCode command wrappers matching the upstream slash commands
 - `AGENTS.md` — repo-level instructions for using the port in OpenCode
-- `opencode.jsonc` — sample MCP configuration with disabled-by-default servers
+- `opencode.jsonc` — sample MCP configuration with `codex` enabled by default
 - `templates/project-AGENTS.md` — project metadata template for GPU servers, paper libraries, and paper defaults
 - `upstream/` — local clone of the source repo for reference and diffing
 
 ## Quick Start
 
 1. Open this folder in OpenCode.
-2. Review and edit [opencode.jsonc](/Users/liux17/codex/autoresearch/opencode.jsonc) to enable any MCP servers you actually use.
+2. Review and edit [opencode.jsonc](/Users/liux17/codex/autoresearch/opencode.jsonc). The `codex` reviewer server is enabled by default; optional `zotero` and `obsidian-vault` entries remain disabled until you configure them.
 3. If you want GPU execution or local paper-library lookup in another repo, copy [templates/project-AGENTS.md](/Users/liux17/codex/autoresearch/templates/project-AGENTS.md) into that project as `AGENTS.md` and fill in the relevant sections.
 4. Run commands such as:
    - `/idea-discovery diffusion model efficiency`
@@ -50,7 +50,7 @@ The original workflow assumes an external reviewer model accessible through a se
 - `zotero` — literature search over a Zotero library
 - `obsidian-vault` — note search over an Obsidian vault
 
-All three are scaffolded in [opencode.jsonc](/Users/liux17/codex/autoresearch/opencode.jsonc) but disabled by default.
+`codex` is enabled by default in [opencode.jsonc](/Users/liux17/codex/autoresearch/opencode.jsonc). `zotero` and `obsidian-vault` remain scaffolded but disabled by default.
 
 ## Upstream
 
