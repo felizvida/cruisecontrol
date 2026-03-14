@@ -20,6 +20,8 @@ This skill chains the entire research lifecycle into a single pipeline:
 
 It orchestrates two major workflows plus the implementation bridge between them.
 
+All outputs for this pipeline stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for checkpoints, reports, or intermediate artifacts.
+
 ## Pipeline
 
 ### Stage 1: Idea Discovery (Workflow 1)

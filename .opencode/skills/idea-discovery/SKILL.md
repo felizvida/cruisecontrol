@@ -20,6 +20,8 @@ This skill chains four sub-skills into a single automated pipeline:
 
 Each phase builds on the previous one's output. The final deliverable is a validated `IDEA_REPORT.md` with ranked ideas, pilot results, and a suggested execution plan.
 
+All outputs for this workflow stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate artifacts.
+
 ## Constants
 
 - **PILOT_MAX_HOURS = 2** — Skip any pilot experiment estimated to take > 2 hours per GPU. Flag as "needs manual pilot" in the report.

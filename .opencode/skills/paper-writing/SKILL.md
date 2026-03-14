@@ -20,6 +20,8 @@ This skill chains five sub-skills into a single automated pipeline:
 
 Each phase builds on the previous one's output. The final deliverable is a polished, reviewed `paper/` directory with LaTeX source and compiled PDF.
 
+All generated paper artifacts stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate outputs.
+
 ## Constants
 
 - **VENUE = `ICLR`** — Target venue. Options: `ICLR`, `NeurIPS`, `ICML`. Affects style file, page limit, citation format.

@@ -30,6 +30,12 @@ If you are using these skills from another repo, create that repo's `AGENTS.md` 
 
 The command files in `.opencode/commands/` are thin wrappers. They exist to recreate the upstream slash-command UX. The actual workflow logic remains in the skill files.
 
+## Artifact Destinations
+
+All intermediate artifacts, reports, notes, figures, and state files must stay in the current local working repository unless the user explicitly asks to publish or push them elsewhere.
+
+Never invent external GitHub repositories, GitHub URLs, organization names, or remote destinations for outputs. If a skill needs to save something, write it to a local file in the current project root or its existing local subdirectories.
+
 ## Feishu
 
 This port uses `~/.config/opencode/feishu.json` as the user-level Feishu config path.

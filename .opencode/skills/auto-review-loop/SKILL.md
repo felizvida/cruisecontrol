@@ -18,6 +18,8 @@ Autonomously iterate: review → implement fixes → re-review, until the extern
 - REVIEW_DOC: `AUTO_REVIEW.md` in project root (cumulative log)
 - REVIEWER_MODEL = `gpt-5.4` — Model used via Codex MCP. Must be an OpenAI model (e.g., `gpt-5.4`, `o3`, `gpt-4o`)
 
+All review logs, state files, and notes stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate results.
+
 ## State Persistence (Compact Recovery)
 
 Long-running loops may hit the context window limit, triggering automatic compaction. To survive this, persist state to `REVIEW_STATE.json` after each round:

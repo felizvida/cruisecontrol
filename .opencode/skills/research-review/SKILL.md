@@ -15,6 +15,8 @@ Get a multi-round critical review of research work from an external LLM with max
 
 ## Context: $ARGUMENTS
 
+All review outputs must be saved to local project files in the current repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for deliverables.
+
 ## Prerequisites
 
 - **A `codex` MCP server** configured in OpenCode via `opencode.jsonc`:
