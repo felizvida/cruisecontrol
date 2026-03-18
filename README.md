@@ -35,6 +35,7 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
    - `/paper-writing NARRATIVE_REPORT.md`
    - `/research-pipeline test-time adaptation for robotics`
 5. For a step-by-step walkthrough with a concrete example, read [QUICKSTART.md](/Users/liux17/codex/autoresearch/QUICKSTART.md).
+6. For a narrative walkthrough of how the workflow feels in practice, read [AUTO_RESEARCH_GUIDE.md](/Users/liux17/codex/autoresearch/AUTO_RESEARCH_GUIDE.md).
 
 ## Porting Notes
 

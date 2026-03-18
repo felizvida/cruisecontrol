@@ -33,7 +33,7 @@ The review skills in this repo assume an MCP server named `codex`. That server i
        "codex": {
          "type": "local",
          "enabled": true,
-         "command": ["codex", "mcp-server"]
+         "command": ["/opt/homebrew/bin/codex", "mcp-server"]
        }
      }
    }
