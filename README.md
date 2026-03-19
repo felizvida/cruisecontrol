@@ -54,6 +54,13 @@ The original workflow assumes an external reviewer model accessible through a se
 
 `codex` is enabled by default in [opencode.jsonc](/Users/liux17/codex/autoresearch/opencode.jsonc). `zotero` and `obsidian-vault` remain scaffolded but disabled by default.
 
+## Community
+
+- [CONTRIBUTING.md](/Users/liux17/codex/autoresearch/CONTRIBUTING.md) — contribution expectations for docs, skills, and workflow changes
+- [SUPPORT.md](/Users/liux17/codex/autoresearch/SUPPORT.md) — how to ask for help effectively
+- [SECURITY.md](/Users/liux17/codex/autoresearch/SECURITY.md) — how to report security-sensitive issues
+- GitHub issue templates and the PR template live under `.github/`
+
 ## Upstream
 
 Source repo: [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)

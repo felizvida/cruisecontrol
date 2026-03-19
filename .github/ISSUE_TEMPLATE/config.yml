@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Quickstart guide
+    url: https://github.com/felizvida/cruisecontrol/blob/main/QUICKSTART.md
+    about: Start here for setup and first-run guidance.
+  - name: Narrative auto research guide
+    url: https://github.com/felizvida/cruisecontrol/blob/main/AUTO_RESEARCH_GUIDE.md
+    about: Read this for the practical research workflow story.

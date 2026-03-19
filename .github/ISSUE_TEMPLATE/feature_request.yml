@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a new workflow, documentation improvement, or GitHub polish improvement
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What is missing or awkward today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed improvement
+      description: What should change?
+    validations:
+      required: true
+  - type: textarea
+    id: user_value
+    attributes:
+      label: Why this matters
+      description: How would this improve the repo for users?
+  - type: textarea
+    id: notes
+    attributes:
+      label: Extra context
