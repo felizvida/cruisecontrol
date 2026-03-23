@@ -1,0 +1,57 @@
+{
+  "artifact_type": "document_corpus",
+  "paper_type": "perspective_position_paper",
+  "note": "This package does not include benchmark data because the manuscript makes no new empirical claims.",
+  "source_paper": {
+    "title": "A Spatial Mapping Algorithm with Applications in Deep Learning-Based Structure Classification",
+    "year": 2018,
+    "url": "https://arxiv.org/abs/1802.02532",
+    "local_archive": "../source/arxiv-source.tar",
+    "local_tex": "../source/unpacked/main.tex",
+    "local_pdf": "../source/unpacked/main.pdf"
+  },
+  "primary_literature": [
+    {
+      "key": "zhao2021pointtransformer",
+      "title": "Point Transformer",
+      "year": 2021,
+      "url": "https://openaccess.thecvf.com/content/ICCV2021/html/Zhao_Point_Transformer_ICCV_2021_paper.html",
+      "role": "native point-based baseline that raised the post-2018 bar"
+    },
+    {
+      "key": "wu2024ptv3",
+      "title": "Point Transformer V3: Simpler Faster Stronger",
+      "year": 2024,
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/html/Wu_Point_Transformer_V3_Simpler_Faster_Stronger_CVPR_2024_paper.html",
+      "role": "evidence that serialization became an explicit efficiency mechanism"
+    },
+    {
+      "key": "liang2024pointmamba",
+      "title": "PointMamba: A Simple State Space Model for Point Cloud Analysis",
+      "year": 2024,
+      "url": "https://openreview.net/forum?id=Kc37srXvan",
+      "role": "space-filling-curve tokenization for sequence-native point modeling"
+    },
+    {
+      "key": "zhang2024voxelmamba",
+      "title": "Voxel Mamba: Group-Free State Space Models for Point Cloud based 3D Object Detection",
+      "year": 2024,
+      "url": "https://openreview.net/forum?id=gHYhVSCtDH",
+      "role": "serialized voxel processing in a state-space framework"
+    },
+    {
+      "key": "li2025noksr",
+      "title": "NoKSR: Kernel-Free Neural Surface Reconstruction via Point Cloud Serialization",
+      "year": 2025,
+      "url": "https://openreview.net/forum?id=Z8bwCg6tJH",
+      "role": "serialization as a practical retrieval and aggregation primitive"
+    },
+    {
+      "key": "park2025atomae",
+      "title": "AtoMAE: Learning Protein Structure Representations from Atomic Voxel Grids via Masked Autoencoders",
+      "year": 2025,
+      "url": "https://openreview.net/forum?id=PrzgZvPwVT",
+      "role": "modern biomolecular evidence that channel-rich structural learning remains live"
+    }
+  ]
+}

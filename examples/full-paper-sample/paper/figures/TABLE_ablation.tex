@@ -1,0 +1,16 @@
+\begin{table}[t]
+\centering
+\caption{Low-battery ablation on the terrain-shift slice. Removing battery state or compute-cost awareness weakens the policy.}
+\label{tab:ablation}
+\small
+\begin{tabular}{lrr}
+\toprule
+Variant & Return & CoT \\
+\midrule
+Full gated policy & 0.75 & 1.08 \\
+No battery-state input & 0.68 & 1.16 \\
+No compute-cost penalty & 0.70 & 1.19 \\
+Slip-threshold heuristic & 0.72 & 1.14 \\
+\bottomrule
+\end{tabular}
+\end{table}

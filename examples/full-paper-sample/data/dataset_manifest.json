@@ -1,0 +1,18 @@
+{
+  "artifact_type": "synthetic_benchmark",
+  "paper_type": "workflow_demonstration",
+  "primary_dataset": {
+    "title": "Synthetic battery-gated quadruped benchmark",
+    "local_path": "../results/demo_benchmark.json",
+    "format": "json",
+    "used_for": [
+      "main results table",
+      "cost sweep table",
+      "ablation table"
+    ]
+  },
+  "supporting_code": {
+    "table_renderer": "../results/render_demo_tables.py"
+  },
+  "note": "No external robotics dataset is required because this paper is intentionally a synthetic workflow demonstration."
+}

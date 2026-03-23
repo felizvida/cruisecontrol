@@ -1,0 +1,9 @@
+\section{Discussion and Limits}
+
+This paper makes a conceptual claim, not an empirical one. That distinction is essential. We do not present new benchmark results, and we do not argue that serialized representations are universally better than native geometric ones. In some tasks, explicit geometry-aware operators or equivariant methods will remain the better choice. The claim is narrower and, we think, stronger: serialization is a first-class design axis that should be reasoned about explicitly whenever irregular 3D structures must be aligned with efficient model families.
+
+This perspective also does not imply that every historical precursor deserves revival. The reason the source paper is worth upgrading is that later literature independently converged on related ideas for efficiency and scale. That downstream convergence gives retrospective significance to the original Hilbert-mapping formulation.
+
+There are two practical risks in this area. The first is \emph{order-induced artifact learning}: models may learn regularities that reflect the traversal more than the underlying structure. The second is \emph{false-neighborhood accumulation}: if ordering repeatedly separates functionally linked regions or binds irrelevant ones together, scale alone will not rescue the representation. These risks reinforce the importance of explicit evaluation criteria for locality, reversibility, and channel semantics.
+
+The publication implication is therefore clear. A strong follow-on empirical paper should not simply report accuracy under a new backbone. It should explain what representation contract the serialization creates, what scientific information survives that contract, and why the chosen ordering is appropriate for the task.

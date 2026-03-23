@@ -28,6 +28,7 @@ All generated paper artifacts stay in the current local repository. Do not inven
 - **MAX_IMPROVEMENT_ROUNDS = 2** — Number of review→fix→recompile rounds in the improvement loop.
 - **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for plan review, figure review, writing review, and improvement loop.
 - **AUTO_PROCEED = true** — Auto-continue between phases. Set `false` to pause and wait for user approval after each phase.
+- **ALLOW_PLACEHOLDER_FIGURES = true** — In fully automatic mode, generate clearly labeled placeholder diagrams or panels instead of blocking on manual artwork.
 
 > Override inline: `/paper-writing "NARRATIVE_REPORT.md" — venue: NeurIPS, wait for my approval at each step`
 
@@ -36,12 +37,30 @@ All generated paper artifacts stay in the current local repository. Do not inven
 This pipeline accepts one of:
 
 1. **`NARRATIVE_REPORT.md`** (best) — structured research narrative with claims, experiments, results, figures
-2. **Research direction + experiment results** — the skill will help draft the narrative first
+2. **Research direction + experiment results** — the skill will draft `NARRATIVE_REPORT.md` first if it does not already exist
 3. **Existing `PAPER_PLAN.md`** — skip Phase 1, start from Phase 2
 
 The more detailed the input (especially figure descriptions and quantitative results), the better the output.
 
 ## Pipeline
+
+### Phase 0: Narrative Bootstrap (if needed)
+
+If `NARRATIVE_REPORT.md` does not exist, synthesize it first from the available research artifacts:
+- `AUTO_REVIEW.md`
+- `IDEA_REPORT.md`
+- experiment logs, result tables, JSON/CSV files, and figures
+- any existing notes describing the contribution and limitations
+
+The generated `NARRATIVE_REPORT.md` must include:
+- 2-3 sentence executive summary
+- core claims
+- a claim-evidence matrix
+- exact quantitative results with source paths
+- figure inventory, including placeholder plans for any missing manual figures
+- limitations and unresolved weaknesses
+
+Once `NARRATIVE_REPORT.md` exists, continue automatically.
 
 ### Phase 1: Paper Plan
 
@@ -67,7 +86,7 @@ Invoke `/paper-plan` to create the structural outline:
 📐 Paper plan complete:
 - Title: [proposed title]
 - Sections: [N] ([list])
-- Figures: [N] auto-generated + [M] manual
+- Figures: [N] data-driven + [M] placeholder/manual-upgrade candidates
 - Target: [VENUE], [PAGE_LIMIT] pages
 
 Shall I proceed with figure generation?
@@ -93,18 +112,19 @@ Invoke `/paper-figure` to generate data-driven plots and tables:
 
 **Output:** `figures/` directory with PDFs, generation scripts, and LaTeX snippets.
 
-> **Scope:** Auto-generates ~60% of figures (data plots, comparison tables). Architecture diagrams, pipeline figures, and qualitative result grids must be created manually and placed in `figures/` before proceeding. See `/paper-figure` SKILL.md for details.
+> **Scope:** Real data plots and tables should be generated from experiment outputs. If a figure still needs custom artwork and `ALLOW_PLACEHOLDER_FIGURES=true`, generate an honest placeholder figure instead of blocking. Label it clearly for later upgrade. See `/paper-figure` SKILL.md for details.
 
 **Checkpoint:** List generated vs manual figures.
 
 ```
 📊 Figures complete:
 - Auto-generated: [list]
-- Manual (need your input): [list]
+- Placeholder-generated: [list]
+- Still missing manual upgrades: [list, if any]
 - LaTeX snippets: figures/latex_includes.tex
 
-[If manual figures needed]: Please add them to figures/ before I proceed.
-[If all auto]: Shall I proceed with LaTeX writing?
+[If AUTO_PROCEED=false and manual upgrades are required]: Please add them to figures/ before I proceed.
+[Otherwise]: Shall I proceed with LaTeX writing?
 ```
 
 ### Phase 3: LaTeX Writing
@@ -207,7 +227,7 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 | Phase | Status | Output |
 |-------|--------|--------|
 | 1. Paper Plan | ✅ | PAPER_PLAN.md |
-| 2. Figures | ✅ | figures/ ([N] auto + [M] manual) |
+| 2. Figures | ✅ | figures/ ([N] auto + [M] placeholder/manual-upgrade) |
 | 3. LaTeX Writing | ✅ | paper/sections/*.tex ([N] sections, [M] citations) |
 | 4. Compilation | ✅ | paper/main.pdf ([X] pages) |
 | 5. Improvement | ✅ | [score0]/10 → [score2]/10 |
@@ -239,7 +259,7 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 
 - **Don't skip phases.** Each phase builds on the previous one — skipping leads to errors.
 - **Checkpoint between phases** when AUTO_PROCEED=false. Present results and wait for approval.
-- **Manual figures first.** If the paper needs architecture diagrams or qualitative results, the user must provide them before Phase 3.
+- **Do not stall in fully automatic mode.** If a figure would normally require manual artwork, generate a clearly labeled placeholder version and continue.
 - **Compilation must succeed** before entering the improvement loop. Fix all errors first.
 - **Preserve all PDFs.** The user needs round0/round1/round2 for comparison.
 - **Document everything.** The pipeline report should be self-contained.
@@ -255,8 +275,7 @@ implement                           ← write code
 /paper-writing "NARRATIVE_REPORT.md"  ← Workflow 3: you are here
                                          submit! 🎉
 
-Or use /research-pipeline for the Workflow 1+2 end-to-end flow,
-then /paper-writing for the final writing step.
+Or use /research-pipeline for the full Workflow 1+2+3 end-to-end flow.
 ```
 
 ## Typical Timeline

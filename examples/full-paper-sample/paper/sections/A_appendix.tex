@@ -1,0 +1,34 @@
+\section{Artifact Inventory}
+
+This appendix documents the local files that make the sample reproducible.
+
+\begin{itemize}
+\item \texttt{01\_literature\_review.md} through \texttt{04\_research\_review.md}: earlier-stage idea artifacts.
+\item \texttt{05\_auto\_review.md}: reviewer-driven refinement notes for the downstream paper story.
+\item \texttt{06\_narrative\_report.md}: paper-ready narrative handoff.
+\item \texttt{07\_paper\_plan.md}: structure and figure plan.
+\item \texttt{results/demo\_benchmark.json}: synthetic benchmark data used in the paper.
+\item \texttt{results/render\_demo\_tables.py}: script that renders the paper tables and placeholders from the JSON artifact.
+\item \texttt{code/build\_paper.sh}: end-to-end rebuild wrapper.
+\item \texttt{code/generate\_figure\_assets.sh}: figure-export helper.
+\item \texttt{code/validate\_artifacts.sh}: PDF and LaTeX validation helper.
+\item \texttt{data/dataset\_manifest.json}: synthetic data manifest.
+\item \texttt{figure\_assets/}: vector and raster exports for both placeholder figures.
+\item \texttt{review/REVIEW\_OPINION.md}: scored review for the final sample paper.
+\end{itemize}
+
+\section{Synthetic Benchmark Schema}
+
+Each benchmark regime stores the shift family, the battery state, and one row per method. Each method row contains mission return, distance, cost of transport, falls per $100$m, adaptation calls, and adaptation-compute energy. The cost sweep and ablation tables are generated from the same JSON file.
+
+\section{Build Command}
+
+The paper can be rebuilt locally from this folder with:
+
+\begin{verbatim}
+cd code && ./build_paper.sh
+\end{verbatim}
+
+\section{Package Note}
+
+This example is now packaged to the repo's complete-paper standard: paper source, compiled PDF, code used by the paper, sample data, dedicated figure assets, and a scored review are all included locally. The sample remains synthetic and should be interpreted as a workflow demonstration rather than as new robotics evidence.

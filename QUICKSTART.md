@@ -27,27 +27,33 @@ That wrapper keeps OpenCode's `codex` server isolated from your global Codex MCP
 In OpenCode, start with:
 
 ```text
-/idea-discovery "test-time adaptation for battery-constrained quadruped robots"
+/research-pipeline "test-time adaptation for battery-constrained quadruped robots"
 ```
 
 ## 4. What you should get
 
-A good first run gives you:
+A good full run gives you:
 
-- a local `IDEA_REPORT.md`
-- 2-5 ranked ideas
-- novelty warnings
-- one recommended next step
+- `IDEA_REPORT.md`
+- `AUTO_REVIEW.md`
+- `NARRATIVE_REPORT.md`
+- `paper/main.pdf`
+- `paper/PAPER_IMPROVEMENT_LOG.md`
+
+That is the paper-draft stage. In this repo, a **complete** final paper package should also include:
+
+- code used to build or support the paper
+- sample data or a source-data manifest
+- a dedicated high-resolution figure folder
+- a detailed review opinion
+- a score
 
 If you want to see a sample artifact set first, read [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
+If you want the full sample ending in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).
+If you want to start from an existing paper on the internet instead of a fresh research direction, use `/paper-upgrade "paper-url — this is my paper"` and see [examples/paper-upgrade-sample/README.md](examples/paper-upgrade-sample/README.md).
+If you want a concrete linked-paper upgrade that ends in a completed package, read [examples/paper-upgrade-1802-02532/README.md](examples/paper-upgrade-1802-02532/README.md).
 
 ## 5. Keep going
-
-If the report looks promising, the next command is usually:
-
-```text
-/auto-review-loop "best idea from IDEA_REPORT.md"
-```
 
 If you want the full workflow story instead of the minimal path, read [AUTO_RESEARCH_GUIDE.md](AUTO_RESEARCH_GUIDE.md).
 

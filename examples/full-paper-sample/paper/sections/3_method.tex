@@ -1,0 +1,23 @@
+\section{Battery-Gated Forward-Only Adaptation}
+
+We consider a controller that can optionally invoke a lightweight forward-only adaptation module before acting. The module is motivated by backprop-free embedding alignment \citep{xiao2026architecture}: it updates a compact latent or embedding transform using only forward statistics, avoiding a full gradient-based inner loop.
+
+At each timestep $t$, the scheduler estimates a robustness gain $\gain$ and an adaptation cost $\adaptcost$. The battery state $\bstate$ determines how aggressively compute cost should be penalized. The scheduling score is
+\begin{equation}
+s_t = \gain - \lambda(\bstate)\adaptcost,
+\end{equation}
+where $\lambda(\bstate)$ increases as the remaining battery decreases. The controller adapts only when
+\begin{equation}
+a_t = \I[s_t > \tau],
+\end{equation}
+with threshold $\tau$ tuned once for the benchmark.
+
+This formulation is intentionally modest. It is not a new general TTA algorithm. Instead, it isolates a single scheduling decision: whether the controller should spend energy on adaptation right now. The four policies in the benchmark are then:
+\begin{itemize}
+\item \textbf{Static}: never adapt.
+\item \textbf{Periodic}: adapt on a fixed interval.
+\item \textbf{Always-on}: adapt at every step.
+\item \textbf{Battery-gated}: adapt only when the score $s_t$ exceeds the threshold.
+\end{itemize}
+
+The value of this formulation is that it makes a falsifiable prediction. If adaptation is effectively free, always-on adaptation should dominate. If adaptation is expensive relative to its robustness gain, a gated policy should become preferable, especially in low-battery regimes.

@@ -1,0 +1,14 @@
+{
+  "overall_score": 7.9,
+  "recommendation": "Weak Accept",
+  "paper_type_assumption": "perspective_position_synthesis",
+  "counterfactual_empirical_methods_recommendation": "Reject",
+  "confidence": 0.83,
+  "criteria": {
+    "novelty": 7.7,
+    "technical_correctness": 8.2,
+    "clarity": 8.3,
+    "significance": 7.6,
+    "reproducibility": 7.8
+  }
+}

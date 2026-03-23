@@ -1,0 +1,12 @@
+\section{Related Work}
+
+\paragraph{Rapid quadruped adaptation.}
+Rapid Motor Adaptation (RMA) established that a quadruped can learn a latent online adaptation mechanism that transfers from simulation to difficult real-world terrain \citep{kumar2021rma}. That line of work makes online adaptation operationally credible, but it optimizes robustness first and does not explicitly ask whether adaptation itself should be budgeted when battery is limited.
+
+\paragraph{Energy-aware locomotion.}
+Energy-minimizing locomotion objectives can produce meaningful changes in gait structure and efficiency \citep{fu2021gaits}. Online stiffness and stride adaptation can also reduce cost of transport without requiring a large offline training set \citep{aboufazeli2023online}. These results make energy-aware adaptation plausible, but they price actuation cost rather than the internal cost of the adaptation mechanism.
+
+\paragraph{Efficient test-time adaptation.}
+Recent TTA work makes online adaptation cheaper in memory, compute, or latency. MECTA reduces the memory overhead of continual adaptation \citep{hong2023mecta}. TinyTTA uses early exits to preserve adaptation quality on edge devices \citep{jia2024tinytta}. Progressive Embedding Alignment shows that backprop-free online adaptation can be competitive with only forward passes \citep{xiao2026architecture}. These papers motivate the forward-only primitive in our sample, but they are not about closed-loop locomotion or battery-aware scheduling.
+
+The sample therefore sits at the intersection of these three threads. It does not claim a new quadruped controller or a new TTA algorithm. Its narrower claim is that once adaptation cost is modeled explicitly, the preferred adaptation schedule can change across deployment regimes.

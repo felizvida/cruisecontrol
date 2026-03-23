@@ -1,0 +1,31 @@
+\begin{table*}[t]
+\centering
+\caption{Synthetic mission-level benchmark used for the end-to-end workflow sample. Higher mission return and distance are better. Lower cost of transport, falls, and adaptation-compute energy are better.}
+\label{tab:main-results}
+\small
+\begin{tabular}{llrrrrr}
+\toprule
+Regime & Method & Return & Distance (m) & CoT & Falls / 100m & Compute Wh \\
+\midrule
+Terrain shift, 25\% battery & Static & 0.54 & 184 & 1.31 & 0.33 & 0.00 \\
+ & Periodic & 0.64 & 227 & 1.18 & 0.23 & 0.18 \\
+ & Always-on & 0.67 & 241 & 1.24 & 0.20 & 0.56 \\
+ & Battery-gated & 0.75 & 276 & 1.08 & 0.13 & 0.13 \\
+\midrule
+Terrain shift, 80\% battery & Static & 0.63 & 232 & 1.25 & 0.30 & 0.00 \\
+ & Periodic & 0.76 & 285 & 1.13 & 0.18 & 0.20 \\
+ & Always-on & 0.83 & 319 & 1.07 & 0.11 & 0.56 \\
+ & Battery-gated & 0.81 & 311 & 1.05 & 0.10 & 0.21 \\
+\midrule
+Payload shift, 25\% battery & Static & 0.59 & 205 & 1.21 & 0.29 & 0.00 \\
+ & Periodic & 0.68 & 244 & 1.13 & 0.20 & 0.16 \\
+ & Always-on & 0.69 & 251 & 1.16 & 0.18 & 0.49 \\
+ & Battery-gated & 0.77 & 289 & 1.02 & 0.11 & 0.14 \\
+\midrule
+Payload shift, 80\% battery & Static & 0.66 & 241 & 1.16 & 0.24 & 0.00 \\
+ & Periodic & 0.78 & 292 & 1.07 & 0.16 & 0.18 \\
+ & Always-on & 0.84 & 321 & 1.01 & 0.09 & 0.49 \\
+ & Battery-gated & 0.83 & 316 & 0.99 & 0.09 & 0.20 \\
+\bottomrule
+\end{tabular}
+\end{table*}

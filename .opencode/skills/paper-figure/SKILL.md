@@ -16,11 +16,11 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 | **Data-driven plots** | ✅ Yes | Line plots (training curves), bar charts (method comparison), scatter plots, heatmaps, box/violin plots |
 | **Comparison tables** | ✅ Yes | LaTeX tables comparing prior bounds, method features, ablation results |
 | **Multi-panel figures** | ✅ Yes | Subfigure grids combining multiple plots (e.g., 3×3 dataset × method) |
-| **Architecture/pipeline diagrams** | ❌ No — manual | Model architecture, data flow diagrams, system overviews. At best can generate a rough TikZ skeleton, but **expect to draw these yourself** using tools like draw.io, Figma, or TikZ |
-| **Generated image grids** | ❌ No — manual | Grids of generated samples (e.g., GAN/diffusion outputs). These come from running your model, not from this skill |
+| **Architecture/pipeline diagrams** | ⚠️ Placeholder only | Model architecture, data flow diagrams, system overviews. Generate a simple box-and-arrow schematic or rough TikZ placeholder for autonomous runs, then replace later if needed |
+| **Generated image grids** | ⚠️ Placeholder only | Grids of generated samples (e.g., GAN/diffusion outputs). If the actual images are unavailable, create a clearly labeled placeholder panel so the paper can still compile |
 | **Photographs / screenshots** | ❌ No — manual | Real-world images, UI screenshots, qualitative examples |
 
-**In practice:** For a typical ML paper, this skill handles ~60% of figures (all data plots + tables). The remaining ~40% (hero figure, architecture diagram, qualitative results) need to be created manually and placed in `figures/` before running `/paper-write`. The skill will detect these as "existing figures" and preserve them.
+**In practice:** For a typical ML paper, this skill should generate all data plots and tables directly from results. For the remaining conceptual or qualitative figures, generate a clearly labeled placeholder when running in fully automatic mode so the writing and compile stages can finish without waiting on manual artwork.
 
 ## Constants
 
@@ -39,6 +39,7 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 3. **Existing figures** — any manually created figures to preserve
 
 If no PAPER_PLAN.md exists, scan for data files and ask the user which figures to generate.
+If a figure requires unavailable manual assets, create a placeholder plan rather than blocking the pipeline.
 
 ## Workflow
 
@@ -55,7 +56,7 @@ Parse the Figure Plan table from PAPER_PLAN.md:
 
 Identify:
 - Which figures can be auto-generated from data
-- Which need manual creation (architecture diagrams, etc.)
+- Which need placeholder generation (architecture diagrams, unavailable qualitative panels)
 - Which are comparison tables (generate as LaTeX)
 
 ### Step 2: Set Up Plotting Environment
@@ -164,11 +165,19 @@ Method & Rate & Depends on $D$? & Multi-modal? \\
 \end{table}
 ```
 
-**Architecture/pipeline diagrams** (MANUAL — outside this skill's scope):
-- These require manual creation using draw.io, Figma, Keynote, or TikZ
-- This skill can generate a rough TikZ skeleton as a starting point, but **do not expect publication-quality results**
+**Architecture/pipeline diagrams** (placeholder path when needed):
 - If the figure already exists in `figures/`, preserve it and generate only the LaTeX `\includegraphics` snippet
-- Flag as `[MANUAL]` in the figure plan and `latex_includes.tex`
+- Otherwise create a minimal placeholder using TikZ or matplotlib annotations:
+  - boxes for inputs / method / outputs
+  - arrows for flow
+  - caption prefix `[AUTO_PLACEHOLDER]`
+- Save the placeholder as a normal figure asset so the paper compiles cleanly
+- Flag as `[AUTO_PLACEHOLDER]` in the figure plan and `latex_includes.tex`
+
+**Generated image grids / qualitative panels** (placeholder path when needed):
+- If real outputs exist, compose them into the final grid
+- If not, generate a framed placeholder panel listing the intended content and the missing source artifact
+- Use caption prefix `[AUTO_PLACEHOLDER]` and document the upgrade path in the final report
 
 ### Step 5: Run All Scripts
 
@@ -260,6 +269,7 @@ figures/
 - **One script per figure** — easy to re-run individual figures when data changes
 - **No titles inside figures** — captions are in LaTeX only
 - **Comparison tables count as figures** — generate them as standalone .tex files
+- **Placeholder figures must be explicit** — label them `[AUTO_PLACEHOLDER]` and make them easy to replace later
 
 ## Figure Type Reference
 

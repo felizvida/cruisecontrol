@@ -1,0 +1,19 @@
+\section{A Taxonomy of Serialized Structural Learning}
+
+\input{figures/TABLE_taxonomy.tex}
+
+Table~\ref{tab:taxonomy} organizes the relevant literature into a simple taxonomy. The point of the taxonomy is not to claim that all of these models are equivalent. They are not. Rather, the taxonomy makes visible a shared design space that is easy to miss when papers are grouped only by backbone family.
+
+\paragraph{What is being serialized?}
+Different systems serialize different structural objects. The source paper serializes voxel grids. PointMamba serializes point tokens using space-filling curves \citep{liang2024pointmamba}. Voxel Mamba serializes scene voxels for sequence processing \citep{zhang2024voxelmamba}. NoKSR serializes point-cloud hierarchies so that neighboring evidence can be retrieved efficiently during reconstruction \citep{li2025noksr}. The design implication is that serialization is not a single algorithmic choice; it is a family of decisions about what object should become the unit of ordered computation.
+
+\paragraph{Why serialize at all?}
+The strongest recurring reasons are computational rather than aesthetic. Serialization can reduce the cost of local neighborhood search, enable linear-complexity backbones, simplify batching, expose multiscale context, and expand the range of model families that can operate on the data. These are systems-level advantages. They explain why serialization reappeared even after native 3D models improved.
+
+\paragraph{What is the main trade-off?}
+Serialization never preserves geometry perfectly. It introduces false neighbors, separates some true neighbors, and makes model behavior partly dependent on ordering choices. That is why locality preservation remains the most important control variable. Multiscale orderings, reversible maps, and serialization-aware positional encodings are all attempts to mitigate that central loss.
+
+\paragraph{Why does the biomolecular setting differ from generic 3D vision?}
+Biomolecular tasks make channel semantics more important. In ordinary point-cloud benchmarks, geometry may dominate. In biomolecular settings, the meaning of a local neighborhood depends on chemistry, residue identity, charge, solvent exposure, and long-range constraints induced by folding. A representation strategy that only optimizes geometric adjacency may therefore be insufficient. The taxonomy suggests that biomolecular serialization should be evaluated not just on proximity, but on whether rich structural channels survive tokenization in a model-usable form.
+
+This taxonomy clarifies why the 2018 paper still matters. It occupies the earliest row in a family of methods that all ask the same underlying question: how should a structural object be ordered so that the resulting computation is both tractable and faithful enough for the task?

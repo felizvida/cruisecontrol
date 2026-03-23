@@ -24,13 +24,13 @@ On this machine, the reviewer MCP server is configured locally through [opencode
     "codex": {
       "type": "local",
       "enabled": true,
-      "command": ["/opt/homebrew/bin/codex", "mcp-server"]
+      "command": ["/bin/bash", "/Users/liux17/codex/autoresearch/scripts/codex-mcp-local.sh"]
     }
   }
 }
 ```
 
-That means OpenCode can launch Codex as a local MCP server and use it as the “external reviewer” during the research loop.
+That means OpenCode can launch Codex as a local MCP server and use it as the “external reviewer” during the research loop, while keeping this machine isolated from broken or noisy global Codex state.
 
 ## Act I: Start With A Direction, Not A Thesis
 
@@ -226,15 +226,21 @@ When the workflow is working well, each file answers a different question:
 - result tables: what actually happened?
 - `PAPER_PLAN.md`: what is the story we can responsibly tell?
 
-## Act V: Write Only After The Story Hardens
+## Act V: Let The Pipeline Carry The Story Into A Paper
 
-Once the work has survived enough review, move to writing:
+You can still run the writing stage directly:
 
 ```text
 /paper-writing NARRATIVE_REPORT.md
 ```
 
-This should happen after the research story is coherent, not before.
+But the stronger repo-level path is now:
+
+```text
+/research-pipeline "your research direction"
+```
+
+That single command is supposed to carry the work from idea discovery through review, then synthesize `NARRATIVE_REPORT.md`, then continue into paper generation without asking you to manually bridge the stages.
 
 The paper workflow is strongest when you already know:
 
@@ -250,6 +256,14 @@ The pipeline then helps convert that into:
 - LaTeX sections
 - a compiled PDF
 - a paper-improvement loop
+
+When the workflow is promoted to a complete final paper package in this repo, it should also leave behind:
+
+- code used to build or support the paper
+- sample data or a source-data manifest
+- a dedicated high-resolution figure folder
+- a detailed review opinion
+- a score
 
 The important point is that the writing stage is downstream of the research loop.
 The workflow is not trying to hallucinate credibility into a weak result.
@@ -268,6 +282,7 @@ You now have:
 - an initial experiment package
 - reviewer-generated pressure on the weak points
 - a local trail of artifacts that make the next day easier
+- and, in the end-to-end path, a complete paper package rather than only a compiled `paper/main.pdf`
 
 That is already a win.
 
@@ -283,13 +298,11 @@ The value is that it shortens the distance between:
 If you want the shortest path to a productive session, use this sequence:
 
 ```text
-/idea-discovery "your research direction"
-/research-review "the most promising idea from the report"
-/run-experiment "a minimal pilot for that idea"
-/auto-review-loop "the pilot results and current framing"
+/research-pipeline "your research direction"
 ```
 
-That is enough to turn a fuzzy topic into a reviewed experimental thread.
+That is the one-command path from fuzzy direction to a paper draft.
+If you want more control, you can still break it back into the smaller workflow commands.
 
 ## How To Tell If You Are Using It Well
 

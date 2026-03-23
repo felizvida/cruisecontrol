@@ -34,13 +34,31 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
    - `/idea-discovery diffusion model efficiency`
    - `/auto-review-loop story draft in current repo`
    - `/paper-writing NARRATIVE_REPORT.md`
+   - `/paper-upgrade "https://arxiv.org/abs/2401.12345 — this is my paper"`
    - `/research-pipeline test-time adaptation for robotics`
 5. For a step-by-step walkthrough with a concrete example, read [QUICKSTART.md](QUICKSTART.md).
 6. For a narrative walkthrough of how the workflow feels in practice, read [AUTO_RESEARCH_GUIDE.md](AUTO_RESEARCH_GUIDE.md).
 
+## Complete Final Paper Standard
+
+In this repo, a paper is only considered a complete final paper package when it includes:
+
+- the finished paper PDF and source
+- all code used to build or support the paper
+- sample data, or an explicit local manifest linking the source data and literature inputs
+- a dedicated folder of high-resolution figure assets
+- a detailed review opinion
+- a score
+
+The compiled PDF is necessary, but it is not sufficient on its own.
+
 ## Sample Example
 
 If you want to see a concrete sample artifact set before running anything yourself, start with [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
+The intended one-command end state of `/research-pipeline` is now: `IDEA_REPORT.md` + `AUTO_REVIEW.md` + `NARRATIVE_REPORT.md` + `paper/main.pdf`.
+If you want a tracked sample that ends in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).
+If you want the linked-paper upgrade workflow shape, read [examples/paper-upgrade-sample/README.md](examples/paper-upgrade-sample/README.md).
+If you want a concrete linked-paper upgrade that ends in a completed package and final paper, read [examples/paper-upgrade-1802-02532/README.md](examples/paper-upgrade-1802-02532/README.md).
 
 ## Porting Notes
 

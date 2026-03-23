@@ -1,0 +1,17 @@
+\section{A Publication Agenda Beyond Facelift Revision}
+
+\input{figures/TABLE_agenda.tex}
+
+If this manuscript merely restated that the 2018 paper was prescient, it would not justify publication. The stronger contribution is to turn the reinterpretation into a forward agenda. Table~\ref{tab:agenda} summarizes the most defensible directions.
+
+The first direction is \emph{adaptive multiscale serialization}. Modern systems already show that a single fixed ordering is rarely enough when local and global context both matter \citep{li2025noksr}. Biomolecular structures intensify this problem because the same protein may contain rigid cores, flexible loops, binding pockets, and long-range contacts. A publishable next-generation system should allow ordering granularity to vary with structural regime instead of freezing a single traversal for the whole object.
+
+The second direction is \emph{serialization-aware self-supervision}. Models such as AtoMAE demonstrate that self-supervised structural pretraining is viable in biomolecular settings \citep{park2025atomae}. The open question is how masking and reconstruction objectives interact with the chosen ordering. A masking policy that respects structural neighborhoods may encourage different abstractions than one that respects only token position.
+
+The third direction is \emph{channel-rich tokens}. One underappreciated strength of the 2018 framing was its focus on channel capacity. Future biomolecular systems should treat serialization not as geometry-only tokenization, but as the packaging of geometry together with chemistry. This is where representation design can still produce unique value even when backbones are commoditized.
+
+The fourth direction is \emph{reversible interpretability}. If a model highlights a set of serialized tokens, how cleanly can those signals be projected back onto residues, atoms, or structural motifs? This matters for scientific credibility. Serialization is most attractive in science when it does not sever the path from model behavior back to physical explanation.
+
+The fifth direction is \emph{hybrid sequence-structure modeling}. Sequence-native foundation models now dominate many biomolecular tasks, but they do not eliminate the need for explicit structure. Serialization offers one path toward a shared token space in which structural evidence can interact with sequence evidence without forcing both into the same raw representation. That possibility gives the 2018 idea a much broader modern relevance than its original experiments suggested.
+
+Taken together, these directions define a publication path that is stronger than cosmetic revision. The manuscript is no longer asking readers to update an old benchmark table. It is offering a framework that can guide what the next empirical papers should optimize for.

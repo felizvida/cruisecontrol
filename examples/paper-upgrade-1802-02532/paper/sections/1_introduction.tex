@@ -1,0 +1,19 @@
+\section{Introduction}
+
+Irregular 3D structures present a recurring tension in machine learning. The data are spatial, sparse, multiscale, and frequently channel-rich, yet many of the most scalable model families consume ordered token sequences rather than unordered point sets or dense volumetric grids. Representation design therefore matters at least as much as backbone design: a structure must be rendered in a way that preserves the neighborhoods, channels, and long-range interactions that the downstream model can actually exploit.
+
+The 2018 paper \citet{corcoran2018spatial} confronted this issue early. It proposed a reversible Hilbert-style mapping from voxelized 3D structures into 2D and 1D arrays, allowing standard convolutional architectures to learn from lower-dimensional encodings while retaining enough locality for structural classification. In its original framing, the paper asked whether mapped 2D and 1D CNNs could compete with volumetric 3D CNNs. That question was reasonable for its time. However, the field that now surrounds 3D learning is different. Native point architectures, large-scale point transformers, state-space models, and serialization-based reconstruction systems have changed both the baseline and the language of the conversation \citep{zhao2021pointtransformer, wu2024ptv3, liang2024pointmamba, zhang2024voxelmamba, li2025noksr}.
+
+This shift creates an unusual opportunity. The original 2018 idea is not strongest as a delayed empirical methods paper. Its strongest modern value is conceptual. Read retrospectively, the paper anticipated a serialization-first view of 3D learning in which an ordering is not merely a compression device, but an interface that determines how locality, token count, and channel semantics are exposed to the model. Under that reading, the paper is less about replacing 3D CNNs with cheaper 2D CNNs and more about connecting structural data to the model family best suited to the computation budget and task.
+
+Biomolecular AI makes this reinterpretation especially compelling. Proteins and molecular complexes are not just geometric objects; they are structured physical systems with dense local chemistry, long-range interactions, and often limited labels. Those conditions make both efficiency and representation fidelity important. Recent biomolecular work on atomistic voxel learning suggests that the question of how structural information should be discretized and tokenized remains highly relevant \citep{park2025atomae}. A serialization-first perspective therefore offers a unifying way to think across voxel, point, and biomolecular settings.
+
+\paragraph{Contributions.}
+This upgraded paper makes three concrete contributions.
+\begin{enumerate}[leftmargin=1.4em]
+  \item We reinterpret \citet{corcoran2018spatial} as an early precursor to modern serialized structural learning.
+  \item We provide a cross-era taxonomy that organizes recent 3D and biomolecular work by what is serialized, why it helps, and what trade-offs it introduces.
+  \item We propose a design framework and research agenda for biomolecular AI centered on locality preservation, token efficiency, channel semantics, and reversibility.
+\end{enumerate}
+
+The paper is intentionally scoped as a perspective manuscript. It does not present new experiments and should not be read as claiming empirical superiority for any single serialization strategy. The contribution is instead to sharpen the design question that the 2018 paper raised before the field had a vocabulary for it.

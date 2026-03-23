@@ -1,0 +1,26 @@
+\begin{figure}[t]
+\centering
+\fbox{%
+\begin{minipage}{0.92\linewidth}
+\footnotesize
+\centering
+\textbf{Serialization-first view of structural learning}
+
+\vspace{0.5em}
+\textbf{Irregular structure} $\rightarrow$ \textbf{locality-aware serialization} $\rightarrow$ \textbf{sequence-native backbone} $\rightarrow$ \textbf{task layer}
+
+\vspace{0.5em}
+\begin{tabular}{c}
+point cloud / voxel grid / atomistic field \\
+Hilbert order / serialized neighbors / multiscale token order \\
+transformer / state-space model / masked autoencoder \\
+classification / reconstruction / retrieval \\
+\end{tabular}
+
+\vspace{0.5em}
+\raggedright
+\textbf{Design axes:} locality, token budget, channel semantics, reversibility, and multiscale aggregation.
+\end{minipage}}
+\caption{The upgraded paper's central view. Serialization is treated as a modeling interface that connects irregular 3D structure to efficient sequence-native learning systems, rather than as a one-off preprocessing trick.}
+\label{fig:serialization-view}
+\end{figure}

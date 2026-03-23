@@ -1,0 +1,16 @@
+\section{Introduction}
+
+Legged robots already adapt well to terrain, payload, and contact variation when given enough sensing and online adaptation machinery \citep{kumar2021rma}. A second line of work shows that energy-aware objectives can materially reshape locomotion behavior \citep{fu2021gaits,aboufazeli2023online}. Meanwhile, efficient test-time adaptation (TTA) has become credible on memory- and latency-constrained hardware \citep{hong2023mecta,jia2024tinytta,xiao2026architecture}. What remains underexplored is the joint question: when a battery-constrained robot must spend energy both to move and to adapt, when is adaptation worth the cost?
+
+This sample paper studies that question in the smallest honest setting available inside this repository. The repository does not ship a quadruped stack, a simulator, or a hardware benchmark. Instead, it ships the upstream workflow logic plus a tracked artifact tree. To make the full path concrete, we continue the earlier idea-discovery example with a synthetic benchmark stored in \texttt{results/demo\_benchmark.json}. The benchmark is not presented as a robotics result. It is a workflow-complete demonstration of the hypothesis that adaptation should be scheduled as a resource-budgeted control action.
+
+The synthetic benchmark compares four policies across terrain and payload shift under both low- and high-battery regimes: a static controller, periodic adaptation, always-on adaptation, and a battery-gated forward-only adaptation rule. The key pattern is a regime split. In low-battery regimes, the gated policy improves mission return over always-on adaptation while consuming far less adaptation-compute energy. In high-battery regimes, always-on adaptation remains competitive in raw return. The resulting claim is deliberately narrow: the preferred deployment strategy depends on the regime, and explicit adaptation-cost accounting can change which policy is best.
+
+This framing matters for two reasons. First, it is a sharper and more falsifiable question than ``do TTA for quadrupeds.'' Second, it matches the repository's advertised end state: the pipeline should be able to leave behind not only idea notes but also a narrative handoff, a plan, and a final paper artifact. In that sense, the contribution of this sample is partly methodological. It shows what a complete local artifact trail can look like even before a real target project is wired in.
+
+Our contributions are:
+\begin{itemize}
+\item a battery-aware adaptation scheduling hypothesis that emerges naturally from the earlier literature and idea-review stages;
+\item a small synthetic benchmark that makes the low-battery versus high-battery crossover explicit;
+\item a complete paper artifact tree, ending in a compiled PDF, that demonstrates the intended output of the repository's one-command research workflow.
+\end{itemize}
