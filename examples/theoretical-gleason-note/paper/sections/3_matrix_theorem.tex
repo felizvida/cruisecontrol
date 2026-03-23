@@ -1,0 +1,138 @@
+\section{A Finite-Dimensional Real Gleason-Type Theorem}
+
+\begin{theorem}[Real effect-space theorem]
+Fix $d\ge 2$. Let $\Eff_d$ be the set of all real symmetric $d\times d$ matrices $E$ satisfying $0\le E\le I$. Suppose
+\[
+f:\Eff_d\to [0,1]
+\]
+satisfies
+\[
+f(I)=1
+\]
+and
+\[
+f(E+F)=f(E)+f(F)
+\]
+whenever $E,F,E+F\in \Eff_d$. Then there exists a unique real symmetric positive semidefinite matrix $\rho$ with $\mathrm{tr}(\rho)=1$ such that
+\[
+f(E)=\mathrm{tr}(\rho E)
+\qquad\text{for every }E\in \Eff_d.
+\]
+\end{theorem}
+
+\begin{proof}
+We break the proof into four simple steps.
+
+\paragraph{Step 1: homogeneity on each ray.}
+Fix an effect $E$. The map
+\[
+h_E(t)=f(tE),\qquad t\in[0,1],
+\]
+is bounded, and it satisfies
+\[
+h_E(x+y)=h_E(x)+h_E(y)
+\]
+whenever $x+y\le 1$, because then $(x+y)E$, $xE$, and $yE$ all remain effects. By the interval lemma,
+\[
+f(tE)=t\,f(E)\qquad (0\le t\le 1).
+\]
+
+\paragraph{Step 2: extend from effects to all positive semidefinite matrices.}
+Let $A$ be any positive semidefinite real symmetric matrix. Choose a positive number $s$ large enough that $A/s\in\Eff_d$; for instance, any $s$ at least as large as the largest eigenvalue of $A$ will do. Define
+\[
+F(A)=s\,f(A/s).
+\]
+This does not depend on the chosen $s$. Indeed, if $A/s$ and $A/t$ are both effects and $s\le t$, then
+\[
+A/t=(s/t)(A/s),
+\]
+so Step 1 gives
+\[
+t\,f(A/t)=t\,(s/t)\,f(A/s)=s\,f(A/s).
+\]
+Thus $F$ is well defined.
+
+Now let $A,B$ be positive semidefinite. Choose $u$ large enough that $(A+B)/u$ is an effect. Then
+\[
+F(A+B)=u\,f((A+B)/u)=u\,f(A/u)+u\,f(B/u)=F(A)+F(B).
+\]
+So $F$ is additive on the positive semidefinite cone.
+
+\paragraph{Step 3: extend to all symmetric matrices.}
+Every real symmetric matrix $H$ can be written as
+\[
+H=A-B
+\]
+with $A,B$ positive semidefinite. Define
+\[
+L(H)=F(A)-F(B).
+\]
+This is well defined. If $H=C-D$ also, then $A+D=B+C$, and additivity of $F$ gives
+\[
+F(A)+F(D)=F(B)+F(C),
+\]
+so $F(A)-F(B)=F(C)-F(D)$.
+
+Linearity of $L$ is now immediate:
+\[
+L((A-B)+(C-D))=F(A+C)-F(B+D)=L(A-B)+L(C-D),
+\]
+and $L(\lambda H)=\lambda L(H)$ follows from the positive-scalar homogeneity of $F$.
+
+\paragraph{Step 4: write $L$ as a trace rule.}
+Let $e_1,\dots,e_d$ be the standard basis vectors. Define
+\[
+P_i=e_i e_i^\top
+\]
+and, for $i<j$,
+\[
+S_{ij}=\tfrac12(e_i+e_j)(e_i+e_j)^\top.
+\]
+Each $P_i$ and $S_{ij}$ is an effect. Set
+\[
+\rho_{ii}=f(P_i),\qquad
+\rho_{ij}=f(S_{ij})-\tfrac12 f(P_i)-\tfrac12 f(P_j)\quad (i<j),
+\]
+and define $\rho_{ji}=\rho_{ij}$. This gives a real symmetric matrix $\rho$.
+
+Now let
+\[
+X_{ij}=\tfrac12(E_{ij}+E_{ji})=S_{ij}-\tfrac12 P_i-\tfrac12 P_j.
+\]
+By construction,
+\[
+L(P_i)=\rho_{ii},\qquad L(X_{ij})=\rho_{ij}.
+\]
+Every real symmetric matrix $H=(h_{ij})$ has the basis expansion
+\[
+H=\sum_{i=1}^d h_{ii}P_i+2\sum_{1\le i<j\le d} h_{ij}X_{ij}.
+\]
+Therefore,
+\[
+L(H)=\sum_{i=1}^d h_{ii}\rho_{ii}+2\sum_{1\le i<j\le d} h_{ij}\rho_{ij}
+=\mathrm{tr}(\rho H).
+\]
+
+We still need positivity and normalization. If $v$ is any vector, then $vv^\top$ is positive semidefinite, so
+\[
+v^\top \rho v=\mathrm{tr}(\rho vv^\top)=L(vv^\top)=F(vv^\top)\ge 0.
+\]
+Hence $\rho$ is positive semidefinite.
+
+Also,
+\[
+I=P_1+\cdots+P_d,
+\]
+and the partial sums remain effects, so
+\[
+\mathrm{tr}(\rho)=\sum_{i=1}^d \rho_{ii}
+=\sum_{i=1}^d f(P_i)=f(I)=1.
+\]
+Finally, if $E\in\Eff_d$, then $E$ itself is positive semidefinite, so
+\[
+f(E)=F(E)=L(E)=\mathrm{tr}(\rho E).
+\]
+Uniqueness is immediate because the values on the basis effects determine every entry of $\rho$.
+\end{proof}
+
+The argument above is intentionally concrete. No Hilbert-space lattice, no measure theory, and no quantum postulates are needed. The only real inputs are bounded additivity on $[0,1]$, positive semidefinite decompositions, and a basis expansion of symmetric matrices.

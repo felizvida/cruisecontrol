@@ -1,0 +1,42 @@
+{
+  "artifact_type": "theory_note_with_generated_checks",
+  "paper_type": "theoretical_expository_note",
+  "note": "This package proves a finite-dimensional real Gleason-type theorem and ships generated sanity checks plus figure assets.",
+  "primary_sources": [
+    {
+      "key": "gleason1957",
+      "title": "Measures on the Closed Subspaces of a Hilbert Space",
+      "year": 1957,
+      "role": "original theorem",
+      "url": "https://doi.org/10.1512/iumj.1957.6.56050"
+    },
+    {
+      "key": "cooke1985",
+      "title": "An Elementary Proof of Gleason's Theorem",
+      "year": 1985,
+      "role": "elementary but still analysis-heavy benchmark",
+      "url": "https://doi.org/10.1017/S0305004100063313"
+    },
+    {
+      "key": "busch2003",
+      "title": "Quantum States and Generalized Observables: A Simple Proof of Gleason's Theorem",
+      "year": 2003,
+      "role": "finite-dimensional effect-space theorem",
+      "url": "https://doi.org/10.1103/PhysRevLett.91.120403"
+    },
+    {
+      "key": "wright2019",
+      "title": "Gleason-Type Theorems from Cauchy's Functional Equation",
+      "year": 2019,
+      "role": "functional-equation framing and scope clarification",
+      "url": "https://doi.org/10.1007/s10701-019-00275-x"
+    }
+  ],
+  "generated_artifacts": [
+    "../results/reconstruction_checks.json",
+    "../results/check_summary.csv",
+    "../figure_assets/proof_staircase/proof_staircase.pdf",
+    "../figure_assets/sphere_shadow/sphere_shadow.pdf",
+    "../paper/main.pdf"
+  ]
+}

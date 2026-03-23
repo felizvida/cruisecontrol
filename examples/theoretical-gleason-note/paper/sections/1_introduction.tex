@@ -1,0 +1,25 @@
+\section{Introduction}
+
+Gleason's theorem is one of the structural pillars behind the density-matrix form of quantum probability. It is also a theorem that beginners often find forbidding. Even so-called elementary proofs still demand a fair amount of geometric or analytic maturity \citep{cooke1985}. The goal of this note is not to compete with the original theorem or with the best existing proofs. The goal is more modest and, we think, more teachable.
+
+We give a short route to a \emph{finite-dimensional real Gleason-type theorem}. The theorem concerns additive rules on the effect space
+\[
+\Eff_d=\{E \in \mathbb{R}^{d\times d}_{\mathrm{sym}} : 0 \leq E \leq I\}.
+\]
+Here $0 \leq E \leq I$ means that $E$ is positive semidefinite and all its eigenvalues are at most $1$. A rule $f:\Eff_d \to [0,1]$ is assumed to satisfy $f(I)=1$ and
+\[
+f(E+F)=f(E)+f(F)
+\]
+whenever $E$, $F$, and $E+F$ all lie in the same effect space. The conclusion is that $f(E)=\mathrm{tr}(\rho E)$ for a unique positive semidefinite trace-one matrix $\rho$.
+
+This statement is not Gleason's original theorem. The assumption is stronger: additivity is required on the whole effect space, not merely on orthogonal projections. In that sense the note sits closer to the finite-dimensional effect-space viewpoint emphasized by \citet{busch2003} and discussed by \citet{wright2019}. What is new here is not the theorem itself, but the route: a proof staircase that begins with a one-variable lemma and keeps the ideas concrete all the way through.
+
+\paragraph{Contributions.}
+This note makes three contributions.
+\begin{enumerate}[leftmargin=1.4em]
+  \item It gives a bounded-additivity warmup theorem on $[0,1]$ that can be explained without physics.
+  \item It turns that warmup into a sphere corollary that is accessible with only squared lengths and orthonormal triples.
+  \item It uses the same bounded-additivity idea to prove the finite-dimensional real effect-space theorem in explicit matrix language.
+\end{enumerate}
+
+The computational artifacts in this package are intentionally secondary. They do not prove the theorem. They simply generate real reproducible checks and paper-side assets so the package meets the repo's standard for a complete final paper.

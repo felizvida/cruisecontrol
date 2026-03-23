@@ -1,0 +1,11 @@
+\section{Generated Numeric Checks}
+
+\input{figures/TABLE_numeric_checks.tex}
+
+The theorem is analytic, not experimental, so no amount of numerics can prove it. Even so, this repository requires a complete paper package to ship with executable artifacts. For that reason, the note includes a small computation layer that does two reproducible jobs.
+
+First, it samples random positive semidefinite trace-one matrices $\rho$ in dimensions $2$, $3$, and $4$. From the theorem's basis formulas, it reconstructs the matrix entries of $\rho$ using only values of the state rule on the effects $P_i$ and $S_{ij}$. Second, it checks the recovered matrix on random effects and on random additive decompositions of effects.
+
+Table~\ref{tab:numeric-checks} shows the outcome. Across 250 trials per dimension, the reconstruction errors, representation residuals, and additivity residuals remain at machine scale. That is exactly what should happen if the paper formulas are implemented correctly.
+
+The package also generates sphere checks for the warmup corollary by sampling random orthonormal triples and verifying that the affine squared-height rule sums to $1$ up to floating-point tolerance. Again, these checks are illustrative, not evidentiary. Their role is to make the theorem package computationally inspectable rather than magical.

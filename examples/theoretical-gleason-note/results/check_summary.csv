@@ -1,0 +1,4 @@
+dimension,trials,effects_per_trial,max_reconstruction_error,max_representation_residual,max_additivity_residual
+2,250,12,1.665e-16,2.220e-16,2.220e-16
+3,250,12,1.110e-16,1.110e-16,1.110e-16
+4,250,12,1.110e-16,1.110e-16,5.551e-17

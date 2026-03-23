@@ -1,0 +1,13 @@
+{
+  "overall_score": 8.1,
+  "recommendation": "Weak Accept",
+  "paper_type_assumption": "theoretical_expository_note",
+  "confidence": 0.84,
+  "criteria": {
+    "novelty": 7.1,
+    "technical_correctness": 8.7,
+    "clarity": 8.9,
+    "significance": 7.7,
+    "reproducibility": 8.9
+  }
+}

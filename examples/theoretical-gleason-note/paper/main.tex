@@ -1,0 +1,48 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[round,authoryear]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+\input{math_commands.tex}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+
+\title{From Shadow Lengths to Density Matrices:\\A No-Physics Route to a Finite-Dimensional Gleason-Type Theorem}
+\author{Repository Example for a Theoretical Workflow}
+\date{}
+\hypersetup{
+  pdftitle={From Shadow Lengths to Density Matrices: A No-Physics Route to a Finite-Dimensional Gleason-Type Theorem},
+  pdfauthor={Repository Example for a Theoretical Workflow}
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\input{sections/0_abstract.tex}
+\end{abstract}
+
+\input{sections/1_introduction.tex}
+\input{sections/2_warmup.tex}
+\input{sections/3_matrix_theorem.tex}
+\input{sections/4_computation.tex}
+\input{sections/5_limits.tex}
+\input{sections/6_conclusion.tex}
+
+\appendix
+\input{sections/A_appendix.tex}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
