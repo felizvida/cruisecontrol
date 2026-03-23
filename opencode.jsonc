@@ -1,12 +1,16 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
+  "experimental": {
+    "mcp_timeout": 600000
+  },
+
   // Enable only the servers you actually use.
   "mcp": {
     "codex": {
       "type": "local",
       "enabled": true,
-      "command": ["/opt/homebrew/bin/codex", "mcp-server"]
+      "command": ["/bin/bash", "/Users/liux17/codex/autoresearch/scripts/codex-mcp-local.sh"]
     },
     "zotero": {
       "type": "local",

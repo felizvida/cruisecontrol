@@ -21,13 +21,14 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
 - `.opencode/commands/` — OpenCode command wrappers matching the upstream slash commands
 - `AGENTS.md` — repo-level instructions for using the port in OpenCode
 - `opencode.jsonc` — sample MCP configuration with `codex` enabled by default
+- `scripts/codex-mcp-local.sh` — repo-local Codex MCP wrapper that isolates OpenCode from global Codex state on this machine
 - `templates/project-AGENTS.md` — project metadata template for GPU servers, paper libraries, and paper defaults
 - `UPSTREAM.md` — upstream source snapshot and provenance reference
 
 ## Quick Start
 
 1. Open this folder in OpenCode.
-2. Review and edit [opencode.jsonc](opencode.jsonc). The `codex` reviewer server is enabled by default; optional `zotero` and `obsidian-vault` entries remain disabled until you configure them.
+2. Review and edit [opencode.jsonc](opencode.jsonc). The `codex` reviewer server is enabled by default; on this machine it runs through `scripts/codex-mcp-local.sh`, which isolates OpenCode from any broken or unrelated global Codex MCP state. Optional `zotero` and `obsidian-vault` entries remain disabled until you configure them.
 3. If you want GPU execution or local paper-library lookup in another repo, copy [templates/project-AGENTS.md](templates/project-AGENTS.md) into that project as `AGENTS.md` and fill in the relevant sections.
 4. Run commands such as:
    - `/idea-discovery diffusion model efficiency`
@@ -43,6 +44,7 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
 - Upstream `~/.claude/feishu.json` references were changed to `~/.config/opencode/feishu.json`.
 - Skills still mention Claude-style MCP tool handles such as `mcp__codex__codex`. In this port, treat those as instructions to use the `codex` MCP server configured in [opencode.jsonc](opencode.jsonc).
 - The upstream repo did not ship actual command files. The command wrappers here are new and map one-to-one to the upstream workflow/skill names.
+- For this machine, the `codex` MCP entry uses a repo-local wrapper instead of calling `codex mcp-server` directly. This avoids failures caused by global Codex MCP config and stale Codex state databases.
 
 ## Recommended MCP Setup
 
@@ -52,7 +54,7 @@ The original workflow assumes an external reviewer model accessible through a se
 - `zotero` — literature search over a Zotero library
 - `obsidian-vault` — note search over an Obsidian vault
 
-`codex` is enabled by default in [opencode.jsonc](opencode.jsonc). `zotero` and `obsidian-vault` remain scaffolded but disabled by default.
+`codex` is enabled by default in [opencode.jsonc](opencode.jsonc). This repo also sets `experimental.mcp_timeout` to give longer-running literature and review calls enough time to finish natively in OpenCode. `zotero` and `obsidian-vault` remain scaffolded but disabled by default.
 
 ## Community
 

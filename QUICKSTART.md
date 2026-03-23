@@ -17,8 +17,10 @@ This repo expects a local MCP server named `codex`.
 Check [opencode.jsonc](opencode.jsonc). On this machine it should point to:
 
 ```json
-"command": ["/opt/homebrew/bin/codex", "mcp-server"]
+"command": ["/bin/bash", "/Users/liux17/codex/autoresearch/scripts/codex-mcp-local.sh"]
 ```
+
+That wrapper keeps OpenCode's `codex` server isolated from your global Codex MCP config and stale local Codex state.
 
 ## 3. Run one command
 
@@ -53,6 +55,7 @@ Check these first:
 
 - `codex` is installed at `/opt/homebrew/bin/codex`
 - the `codex` MCP server is visible in OpenCode
+- OpenCode picked up the repo's `opencode.jsonc`, including `experimental.mcp_timeout`
 - you are not missing project-specific setup in `AGENTS.md` when running against another repo
 
 If you want to use these skills inside a different research repo, copy [templates/project-AGENTS.md](templates/project-AGENTS.md) into that repo as `AGENTS.md`.
