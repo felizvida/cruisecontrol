@@ -78,6 +78,9 @@ The original workflow assumes an external reviewer model accessible through a se
 
 `codex` is enabled by default in [opencode.jsonc](opencode.jsonc). This repo also sets `experimental.mcp_timeout` to give longer-running literature and review calls enough time to finish natively in OpenCode. `zotero` and `obsidian-vault` remain scaffolded but disabled by default.
 
+For the full technical write-up of the local `codex` MCP setup failure we hit on this machine, and why the wrapper-based fix is more stable, read [docs/technical/codex-mcp-lessons-learned.md](docs/technical/codex-mcp-lessons-learned.md).
+For the broader story of what we learned while getting this project into reliable shape, read [docs/technical/project-setup-stories.md](docs/technical/project-setup-stories.md).
+
 ## Community
 
 - [CONTRIBUTING.md](CONTRIBUTING.md) — contribution expectations for docs, skills, and workflow changes
