@@ -39,6 +39,8 @@ A good first run gives you:
 - novelty warnings
 - one recommended next step
 
+If you want to see a sample artifact set first, read [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
+
 ## 5. Keep going
 
 If the report looks promising, the next command is usually:

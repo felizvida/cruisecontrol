@@ -38,6 +38,10 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
 5. For a step-by-step walkthrough with a concrete example, read [QUICKSTART.md](QUICKSTART.md).
 6. For a narrative walkthrough of how the workflow feels in practice, read [AUTO_RESEARCH_GUIDE.md](AUTO_RESEARCH_GUIDE.md).
 
+## Sample Example
+
+If you want to see a concrete sample artifact set before running anything yourself, start with [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
+
 ## Porting Notes
 
 - Upstream `CLAUDE.md` references were changed to `AGENTS.md`.
