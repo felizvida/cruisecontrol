@@ -24,7 +24,7 @@ Some skills expect the active research project to expose metadata in `AGENTS.md`
 - `## Local Environment`
 - `## Paper Defaults`
 
-If you are using these skills from another repo, create that repo's `AGENTS.md` from [project-AGENTS.md](/Users/liux17/codex/autoresearch/templates/project-AGENTS.md).
+If you are using these skills from another repo, create that repo's `AGENTS.md` from [project-AGENTS.md](templates/project-AGENTS.md).
 
 ## Command Behavior
 

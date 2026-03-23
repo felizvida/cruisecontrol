@@ -16,7 +16,7 @@ What you do have is a question:
 
 That is exactly the kind of starting point this repo is built for.
 
-On this machine, the reviewer MCP server is configured locally through [opencode.jsonc](/Users/liux17/codex/autoresearch/opencode.jsonc):
+On this machine, the reviewer MCP server is configured locally through [opencode.jsonc](opencode.jsonc):
 
 ```json
 {
@@ -142,7 +142,7 @@ Once you have one idea worth trying, move to execution:
 /run-experiment "pilot Budgeted Episodic Adapter with 3 terrain shifts, 3 seeds, and energy logging"
 ```
 
-If you are using these skills inside a real project repo, this works best when that project has an `AGENTS.md` derived from [templates/project-AGENTS.md](/Users/liux17/codex/autoresearch/templates/project-AGENTS.md), because the workflow can then find:
+If you are using these skills inside a real project repo, this works best when that project has an `AGENTS.md` derived from [templates/project-AGENTS.md](templates/project-AGENTS.md), because the workflow can then find:
 
 - your SSH target
 - your conda environment

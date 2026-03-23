@@ -1,174 +1,58 @@
-# Quickstart User Guide
+# Quick Start
 
-This guide gets a first-time user from clone to a working research workflow in OpenCode with one concrete example.
+Use this if you want the shortest path from clone to first useful result.
 
-## What You Need
+## 1. Open the repo
 
-- OpenCode installed
-- `codex` installed and available on your `PATH`
-- This repo cloned locally
+```bash
+git clone https://github.com/felizvida/cruisecontrol
+cd cruisecontrol
+opencode
+```
 
-The review skills in this repo assume an MCP server named `codex`. That server is already enabled by default in [opencode.jsonc](/Users/liux17/codex/autoresearch/opencode.jsonc).
+## 2. Confirm Codex is wired in
 
-## 5-Minute Setup
+This repo expects a local MCP server named `codex`.
 
-1. Clone the repo:
+Check [opencode.jsonc](opencode.jsonc). On this machine it should point to:
 
-   ```bash
-   git clone https://github.com/felizvida/cruisecontrol
-   cd cruisecontrol
-   ```
+```json
+"command": ["/opt/homebrew/bin/codex", "mcp-server"]
+```
 
-2. Verify the MCP config:
+## 3. Run one command
 
-   ```bash
-   cat opencode.jsonc
-   ```
-
-   You should see:
-
-   ```json
-   {
-     "mcp": {
-       "codex": {
-         "type": "local",
-         "enabled": true,
-         "command": ["/opt/homebrew/bin/codex", "mcp-server"]
-       }
-     }
-   }
-   ```
-
-3. Optional: if you are using these skills inside a real research repo, copy the project template and fill in your local paper library or GPU server details:
-
-   ```bash
-   cp templates/project-AGENTS.md /path/to/your/project/AGENTS.md
-   ```
-
-4. Start OpenCode in this repo:
-
-   ```bash
-   opencode
-   ```
-
-5. In the OpenCode chat, verify that the `codex` MCP server is visible:
-
-   ```text
-   /mcp
-   ```
-
-   Or from a shell:
-
-   ```bash
-   opencode mcp list
-   ```
-
-## First Example
-
-Use `idea-discovery` for the first run. It is the easiest end-to-end workflow because it goes from vague research direction to ranked ideas and a pilot plan.
-
-Sample research idea:
+In OpenCode, start with:
 
 ```text
 /idea-discovery "test-time adaptation for battery-constrained quadruped robots"
 ```
 
-What this command should do:
+## 4. What you should get
 
-- scan related work
-- brainstorm several concrete ideas
-- check novelty
-- ask the external reviewer for critical feedback
-- return a ranked idea report with next steps
+A good first run gives you:
 
-## Sample Output
+- a local `IDEA_REPORT.md`
+- 2-5 ranked ideas
+- novelty warnings
+- one recommended next step
 
-Actual output will vary by model and available tools. A typical good result should look roughly like this:
+## 5. Keep going
 
-```markdown
-# Idea Discovery Report
-
-## Research Direction
-Test-time adaptation for battery-constrained quadruped robots
-
-## Landscape Summary
-- Existing test-time adaptation methods usually assume server-class GPUs or long online optimization windows.
-- Mobile robotics papers often optimize control latency, but not adaptation cost per watt.
-- There appears to be room for methods that trade a small amount of asymptotic performance for predictable energy use.
-
-## Recommended Ideas (ranked)
-
-### Idea 1: Budgeted Episodic Adapter
-Use a tiny episodic memory with a hard per-episode update budget. Adapt only when uncertainty crosses a threshold.
-
-- Why it may matter: matches real robot energy constraints
-- Main risk: adaptation signal may be too weak in short horizons
-- Minimum pilot: compare no adaptation vs full adaptation vs budgeted adaptation on 3 terrain shifts
-
-### Idea 2: Distilled Recovery Policy
-Run a heavy adaptation policy offline, distill its corrections into a lightweight online recovery head.
-
-- Why it may matter: pushes most cost offline
-- Main risk: distilled policy may fail under unseen shifts
-
-## Novelty Check
-- No direct match found for "energy-budgeted test-time adaptation for quadruped locomotion"
-- Closest papers study either test-time adaptation or low-power control, but not their joint optimization
-- Confidence: medium
-
-## Reviewer Feedback
-- Strongest angle: compute-aware adaptation as a systems constraint
-- Weakest point: novelty claim will depend on a clear baseline story and measured energy budget
-- Required experiment: show performance-per-joule, not only reward or success rate
-
-## Suggested Execution Order
-1. Pilot Idea 1 with a strict update budget
-2. Log adaptation gain, latency, and watt-hours
-3. If gains are real, expand to additional terrain and payload shifts
-
-## Next Steps
-- Create a small pilot benchmark
-- Add a metric table with reward, latency, and energy per episode
-- Run `/auto-review-loop` after the first pilot results land
-```
-
-## After the First Run
-
-Typical next commands:
-
-- `/research-review "Idea 1 from the last report"`
-- `/run-experiment "pilot Idea 1 with 3 terrain shifts and energy logging"`
-- `/auto-review-loop "budgeted quadruped adaptation pilot"`
-- `/paper-writing NARRATIVE_REPORT.md`
-
-## What Success Looks Like
-
-A successful first session usually leaves you with:
-
-- a ranked idea report
-- one idea with a cheap pilot experiment
-- a short list of reviewer-requested evidence
-- a clear next command
-
-If the output is vague or generic, tighten the prompt. Example:
+If the report looks promising, the next command is usually:
 
 ```text
-/idea-discovery "test-time adaptation for battery-constrained quadruped robots — focus on ideas that can be piloted in under 8 GPU-hours and evaluated with latency plus energy metrics"
+/auto-review-loop "best idea from IDEA_REPORT.md"
 ```
 
-## Common Failure Modes
+If you want the full workflow story instead of the minimal path, read [AUTO_RESEARCH_GUIDE.md](AUTO_RESEARCH_GUIDE.md).
 
-- `codex` MCP server not available: review and novelty-check steps will be weaker or fail
-- no project `AGENTS.md`: experiment-launch skills will not know your server or paper-library setup
-- overbroad topic: the system returns generic ideas instead of executable pilots
+## 6. If it fails
 
-## Minimal Working Loop
+Check these first:
 
-If you only want the smallest useful workflow, use this:
+- `codex` is installed at `/opt/homebrew/bin/codex`
+- the `codex` MCP server is visible in OpenCode
+- you are not missing project-specific setup in `AGENTS.md` when running against another repo
 
-```text
-/idea-discovery "your topic"
-/auto-review-loop "best idea from the report"
-```
-
-That gives you one discovery pass and one adversarial review loop without forcing you into paper generation.
+If you want to use these skills inside a different research repo, copy [templates/project-AGENTS.md](templates/project-AGENTS.md) into that repo as `AGENTS.md`.
