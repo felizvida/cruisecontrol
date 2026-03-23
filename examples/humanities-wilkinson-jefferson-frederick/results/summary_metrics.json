@@ -1,0 +1,148 @@
+{
+  "total_records": 17,
+  "direct_jefferson_wilkinson_records": 11,
+  "frederick_records": 6,
+  "frederick_share": 0.353,
+  "frederick_phase_counts": {
+    "frederick_repair": 1,
+    "rehabilitation": 2,
+    "local_context": 3
+  },
+  "frederick_roles": {
+    "reputational_repair": 1,
+    "trial_venue": 1,
+    "trial_outcome": 1,
+    "infrastructure": 1,
+    "local_origin": 1,
+    "legal_alliance": 1
+  },
+  "phase_counts": {
+    "access_and_utility": 3,
+    "frederick_repair": 1,
+    "frontier_brokerage": 1,
+    "burr_crisis": 3,
+    "rehabilitation": 4,
+    "retrospective_memory": 2,
+    "local_context": 3
+  },
+  "relationship_counts": {
+    "instrumental": 3,
+    "social_access": 1,
+    "self_vindication": 2,
+    "protective": 4,
+    "retrospective_defense": 1,
+    "official_settlement": 1,
+    "retrospective_esteem": 2,
+    "infrastructure": 1,
+    "biographical_context": 1,
+    "legal_alliance": 1
+  },
+  "source_counts": {
+    "primary": 14,
+    "local": 3
+  },
+  "theme_counts": {
+    "James Wilkinson": {
+      "warmth": 4,
+      "utility": 5,
+      "defense": 6
+    },
+    "Thomas Jefferson": {
+      "warmth": 2,
+      "utility": 4,
+      "defense": 2
+    }
+  },
+  "top_nodes": [
+    {
+      "node": "James Wilkinson",
+      "weight": 26
+    },
+    {
+      "node": "Thomas Jefferson",
+      "weight": 16
+    },
+    {
+      "node": "Frederick Town",
+      "weight": 10
+    },
+    {
+      "node": "Aaron Burr",
+      "weight": 6
+    },
+    {
+      "node": "James Madison",
+      "weight": 5
+    },
+    {
+      "node": "Zebulon Pike",
+      "weight": 3
+    },
+    {
+      "node": "Frederick Barracks",
+      "weight": 3
+    },
+    {
+      "node": "Meriwether Lewis",
+      "weight": 2
+    }
+  ],
+  "top_edges": [
+    {
+      "source": "James Wilkinson",
+      "target": "Thomas Jefferson",
+      "weight": 11
+    },
+    {
+      "source": "Aaron Burr",
+      "target": "James Wilkinson",
+      "weight": 4
+    },
+    {
+      "source": "Frederick Town",
+      "target": "James Wilkinson",
+      "weight": 3
+    },
+    {
+      "source": "James Wilkinson",
+      "target": "Zebulon Pike",
+      "weight": 3
+    },
+    {
+      "source": "Aaron Burr",
+      "target": "Thomas Jefferson",
+      "weight": 2
+    },
+    {
+      "source": "James Madison",
+      "target": "James Wilkinson",
+      "weight": 2
+    },
+    {
+      "source": "Frederick Town",
+      "target": "James Madison",
+      "weight": 2
+    },
+    {
+      "source": "Meriwether Lewis",
+      "target": "Thomas Jefferson",
+      "weight": 1
+    },
+    {
+      "source": "James Wilkinson",
+      "target": "John Adams",
+      "weight": 1
+    },
+    {
+      "source": "Frederick Town",
+      "target": "John Adams",
+      "weight": 1
+    }
+  ],
+  "core_claim_metrics": {
+    "instrumental_plus_protective_modes": 10,
+    "social_access_modes": 1,
+    "retrospective_esteem_modes": 2,
+    "frederick_rehabilitation_records": 2
+  }
+}

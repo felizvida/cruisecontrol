@@ -1,0 +1,119 @@
+{
+  "artifact_type": "humanities_case_study_with_computational_source_coding",
+  "paper_type": "history_note_with_local_public_history_angle",
+  "title": "Useful to Jefferson, Vindicated at Frederick-Town: James Wilkinson and the Geography of Political Survival",
+  "note": "This package studies Wilkinson's relationship with Jefferson and argues that Frederick was a recurring geography of repair, logistics, and legal survival.",
+  "primary_sources": [
+    {
+      "key": "jefferson1801",
+      "title": "Thomas Jefferson to Tarleton Bates, [23?] February 1801",
+      "role": "early operational link joining Jefferson, Lewis, and Wilkinson",
+      "url": "https://founders.archives.gov/documents/Jefferson/01-33-02-0083"
+    },
+    {
+      "key": "wilkinson1802",
+      "title": "James Wilkinson to Thomas Jefferson, 18 January 1802",
+      "role": "scientific and patronage exchange",
+      "url": "https://founders.archives.gov/documents/Jefferson/01-36-02-0245"
+    },
+    {
+      "key": "wilkinson1804",
+      "title": "James Wilkinson to Thomas Jefferson, 11 June 1804",
+      "role": "social access and public business",
+      "url": "https://founders.archives.gov/documents/Jefferson/01-43-02-0468-0001"
+    },
+    {
+      "key": "adams1804",
+      "title": "James Wilkinson to John Adams, 12 September 1804",
+      "role": "Frederick as early reputational repair site",
+      "url": "https://founders.archives.gov/documents/Adams/99-02-02-5052"
+    },
+    {
+      "key": "wilkinson1805",
+      "title": "James Wilkinson to Thomas Jefferson, 22 October 1805",
+      "role": "frontier intelligence and material brokerage",
+      "url": "https://founders.archives.gov/documents/Jefferson/01-47-02-0475"
+    },
+    {
+      "key": "jefferson1807",
+      "title": "Thomas Jefferson to James Wilkinson, 3 February 1807",
+      "role": "executive support during the Burr crisis",
+      "url": "https://founders.archives.gov/documents/Jefferson/99-01-02-5012"
+    },
+    {
+      "key": "wilkinson1807a",
+      "title": "James Wilkinson to Thomas Jefferson, 20 March 1807",
+      "role": "gratitude and dependency after Jefferson's support",
+      "url": "https://founders.archives.gov/documents/Jefferson/99-01-02-5318"
+    },
+    {
+      "key": "wilkinson1807b",
+      "title": "James Wilkinson to Thomas Jefferson, 15 April 1807",
+      "role": "appeal for orders and direction",
+      "url": "https://founders.archives.gov/documents/Jefferson/99-01-02-5458"
+    },
+    {
+      "key": "wilkinson1811",
+      "title": "James Wilkinson to Thomas Jefferson, 21 January 1811",
+      "role": "memoir as self-defense",
+      "url": "https://founders.archives.gov/documents/Jefferson/03-03-02-0246"
+    },
+    {
+      "key": "jefferson1811",
+      "title": "Thomas Jefferson to James Wilkinson, 10 March 1811",
+      "role": "private vindication",
+      "url": "https://founders.archives.gov/documents/Jefferson/03-03-02-0329"
+    },
+    {
+      "key": "wilkinson1811madison",
+      "title": "James Wilkinson to James Madison, 9 October 1811",
+      "role": "Frederick trial complaint",
+      "url": "https://founders.archives.gov/documents/Madison/03-03-02-0571"
+    },
+    {
+      "key": "madison1812",
+      "title": "James Madison to Thomas Jefferson, 7 February 1812",
+      "role": "approval of the Frederick-town acquittal",
+      "url": "https://founders.archives.gov/documents/Madison/03-04-02-0182"
+    },
+    {
+      "key": "jefferson1818",
+      "title": "Thomas Jefferson to James Wilkinson, 25 June 1818",
+      "role": "retrospective esteem",
+      "url": "https://founders.archives.gov/documents/Jefferson/03-13-02-0105"
+    },
+    {
+      "key": "wilkinson1818",
+      "title": "James Wilkinson to Thomas Jefferson, 4 August 1818",
+      "role": "retrospective gratitude",
+      "url": "https://founders.archives.gov/documents/Jefferson/03-13-02-0200"
+    }
+  ],
+  "local_sources": [
+    {
+      "key": "frederickbarracks",
+      "title": "Historic Frederick Barracks Historical Marker",
+      "role": "local infrastructure linking Lewis and Clark and the War of 1812 military site",
+      "url": "https://www.hmdb.org/m.asp?m=103369"
+    },
+    {
+      "key": "monocacypractice",
+      "title": "Wilkinson-Burbeck letters finding aid, University of Michigan William L. Clements Library",
+      "role": "biographical note on Wilkinson's Monocacy medical practice",
+      "url": "https://findingaids.lib.umich.edu/catalog/umich-wcl-M-858wil"
+    },
+    {
+      "key": "taney1918",
+      "title": "Roger Brooke Taney article, Maryland Historical Magazine 13:2 (1918)",
+      "role": "local legal alliance and unpaid defense",
+      "url": "https://msa.maryland.gov/megafile/msa/speccol/sc5800/sc5881/000001/000000/000050/pdf/msa_sc_5881_1_50.pdf"
+    }
+  ],
+  "generated_artifacts": [
+    "../results/event_timeline.csv",
+    "../results/theme_counts.csv",
+    "../results/network_edges.csv",
+    "../results/summary_metrics.json",
+    "../paper/main.pdf"
+  ]
+}
