@@ -8,6 +8,7 @@
 | Round 1 | Publication framing tightened | Reduced the manuscript from 9 pages to 8, clarified the authorship/presentation framing, and cleaned the figure and bibliography layout |
 | Round 2 | Final sample quality | Removed the last table overflow, aligned metadata, and produced the clean final PDF |
 | Round 3 | Complete artifact bundle | Added code, source-data manifest, dedicated figure assets, and a scored review, then updated the appendix to point at them |
+| Round 4 | Computation-backed paper | Added the executable serialization probe, regenerated computed figures and tables, rewrote the manuscript as a hybrid interface paper, and rebuilt the complete artifact package |
 
 ## Round 0
 
@@ -49,10 +50,20 @@
   3. Added dedicated high-resolution figure exports and their standalone source.
   4. Added a detailed scored review and wired the appendix to reference the full package.
 
+## Round 4
+
+- Preserved as `main_round4_computation_backed.pdf`
+- Also copied to `main.pdf`
+- Changes made:
+  1. Added a deterministic synthetic serialization probe with generated JSON, CSV, and sample-data artifacts.
+  2. Added a computed results figure and summary table derived directly from the probe outputs.
+  3. Reframed the manuscript from a perspective-only paper into a hybrid synthesis plus executable-interface paper.
+  4. Updated the README, data manifest, code docs, and review so the full package matches the new evidence level.
+
 ## Build Status
 
 - Final PDF: `main.pdf`
-- Pages: `9`
+- Pages: `11`
 - Undefined references/citations: `0`
 - Overfull/underfull warnings detected in `main.log`: `0`
 - Fonts embedded: yes

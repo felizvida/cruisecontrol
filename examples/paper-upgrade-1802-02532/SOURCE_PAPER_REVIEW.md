@@ -54,3 +54,5 @@ The upgraded paper should argue:
 **PIVOT**, not direct revision.
 
 The strongest paper available from the current materials is a new perspective manuscript that reframes the original method as an early precursor to serialized 3D learning and uses 2021-2026 literature to build a modern agenda for biomolecular AI.
+
+Postscript for this repository example: the final upgraded package later strengthens that path with a deterministic executable serialization probe. This review captures the decision at source-review time, before the new computation was added.

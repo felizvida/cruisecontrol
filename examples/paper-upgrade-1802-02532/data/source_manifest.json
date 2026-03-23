@@ -1,7 +1,7 @@
 {
-  "artifact_type": "document_corpus",
-  "paper_type": "perspective_position_paper",
-  "note": "This package does not include benchmark data because the manuscript makes no new empirical claims.",
+  "artifact_type": "source_paper_plus_synthetic_probe",
+  "paper_type": "hybrid_interface_paper",
+  "note": "This package combines the user-owned source paper archive, modern literature, and a deterministic synthetic serialization probe.",
   "source_paper": {
     "title": "A Spatial Mapping Algorithm with Applications in Deep Learning-Based Structure Classification",
     "year": 2018,
@@ -9,6 +9,24 @@
     "local_archive": "../source/arxiv-source.tar",
     "local_tex": "../source/unpacked/main.tex",
     "local_pdf": "../source/unpacked/main.pdf"
+  },
+  "synthetic_probe_dataset": {
+    "description": "Deterministic 16^3 voxel microenvironments combining backbone-like walks, dense pocket-like patches, and distractor voxels with three semantic channels.",
+    "local_corpus": "synthetic_microenvironment_corpus.jsonl",
+    "local_summary": "../results/serialization_probe.json",
+    "local_curves": [
+      "../results/locality_curve.csv",
+      "../results/context_budget_curve.csv"
+    ],
+    "grid_size": 16,
+    "num_samples": 240,
+    "seed_base": 1000,
+    "channels": {
+      "1": "backbone-like support voxel",
+      "2": "polar / pocket core voxel",
+      "3": "hydrophobic / shell voxel"
+    },
+    "positive_support_rule": "At least one channel-1 neighbor, two channel-2 neighbors, and two channel-3 neighbors inside a 26-neighborhood."
   },
   "primary_literature": [
     {

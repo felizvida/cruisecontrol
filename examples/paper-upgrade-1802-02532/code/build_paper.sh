@@ -5,6 +5,8 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 PAPER_DIR="${ROOT_DIR}/paper"
 
+python3 "${ROOT_DIR}/results/run_serialization_probe.py"
+python3 "${ROOT_DIR}/results/render_probe_assets.py"
 "${SCRIPT_DIR}/generate_figure_assets.sh"
 
 cd "${PAPER_DIR}"

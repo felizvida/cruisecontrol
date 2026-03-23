@@ -1,0 +1,334 @@
+{
+  "dataset": {
+    "name": "synthetic_microenvironment_probe",
+    "description": "Deterministic 16^3 voxel microenvironments combining backbone-like walks, dense pocket patches, and distractor voxels with three semantic channels. The probe tests how serialization affects local-neighborhood exposure under sequence budgets.",
+    "grid_size": 16,
+    "num_samples": 240,
+    "seed_base": 1000,
+    "average_occupied_voxels": 107.5833,
+    "channels": {
+      "1": "backbone-like support voxel",
+      "2": "polar / pocket core voxel",
+      "3": "hydrophobic / shell voxel"
+    },
+    "positive_support_rule": "At least one channel-1 neighbor, two channel-2 neighbors, and two channel-3 neighbors inside a 26-neighborhood."
+  },
+  "orderings": [
+    {
+      "ordering": "hilbert",
+      "label": "Hilbert",
+      "adjacency": {
+        "pair_count": 27089,
+        "mean_span": 149.9021,
+        "median_span": 5,
+        "p90_span": 427,
+        "retention": [
+          {
+            "ordering": "hilbert",
+            "threshold": 4,
+            "retention": 0.4711
+          },
+          {
+            "ordering": "hilbert",
+            "threshold": 8,
+            "retention": 0.5981
+          },
+          {
+            "ordering": "hilbert",
+            "threshold": 16,
+            "retention": 0.652
+          },
+          {
+            "ordering": "hilbert",
+            "threshold": 32,
+            "retention": 0.7145
+          },
+          {
+            "ordering": "hilbert",
+            "threshold": 64,
+            "retention": 0.7865
+          },
+          {
+            "ordering": "hilbert",
+            "threshold": 128,
+            "retention": 0.8288
+          },
+          {
+            "ordering": "hilbert",
+            "threshold": 256,
+            "retention": 0.8773
+          }
+        ]
+      },
+      "support_recovery": {
+        "positive_count": 6055,
+        "median_radius": 146,
+        "p90_radius": 1238,
+        "recoverability": [
+          {
+            "ordering": "hilbert",
+            "budget": 64,
+            "recoverability": 0.3988
+          },
+          {
+            "ordering": "hilbert",
+            "budget": 128,
+            "recoverability": 0.4857
+          },
+          {
+            "ordering": "hilbert",
+            "budget": 256,
+            "recoverability": 0.595
+          },
+          {
+            "ordering": "hilbert",
+            "budget": 512,
+            "recoverability": 0.7176
+          },
+          {
+            "ordering": "hilbert",
+            "budget": 1024,
+            "recoverability": 0.817
+          }
+        ]
+      }
+    },
+    {
+      "ordering": "morton",
+      "label": "Morton",
+      "adjacency": {
+        "pair_count": 27089,
+        "mean_span": 139.1649,
+        "median_span": 4,
+        "p90_span": 439,
+        "retention": [
+          {
+            "ordering": "morton",
+            "threshold": 4,
+            "retention": 0.5008
+          },
+          {
+            "ordering": "morton",
+            "threshold": 8,
+            "retention": 0.5717
+          },
+          {
+            "ordering": "morton",
+            "threshold": 16,
+            "retention": 0.6455
+          },
+          {
+            "ordering": "morton",
+            "threshold": 32,
+            "retention": 0.7196
+          },
+          {
+            "ordering": "morton",
+            "threshold": 64,
+            "retention": 0.7778
+          },
+          {
+            "ordering": "morton",
+            "threshold": 128,
+            "retention": 0.831
+          },
+          {
+            "ordering": "morton",
+            "threshold": 256,
+            "retention": 0.8881
+          }
+        ]
+      },
+      "support_recovery": {
+        "positive_count": 6055,
+        "median_radius": 220,
+        "p90_radius": 1757,
+        "recoverability": [
+          {
+            "ordering": "morton",
+            "budget": 64,
+            "recoverability": 0.3518
+          },
+          {
+            "ordering": "morton",
+            "budget": 128,
+            "recoverability": 0.4477
+          },
+          {
+            "ordering": "morton",
+            "budget": 256,
+            "recoverability": 0.5858
+          },
+          {
+            "ordering": "morton",
+            "budget": 512,
+            "recoverability": 0.7044
+          },
+          {
+            "ordering": "morton",
+            "budget": 1024,
+            "recoverability": 0.8373
+          }
+        ]
+      }
+    },
+    {
+      "ordering": "raster",
+      "label": "Raster",
+      "adjacency": {
+        "pair_count": 27089,
+        "mean_span": 91.1667,
+        "median_span": 16,
+        "p90_span": 256,
+        "retention": [
+          {
+            "ordering": "raster",
+            "threshold": 4,
+            "retention": 0.3325
+          },
+          {
+            "ordering": "raster",
+            "threshold": 8,
+            "retention": 0.3325
+          },
+          {
+            "ordering": "raster",
+            "threshold": 16,
+            "retention": 0.666
+          },
+          {
+            "ordering": "raster",
+            "threshold": 32,
+            "retention": 0.666
+          },
+          {
+            "ordering": "raster",
+            "threshold": 64,
+            "retention": 0.666
+          },
+          {
+            "ordering": "raster",
+            "threshold": 128,
+            "retention": 0.666
+          },
+          {
+            "ordering": "raster",
+            "threshold": 256,
+            "retention": 1.0
+          }
+        ]
+      },
+      "support_recovery": {
+        "positive_count": 6055,
+        "median_radius": 272,
+        "p90_radius": 273,
+        "recoverability": [
+          {
+            "ordering": "raster",
+            "budget": 64,
+            "recoverability": 0.0289
+          },
+          {
+            "ordering": "raster",
+            "budget": 128,
+            "recoverability": 0.0289
+          },
+          {
+            "ordering": "raster",
+            "budget": 256,
+            "recoverability": 0.3133
+          },
+          {
+            "ordering": "raster",
+            "budget": 512,
+            "recoverability": 1.0
+          },
+          {
+            "ordering": "raster",
+            "budget": 1024,
+            "recoverability": 1.0
+          }
+        ]
+      }
+    },
+    {
+      "ordering": "random",
+      "label": "Random",
+      "adjacency": {
+        "pair_count": 27089,
+        "mean_span": 1352.3707,
+        "median_span": 1181,
+        "p90_span": 2760,
+        "retention": [
+          {
+            "ordering": "random",
+            "threshold": 4,
+            "retention": 0.0015
+          },
+          {
+            "ordering": "random",
+            "threshold": 8,
+            "retention": 0.0032
+          },
+          {
+            "ordering": "random",
+            "threshold": 16,
+            "retention": 0.006
+          },
+          {
+            "ordering": "random",
+            "threshold": 32,
+            "retention": 0.0139
+          },
+          {
+            "ordering": "random",
+            "threshold": 64,
+            "retention": 0.0343
+          },
+          {
+            "ordering": "random",
+            "threshold": 128,
+            "retention": 0.0676
+          },
+          {
+            "ordering": "random",
+            "threshold": 256,
+            "retention": 0.1232
+          }
+        ]
+      },
+      "support_recovery": {
+        "positive_count": 6055,
+        "median_radius": 1957,
+        "p90_radius": 3163,
+        "recoverability": [
+          {
+            "ordering": "random",
+            "budget": 64,
+            "recoverability": 0.0
+          },
+          {
+            "ordering": "random",
+            "budget": 128,
+            "recoverability": 0.0
+          },
+          {
+            "ordering": "random",
+            "budget": 256,
+            "recoverability": 0.0015
+          },
+          {
+            "ordering": "random",
+            "budget": 512,
+            "recoverability": 0.016
+          },
+          {
+            "ordering": "random",
+            "budget": 1024,
+            "recoverability": 0.13
+          }
+        ]
+      }
+    }
+  ]
+}

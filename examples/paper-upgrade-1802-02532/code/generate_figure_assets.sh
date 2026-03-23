@@ -3,19 +3,26 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
-FIG_DIR="${ROOT_DIR}/figure_assets/serialization_view"
-FIG_BASENAME="serialization_view_standalone"
 
-cd "${FIG_DIR}"
-latexmk -pdf -interaction=nonstopmode -halt-on-error "${FIG_BASENAME}.tex"
+build_asset() {
+  local dir="$1"
+  local basename="$2"
+  local stem="$3"
 
-cp "${FIG_BASENAME}.pdf" "serialization_view.pdf"
-pdftocairo -svg "${FIG_BASENAME}.pdf" "serialization_view.svg"
-pdftocairo -png -r 600 "${FIG_BASENAME}.pdf" "serialization_view"
-latexmk -c "${FIG_BASENAME}.tex"
+  cd "${dir}"
+  latexmk -pdf -interaction=nonstopmode -halt-on-error "${basename}.tex"
 
-echo "Generated:"
-echo "  ${FIG_DIR}/serialization_view.pdf"
-echo "  ${FIG_DIR}/${FIG_BASENAME}.pdf"
-echo "  ${FIG_DIR}/serialization_view.svg"
-echo "  ${FIG_DIR}/serialization_view-1.png"
+  cp "${basename}.pdf" "${stem}.pdf"
+  pdftocairo -svg "${basename}.pdf" "${stem}.svg"
+  pdftocairo -png -r 600 "${basename}.pdf" "${stem}"
+  latexmk -c "${basename}.tex"
+
+  echo "Generated:"
+  echo "  ${dir}/${stem}.pdf"
+  echo "  ${dir}/${basename}.pdf"
+  echo "  ${dir}/${stem}.svg"
+  echo "  ${dir}/${stem}-1.png"
+}
+
+build_asset "${ROOT_DIR}/figure_assets/serialization_view" "serialization_view_standalone" "serialization_view"
+build_asset "${ROOT_DIR}/figure_assets/probe_curves" "probe_curves_standalone" "probe_curves"

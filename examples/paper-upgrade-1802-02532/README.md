@@ -9,12 +9,13 @@ This folder is a concrete example of the linked-paper upgrade workflow applied t
 
 The workflow does **not** recommend a direct 2026 resubmission of the 2018 empirical paper.
 
-Instead, it takes the `PIVOT` path:
+Instead, it takes the `PIVOT + EXECUTABLE PROBE` path:
 
 1. preserve and review the source paper
 2. identify why the original experimental framing is now saturated
 3. reinterpret the core idea as an early precursor to modern 3D serialization/tokenization
-4. generate a new publication-oriented perspective paper with a distinct contribution
+4. add a new deterministic computation-backed probe that tests the paper's central serialization claim
+5. generate a new publication-oriented paper with a distinct contribution
 
 ## Key Artifacts
 
@@ -31,9 +32,13 @@ Instead, it takes the `PIVOT` path:
 - [paper/main_round1.pdf](paper/main_round1.pdf)
 - [paper/main_round2.pdf](paper/main_round2.pdf)
 - [paper/main_round3_complete_package.pdf](paper/main_round3_complete_package.pdf)
+- [paper/main_round4_computation_backed.pdf](paper/main_round4_computation_backed.pdf)
 - [paper/PAPER_IMPROVEMENT_LOG.md](paper/PAPER_IMPROVEMENT_LOG.md)
 - [code/README.md](code/README.md)
 - [data/README.md](data/README.md)
+- [results/serialization_probe.json](results/serialization_probe.json)
+- [results/ordering_summary.csv](results/ordering_summary.csv)
+- [data/synthetic_microenvironment_corpus.jsonl](data/synthetic_microenvironment_corpus.jsonl)
 - [figure_assets/README.md](figure_assets/README.md)
 - [review/REVIEW_OPINION.md](review/REVIEW_OPINION.md)
 
@@ -49,28 +54,29 @@ The original arXiv source was downloaded to:
 
 The upgraded paper is not a facelift of the 2018 manuscript.
 
-It becomes a new perspective paper:
+It becomes a new computation-backed interface paper:
 
 - old paper: Hilbert-curve mapping as an alternative to volumetric 3D CNNs
 - new paper: serialization as a first-class interface between irregular 3D structures and modern sequence-native models, especially for biomolecular AI
+- new executable evidence: a deterministic context-budget probe comparing Hilbert, Morton, raster, and random orderings on synthetic channel-rich microenvironments
 
-That pivot is the only credible publication path available here without inventing new experiments.
+That pivot is the most credible publication path available here without fabricating a modern biomolecular benchmark.
 
 ## Final Status
 
 The example now ends in a completed paper artifact:
 
-- paper type: perspective / position paper
+- paper type: hybrid literature-synthesis / executable-interface paper
 - final output: [paper/main.pdf](paper/main.pdf)
-- build status: clean LaTeX build, 9 pages, fonts embedded
+- build status: clean LaTeX build, 11 pages, fonts embedded
 
 ## Completeness Package
 
 This example now includes the additional pieces needed for a more complete publication bundle:
 
-- executable build and validation code in [code/](code/)
-- a source-data and literature manifest in [data/](data/)
+- executable probe, figure-generation, build, and validation code in [code/](code/) and [results/](results/)
+- a source-paper archive plus generated sample corpus and manifest in [data/](data/)
 - dedicated high-resolution figure exports in [figure_assets/](figure_assets/)
 - a detailed scored review in [review/](review/)
 
-Because the final paper is a perspective manuscript, there is no training pipeline or benchmark dataset in this example. The shipped code and data package therefore cover manuscript building, figure generation, and the document corpus used to justify the paper.
+Because the final paper is still an honest scoped example, there is no claim of a real biomolecular benchmark, training run, or SOTA method. The shipped computation instead covers a deterministic synthetic serialization probe that generates the figures, tables, and core quantitative claims used in the manuscript.

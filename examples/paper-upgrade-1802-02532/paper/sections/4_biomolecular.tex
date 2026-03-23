@@ -4,6 +4,8 @@ The original paper already pointed toward structural biology as a natural applic
 
 Recent work such as AtoMAE confirms that voxel-based biomolecular representation learning remains scientifically active when paired with modern architectures \citep{park2025atomae}. This does not mean that one representation should dominate all others. Rather, it suggests that biomolecular AI is still searching for the right interface between structure and model family. Sequence models are natural for proteins because biological data already come with sequences. Structural models are natural because function depends on three-dimensional arrangement. Serialization matters because it creates one of the few practical bridges between those two worlds.
 
+The executable probe sharpens that argument. Even though the probe is synthetic, it captures one genuinely biomolecular pressure point: a local environment can be chemically meaningful only if its mixed-channel neighborhood remains accessible after tokenization. The gap between locality-aware orderings and the raster or random baselines under tight sequence budgets suggests that interface quality should be evaluated in terms that are native to sequence processing, not only in terms of geometric nostalgia.
+
 From this viewpoint, a useful biomolecular serialization strategy should satisfy four design criteria.
 
 \paragraph{Locality preservation.}
