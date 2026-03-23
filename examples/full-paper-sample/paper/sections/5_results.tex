@@ -2,21 +2,21 @@
 
 \input{figures/TABLE_main_results.tex}
 
-The main result is the low-battery crossover. In terrain shift at $25\%$ battery, battery-gated adaptation reaches a mission return of $0.75$, ahead of always-on adaptation at $0.67$, while using only $0.13$ Wh of adaptation-compute energy instead of $0.56$ Wh. Payload shift shows the same pattern: $0.77$ versus $0.69$, with compute cost reduced from $0.49$ Wh to $0.14$ Wh. These are the regimes that support the paper's core scheduling claim.
+The main result is the low-battery tradeoff. In terrain shift at $25\%$ battery, battery-gated adaptation reaches a mission return of $0.56$, ahead of always-on adaptation at $0.54$, while using only $0.15$ Wh of adaptation-compute energy instead of $0.41$ Wh. Payload shift shows the same pattern even more clearly: $0.63$ versus $0.60$, with compute cost reduced from $0.42$ Wh to $0.07$ Wh. Averaged across the two low-battery regimes, the gated rule improves mission return by $0.025$ while cutting adaptation-compute energy by roughly $0.31$ Wh relative to always-on adaptation.
 
-High-battery regimes are deliberately less flattering to gating. Under terrain shift at $80\%$ battery, always-on adaptation reaches $0.83$ return, slightly ahead of battery-gated adaptation at $0.81$. Payload shift is similarly close at $0.84$ versus $0.83$. This is useful rather than inconvenient: it prevents the paper from pretending that one schedule dominates everywhere. Averaged over the two low-battery regimes, the gated rule improves return by $0.08$ while cutting adaptation-compute energy by roughly $0.39$ Wh relative to always-on adaptation.
-
-\input{figures/TABLE_cost_sweep.tex}
-
-The adaptation-cost sweep sharpens the story. When the adaptation-cost scale is only $0.25$, always-on adaptation remains competitive at $0.82$ return, versus $0.80$ for the gated policy. As cost rises to $2.0$, always-on adaptation falls to $0.49$ while the gated policy remains at $0.68$. The crossover is therefore not an artifact of a single tuned operating point; it is exactly the kind of deployment-sensitive threshold that motivated the project.
-
-\input{figures/TABLE_ablation.tex}
-
-The ablation indicates that the full gated rule benefits from both battery state and the compute-cost penalty. Removing battery-state awareness or omitting the cost term weakens both mission return and transport efficiency.
+High-battery regimes tell the other half of the story. Under terrain and payload shift at $80\%$ battery, the tuned gating rule adapts at effectively every step and matches always-on adaptation at $0.99$ mission return. That is useful rather than inconvenient: it shows that the scheduler can collapse toward aggressive adaptation when battery pressure is low, instead of insisting on sparse updates everywhere.
 
 \begin{figure}[t]
 \centering
-\input{figures/FIG_regime_placeholder.tex}
-\caption{Regime summary placeholder. The sample keeps the figure explicit and replaceable rather than inventing a polished graphic without a real experiment backend.}
-\label{fig:regimes}
+\input{figures/FIG_policy_tradeoff.tex}
+\caption{Low-battery return versus adaptation-compute energy. Battery-gated adaptation occupies the best part of the Pareto frontier in both low-battery regimes: it matches or improves return while using substantially less compute than always-on adaptation.}
+\label{fig:tradeoff}
 \end{figure}
+
+\input{figures/TABLE_cost_sweep.tex}
+
+The adaptation-cost sweep sharpens the story. When the adaptation-cost scale is $0.25$, battery-gated and always-on adaptation are effectively tied at $0.57$. As cost rises to $1.0$ and $1.5$, the gated policy moves slightly ahead at $0.56$ versus $0.54$ and $0.53$ versus $0.52$, respectively. At the most extreme cost scale of $2.0$, however, the fixed threshold becomes too aggressive and battery-gated performance falls to $0.46$ while always-on remains at $0.50$. The sweep therefore supports the scheduling claim, but it also exposes a limitation: a single tuned threshold is not robust across arbitrarily large compute-cost shifts.
+
+\input{figures/TABLE_ablation.tex}
+
+The ablation indicates that the full gated rule benefits from both battery state and the compute-cost penalty. Removing either signal drops mission return to $0.53$--$0.54$ and nearly triples compute draw from $0.15$ Wh to $0.41$ Wh. A simple slip-threshold heuristic is cheap, but it also leaves return on the table. Taken together, these results suggest that the benefit is not just sparsity; it is battery-aware sparsity.

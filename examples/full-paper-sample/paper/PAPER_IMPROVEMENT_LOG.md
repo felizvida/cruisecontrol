@@ -8,6 +8,7 @@
 | Round 1 | 6.8/10 | Almost | Clarified the low-battery crossover and added an average-effect summary |
 | Round 2 | 7.3/10 | Good demo sample | Tightened the limitations and conclusion so the scope matches the synthetic benchmark |
 | Round 3 | 7.4/10 | Complete package | Added code, data manifest, figure assets, and a scored review bundle |
+| Round 4 | 8.1/10 | Reproducible simulation study | Replaced the hand-authored benchmark story with executable simulation code, generated figures, and a rebuilt paper |
 
 ## Round 0
 
@@ -52,6 +53,16 @@ Why this mattered:
   2. Added a data manifest tied to the synthetic benchmark JSON.
   3. Added dedicated high-resolution exports for the placeholder figures.
   4. Added a scored review packet and updated the appendix to reference the full bundle.
+
+## Round 4
+
+- Preserved as `main_round4_simulation_package.pdf`
+- Also copied to `main.pdf`
+- Changes made:
+  1. Added `simulate_battery_benchmark.py` and generated `episode_metrics.csv`.
+  2. Replaced placeholder figures with a generated controller schematic and a low-battery tradeoff plot.
+  3. Rewrote the paper from a synthetic workflow-demo framing into a reproducible stochastic simulation study.
+  4. Updated the review packet, data manifest, and package docs to match the new evidence level.
 
 ## Build Status
 

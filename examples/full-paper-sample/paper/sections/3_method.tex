@@ -12,7 +12,7 @@ a_t = \I[s_t > \tau],
 \end{equation}
 with threshold $\tau$ tuned once for the benchmark.
 
-This formulation is intentionally modest. It is not a new general TTA algorithm. Instead, it isolates a single scheduling decision: whether the controller should spend energy on adaptation right now. The four policies in the benchmark are then:
+This formulation is intentionally modest. It is not a new general TTA algorithm. Instead, it isolates a single scheduling decision: whether the controller should spend energy on adaptation right now. The threshold $\tau$ is tuned once on a held-out sweep to maximize a battery-adjusted mission-utility objective. The four policies in the benchmark are then:
 \begin{itemize}
 \item \textbf{Static}: never adapt.
 \item \textbf{Periodic}: adapt on a fixed interval.
@@ -20,4 +20,4 @@ This formulation is intentionally modest. It is not a new general TTA algorithm.
 \item \textbf{Battery-gated}: adapt only when the score $s_t$ exceeds the threshold.
 \end{itemize}
 
-The value of this formulation is that it makes a falsifiable prediction. If adaptation is effectively free, always-on adaptation should dominate. If adaptation is expensive relative to its robustness gain, a gated policy should become preferable, especially in low-battery regimes.
+The value of this formulation is that it makes a falsifiable prediction. If adaptation is effectively free, always-on adaptation should dominate. If adaptation is expensive relative to its robustness gain, a gated policy should become preferable, especially in low-battery regimes. The simulator below is designed to test exactly that scheduling boundary.

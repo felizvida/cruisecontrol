@@ -42,11 +42,14 @@ A good full run gives you:
 
 That is the paper-draft stage. In this repo, a **complete** final paper package should also include:
 
+- results generated from real executable computation
 - code used to build or support the paper
 - sample data or a source-data manifest
 - a dedicated high-resolution figure folder
 - a detailed review opinion
 - a score
+
+If the claimed results need more compute than this machine can provide, move the heavy run to Biowulf and bring the resulting artifacts back into the local paper package.
 
 If you want to see a sample artifact set first, read [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
 If you want the full sample ending in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).

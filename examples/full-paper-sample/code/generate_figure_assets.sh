@@ -18,5 +18,5 @@ build_one() {
   echo "Generated figure assets in ${dir}"
 }
 
-build_one "controller_placeholder" "controller_placeholder_standalone"
-build_one "regime_placeholder" "regime_placeholder_standalone"
+build_one "controller_schematic" "controller_schematic_standalone"
+build_one "policy_tradeoff" "policy_tradeoff_standalone"

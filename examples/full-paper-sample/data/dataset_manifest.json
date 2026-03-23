@@ -1,8 +1,8 @@
 {
-  "artifact_type": "synthetic_benchmark",
-  "paper_type": "workflow_demonstration",
+  "artifact_type": "stochastic_simulation_benchmark",
+  "paper_type": "reproducible_simulation_study",
   "primary_dataset": {
-    "title": "Synthetic battery-gated quadruped benchmark",
+    "title": "Battery-gated quadruped deployment benchmark",
     "local_path": "../results/demo_benchmark.json",
     "format": "json",
     "used_for": [
@@ -11,8 +11,19 @@
       "ablation table"
     ]
   },
+  "episode_trace_export": {
+    "title": "Episode-level simulator metrics",
+    "local_path": "../results/episode_metrics.csv",
+    "format": "csv",
+    "used_for": [
+      "auditability",
+      "downstream analysis",
+      "figure generation"
+    ]
+  },
   "supporting_code": {
+    "simulator": "../results/simulate_battery_benchmark.py",
     "table_renderer": "../results/render_demo_tables.py"
   },
-  "note": "No external robotics dataset is required because this paper is intentionally a synthetic workflow demonstration."
+  "note": "No external robotics dataset is required because this paper is generated from a lightweight local simulator rather than a hardware benchmark."
 }

@@ -259,11 +259,15 @@ The pipeline then helps convert that into:
 
 When the workflow is promoted to a complete final paper package in this repo, it should also leave behind:
 
+- results generated from real executable computation
 - code used to build or support the paper
 - sample data or a source-data manifest
 - a dedicated high-resolution figure folder
 - a detailed review opinion
 - a score
+
+That standard matters. A polished PDF without underlying computation is not treated as a finished paper here.
+If the experiment is small, run it locally. If the experiment needs serious compute, move it to Biowulf, run it there, and package the resulting code and artifacts back into the repo.
 
 The important point is that the writing stage is downstream of the research loop.
 The workflow is not trying to hallucinate credibility into a weak result.

@@ -1,13 +1,13 @@
 {
-  "overall_score": 7.4,
-  "recommendation": "Accept as workflow demonstration",
-  "counterfactual_empirical_robotics_recommendation": "Reject",
-  "confidence": 0.88,
+  "overall_score": 8.1,
+  "recommendation": "Weak Accept as reproducible simulation study / artifact paper",
+  "counterfactual_empirical_robotics_recommendation": "Borderline Reject",
+  "confidence": 0.9,
   "criteria": {
-    "novelty": 7.1,
-    "technical_correctness": 8.0,
-    "clarity": 8.1,
-    "significance": 6.8,
-    "reproducibility": 8.6
+    "novelty": 7.4,
+    "technical_correctness": 8.2,
+    "clarity": 8.4,
+    "significance": 7.2,
+    "reproducibility": 9.2
   }
 }

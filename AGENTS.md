@@ -36,6 +36,25 @@ All intermediate artifacts, reports, notes, figures, and state files must stay i
 
 Never invent external GitHub repositories, GitHub URLs, organization names, or remote destinations for outputs. If a skill needs to save something, write it to a local file in the current project root or its existing local subdirectories.
 
+## Paper Evidence Standard
+
+Any paper presented as a final paper package in this repo must be backed by real executable computation that generated the reported results.
+
+- Do not rely on hand-authored benchmark numbers, cosmetic result tables, or placeholder empirical claims for a final paper.
+- Use local compute for lightweight pilots, smoke tests, and small simulations.
+- Use Biowulf when the work needs serious CPU or GPU capacity. Keep requests moderate and do not exceed one node unless the user explicitly asks for that.
+- A complete final paper package still includes the finished PDF and source, code, data or a source-data manifest, high-resolution figure assets, a detailed review opinion, and a score.
+
+## Biowulf Operational Rules
+
+When using Biowulf from this repo:
+
+- never run heavy programs on the frontend node
+- use the frontend only to inspect queues, start jobs, and manage files
+- load modules inside the compute allocation
+- request and use scratch for large transient datasets, caches, checkpoints, and temp outputs
+- do not store large datasets or bulky experiment outputs in `$HOME`
+
 ## Feishu
 
 This port uses `~/.config/opencode/feishu.json` as the user-level Feishu config path.

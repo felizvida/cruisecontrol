@@ -2,3 +2,4 @@ upstream/
 .DS_Store
 .local_artifacts/
 .local_runtime/
+__pycache__/
