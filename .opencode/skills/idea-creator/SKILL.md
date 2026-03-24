@@ -2,7 +2,7 @@
 name: idea-creator
 description: Generate and rank research ideas given a broad direction. Use when user says "找idea", "brainstorm ideas", "generate research ideas", "what can we work on", or wants to explore a research area for publishable directions.
 argument-hint: [research-direction]
-allowed-tools: Bash(*), Read, Write, Grep, Glob, WebSearch, WebFetch, Agent, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Grep, Glob, WebSearch, WebFetch, Agent
 ---
 
 # Research Idea Creator
@@ -19,7 +19,8 @@ Given a broad research direction from the user, systematically generate, validat
 - **PILOT_TIMEOUT_HOURS = 3** — Hard timeout: kill pilots exceeding 3 hours. Collect partial results if available.
 - **MAX_PILOT_IDEAS = 3** — Pilot at most 3 ideas in parallel. Additional ideas are validated on paper only.
 - **MAX_TOTAL_GPU_HOURS = 8** — Total GPU budget for all pilots combined.
-- **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for brainstorming and review. Must be an OpenAI model (e.g., `gpt-5.4`, `o3`, `gpt-4o`).
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode` for brainstorming and critique.
 
 > 💡 Override via argument, e.g., `/idea-creator "topic" — pilot budget: 4h per idea, 20h total`.
 
@@ -50,43 +51,19 @@ Map the research area to understand what exists and where the gaps are.
    - Scaling regimes that haven't been explored
    - Diagnostic questions that nobody has asked
 
-### Phase 2: Idea Generation (brainstorm with external LLM)
+### Phase 2: Idea Generation (brainstorm with a fresh reviewer-agent pass)
 
-Use the external LLM via Codex MCP for divergent thinking:
+Launch a fresh reviewer-agent pass for divergent thinking. Give it the research direction, the Phase 1 landscape map, and the key gaps.
 
-```
-mcp__codex__codex:
-  model: REVIEWER_MODEL
-  config: {"model_reasoning_effort": "xhigh"}
-  prompt: |
-    You are a senior ML researcher brainstorming research ideas.
+Ask it to generate 8-12 concrete ideas. For each idea require:
+1. One-sentence summary
+2. Core hypothesis
+3. Minimum viable experiment
+4. Expected contribution type
+5. Risk level
+6. Estimated effort
 
-    Research direction: [user's direction]
-
-    Here is the current landscape:
-    [paste landscape map from Phase 1]
-
-    Key gaps identified:
-    [paste gaps from Phase 1]
-
-    Generate 8-12 concrete research ideas. For each idea:
-    1. One-sentence summary
-    2. Core hypothesis (what you expect to find and why)
-    3. Minimum viable experiment (what's the cheapest way to test this?)
-    4. Expected contribution type: empirical finding / new method / theoretical result / diagnostic
-    5. Risk level: LOW (likely works) / MEDIUM (50-50) / HIGH (speculative)
-    6. Estimated effort: days / weeks / months
-
-    Prioritize ideas that are:
-    - Testable with moderate compute (8x RTX 3090 or less)
-    - Likely to produce a clear positive OR negative result (both are publishable)
-    - Not "apply X to Y" unless the application reveals genuinely surprising insights
-    - Differentiated from the 10-15 papers above
-
-    Be creative but grounded. A great idea is one where the answer matters regardless of which way it goes.
-```
-
-Save the threadId for follow-up.
+Tell it to prioritize ideas that are testable with moderate compute, differentiated from the surveyed papers, and meaningful whether the result is positive or negative.
 
 ### Phase 3: First-Pass Filtering
 
@@ -110,9 +87,9 @@ Eliminate ideas that fail any of these. Typically 8-12 ideas reduce to 4-6.
 
 For each surviving idea, run a deeper evaluation:
 
-1. **Novelty check**: Use the `/novelty-check` workflow (multi-source search + GPT-5.4 cross-verification) for each idea
+1. **Novelty check**: Use the `/novelty-check` workflow for each idea
 
-2. **Critical review**: Use GPT-5.4 via `mcp__codex__codex-reply` (same thread):
+2. **Critical review**: Launch a fresh skeptical reviewer-agent pass:
    ```
    Here are our top ideas after filtering:
    [paste surviving ideas with novelty check results]
@@ -124,7 +101,7 @@ For each surviving idea, run a deeper evaluation:
    - Which 2-3 would you actually work on?
    ```
 
-3. **Combine rankings**: Merge your assessment with GPT-5.4's ranking. Select top 2-3 ideas for pilot experiments.
+3. **Combine rankings**: Merge your assessment with the reviewer-agent ranking. Select top 2-3 ideas for pilot experiments.
 
 ### Phase 5: Parallel Pilot Experiments (for top 2-3 ideas)
 

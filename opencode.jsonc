@@ -1,17 +1,15 @@
 {
   "$schema": "https://opencode.ai/config.json",
 
-  "experimental": {
-    "mcp_timeout": 600000
-  },
+  // This file configures the pure OpenCode route only.
+  // The repo-default pure Codex route does not depend on this file.
+  // Pin both the main and small model on this machine so OpenCode
+  // stays fully native and does not fall back to an unavailable default.
+  "model": "amazon-bedrock/amazon.nova-premier-v1:0",
+  "small_model": "amazon-bedrock/amazon.nova-premier-v1:0",
 
-  // Enable only the servers you actually use.
+  // Optional MCP integrations. The core workflow does not require any MCP server.
   "mcp": {
-    "codex": {
-      "type": "local",
-      "enabled": true,
-      "command": ["/bin/bash", "/Users/liux17/codex/autoresearch/scripts/codex-mcp-local.sh"]
-    },
     "zotero": {
       "type": "local",
       "enabled": false,

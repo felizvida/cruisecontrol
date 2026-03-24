@@ -1,0 +1,9 @@
+modification,count,fraction_of_total
+total_proteoforms,807,1.0
+unmodified,449,0.5564
+modified_total,358,0.4436
+n_terminal_acetylated,211,0.2615
+methylated,12,0.0149
+oxidized,25,0.031
+phosphorylated,3,0.0037
+disulfide,15,0.0186

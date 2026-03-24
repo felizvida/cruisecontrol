@@ -1,8 +1,8 @@
 ---
 name: research-pipeline
-description: "Full research pipeline: Workflow 1 (idea discovery) → implementation → Workflow 2 (auto review loop) → Workflow 3 (paper writing). Goes from a broad research direction to a review-improved paper package in one command. Use when user says \"全流程\", \"full pipeline\", \"从找idea到投稿\", \"end-to-end research\", or wants the complete autonomous research lifecycle."
+description: "Full research pipeline: Workflow 1 (idea discovery) → implementation → Workflow 2 (auto review loop) → Workflow 3 (paper writing). Goes from a broad research direction to a review-improved paper package in one command. Default route is pure Codex; pure OpenCode is opt-in. Use when user says \"全流程\", \"full pipeline\", \"从找idea到投稿\", \"end-to-end research\", or wants the complete autonomous research lifecycle."
 argument-hint: [research-direction]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill
 ---
 
 # Full Research Pipeline: Idea → Experiments → Paper
@@ -20,13 +20,16 @@ This skill chains the entire research lifecycle into a single pipeline:
 
 It orchestrates the full research lifecycle, including the narrative handoff into paper generation.
 
+**Route selection:** default to the pure **Codex** route unless the user explicitly requests the pure **OpenCode** route. When this skill invokes sub-skills, pass that route through consistently.
+
 All outputs for this pipeline stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for checkpoints, reports, or intermediate artifacts.
 
 ## Constants
 
 - **AUTO_PROCEED = true** — Default unattended mode. After presenting a checkpoint, continue with the best supported option unless the user explicitly asked to approve each step.
 - **TARGET_VENUE = `ICLR`** — Default paper venue. Override inline, e.g. `/research-pipeline "topic" — venue: NeurIPS`.
-- **REVIEWER_MODEL = `gpt-5.4`** — Reviewer used through the `codex` MCP server.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
 - **MAX_RESEARCH_REVIEW_ROUNDS = 4** — Maximum rounds in `/auto-review-loop`.
 - **FULLY_AUTOMATIC_PAPER = true** — Continue into `/paper-writing` automatically, allowing placeholder figures when needed instead of stalling.
 
@@ -118,7 +121,7 @@ Once initial results are in, start the autonomous improvement loop:
 ```
 
 **What this does (up to 4 rounds):**
-1. GPT-5.4 xhigh reviews the work (score, weaknesses, minimum fixes)
+1. A fresh reviewer-agent pass reviews the work (score, weaknesses, minimum fixes)
 2. Claude Code implements fixes (code changes, new experiments, reframing)
 3. Deploy fixes, collect new results
 4. Re-review → repeat until score ≥ 6/10 or 4 rounds reached

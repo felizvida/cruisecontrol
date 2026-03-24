@@ -1,8 +1,8 @@
 ---
 name: idea-discovery
-description: "Workflow 1: Full idea discovery pipeline. Orchestrates research-lit → idea-creator → novelty-check → research-review to go from a broad research direction to validated, pilot-tested ideas. Use when user says \"找idea全流程\", \"idea discovery pipeline\", \"从零开始找方向\", or wants the complete idea exploration workflow."
+description: "Workflow 1: Full idea discovery pipeline. Orchestrates research-lit → idea-creator → novelty-check → research-review to go from a broad research direction to validated, pilot-tested ideas. Default route is pure Codex; pure OpenCode is opt-in. Use when user says \"找idea全流程\", \"idea discovery pipeline\", \"从零开始找方向\", or wants the complete idea exploration workflow."
 argument-hint: [research-direction]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill
 ---
 
 # Workflow 1: Idea Discovery Pipeline
@@ -20,6 +20,8 @@ This skill chains four sub-skills into a single automated pipeline:
 
 Each phase builds on the previous one's output. The final deliverable is a validated `IDEA_REPORT.md` with ranked ideas, pilot results, and a suggested execution plan.
 
+**Route selection:** default to the pure **Codex** route unless the user explicitly requests the pure **OpenCode** route. When this skill invokes sub-skills, pass that route through consistently.
+
 All outputs for this workflow stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate artifacts.
 
 ## Constants
@@ -29,7 +31,8 @@ All outputs for this workflow stay in the current local repository. Do not inven
 - **MAX_PILOT_IDEAS = 3** — Run pilots for at most 3 top ideas in parallel. Additional ideas are validated on paper only.
 - **MAX_TOTAL_GPU_HOURS = 8** — Total GPU budget across all pilots. If exceeded, skip remaining pilots and note in report.
 - **AUTO_PROCEED = true** — If user doesn't respond at a checkpoint, automatically proceed with the best option after presenting results. Set to `false` to always wait for explicit user confirmation.
-- **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP. Must be an OpenAI model (e.g., `gpt-5.4`, `o3`, `gpt-4o`). Passed to sub-skills.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Passed to sub-skills for skeptical review and ranking.
 
 > 💡 These are defaults. Override by telling the skill, e.g., `/idea-discovery "topic" — pilot budget: 4h per idea, 20h total` or `/idea-discovery "topic" — wait for my approval at each step`.
 
@@ -71,7 +74,7 @@ Invoke `/idea-creator` with the landscape context:
 ```
 
 **What this does:**
-- Brainstorm 8-12 concrete ideas via GPT-5.4 xhigh
+- Brainstorm 8-12 concrete ideas via a fresh reviewer-agent pass
 - Filter by feasibility, compute cost, quick novelty search
 - Deep validate top ideas (full novelty check + devil's advocate)
 - Run parallel pilot experiments on available GPUs (top 2-3 ideas)
@@ -106,7 +109,7 @@ For each top idea (positive pilot signal), run a thorough novelty check:
 
 **What this does:**
 - Multi-source literature search (arXiv, Scholar, Semantic Scholar)
-- Cross-verify with GPT-5.4 xhigh
+- Cross-verify with a fresh reviewer-agent pass
 - Check for concurrent work (last 3-6 months)
 - Identify closest existing work and differentiation points
 
@@ -121,7 +124,7 @@ For the surviving top idea(s), get brutal feedback:
 ```
 
 **What this does:**
-- GPT-5.4 xhigh acts as a senior reviewer (NeurIPS/ICML level)
+- A fresh reviewer-agent pass acts as a senior reviewer (NeurIPS/ICML level)
 - Scores the idea, identifies weaknesses, suggests minimum viable improvements
 - Provides concrete feedback on experimental design
 

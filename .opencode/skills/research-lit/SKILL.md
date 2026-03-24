@@ -146,6 +146,11 @@ Plus a narrative summary of the landscape (3-5 paragraphs).
 
 If Zotero BibTeX was exported, include a `references.bib` snippet for direct use in paper writing.
 
+If the user explicitly asks you to save the review to a file path, treat that as part of the task output contract:
+- Write the final markdown review to that exact path with the `Write` tool
+- Do not treat printing the markdown in chat as a substitute for saving the file
+- After writing, verify the path exists before replying
+
 ### Step 5: Save (if requested)
 - Save paper PDFs to `literature/` or `papers/`
 - Update related work notes in project memory
@@ -158,3 +163,4 @@ If Zotero BibTeX was exported, include a `references.bib` snippet for direct use
 - Note if a paper directly competes with or supports our approach
 - **Never fail because a MCP server is not configured** — always fall back gracefully to the next data source
 - Zotero/Obsidian tools may have different names depending on how the user configured the MCP server (e.g., `mcp__zotero__search` or `mcp__zotero-mcp__search_items`). Try the most common patterns and adapt.
+- If a file save was requested, the task is not complete until the file has been written to disk

@@ -40,5 +40,8 @@ In the fully automatic path, a complete `/research-pipeline` run should continue
 - `NARRATIVE_REPORT.md`
 - `PAPER_PLAN.md`
 - `paper/main.pdf`
+- `paper/PAPER_IMPROVEMENT_LOG.md`
+- `review/REVIEW_OPINION.md`
+- `review/review_scorecard.json`
 
 For a tracked sample that includes those downstream artifacts and a complete paper package, see [../full-paper-sample/README.md](../full-paper-sample/README.md).

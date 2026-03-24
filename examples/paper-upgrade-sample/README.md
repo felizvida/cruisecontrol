@@ -20,6 +20,8 @@ This folder documents the intended artifact layout for the linked-paper upgrade 
 - `UPGRADE_SUMMARY.md`
 - `paper/main.pdf`
 - `paper/PAPER_IMPROVEMENT_LOG.md`
+- `review/REVIEW_OPINION.md`
+- `review/review_scorecard.json`
 - `code/`
 - `data/`
 - `figure_assets/`

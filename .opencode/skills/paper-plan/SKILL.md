@@ -2,7 +2,7 @@
 name: paper-plan
 description: "Generate a structured paper outline from review conclusions and experiment results. Use when user says \"写大纲\", \"paper outline\", \"plan the paper\", \"论文规划\", or wants to create a paper plan before writing."
 argument-hint: [topic-or-narrative-doc]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
 # Paper Plan: From Review Conclusions to Paper Outline
@@ -11,7 +11,8 @@ Generate a structured, section-by-section paper outline from: **$ARGUMENTS**
 
 ## Constants
 
-- **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for outline review. Must be an OpenAI model.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode` for outline review.
 - **TARGET_VENUE = `ICLR`** — Default venue. User can override (e.g., `/paper-plan "topic" — venue: NeurIPS`). Supported: `ICLR`, `NeurIPS`, `ICML`.
 - **MAX_PAGES** — Main body page limit, measured from first page to end of Conclusion section (excluding references, appendix, and acknowledgements). ICLR=9, NeurIPS=9, ICML=8.
 
@@ -178,28 +179,18 @@ For each section, list required citations:
 3. Flag any citation you're unsure about with `[VERIFY]`
 4. Prefer published versions over arXiv preprints when available
 
-### Step 6: Cross-Review with REVIEWER_MODEL
+### Step 6: Cross-Review with REVIEWER_MODE
 
-Send the complete outline to GPT-5.4 xhigh for feedback:
+Launch a fresh reviewer-agent pass on the complete outline.
 
-```
-mcp__codex__codex:
-  model: gpt-5.4
-  config: {"model_reasoning_effort": "xhigh"}
-  prompt: |
-    Review this paper outline for a [VENUE] submission.
-    [full outline including Claims-Evidence Matrix]
+Ask it to score:
+1. Logical flow
+2. Claim-evidence alignment
+3. Missing experiments or analysis
+4. Positioning relative to prior work
+5. Page budget feasibility
 
-    Score 1-10 on:
-    1. Logical flow — does the story build naturally?
-    2. Claim-evidence alignment — every claim backed?
-    3. Missing experiments or analysis
-    4. Positioning relative to prior work
-    5. Page budget feasibility (MAX_PAGES = main body to Conclusion end, excluding refs/appendix)
-
-    For each weakness, suggest the MINIMUM fix.
-    Be specific and actionable — "add X" not "consider more experiments".
-```
+For each weakness, require the minimum actionable fix.
 
 Apply feedback before finalizing.
 

@@ -1,0 +1,30 @@
+\section{Data and Analysis Setup}
+
+\subsection{Source material}
+
+The quantitative core of this paper comes from \citet{lubeckyj2022lcmcze}, a pilot study of adult zebrafish telencephalon and optic tectum using laser capture microdissection coupled to capillary zone electrophoresis tandem mass spectrometry. We use only values recoverable from the article text and figure discussion. The local evidence file therefore includes region totals, protein overlap, named marker proteoforms, technical replicate summaries, and post-translational modification counts without pretending to reconstruct unpublished measurements.
+
+\subsection{Derived metrics}
+
+The local computation produces five classes of outputs.
+
+First, regional separation is summarized by the Jaccard overlap
+\[
+\Jaccard = \frac{|\Tel \cap \Teo|}{|\Tel \cup \Teo|}.
+\]
+
+Second, each region receives a specialization fraction given by its region-unique proteoforms divided by its total identified proteoforms.
+
+Third, for each marker group we compute a stabilized bias score
+\[
+\log_2 \frac{\Tel + 1}{\Teo + 1},
+\]
+which is positive for telencephalon-biased markers and negative for optic-tectum-biased markers.
+
+Fourth, we aggregate the curated markers into two functional axes and summarize matched-region concentration, Wilson confidence intervals for the axis-level alignment fractions, and an exact $2\times2$ test on the table of matched and spillover counts. The exact test is directional because the biological hypothesis is directional: the telencephalon-associated markers should concentrate in telencephalon and the optic-tectum-associated markers should concentrate in optic tectum rather than the reverse.
+
+Fifth, we summarize the post-translational modification inventory and the technical sensitivity values reported for the duplicate analyses and the single-run high water mark.
+
+\subsection{Interpretive scope}
+
+This is a deliberately conservative re-analysis. It does not estimate significance across the full proteome, does not recover the raw TopPIC output, and does not reinterpret unidentified mass shifts. The strongest function-alignment claims are about a curated marker panel taken directly from the source article's biological discussion. That narrower scope is intentional: the goal is to quantify what the published paper itself already supports, and to do so with formulas and files that another reader can inspect locally.

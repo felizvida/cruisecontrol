@@ -1,0 +1,10 @@
+gene,label,functional_axis,tel_count,teo_count,matched_count,spillover_count,total_count,log2_tel_over_teo_plus1,interpretation
+npy,Pro-neuropeptide Y,telencephalon,1,0,1,0,1,1.0,feeding-related neuropeptide signaling
+penkb,Synenkephalin,telencephalon,1,0,1,0,1,1.0,affective and aggression-linked peptide signaling
+pyya,Peptide YY-A,telencephalon,1,0,1,0,1,1.0,peptide hormone signaling
+nrgna,Neurogranin a,telencephalon,6,0,6,0,6,2.807,memory-linked synaptic signaling
+synucleins,Synucleins total,telencephalon,14,2,14,2,16,2.322,synaptic and mnemonic protein family
+reticulon,Reticulon,optic_tectum,0,4,4,0,4,-2.322,retinotectal organization
+myosin,Myosin,optic_tectum,0,48,48,0,48,-5.615,motor machinery
+actin,Actin,optic_tectum,0,19,19,0,19,-4.322,cytoskeletal movement
+troponin,Troponin,optic_tectum,1,31,31,1,32,-4.0,contraction-linked regulation

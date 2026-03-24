@@ -1,0 +1,120 @@
+\section{Results}
+
+\subsection{Telencephalon and optic tectum are sharply separated at the proteoform level}
+
+The first result is the scale of the regional split. Telencephalon contributes 309 identified proteoforms and optic tectum contributes 533, but only 35 proteoforms are shared. The resulting Jaccard overlap is 0.0434, and the region-specific fractions are 0.8867 for telencephalon and 0.9343 for optic tectum. Even at the protein level, the overlap remains modest at 0.2151. That means the protein-level overlap is still about 4.96 times larger than the proteoform-level overlap. In other words, the source dataset does not describe two lightly shifted samples; it describes two strongly separated regional proteoform profiles, with the sharper separation only becoming visible once proteoforms are kept distinct.
+
+\begin{table}[t]
+\centering
+\caption{Core regional separation metrics from the local re-analysis.}
+\label{tab:summary}
+\begin{tabular}{lr}
+\toprule
+Metric & Value \\
+\midrule
+Telencephalon proteoforms & 309 \\
+Optic tectum proteoforms & 533 \\
+Shared proteoforms & 35 \\
+Union proteoforms & 807 \\
+Jaccard overlap & 0.0434 \\
+Telencephalon unique fraction & 0.8867 \\
+Optic tectum unique fraction & 0.9343 \\
+Protein overlap fraction & 0.2151 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.97\linewidth]{../figures/fig1_region_overview.pdf}
+    \caption{Regional totals and unique-versus-shared proteoforms. The source pilot already contains a strong separation signal before any marker-level interpretation is added.}
+    \label{fig:region-overview}
+\end{figure}
+
+\subsection{The source paper's biological interpretation becomes much stronger when expressed as an alignment problem}
+
+The curated marker panel is highly concentrated in the expected region. Telencephalon-associated markers contribute 23 matched counts and only 2 spillover counts, for an axis-level alignment fraction of 0.92. Optic-tectum-associated markers contribute 102 matched counts and 1 spillover count, for an alignment fraction of 0.9903. Across the whole panel, the observed matched-region fraction is 0.9766. A naive baseline built only from regional prevalence would predict 0.5811, so the observed alignment exceeds that baseline by 0.3955. This matters because optic tectum contributes the larger raw proteoform total in the source study; the alignment result is therefore not just a restatement of optic-tectum abundance.
+
+When those counts are written as a $2\times2$ table, the odds ratio is 1173 and the one-sided exact p-value is 5.12$\times10^{-22}$. The exact test is helpful, but the more intuitive story is the effect size: both functional axes sit far above the baseline expected from regional prevalence alone.
+
+These numbers do not imply that the entire proteome has been functionally classified. They mean something narrower: the particular marker proteoforms that the source article called biologically meaningful are overwhelmingly concentrated in the region whose known function they should support. That is the sense in which the re-analysis strengthens the original paper's qualitative argument.
+
+The count-weighted result is not hiding a family-composition problem. All 9 curated marker groups favor their expected region, the mean family-level matched share is 0.9826, the weakest family-level matched share is still 0.8750, and the corresponding one-sided sign-style probability under a 50:50 null is 0.001953. That family-level check matters because it shows the regional-function story is not being carried by only one or two very large groups.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.90\linewidth]{../figures/fig2_marker_bias.pdf}
+    \caption{Marker-level proteoform bias. Positive values favor telencephalon and negative values favor optic tectum.}
+    \label{fig:marker-bias}
+\end{figure}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.97\linewidth]{../figures/fig3_axis_alignment.pdf}
+    \caption{Axis-level concentration and leave-one-out robustness. The overall alignment signal remains high even after removing any single marker group.}
+    \label{fig:axis-alignment}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\caption{Curated marker counts used in the axis-alignment analysis.}
+\label{tab:markers}
+\begin{tabular}{lrrl}
+\toprule
+Marker group & Tel & Teo & Interpretation \\
+\midrule
+Pro-neuropeptide Y & 1 & 0 & feeding-related neuropeptide signaling \\
+Synenkephalin & 1 & 0 & affective signaling \\
+Peptide YY-A & 1 & 0 & peptide hormone signaling \\
+Neurogranin a & 6 & 0 & memory-linked synaptic signaling \\
+Synucleins total & 14 & 2 & synaptic and mnemonic family \\
+Reticulon & 0 & 4 & retinotectal organization \\
+Myosin & 0 & 48 & motor machinery \\
+Actin & 0 & 19 & cytoskeletal movement \\
+Troponin & 1 & 31 & contraction-linked regulation \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\centering
+\caption{Axis-level alignment compared with the naive baseline implied by regional prevalence.}
+\label{tab:axisstats}
+\begin{tabular}{lrrrr}
+\toprule
+Functional axis & Observed & Wilson 95\% CI & Baseline & Lift \\
+\midrule
+Telencephalon-associated & 0.9200 & 0.7503--0.9778 & 0.3670 & 0.5530 \\
+Optic-tectum-associated & 0.9903 & 0.9470--0.9983 & 0.6330 & 0.3573 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The leave-one-out analysis in Figure~\ref{fig:axis-alignment} also stays strong numerically: the matched-region fraction ranges only from 0.9625 to 0.9911 after removing any single marker family. The worst case comes from removing the large myosin group, yet even that stress test remains far above the naive prevalence baseline.
+
+\subsection{The pilot is PTM-rich and technically sensitive enough to justify proteoform-level interpretation}
+
+The source article reports 807 identified proteoforms in total, of which 358 carry mass shifts and 211 are N-terminally acetylated. That means 44.36\% of the detected proteoforms belong to the modified subset and 58.94\% of the modified subset is N-terminally acetylated. These totals reinforce a simple point: the dataset is not just a protein list wearing different formatting. A large part of the biological signal lives at the proteoform level.
+
+The technical-sensitivity numbers are also useful. The duplicate analyses yielded means of 232 proteoforms for telencephalon and 356 for optic tectum, corresponding to recovery fractions of 0.7508 and 0.6680 relative to the regional totals. The single-run high water mark was 418 proteoforms from an injected amount corresponding to roughly 250 cells in the source paper, or about 1.672 proteoforms per estimated sampled cell. That does not eliminate the pilot-study caveat, but it does explain why the study was able to expose biologically legible regional structure from very small samples.
+
+\begin{table}[t]
+\centering
+\caption{Technical sensitivity values reported in the source study and preserved in the local evidence file.}
+\label{tab:technical}
+\begin{tabular}{lrrrr}
+\toprule
+Region & Duplicate mean & Duplicate SD & CV & Recovery \\
+\midrule
+Telencephalon & 232 & 28 & 0.1207 & 0.7508 \\
+Optic tectum & 356 & 88 & 0.2472 & 0.6680 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.97\linewidth]{../figures/fig4_ptm_and_sensitivity.pdf}
+    \caption{PTM inventory and technical sensitivity. The pilot reports a substantial modification layer and enough sensitivity to recover hundreds of proteoforms from extremely small spatial isolates.}
+    \label{fig:ptm-sensitivity}
+\end{figure}

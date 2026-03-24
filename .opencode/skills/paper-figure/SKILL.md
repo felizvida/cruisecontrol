@@ -2,7 +2,7 @@
 name: paper-figure
 description: "Generate publication-quality figures and tables from experiment results. Use when user says \"画图\", \"作图\", \"generate figures\", \"paper figures\", or needs plots for a paper."
 argument-hint: [figure-plan-or-data-path]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent
 ---
 
 # Paper Figure: Publication-Quality Plots from Experiment Data
@@ -30,7 +30,8 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 - **COLOR_PALETTE = `tab10`** — Default matplotlib color cycle. Options: `tab10`, `Set2`, `colorblind` (deuteranopia-safe)
 - **FONT_SIZE = 10** — Base font size (matches typical conference body text)
 - **FIG_DIR = `figures/`** — Output directory for generated figures
-- **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for figure quality review.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode` for figure quality review.
 
 ## Inputs
 
@@ -206,26 +207,16 @@ For each figure, output the LaTeX code to include it:
 
 Save all snippets to `figures/latex_includes.tex` for easy copy-paste into the paper.
 
-### Step 7: Figure Quality Review with REVIEWER_MODEL
+### Step 7: Figure Quality Review with REVIEWER_MODE
 
-Send figure descriptions and captions to GPT-5.4 for review:
+Launch a fresh reviewer-agent pass on the figure and table plans.
 
-```
-mcp__codex__codex:
-  model: gpt-5.4
-  config: {"model_reasoning_effort": "xhigh"}
-  prompt: |
-    Review these figure/table plans for a [VENUE] submission.
-
-    For each figure:
-    1. Is the caption informative and self-contained?
-    2. Does the figure type match the data being shown?
-    3. Is the comparison fair and clear?
-    4. Any missing baselines or ablations?
-    5. Would a different visualization be more effective?
-
-    [list all figures with captions and descriptions]
-```
+Ask it to judge:
+1. Whether the caption is informative and self-contained
+2. Whether the figure type matches the data
+3. Whether the comparison is fair and clear
+4. Whether any baselines or ablations are missing
+5. Whether a different visualization would communicate better
 
 ### Step 8: Quality Checklist
 

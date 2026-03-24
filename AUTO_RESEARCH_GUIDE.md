@@ -2,7 +2,9 @@
 
 This guide is the “what does it actually feel like?” version of the docs.
 
-Instead of listing commands in isolation, it follows one concrete story: you sit down with a rough research direction, OpenCode and Codex help shape it into a testable idea, and the repo keeps turning that idea into a more serious research project.
+Instead of listing commands in isolation, it follows one concrete story: you sit down with a rough research direction, the workflow helps shape it into a testable idea, and the repo keeps turning that idea into a more serious research project.
+
+From this point forward, the default story in this guide uses the **pure Codex** route. A pure OpenCode route still exists by explicit choice; see [WORKFLOW_ROUTES.md](WORKFLOW_ROUTES.md).
 
 ## The Setup
 
@@ -16,28 +18,29 @@ What you do have is a question:
 
 That is exactly the kind of starting point this repo is built for.
 
-On this machine, the reviewer MCP server is configured locally through [opencode.jsonc](opencode.jsonc):
+If you choose the pure OpenCode route, [opencode.jsonc](opencode.jsonc) pins the OpenCode backend model on this machine:
 
 ```json
 {
-  "mcp": {
-    "codex": {
-      "type": "local",
-      "enabled": true,
-      "command": ["/bin/bash", "/Users/liux17/codex/autoresearch/scripts/codex-mcp-local.sh"]
-    }
-  }
+  "model": "amazon-bedrock/amazon.nova-premier-v1:0",
+  "small_model": "amazon-bedrock/amazon.nova-premier-v1:0"
 }
 ```
 
-That means OpenCode can launch Codex as a local MCP server and use it as the “external reviewer” during the research loop, while keeping this machine isolated from broken or noisy global Codex state.
+That pure OpenCode route stays entirely inside OpenCode. The default Codex route instead uses Codex end to end for critique, planning, writing, and paper-improvement passes.
 
 ## Act I: Start With A Direction, Not A Thesis
 
-Open this repo in OpenCode and start with the broadest useful command:
+Start with the broadest useful command:
 
 ```text
 /idea-discovery "test-time adaptation for battery-constrained quadruped robots"
+```
+
+If you explicitly want the pure OpenCode route for the same stage, use:
+
+```text
+/idea-discovery "test-time adaptation for battery-constrained quadruped robots — route: opencode"
 ```
 
 This is the right entry point when the direction is still fuzzy.
@@ -54,7 +57,7 @@ In practice, that means the system will:
 - scan literature and map the landscape
 - generate multiple concrete ideas instead of overcommitting to the first one
 - eliminate ideas that are obviously derivative
-- ask the external reviewer to be skeptical before you sink effort into implementation
+- ask a fresh reviewer pass to be skeptical before you sink effort into implementation
 
 This is the first mindset shift of “auto research”:
 

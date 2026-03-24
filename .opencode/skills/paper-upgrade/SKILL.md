@@ -1,8 +1,8 @@
 ---
 name: paper-upgrade
-description: "Upgrade a linked paper into a publication-grade new manuscript. Use when the user provides a paper URL and wants a full automatic reboot: analyze the source paper, find a real novelty gap, design a stronger contribution, write a polished new paper, and document the improvements."
+description: "Upgrade a linked paper into a publication-grade new manuscript. Default route is pure Codex; pure OpenCode is opt-in. Use when the user provides a paper URL and wants a full automatic reboot: analyze the source paper, find a real novelty gap, design a stronger contribution, write a polished new paper, and document the improvements."
 argument-hint: [paper-url-and-ownership-note]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill
 ---
 
 # Paper Upgrade: Linked Paper → Stronger Publication
@@ -20,6 +20,8 @@ paper link → source-paper review → literature gap scan → breakthrough gate
 ```
 
 The workflow must aim for a real contribution increase, not a cosmetic rewrite.
+
+**Route selection:** default to the pure **Codex** route unless the user explicitly requests the pure **OpenCode** route. When this skill invokes sub-skills, pass that route through consistently.
 
 All outputs stay in the current local repository. Never invent external GitHub repositories, URLs, or remote destinations for artifacts.
 
@@ -49,7 +51,8 @@ If ownership is unclear, ask before proceeding.
 ## Constants
 
 - **AUTO_PROCEED = true** — Continue automatically unless the user explicitly asks to review each stage.
-- **REVIEWER_MODEL = `gpt-5.4`** — Reviewer used through the `codex` MCP server.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
 - **TARGET_VENUE = `ICLR`** — Default venue. Override inline if needed.
 - **MIN_PUBLICATION_DELTA = 1** — At least one non-cosmetic contribution upgrade is required.
 

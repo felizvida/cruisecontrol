@@ -1,0 +1,49 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Lubeckyj and Sun(2022)]{lubeckyj2022lcmcze}
+Rachele~A. Lubeckyj and Liangliang Sun.
+\newblock Laser capture microdissection-capillary zone electrophoresis-tandem
+  mass spectrometry ({LCM-CZE-MS/MS}) for spatially resolved top-down
+  proteomics: a pilot study of zebrafish brain.
+\newblock \emph{Molecular Omics}, 18\penalty0 (2):\penalty0 112--122, 2022.
+\newblock \doi{10.1039/d1mo00335f}.
+
+\bibitem[Pandey et~al.(2023)Pandey, Moyer, and Thyme]{pandey2023telencephalon}
+Shristi Pandey, Anna~J. Moyer, and Summer~B. Thyme.
+\newblock A single-cell transcriptome atlas of the maturing zebrafish
+  telencephalon.
+\newblock \emph{Genome Research}, 33\penalty0 (4):\penalty0 658--671, 2023.
+\newblock \doi{10.1101/gr.277278.122}.
+
+\bibitem[Reemst et~al.(2023)Reemst, Shahin, and Shahar]{reemst2023memory}
+Kitty Reemst, Heba Shahin, and Or~David Shahar.
+\newblock Learning and memory formation in zebrafish: Protein dynamics and
+  molecular tools.
+\newblock \emph{Frontiers in Cell and Developmental Biology}, 11:\penalty0
+  1120984, 2023.
+\newblock \doi{10.3389/fcell.2023.1120984}.
+
+\bibitem[Roeser and Baier(2003)]{roeser2003tectum}
+Tobias Roeser and Herwig Baier.
+\newblock Visuomotor behaviors in larval zebrafish after {GFP}-guided laser
+  ablation of the optic tectum.
+\newblock \emph{Journal of Neuroscience}, 23\penalty0 (9):\penalty0 3726--3734,
+  2003.
+\newblock \doi{10.1523/JNEUROSCI.23-09-03726.2003}.
+
+\bibitem[Stednitz et~al.(2018)Stednitz, McDermott, Ncube, Tallafuss, Eisen, and
+  Washbourne]{stednitz2018social}
+Sarah~J. Stednitz, Erin~M. McDermott, Denver Ncube, Alexandra Tallafuss,
+  Judith~S. Eisen, and Philip Washbourne.
+\newblock Forebrain control of behaviorally-driven social orienting in
+  zebrafish.
+\newblock \emph{Current Biology}, 28\penalty0 (15):\penalty0 2445--2451.e3,
+  2018.
+\newblock \doi{10.1016/j.cub.2018.06.016}.
+
+\end{thebibliography}

@@ -1,0 +1,110 @@
+{
+  "study": {
+    "source_id": "lubeckyj2022",
+    "dataset_id": "PXD027741",
+    "species": "Danio rerio",
+    "regions": [
+      "telencephalon",
+      "optic tectum"
+    ]
+  },
+  "region_totals": {
+    "telencephalon_proteoforms": 309,
+    "optic_tectum_proteoforms": 533,
+    "shared_proteoforms": 35,
+    "protein_overlap": 60,
+    "protein_union": 279,
+    "single_run_high_water_mark": 418,
+    "cells_per_section_estimate": 5000,
+    "cells_per_run_estimate": 250,
+    "tel_duplicate_mean": 232,
+    "tel_duplicate_sd": 28,
+    "teo_duplicate_mean": 356,
+    "teo_duplicate_sd": 88
+  },
+  "marker_counts": [
+    {
+      "gene": "npy",
+      "label": "Pro-neuropeptide Y",
+      "functional_axis": "telencephalon",
+      "tel_count": 1,
+      "teo_count": 0,
+      "interpretation": "feeding-related neuropeptide signaling"
+    },
+    {
+      "gene": "penkb",
+      "label": "Synenkephalin",
+      "functional_axis": "telencephalon",
+      "tel_count": 1,
+      "teo_count": 0,
+      "interpretation": "affective and aggression-linked peptide signaling"
+    },
+    {
+      "gene": "pyya",
+      "label": "Peptide YY-A",
+      "functional_axis": "telencephalon",
+      "tel_count": 1,
+      "teo_count": 0,
+      "interpretation": "peptide hormone signaling"
+    },
+    {
+      "gene": "nrgna",
+      "label": "Neurogranin a",
+      "functional_axis": "telencephalon",
+      "tel_count": 6,
+      "teo_count": 0,
+      "interpretation": "memory-linked synaptic signaling"
+    },
+    {
+      "gene": "synucleins",
+      "label": "Synucleins total",
+      "functional_axis": "telencephalon",
+      "tel_count": 14,
+      "teo_count": 2,
+      "interpretation": "synaptic and mnemonic protein family"
+    },
+    {
+      "gene": "reticulon",
+      "label": "Reticulon",
+      "functional_axis": "optic_tectum",
+      "tel_count": 0,
+      "teo_count": 4,
+      "interpretation": "retinotectal organization"
+    },
+    {
+      "gene": "myosin",
+      "label": "Myosin",
+      "functional_axis": "optic_tectum",
+      "tel_count": 0,
+      "teo_count": 48,
+      "interpretation": "motor machinery"
+    },
+    {
+      "gene": "actin",
+      "label": "Actin",
+      "functional_axis": "optic_tectum",
+      "tel_count": 0,
+      "teo_count": 19,
+      "interpretation": "cytoskeletal movement"
+    },
+    {
+      "gene": "troponin",
+      "label": "Troponin",
+      "functional_axis": "optic_tectum",
+      "tel_count": 1,
+      "teo_count": 31,
+      "interpretation": "contraction-linked regulation"
+    }
+  ],
+  "ptm_totals": {
+    "total_proteoforms": 807,
+    "unmodified": 449,
+    "modified_total": 358,
+    "n_terminal_acetylated": 211,
+    "methylated": 12,
+    "oxidized": 25,
+    "phosphorylated": 3,
+    "disulfide": 15
+  }
+}
+

@@ -1,56 +1,43 @@
-# Review Opinion
+# Final Review Opinion
 
-## Overall Verdict
+## Submission Snapshot
 
-**Score**: `8.1 / 10`
-**Recommendation**: `Weak Accept as a reproducible simulation study / artifact paper`
-**Recommendation if judged as a real empirical robotics paper**: `Borderline Reject`
+- Paper: `paper/main.pdf`
+- Venue: `artifact-style simulation study / workflow demonstration paper`
+- Final round: `4`
+
+## Score
+
+- Overall score: `8.1/10`
+- Verdict: `Weak Accept as reproducible simulation study / artifact paper`
+- Confidence: `0.90`
 
 ## Summary
 
-This manuscript is materially stronger than the earlier workflow-only version because it now rests on real local computation. The repository ships an executable simulator, an episode-level CSV, generated tables, generated figures, and a clean rebuild path. That moves the paper from ``artifact theater'' into a genuine, if still modest, simulation study.
+This manuscript is much stronger than a workflow-only demo because it now rests on executable computation. The package ships a simulator, episode-level outputs, generated tables, generated figures, rebuild scripts, and validation scripts. That turns the paper from artifact theater into a real, if still modest, simulation study.
 
-The paper would still struggle as a standard robotics methods paper because no real robot stack or physics-faithful benchmark is shipped. But as a reproducible simulation paper and artifact package, it is strong. The narrative is coherent, the evidence is generated rather than invented, the limitations are visible, and the package is unusually inspectable.
+The paper would still struggle as a standard robotics methods paper because it does not include a real controller stack or a physics-faithful benchmark. But as a reproducible simulation paper and artifact package, it is strong. The evidence is generated rather than invented, the scope is visible, and the artifact chain is unusually inspectable.
 
-## Score Breakdown
+## Strengths
 
-| Criterion | Score | Notes |
-|----------|------:|-------|
-| Novelty | 7.4 | Battery-aware adaptation scheduling is a plausible and still under-explored deployment framing |
-| Technical correctness | 8.2 | Claims match the simulator and the package now includes real computation |
-| Clarity | 8.4 | The paper reads cleanly and the scope is well stated |
-| Significance | 7.2 | Still limited versus real robotics papers, but materially better than a pure artifact demo |
-| Reproducibility | 9.2 | Simulator, JSON, CSV, figure sources, build scripts, and validation commands are all packaged locally |
+- The artifact chain from idea report to final PDF is concrete and easy to inspect.
+- The reported numbers come from executable code rather than hand-authored tables.
+- The paper now has generated figures and a complete package bundle.
+- The review-driven revisions made the limitations and positioning substantially more honest.
 
-## Main Strengths
+## Weaknesses
 
-1. The artifact chain from idea report to final PDF is concrete and easy to inspect.
-2. The evidence is generated from executable code rather than hand-authored numbers.
-3. The paper now includes actual figures instead of placeholders.
-4. The package includes complete-paper extras: code, data manifest, figure assets, and review documents.
+- The scientific contribution is still limited by the absence of a real controller or robot benchmark.
+- The simulator is stylized, so the reported numbers should not be read as calibrated deployment evidence.
+- The fixed threshold still breaks down at the most extreme adaptation-cost setting.
 
-## Main Weaknesses
+## Improvements Across Rounds
 
-1. The scientific contribution is still limited because there is no real controller or robot evaluation.
-2. The simulator is stylized, so the results should not be read as calibrated deployment numbers.
-3. The fixed threshold fails gracefully but visibly at the most extreme adaptation-cost setting, which points to an unfinished method story.
+- Round 0 → 1: clarified the average low-battery effect and made the main crossover pattern easier to read.
+- Round 1 → 2: tightened the limitations and conclusion so the method claim matches the synthetic benchmark.
+- Later package rounds: added the full artifact bundle and replaced the hand-authored benchmark story with an executable stochastic simulator.
 
-## Required Positioning For Submission
+## Remaining Risks Before Submission
 
-This manuscript should only be presented as:
-
-- a reproducible simulation study
-- a strong artifact example
-- a template for what a fully automatic research run can output
-
-It should not be presented as:
-
-- a validated quadruped adaptation result
-- empirical evidence about deployment behavior on real systems
-- a substitute for a real locomotion benchmark
-
-## Reviewer Confidence
-
-**Confidence**: `0.90`
-
-The score assumes the paper is judged against the right objective: a small, honest, reproducible simulation study that also demonstrates a complete automatic research workflow artifact. Under that objective, it is a strong sample package.
+- The paper must be pitched as a reproducible simulation study or artifact paper, not as validated robotics evidence.
+- A stronger follow-on would need a real locomotion benchmark and a less brittle scheduling rule.

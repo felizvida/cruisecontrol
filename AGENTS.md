@@ -1,6 +1,6 @@
 # OpenCode Port Rules
 
-This repo is an OpenCode-native packaging of the ARIS research workflow.
+This repo packages the ARIS research workflow for both OpenCode and Codex.
 
 ## Layout
 
@@ -9,11 +9,23 @@ This repo is an OpenCode-native packaging of the ARIS research workflow.
 - Sample OpenCode config lives in `opencode.jsonc`
 - A reusable target-project template lives in `templates/project-AGENTS.md`
 
-## MCP Compatibility
+## Workflow Routes
 
-Several upstream skills embed Claude-style tool names such as `mcp__codex__codex` and `mcp__codex__codex-reply`. In this repo, interpret those as references to the MCP server named `codex`.
+This repo supports two explicit execution routes:
 
-If you rename that server in `opencode.jsonc`, update the copied skills or keep a server alias named `codex`.
+- **Pure Codex route** — default. Use Codex end to end for planning, critique, writing, and paper-improvement loops.
+- **Pure OpenCode route** — opt-in. Use the OpenCode model configured in `opencode.jsonc` for those same phases.
+
+If the user does not explicitly choose a route, use **Codex**.
+
+When the user is inside OpenCode:
+
+- generic workflow commands such as `/research-pipeline`, `/paper-writing`, `/paper-upgrade`, `/research-review`, `/auto-review-loop`, and `/auto-paper-improvement-loop` should default to the Codex route
+- explicit `-opencode` command variants select the pure OpenCode route
+- explicit `-codex` command variants force the pure Codex route even when running from OpenCode
+- inline overrides like `route: opencode` or `route: codex` should be honored when present
+
+Optional MCP integrations such as Zotero or Obsidian are allowed, but they are not required for either core route.
 
 ## Project Metadata
 
@@ -29,6 +41,8 @@ If you are using these skills from another repo, create that repo's `AGENTS.md` 
 ## Command Behavior
 
 The command files in `.opencode/commands/` are thin wrappers. They exist to recreate the upstream slash-command UX. The actual workflow logic remains in the skill files.
+
+Unless a wrapper explicitly says otherwise, the generic command name should mean the **Codex-default** route.
 
 ## Artifact Destinations
 

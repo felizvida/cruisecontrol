@@ -43,6 +43,7 @@ This sample is now a real computation-backed simulation study, not just a hand-a
 - [data/README.md](data/README.md)
 - [figure_assets/README.md](figure_assets/README.md)
 - [review/REVIEW_OPINION.md](review/REVIEW_OPINION.md)
+- [review/review_scorecard.json](review/review_scorecard.json)
 
 ## What This Shows
 

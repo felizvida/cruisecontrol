@@ -2,7 +2,7 @@
 name: paper-write
 description: "Draft LaTeX paper section by section from an outline. Use when user says \"写论文\", \"write paper\", \"draft LaTeX\", \"开始写\", or wants to generate LaTeX content from a paper plan."
 argument-hint: [venue-or-section]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, WebSearch, WebFetch
 ---
 
 # Paper Write: Section-by-Section LaTeX Generation
@@ -11,7 +11,8 @@ Draft a LaTeX paper based on: **$ARGUMENTS**
 
 ## Constants
 
-- **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for section review. Must be an OpenAI model.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode` for section review.
 - **TARGET_VENUE = `ICLR`** — Default venue. Supported: `ICLR`, `NeurIPS`, `ICML`. Determines style file and formatting.
 - **ANONYMOUS = true** — If true, use anonymous author block. Set `false` for camera-ready.
 - **MAX_PAGES = 9** — Main body page limit. Counts from first page to end of Conclusion section. References and appendix are NOT counted.
@@ -220,30 +221,20 @@ After drafting all sections, scan for common AI writing patterns and fix them:
 - Avoid rule-of-three lists ("X, Y, and Z" appearing repeatedly)
 - Don't start consecutive sentences with "This" or "We"
 
-### Step 6: Cross-Review with REVIEWER_MODEL
+### Step 6: Cross-Review with REVIEWER_MODE
 
-Send the complete draft to GPT-5.4 xhigh:
+Launch a fresh reviewer-agent pass on the complete draft.
 
-```
-mcp__codex__codex:
-  model: gpt-5.4
-  config: {"model_reasoning_effort": "xhigh"}
-  prompt: |
-    Review this [VENUE] paper draft (main body, excluding appendix).
+Ask it to assess:
+1. Claim support
+2. Writing clarity and concision
+3. Logical gaps or unclear explanations
+4. Page-budget fit
+5. Related-work coverage
+6. Adequacy of proof sketches for theory papers
+7. Figure/table description quality
 
-    Focus on:
-    1. Does each claim from the intro have supporting evidence?
-    2. Is the writing clear, concise, and free of AI-isms?
-    3. Any logical gaps or unclear explanations?
-    4. Does it fit within [MAX_PAGES] pages (to end of Conclusion)?
-    5. Is related work sufficiently comprehensive (≥1 page)?
-    6. For theory papers: are proof sketches adequate?
-    7. Are figures/tables clearly described and properly referenced?
-
-    For each issue, specify: severity (CRITICAL/MAJOR/MINOR), location, and fix.
-
-    [paste full draft text]
-```
+For each issue, require severity, location, and fix.
 
 Apply CRITICAL and MAJOR fixes. Document MINOR issues for the user.
 

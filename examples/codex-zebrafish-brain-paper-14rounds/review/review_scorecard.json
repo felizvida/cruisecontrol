@@ -1,0 +1,40 @@
+{
+  "artifact": "paper/main_round14.pdf",
+  "final_score": 9.4,
+  "verdict": "Accept for a reproducible re-analysis or data-note venue",
+  "dimensions": {
+    "claim_discipline": 9.6,
+    "computational_rigor": 9.1,
+    "clarity": 9.3,
+    "reproducibility": 9.8,
+    "biological_scope_honesty": 9.7,
+    "venue_fit": 8.9
+  },
+  "round_scores": [
+    6.6,
+    7.1,
+    7.5,
+    7.9,
+    8.1,
+    8.3,
+    8.4,
+    8.5,
+    8.6,
+    8.8,
+    9.0,
+    9.1,
+    9.2,
+    9.3,
+    9.4
+  ],
+  "headline_metrics": {
+    "jaccard_overlap": 0.0434,
+    "protein_overlap_fraction": 0.2151,
+    "marker_alignment_fraction": 0.9766,
+    "expected_alignment_under_region_prevalence": 0.5811,
+    "alignment_excess_over_prevalence": 0.3955,
+    "group_level_one_sided_sign_p": 0.001953,
+    "leave_one_out_min_alignment": 0.9625,
+    "leave_one_out_max_alignment": 0.9911
+  }
+}

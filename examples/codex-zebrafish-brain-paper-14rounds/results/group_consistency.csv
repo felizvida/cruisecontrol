@@ -1,0 +1,10 @@
+label,functional_axis,matched_share,favors_expected_region
+Pro-neuropeptide Y,telencephalon,1.0,yes
+Synenkephalin,telencephalon,1.0,yes
+Peptide YY-A,telencephalon,1.0,yes
+Neurogranin a,telencephalon,1.0,yes
+Synucleins total,telencephalon,0.875,yes
+Reticulon,optic_tectum,1.0,yes
+Myosin,optic_tectum,1.0,yes
+Actin,optic_tectum,1.0,yes
+Troponin,optic_tectum,0.9688,yes

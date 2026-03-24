@@ -1,8 +1,8 @@
 ---
 name: auto-paper-improvement-loop
-description: "Autonomously improve a generated paper via GPT-5.4 xhigh review → implement fixes → recompile, for 2 rounds. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper."
+description: "Autonomously improve a generated paper via review → implement fixes → recompile, for 2 rounds. Default route is pure Codex; pure OpenCode is opt-in. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper."
 argument-hint: [paper-directory]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent
 ---
 
 # Auto Paper Improvement Loop: Review Opinion + Score → Fix → Recompile
@@ -11,14 +11,15 @@ Autonomously improve the paper at: **$ARGUMENTS**
 
 ## Context
 
-This skill is designed to run **after** Workflow 3 (`/paper-plan` → `/paper-figure` → `/paper-write` → `/paper-compile`). It takes a compiled paper and iteratively improves it through external LLM review.
+This skill is designed to run **after** Workflow 3 (`/paper-plan` → `/paper-figure` → `/paper-write` → `/paper-compile`). It takes a compiled paper and iteratively improves it through fresh review passes.
 
 Unlike `/auto-review-loop` (which iterates on **research** — running experiments, collecting data, rewriting narrative), this skill iterates on **paper quality** using an explicit review opinion and score — fixing theoretical inconsistencies, softening overclaims, adding missing content, improving presentation, and preserving a traceable score progression.
 
 ## Constants
 
 - **MAX_ROUNDS = 2** — Two rounds of review→fix→recompile. Empirically, Round 1 catches structural issues (4→6/10), Round 2 catches remaining presentation issues (6→7/10). Diminishing returns beyond 2 rounds for writing-only improvements.
-- **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for paper review.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
 - **REVIEW_LOG = `PAPER_IMPROVEMENT_LOG.md`** — Cumulative log of all rounds, stored in paper directory.
 - **ROUND_REVIEWS = `review/ROUND_REVIEWS.md`** — Serialized round-by-round review ledger. Each round `N+1` must be driven by the criticisms recorded for round `N`.
 - **FINAL_REVIEW_OPINION = `review/REVIEW_OPINION.md`** — Final structured review opinion, stored in the project root.
@@ -37,7 +38,6 @@ If the context window fills up mid-loop, Claude Code auto-compacts. To recover, 
 ```json
 {
   "current_round": 1,
-  "threadId": "019ce736-...",
   "last_score": 6,
   "status": "in_progress",
   "timestamp": "2026-03-13T21:00:00"
@@ -70,34 +70,21 @@ done > /tmp/paper_full_text.txt
 
 ### Step 2: Round 1 Review
 
-Send the full paper text to GPT-5.4 xhigh:
+Launch a fresh review pass and give it:
 
-```
-mcp__codex__codex:
-  model: gpt-5.4
-  config: {"model_reasoning_effort": "xhigh"}
-  prompt: |
-    You are reviewing a [VENUE] paper. Please provide a detailed, structured review.
+- the full paper text
+- venue context
+- instructions to act as a senior reviewer
+- instructions to return: score, confidence, summary, strengths, weaknesses, actionable fixes, missing references, and verdict
 
-    ## Full Paper Text:
-    [paste concatenated sections]
+Focus the review on:
+- theoretical rigor
+- claims vs evidence alignment
+- writing clarity
+- self-containedness
+- notation consistency
 
-    ## Review Instructions
-    Please act as a senior ML reviewer ([VENUE] level). Provide:
-    1. **Overall Score** (1-10, where 6 = weak accept, 7 = accept)
-    2. **Confidence** (0-1)
-    3. **Summary** (2-3 sentences)
-    4. **Strengths** (bullet list, ranked)
-    5. **Weaknesses** (bullet list, ranked: CRITICAL > MAJOR > MINOR)
-    6. **For each CRITICAL/MAJOR weakness**: A specific, actionable fix
-    7. **Missing References** (if any)
-    8. **Verdict**: Ready for submission? Yes / Almost / No
-
-    Focus on: theoretical rigor, claims vs evidence alignment, writing clarity,
-    self-containedness, notation consistency.
-```
-
-Save the threadId for Round 2. Also immediately append the full structured review to `review/ROUND_REVIEWS.md` under a `## Round 0 Review` heading, because Round 1 fixes must be auditable as responses to that exact criticism set.
+Immediately append the full structured review to `review/ROUND_REVIEWS.md` under a `## Round 0 Review` heading, because Round 1 fixes must be auditable as responses to that exact criticism set.
 
 ### Step 3: Implement Round 1 Fixes
 
@@ -131,24 +118,20 @@ Verify: 0 undefined references, 0 undefined citations.
 
 ### Step 5: Round 2 Review
 
-Use `mcp__codex__codex-reply` with the saved threadId:
+Launch a fresh review pass. Do not rely on hidden thread state. Pass:
 
-```
-mcp__codex__codex-reply:
-  threadId: [saved from Round 1]
-  model: gpt-5.4
-  config: {"model_reasoning_effort": "xhigh"}
-  prompt: |
-    [Round 2 update]
+- the prior round review
+- the fixes implemented since that review
+- the updated paper text
 
-    Since your last review, we have implemented:
-    1. [Fix 1]: [description]
-    2. [Fix 2]: [description]
-    ...
-
-    Please re-score and re-assess. Same format:
-    Score, Confidence, Summary, Strengths, Weaknesses, Actionable fixes, Verdict.
-```
+Ask for the same structured output:
+- Score
+- Confidence
+- Summary
+- Strengths
+- Weaknesses
+- Actionable fixes
+- Verdict
 
 Append the new full review to `review/ROUND_REVIEWS.md` under `## Round 1 Review`, explicitly listing:
 
@@ -225,7 +208,7 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 ## Round 1 Review & Fixes
 
 <details>
-<summary>GPT-5.4 xhigh Review (Round 1)</summary>
+<summary>Reviewer-Agent Review (Round 1)</summary>
 
 [Full raw review text, verbatim]
 
@@ -239,7 +222,7 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 ## Round 2 Review & Fixes
 
 <details>
-<summary>GPT-5.4 xhigh Review (Round 2)</summary>
+<summary>Reviewer-Agent Review (Round 2)</summary>
 
 [Full raw review text, verbatim]
 
@@ -346,8 +329,8 @@ review/
 - **Preserve all PDF versions** — user needs to compare progression
 - **Each round must be review-driven** — do not invent extra rounds that are not tied to the immediately previous round's criticisms
 - **Persist the serialized review chain** — `review/ROUND_REVIEWS.md` is mandatory for multi-round examples
-- **Save FULL raw review text** — do not summarize or truncate GPT-5.4 responses
-- **Use `mcp__codex__codex-reply`** for Round 2 to maintain conversation context
+- **Save FULL raw review text** — do not summarize or truncate reviewer-agent responses
+- Use a fresh review pass for every round; continuity must come from the saved round review ledger
 - **Always recompile after fixes** — verify 0 errors before proceeding
 - **Do not fabricate experimental results** — synthetic validation must describe methodology, not invent numbers
 - **Respect the paper's claims** — soften overclaims rather than adding unsupported new claims

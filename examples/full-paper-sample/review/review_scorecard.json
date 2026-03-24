@@ -1,8 +1,14 @@
 {
-  "overall_score": 8.1,
-  "recommendation": "Weak Accept as reproducible simulation study / artifact paper",
-  "counterfactual_empirical_robotics_recommendation": "Borderline Reject",
+  "paper_path": "paper/main.pdf",
+  "venue": "artifact-style simulation study / workflow demonstration paper",
+  "round0_score": 5.9,
+  "round1_score": 6.8,
+  "round2_score": 7.3,
+  "final_round": 4,
+  "final_score": 8.1,
+  "verdict": "Weak Accept as reproducible simulation study / artifact paper",
   "confidence": 0.9,
+  "status": "submission_ready_with_known_scope_limits",
   "criteria": {
     "novelty": 7.4,
     "technical_correctness": 8.2,

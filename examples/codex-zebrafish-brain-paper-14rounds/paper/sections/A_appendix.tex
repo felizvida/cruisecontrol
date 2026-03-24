@@ -1,0 +1,134 @@
+\section{Reproducibility Appendix}
+
+\subsection{Local files}
+
+The paper package is backed by:
+\begin{itemize}
+  \item a source manifest in \texttt{data/source\_manifest.json},
+  \item a curated evidence file in \texttt{data/curated\_evidence.json},
+  \item a Python analysis script in \texttt{results/analyze\_region\_proteome.py},
+  \item an R figure-generation script in \texttt{results/render\_figures.R},
+  \item generated summary files in \texttt{results/},
+  \item a family-level robustness file in \texttt{results/group\_consistency.csv},
+  \item build scripts in \texttt{code/}.
+\end{itemize}
+
+\subsection{Formulas}
+
+The main derived formulas are the Jaccard overlap, specialization fractions, marker-level stabilized log-bias, Wilson intervals for axis-level alignment fractions, and an exact test on the $2\times2$ matched-versus-spillover table.
+
+\subsection{Scope note}
+
+The computation uses values recoverable from the published article and repository metadata. It does not claim a full raw-data reprocessing pipeline.
+
+\subsection{Functional literature bridge}
+
+\begin{table}[ht]
+\centering
+\caption{Background literature used to interpret the curated marker panel.}
+\label{tab:functionbridge}
+\begin{tabular}{p{0.19\linewidth}p{0.28\linewidth}p{0.42\linewidth}}
+\toprule
+Region & Literature basis & Functional role carried into this paper \\
+\midrule
+Telencephalon & \citet{stednitz2018social}, \citet{pandey2023telencephalon}, \citet{reemst2023memory} & social orienting, learning, memory, and other forebrain regulatory functions \\
+Optic tectum & \citet{roeser2003tectum} & sensory integration, visuomotor transformation, orienting, and avoidance behavior \\
+Proteomics article & \citet{lubeckyj2022lcmcze} & region totals, named proteoform markers, duplicate summaries, and PTM counts used for the local re-analysis \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Exact rebuild path}
+
+The package can be rebuilt locally with:
+\begin{verbatim}
+cd examples/codex-zebrafish-brain-paper-14rounds
+./code/build_inputs.sh
+./code/build_paper.sh
+\end{verbatim}
+
+The analysis step should regenerate, at minimum:
+\begin{itemize}
+  \item \texttt{results/summary\_metrics.json},
+  \item \texttt{results/axis\_summary.csv},
+  \item \texttt{results/group\_consistency.csv},
+  \item the figure files under \texttt{figures/}.
+\end{itemize}
+
+The paper step should regenerate \texttt{paper/main.pdf}.
+
+\subsection{Marker-panel curation rule}
+
+The marker panel is intentionally conservative. A family enters the panel only if the source proteomics paper names it in the biological interpretation of telencephalon or optic tectum and if that interpretation can be connected to established zebrafish regional function in the cited background literature. The curated counts and family labels are materialized in \texttt{data/curated\_evidence.json}, while the corresponding per-family summaries appear in \texttt{results/marker\_bias.csv} and \texttt{results/group\_consistency.csv}.
+
+\subsection{Leave-one-out robustness table}
+
+\begin{table}[ht]
+\centering
+\caption{Matched-region fraction after removing each marker family in turn.}
+\label{tab:leaveoneout}
+\begin{tabular}{lr}
+\toprule
+Removed family & Remaining alignment \\
+\midrule
+Pro-neuropeptide Y & 0.9764 \\
+Synenkephalin & 0.9764 \\
+Peptide YY-A & 0.9764 \\
+Neurogranin a & 0.9754 \\
+Synucleins total & 0.9911 \\
+Reticulon & 0.9758 \\
+Myosin & 0.9625 \\
+Actin & 0.9725 \\
+Troponin & 0.9792 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Claim-to-evidence ladder}
+
+\begin{table}[ht]
+\centering
+\small
+\caption{Main claims, supporting evidence, and corresponding limits.}
+\label{tab:evidenceladder}
+\begin{tabular}{p{0.26\linewidth}p{0.33\linewidth}p{0.28\linewidth}}
+\toprule
+Claim & Evidence & Main limit \\
+\midrule
+Proteoform-level regional separation & Jaccard 0.0434, protein overlap 0.2151, unique fractions in Table~\ref{tab:summary} & Published counts, not raw-feature reprocessing \\
+Functional markers align with expected region & Axis alignment, exact test, sign check, leave-one-out table & Curated marker panel only \\
+Pilot sensitivity supports readable regional structure & Duplicate recovery fractions and 418-from-250-cell high-water mark in Table~\ref{tab:technical} & Pilot workflow, not atlas-scale sampling \\
+Package improves auditability & Local code, figures, manifest, and rebuild commands & Does not replace the source experiment \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Claim-to-file map}
+
+\begin{itemize}
+  \item \textbf{Regional separation}
+  \begin{itemize}
+    \item \path{results/summary_metrics.json}
+    \item \path{results/region_summary.csv}
+    \item Figure~\ref{fig:region-overview}
+  \end{itemize}
+  \item \textbf{Functional alignment}
+  \begin{itemize}
+    \item \path{results/axis_summary.csv}
+    \item \path{results/functional_test.json}
+    \item \path{results/group_consistency.csv}
+    \item \path{results/leave_one_out_alignment.csv}
+    \item Figures~\ref{fig:marker-bias} and \ref{fig:axis-alignment}
+  \end{itemize}
+  \item \textbf{Technical sensitivity}
+  \begin{itemize}
+    \item \path{results/technical_replicate_summary.csv}
+    \item \path{results/ptm_summary.csv}
+    \item Figure~\ref{fig:ptm-sensitivity}
+  \end{itemize}
+  \item \textbf{Source provenance}
+  \begin{itemize}
+    \item \path{data/source_manifest.json}
+    \item \path{data/curated_evidence.json}
+  \end{itemize}
+\end{itemize}

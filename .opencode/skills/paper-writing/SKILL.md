@@ -1,8 +1,8 @@
 ---
 name: paper-writing
-description: "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop to go from a narrative report to a polished paper package with iterative review-score-driven revisions. Use when user says \"写论文全流程\", \"write paper pipeline\", \"从报告到PDF\", \"paper writing\", or wants the complete paper generation workflow."
+description: "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop to go from a narrative report to a polished paper package with iterative review-score-driven revisions. Default route is pure Codex; pure OpenCode is opt-in. Use when user says \"写论文全流程\", \"write paper pipeline\", \"从报告到PDF\", \"paper writing\", or wants the complete paper generation workflow."
 argument-hint: [narrative-report-path-or-topic]
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill
 ---
 
 # Workflow 3: Paper Writing Pipeline
@@ -20,13 +20,16 @@ This skill chains five sub-skills into a single automated pipeline:
 
 Each phase builds on the previous one's output. The final deliverable is a polished, reviewed paper package with LaTeX source, compiled PDFs, score-tracked revision rounds, and final review artifacts.
 
+**Route selection:** default to the pure **Codex** route unless the user explicitly requests the pure **OpenCode** route. When this skill invokes sub-skills, pass that route through consistently.
+
 All generated paper artifacts stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate outputs.
 
 ## Constants
 
 - **VENUE = `ICLR`** — Target venue. Options: `ICLR`, `NeurIPS`, `ICML`. Affects style file, page limit, citation format.
 - **MAX_IMPROVEMENT_ROUNDS = 2** — Number of review→fix→recompile rounds in the improvement loop.
-- **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for plan review, figure review, writing review, and improvement loop.
+- **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
+- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
 - **AUTO_PROCEED = true** — Auto-continue between phases. Set `false` to pause and wait for user approval after each phase.
 - **ALLOW_PLACEHOLDER_FIGURES = true** — In fully automatic mode, generate clearly labeled placeholder diagrams or panels instead of blocking on manual artwork.
 
@@ -76,7 +79,7 @@ Invoke `/paper-plan` to create the structural outline:
 - Design section structure (5-8 sections depending on paper type)
 - Plan figure/table placement with data sources
 - Scaffold citation structure
-- GPT-5.4 reviews the plan for completeness
+- A reviewer-agent pass reviews the plan for completeness
 
 **Output:** `PAPER_PLAN.md` with section plan, figure plan, citation scaffolding.
 
@@ -108,7 +111,7 @@ Invoke `/paper-figure` to generate data-driven plots and tables:
 - Generate matplotlib/seaborn plots from JSON/CSV data
 - Generate LaTeX comparison tables
 - Create `figures/latex_includes.tex` for easy insertion
-- GPT-5.4 reviews figure quality and captions
+- A reviewer-agent pass reviews figure quality and captions
 
 **Output:** `figures/` directory with PDFs, generation scripts, and LaTeX snippets.
 
@@ -142,7 +145,7 @@ Invoke `/paper-write` to generate section-by-section LaTeX:
 - Clean stale files from previous section structures
 - Automated bib cleaning (remove uncited entries)
 - De-AI polish (remove "delve", "pivotal", "landscape"...)
-- GPT-5.4 reviews each section for quality
+- A reviewer-agent pass reviews each section for quality
 
 **Output:** `paper/` directory with `main.tex`, `sections/*.tex`, `references.bib`, `math_commands.tex`.
 
@@ -198,9 +201,9 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 
 **What this does (2 rounds):**
 
-**Round 1:** GPT-5.4 xhigh writes a scored review opinion for the full paper → identifies CRITICAL/MAJOR/MINOR issues → Claude Code implements fixes → recompile → save `main_round1.pdf`
+**Round 1:** A reviewer-agent pass writes a scored review opinion for the full paper → identifies CRITICAL/MAJOR/MINOR issues → implement fixes → recompile → save `main_round1.pdf`
 
-**Round 2:** GPT-5.4 xhigh re-reviews with conversation context, updates the score, and identifies remaining issues → Claude Code implements fixes → recompile → save `main_round2.pdf`
+**Round 2:** A fresh reviewer-agent pass re-reviews using the saved prior review plus the updated paper, updates the score, and identifies remaining issues → implement fixes → recompile → save `main_round2.pdf`
 
 **Typical improvements:**
 - Fix assumption-model mismatches

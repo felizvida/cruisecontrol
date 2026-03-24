@@ -2,6 +2,12 @@
 
 Fill the sections that apply to your project. The migrated skills read this file when they need server metadata, local paper-library paths, or paper-writing defaults.
 
+## Workflow Route Preference
+
+- Default route: `codex`
+- Optional route: `opencode`
+- Note: if this section is absent, the repo default is `codex`
+
 ## Paper Library
 
 - Local PDFs: `/absolute/path/to/papers`

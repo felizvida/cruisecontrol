@@ -4,30 +4,58 @@ Use this if you want the shortest path from clone to first useful result.
 
 ## 1. Open the repo
 
+Default route from this point forward: **Pure Codex**.
+
 ```bash
 git clone https://github.com/felizvida/cruisecontrol
 cd cruisecontrol
+```
+
+## 2. Choose a route
+
+### Default: Pure Codex
+
+Open the repo in Codex and ask for the workflow directly:
+
+```text
+Run the Codex research pipeline for: test-time adaptation for battery-constrained quadruped robots
+```
+
+### Optional: Pure OpenCode
+
+If you want the OpenCode-native route, start OpenCode:
+
+```bash
 opencode
 ```
 
-## 2. Confirm Codex is wired in
-
-This repo expects a local MCP server named `codex`.
-
-Check [opencode.jsonc](opencode.jsonc). On this machine it should point to:
+Then check [opencode.jsonc](opencode.jsonc). On this machine it should pin the native OpenCode model:
 
 ```json
-"command": ["/bin/bash", "/Users/liux17/codex/autoresearch/scripts/codex-mcp-local.sh"]
+"model": "amazon-bedrock/amazon.nova-premier-v1:0",
+"small_model": "amazon-bedrock/amazon.nova-premier-v1:0"
 ```
 
-That wrapper keeps OpenCode's `codex` server isolated from your global Codex MCP config and stale local Codex state.
+The pure OpenCode route does not require a reviewer MCP server. Optional `zotero` and `obsidian-vault` integrations stay disabled unless you configure them.
 
 ## 3. Run one command
 
-In OpenCode, start with:
+For the default Codex route in Codex itself:
+
+```text
+Run the Codex research pipeline for: test-time adaptation for battery-constrained quadruped robots
+```
+
+If you are in OpenCode and still want the default Codex route:
 
 ```text
 /research-pipeline "test-time adaptation for battery-constrained quadruped robots"
+```
+
+For the explicit OpenCode route:
+
+```text
+/research-pipeline-opencode "test-time adaptation for battery-constrained quadruped robots"
 ```
 
 ## 4. What you should get
@@ -59,6 +87,8 @@ If you want to see a sample artifact set first, read [examples/end-to-end-sample
 If you want the full sample ending in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).
 If you want to start from an existing paper on the internet instead of a fresh research direction, use `/paper-upgrade "paper-url — this is my paper"` and see [examples/paper-upgrade-sample/README.md](examples/paper-upgrade-sample/README.md).
 
+For route details and explicit command variants, read [WORKFLOW_ROUTES.md](WORKFLOW_ROUTES.md).
+
 ## 5. Keep going
 
 If you want the full workflow story instead of the minimal path, read [AUTO_RESEARCH_GUIDE.md](AUTO_RESEARCH_GUIDE.md).
@@ -67,9 +97,9 @@ If you want the full workflow story instead of the minimal path, read [AUTO_RESE
 
 Check these first:
 
-- `codex` is installed at `/opt/homebrew/bin/codex`
-- the `codex` MCP server is visible in OpenCode
-- OpenCode picked up the repo's `opencode.jsonc`, including `experimental.mcp_timeout`
+- OpenCode picked up the repo's `opencode.jsonc`
+- the configured `model` and `small_model` are available on this machine
+- any optional MCP server you enabled is visible in OpenCode
 - you are not missing project-specific setup in `AGENTS.md` when running against another repo
 
 If you want to use these skills inside a different research repo, copy [templates/project-AGENTS.md](templates/project-AGENTS.md) into that repo as `AGENTS.md`.

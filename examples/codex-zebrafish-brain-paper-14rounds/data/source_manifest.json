@@ -1,0 +1,89 @@
+{
+  "sources": [
+    {
+      "id": "lubeckyj2022",
+      "type": "primary_article",
+      "title": "Laser capture microdissection-capillary zone electrophoresis-tandem mass spectrometry (LCM-CZE-MS/MS) for spatially resolved top-down proteomics: a pilot study of zebrafish brain",
+      "authors": [
+        "Rachele A. Lubeckyj",
+        "Liangliang Sun"
+      ],
+      "year": 2022,
+      "journal": "Molecular Omics",
+      "doi": "10.1039/d1mo00335f",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9066772/",
+      "role": "primary quantitative source"
+    },
+    {
+      "id": "pxd027741",
+      "type": "dataset_landing_page",
+      "title": "PXD027741 - Laser capture microdissection-capillary zone electrophoresis-tandem mass spectrometry (LCM-CZE-MS/MS) for spatially resolved top-down proteomics: a pilot study of zebrafish brain",
+      "year": 2023,
+      "url": "https://www.omicsdi.org/dataset/pride/PXD027741",
+      "role": "data availability and repository provenance"
+    },
+    {
+      "id": "stednitz2018",
+      "type": "primary_article",
+      "title": "Forebrain control of behaviorally-driven social orienting in zebrafish",
+      "authors": [
+        "Sarah J. Stednitz",
+        "Erin M. McDermott",
+        "Denver Ncube",
+        "Alexandra Tallafuss",
+        "Judith S. Eisen",
+        "Philip Washbourne"
+      ],
+      "year": 2018,
+      "journal": "Current Biology",
+      "doi": "10.1016/j.cub.2018.06.016",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6082377/",
+      "role": "adult telencephalon functional context"
+    },
+    {
+      "id": "pandey2023",
+      "type": "primary_article",
+      "title": "A single-cell transcriptome atlas of the maturing zebrafish telencephalon",
+      "authors": [
+        "Shristi Pandey",
+        "Anna J. Moyer",
+        "Summer B. Thyme"
+      ],
+      "year": 2023,
+      "journal": "Genome Research",
+      "doi": "10.1101/gr.277278.122",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37072188/",
+      "role": "adult telencephalon specialization context"
+    },
+    {
+      "id": "roeser2003",
+      "type": "primary_article",
+      "title": "Visuomotor behaviors in larval zebrafish after GFP-guided laser ablation of the optic tectum",
+      "authors": [
+        "Tobias Roeser",
+        "Herwig Baier"
+      ],
+      "year": 2003,
+      "journal": "Journal of Neuroscience",
+      "doi": "10.1523/JNEUROSCI.23-09-03726.2003",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12736343/",
+      "role": "optic tectum visuomotor context"
+    },
+    {
+      "id": "reemst2023",
+      "type": "review",
+      "title": "Learning and memory formation in zebrafish: Protein dynamics and molecular tools",
+      "authors": [
+        "Kitty Reemst",
+        "Heba Shahin",
+        "Or David Shahar"
+      ],
+      "year": 2023,
+      "journal": "Frontiers in Cell and Developmental Biology",
+      "doi": "10.3389/fcell.2023.1120984",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10034119/",
+      "role": "memory and telencephalic functional background"
+    }
+  ]
+}
+

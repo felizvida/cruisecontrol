@@ -1,0 +1,10 @@
+{
+  "odds_ratio": 1173.0,
+  "one_sided_p_greater": 5.124494710467904e-22,
+  "table": {
+    "tel_axis_in_tel": 23,
+    "tel_axis_in_teo": 2,
+    "teo_axis_in_tel": 1,
+    "teo_axis_in_teo": 102
+  }
+}
