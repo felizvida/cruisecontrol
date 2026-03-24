@@ -13,6 +13,11 @@ Instead, it packages a simpler and fully defensible target:
 ## Final Paper
 
 - [paper/main.pdf](paper/main.pdf)
+- [paper/main_round0_original.pdf](paper/main_round0_original.pdf)
+- [paper/main_round1.pdf](paper/main_round1.pdf)
+- [paper/main_round2.pdf](paper/main_round2.pdf)
+- [paper/main_round3.pdf](paper/main_round3.pdf)
+- [paper/main_round4.pdf](paper/main_round4.pdf)
 - [paper/main_round1_complete_package.pdf](paper/main_round1_complete_package.pdf)
 - [paper/PAPER_IMPROVEMENT_LOG.md](paper/PAPER_IMPROVEMENT_LOG.md)
 
@@ -25,6 +30,7 @@ Instead, it packages a simpler and fully defensible target:
 - [results/reconstruction_checks.json](results/reconstruction_checks.json)
 - [results/check_summary.csv](results/check_summary.csv)
 - [review/REVIEW_OPINION.md](review/REVIEW_OPINION.md)
+- [review/review_scorecard.json](review/review_scorecard.json)
 
 ## What The Paper Honestly Claims
 
@@ -61,8 +67,11 @@ So the paper's strategy is not "start with quantum mechanics and simplify later.
 This example includes:
 
 - the finished paper PDF and LaTeX source
+- explicit round-0 through round-4 paper snapshots from the review-refresh loop
 - all code used to generate the numeric checks and paper-side assets
 - generated result files and a source manifest
 - dedicated high-resolution figure assets
 - a detailed review opinion
 - a score
+
+The older [paper/main_round1_complete_package.pdf](paper/main_round1_complete_package.pdf) snapshot is preserved as a legacy freeze from the earlier one-shot package build.

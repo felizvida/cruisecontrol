@@ -1,13 +1,20 @@
 {
-  "overall_score": 8.1,
-  "recommendation": "Weak Accept",
-  "paper_type_assumption": "theoretical_expository_note",
-  "confidence": 0.84,
+  "paper_path": "paper/main.pdf",
+  "venue": "theoretical expository note / pedagogy-oriented math-physics venue",
+  "round0_score": 7.8,
+  "round1_score": 8.1,
+  "round2_score": 8.3,
+  "round3_score": 8.5,
+  "round4_score": 8.7,
+  "final_score": 8.7,
+  "verdict": "Accept for an expository or pedagogy-oriented venue",
+  "confidence": 0.89,
+  "status": "submission_ready_with_scope_constraints",
   "criteria": {
-    "novelty": 7.1,
-    "technical_correctness": 8.7,
-    "clarity": 8.9,
-    "significance": 7.7,
-    "reproducibility": 8.9
+    "novelty": 7.3,
+    "technical_correctness": 8.9,
+    "clarity": 9.4,
+    "significance": 8.0,
+    "reproducibility": 9.0
   }
 }

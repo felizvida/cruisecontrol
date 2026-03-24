@@ -5,3 +5,11 @@ The first half of the paper can be summarized without matrices.
 Suppose you have a rule that attaches a number to every point on a line segment from $0$ to $1$. If the number for a combined piece is always the sum of the numbers for the smaller pieces, and if the rule never blows up to infinity, then the rule has to be a straight line. That is the whole engine of the proof.
 
 On the sphere, squared heights of an orthonormal triple always add to $1$. So a rule that only depends on squared height is forced into the same straight-line pattern. The matrix theorem is a larger version of the same story: once additivity is available on enough positive pieces, the whole rule becomes linear and must come from one fixed matrix.
+
+\subsection{Why the original theorem is harder}
+
+This note simplifies the classical Gleason problem in two especially important ways.
+
+First, it assumes additivity on the full effect space rather than only on projections. That matters because the proof repeatedly scales an effect along a ray and writes one effect as a sum of smaller effects. For projections alone, that maneuver disappears: if $P$ is a projection, then $tP$ is usually \emph{not} a projection unless $t=0$ or $1$. So the easy interval-lemma route is no longer available for free.
+
+Second, the note stays in the real symmetric setting. In the full complex case, off-diagonal directions carry both real and imaginary parts, and the bookkeeping needed to reconstruct the representing operator is correspondingly richer. The present proof avoids that extra layer on purpose so the reader can see the core rigidity idea before facing the full theorem.

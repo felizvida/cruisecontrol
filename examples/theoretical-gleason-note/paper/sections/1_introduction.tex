@@ -14,6 +14,8 @@ whenever $E$, $F$, and $E+F$ all lie in the same effect space. The conclusion is
 
 This statement is not Gleason's original theorem. The assumption is stronger: additivity is required on the whole effect space, not merely on orthogonal projections. In that sense the note sits closer to the finite-dimensional effect-space viewpoint emphasized by \citet{busch2003} and discussed by \citet{wright2019}. What is new here is not the theorem itself, but the route: a proof staircase that begins with a one-variable lemma and keeps the ideas concrete all the way through.
 
+For readers meeting this topic for the first time, it helps to keep the comparison with the original theorem explicit. There are three simplifications at once: this note stays in finite dimension, works over real symmetric matrices rather than the full complex setting, and assumes additivity on all effects instead of only on projection-valued decompositions. The pedagogical gain is that every step can be stated in everyday linear-algebra language. The cost is that the theorem proved here is deliberately narrower.
+
 \paragraph{Contributions.}
 This note makes three contributions.
 \begin{enumerate}[leftmargin=1.4em]
@@ -21,5 +23,28 @@ This note makes three contributions.
   \item It turns that warmup into a sphere corollary that is accessible with only squared lengths and orthonormal triples.
   \item It uses the same bounded-additivity idea to prove the finite-dimensional real effect-space theorem in explicit matrix language.
 \end{enumerate}
+
+\paragraph{Reader roadmap.}
+Readers who mainly want the intuitive core can stop after Section~2 and still see the engine of the argument. Section~3 shows how the same bounded-additivity idea becomes a matrix trace rule. Section~4 is a computational audit of the formulas rather than part of the proof. The appendix returns to plain language and explains why the original projection-only theorem remains harder.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{p{0.2\linewidth}p{0.34\linewidth}p{0.34\linewidth}}
+\toprule
+Feature & Original Gleason theorem & This note \\
+\midrule
+Domain & Orthogonal projections on Hilbert space & Full effect space of real symmetric matrices \\
+Scalars & Full complex Hilbert-space setting & Finite-dimensional real symmetric matrices \\
+Additivity input & Only on orthogonal decompositions of projections & On every decomposition $E+F$ that stays in the effect space \\
+Conclusion & Density-operator rule on projections & Trace-form rule on all effects \\
+Teaching cost & \shortstack[l]{Substantial geometric\\and analytic overhead} & \shortstack[l]{Bounded additivity\\and matrix algebra} \\
+\bottomrule
+\end{tabular}
+\caption{This note is a Gleason-type doorway rather than a replacement for the original theorem.}
+\label{tab:comparison}
+\end{table}
+
+Relative to the elementary proof tradition represented by \citet{cooke1985}, the gain here is not theorem strength but entry cost. We lower the entry threshold by changing the target theorem and making each proof step visibly local. Relative to the effect-space presentations emphasized by \citet{busch2003} and \citet{wright2019}, the contribution is again not a new mathematical statement; it is the proof staircase itself. The note is trying to make the trace-form conclusion feel teachable to a newcomer before the full classical theorem is reintroduced.
 
 The computational artifacts in this package are intentionally secondary. They do not prove the theorem. They simply generate real reproducible checks and paper-side assets so the package meets the repo's standard for a complete final paper.

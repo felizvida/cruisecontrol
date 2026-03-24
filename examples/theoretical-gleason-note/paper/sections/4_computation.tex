@@ -9,3 +9,5 @@ First, it samples random positive semidefinite trace-one matrices $\rho$ in dime
 Table~\ref{tab:numeric-checks} shows the outcome. Across 250 trials per dimension, the reconstruction errors, representation residuals, and additivity residuals remain at machine scale. That is exactly what should happen if the paper formulas are implemented correctly.
 
 The package also generates sphere checks for the warmup corollary by sampling random orthonormal triples and verifying that the affine squared-height rule sums to $1$ up to floating-point tolerance. Again, these checks are illustrative, not evidentiary. Their role is to make the theorem package computationally inspectable rather than magical.
+
+That role is pedagogically useful. A beginner can now look at the basis formulas, run the code, and watch the claimed trace representation reappear numerically from finitely many evaluations of the rule. The computation still proves nothing, but it does remove one source of intimidation: the reader no longer has to take the reconstruction formulas on faith.

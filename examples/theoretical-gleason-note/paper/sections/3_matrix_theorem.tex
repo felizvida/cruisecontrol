@@ -88,7 +88,7 @@ and, for $i<j$,
 \[
 S_{ij}=\tfrac12(e_i+e_j)(e_i+e_j)^\top.
 \]
-Each $P_i$ and $S_{ij}$ is an effect. Set
+Each $P_i$ and $S_{ij}$ is an effect; in fact, $S_{ij}$ is the rank-one projection onto the unit vector $(e_i+e_j)/\sqrt2$. Set
 \[
 \rho_{ii}=f(P_i),\qquad
 \rho_{ij}=f(S_{ij})-\tfrac12 f(P_i)-\tfrac12 f(P_j)\quad (i<j),
@@ -99,6 +99,7 @@ Now let
 \[
 X_{ij}=\tfrac12(E_{ij}+E_{ji})=S_{ij}-\tfrac12 P_i-\tfrac12 P_j.
 \]
+So $X_{ij}$ is exactly the symmetric off-diagonal direction recovered from values of $f$ on honest effects.
 By construction,
 \[
 L(P_i)=\rho_{ii},\qquad L(X_{ij})=\rho_{ij}.
