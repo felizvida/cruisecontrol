@@ -8,7 +8,7 @@ This humanities example ships executable analysis code even though the argument 
   Loads the curated source corpus, computes theme counts, source counts, weighted network edges, and timeline outputs.
 
 - `../results/render_assets.py`
-  Turns the computed outputs into paper-side tables and TikZ figures, plus standalone figure sources for the asset folder.
+  Turns the computed outputs into paper-side tables and TikZ figures, including the evidence-ladder table, plus standalone figure sources for the asset folder.
 
 - `build_paper.sh`
   Runs the analysis, renders the assets, builds standalone figures, and compiles the paper.

@@ -29,10 +29,18 @@ He survived because:
 - [results/network_edges.csv](results/network_edges.csv)
 - [results/summary_metrics.json](results/summary_metrics.json)
 - [paper/main.pdf](paper/main.pdf)
+- [paper/main_round0_original.pdf](paper/main_round0_original.pdf)
+- [paper/main_round1.pdf](paper/main_round1.pdf)
+- [paper/main_round2.pdf](paper/main_round2.pdf)
+- [paper/main_round28.pdf](paper/main_round28.pdf)
+- [paper/main_round14.pdf](paper/main_round14.pdf)
 - [paper/main_round1_complete_package.pdf](paper/main_round1_complete_package.pdf)
 - [paper/PAPER_IMPROVEMENT_LOG.md](paper/PAPER_IMPROVEMENT_LOG.md)
 - [figure_assets/README.md](figure_assets/README.md)
+- [review/ROUND_REVIEWS.md](review/ROUND_REVIEWS.md)
+- [review/ROUND_REVIEWS_LIVE_15_28.md](review/ROUND_REVIEWS_LIVE_15_28.md)
 - [review/REVIEW_OPINION.md](review/REVIEW_OPINION.md)
+- [review/review_scorecard.json](review/review_scorecard.json)
 
 ## Core Historical Claim
 
@@ -54,5 +62,19 @@ The scripts:
 3. count thematic language in the surviving excerpts
 4. generate a weighted relationship network
 5. render the paper tables and figures from those outputs
+6. compute an explicit evidence ladder showing how much of the Frederick claim rests on direct documentary records versus contextual local sources
 
 The computations support the historical argument. They do not replace source reading.
+
+## Review Loop Refresh
+
+This example now preserves two linked review-improvement histories:
+
+- `paper/main_round0_original.pdf` — original package before the refresh pass
+- `paper/main_round1.pdf` through `paper/main_round14.pdf` — the first serialized improvement pass, with its reconstructed review chain in `review/ROUND_REVIEWS.md`
+- `paper/main_round15.pdf` through `paper/main_round28.pdf` — the new live continuation loop, with fresh round-by-round reviews in `review/ROUND_REVIEWS_LIVE_15_28.md`
+- `paper/main.pdf` — final version, equal to `paper/main_round28.pdf`
+- `review/ROUND_REVIEWS.md` — reconstructed round-by-round review opinions for rounds 0--14
+- `review/ROUND_REVIEWS_LIVE_15_28.md` — live round-by-round review opinions for rounds 15--28
+
+The older [paper/main_round1_complete_package.pdf](paper/main_round1_complete_package.pdf) snapshot is preserved as a legacy freeze from the earlier one-shot package build.

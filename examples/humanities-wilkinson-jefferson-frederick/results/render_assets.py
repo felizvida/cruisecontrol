@@ -44,6 +44,11 @@ NODE_POSITIONS = {
     "Roger B. Taney": (7.4, 1.0),
 }
 
+NODE_WEIGHTS = {
+    row["node"]: row["weight"]
+    for row in SUMMARY["top_nodes"]
+}
+
 
 def ensure_dirs() -> None:
     PAPER_FIGURES.mkdir(parents=True, exist_ok=True)
@@ -139,14 +144,17 @@ def network_tex() -> str:
         fill = "yellow!20" if "Frederick" in node else "blue!10"
         draw = "yellow!60!orange!90!black" if "Frederick" in node else "blue!60!black"
         label = node.replace("&", r"\&")
+        weight = NODE_WEIGHTS.get(node, 1)
+        inner_sep = 2.5 + 0.18 * weight
+        font = r"\scriptsize" if weight < 5 else r"\footnotesize"
         lines.append(
-            rf"\node[draw={draw}, fill={fill}, rounded corners=4pt, font=\scriptsize, align=center, inner sep=4pt] at ({x:.2f},{y:.2f}) {{{label}}};"
+            rf"\node[draw={draw}, fill={fill}, rounded corners=4pt, font={font}, align=center, inner sep={inner_sep:.2f}pt] at ({x:.2f},{y:.2f}) {{{label}}};"
         )
 
     lines.extend(
         [
             r"\end{tikzpicture}",
-            r"\caption{Weighted connection network derived from the coded corpus. Frederick appears not merely as backdrop but as a bridge node linking Wilkinson to Adams, Madison, Taney, and the barracks that also served Jefferson's western projects.}",
+            r"\caption{Weighted connection network derived from the coded corpus. Node size and edge width both reflect weight. Frederick appears not merely as backdrop but as a bridge node linking Wilkinson to Adams, Madison, Taney, and the barracks that also served Jefferson's western projects.}",
             r"\label{fig:network}",
             r"\end{figure}",
         ]
@@ -182,6 +190,30 @@ def table_findings_tex() -> str:
     return "\n".join(lines) + "\n"
 
 
+def table_evidence_tex() -> str:
+    evidence = SUMMARY["evidence_tiers"]
+    primary_share = int(round(evidence["frederick_primary_share"] * 100))
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering",
+        r"\small",
+        r"\begin{tabular}{p{0.58\linewidth}r}",
+        r"\toprule",
+        r"Evidence tier & Records \\",
+        r"\midrule",
+        rf"Direct Jefferson--Wilkinson primary correspondence & {evidence['direct_relationship_primary']} \\",
+        rf"Primary Frederick venue and outcome records & {evidence['primary_frederick_venue']} \\",
+        rf"Contextual Frederick local sources & {evidence['contextual_frederick_local']} \\",
+        rf"Primary share of Frederick-linked corpus & {primary_share}\% \\",
+        r"\bottomrule",
+        r"\end{tabular}",
+        r"\caption{Evidence ladder for the paper's core claims. The Jefferson--Wilkinson thesis rests mostly on direct correspondence, while the Frederick synthesis combines a three-document primary spine with three contextual local sources.}",
+        r"\label{tab:evidence}",
+        r"\end{table}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def table_themes_tex() -> str:
     rows = []
     for row in THEME_ROWS:
@@ -206,6 +238,157 @@ def table_themes_tex() -> str:
     return "\n".join(lines) + "\n"
 
 
+def table_theme_rates_tex() -> str:
+    rows = []
+    for author, counts in SUMMARY["theme_counts"].items():
+        rows.append(
+            rf"{author.replace('&', r'\&')} & {counts['warmth_per_1000_tokens']:.2f} & {counts['utility_per_1000_tokens']:.2f} & {counts['defense_per_1000_tokens']:.2f} \\"
+        )
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering",
+        r"\small",
+        r"\begin{tabular}{lrrr}",
+        r"\toprule",
+        r"Author & Warmth / 1000 tok. & Utility / 1000 tok. & Defense / 1000 tok. \\",
+        r"\midrule",
+        *rows,
+        r"\bottomrule",
+        r"\end{tabular}",
+        r"\caption{Normalized theme rates per 1000 tokens in the coded excerpts and summaries. The normalized view still leaves Wilkinson's voice more defense-heavy than warmth-heavy, while Jefferson remains most associated with utility language.}",
+        r"\label{tab:themerates}",
+        r"\end{table}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def table_primary_network_tex() -> str:
+    rows = []
+    for row in SUMMARY["primary_only_top_nodes"][:5]:
+        rows.append(rf"{row['node'].replace('&', r'\&')} & {row['weight']} \\")
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering",
+        r"\small",
+        r"\begin{tabular}{lr}",
+        r"\toprule",
+        r"Primary-only node & Weight \\",
+        r"\midrule",
+        *rows,
+        r"\bottomrule",
+        r"\end{tabular}",
+        r"\caption{Top nodes in the primary-only connection network. Frederick Town remains tied for the third-heaviest node even when the later local-context sources are removed.}",
+        r"\label{tab:primarynetwork}",
+        r"\end{table}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def table_phase_modes_tex() -> str:
+    phase_labels = {
+        "access_and_utility": "Access / utility",
+        "burr_crisis": "Burr crisis",
+        "rehabilitation": "Rehabilitation",
+        "retrospective_memory": "Retrospective memory",
+        "frederick_repair": "Frederick repair",
+        "frontier_brokerage": "Frontier brokerage",
+        "local_context": "Local context",
+    }
+    interesting_modes = [
+        "instrumental",
+        "protective",
+        "self_vindication",
+        "official_settlement",
+        "retrospective_esteem",
+    ]
+    rows = []
+    for phase in [
+        "access_and_utility",
+        "frontier_brokerage",
+        "burr_crisis",
+        "frederick_repair",
+        "rehabilitation",
+        "retrospective_memory",
+        "local_context",
+    ]:
+        counts = SUMMARY["phase_mode_counts"].get(phase, {})
+        row = [phase_labels[phase]]
+        for mode in interesting_modes:
+            row.append(str(counts.get(mode, 0)))
+        rows.append(" & ".join(row) + r" \\")
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering",
+        r"\small",
+        r"\begin{tabular}{lccccc}",
+        r"\toprule",
+        r"Phase & Inst. & Prot. & Self-vind. & Official & Esteem \\",
+        r"\midrule",
+        *rows,
+        r"\bottomrule",
+        r"\end{tabular}",
+        r"\caption{Phase-by-mode summary from the coded corpus. The Burr crisis is almost purely protective, while rehabilitation mixes self-defense, protection, and official settlement.}",
+        r"\label{tab:phasemodes}",
+        r"\end{table}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def table_frederick_spine_tex() -> str:
+    spine_rows = []
+    function_map = {
+        "reputational_repair": "Shows Frederick as an early site of reputational self-defense",
+        "trial_venue": "Shows Frederick as the place where Wilkinson sought procedural fairness",
+        "trial_outcome": "Puts Frederick into the federal record through approved acquittal",
+    }
+    for row in TIMELINE_ROWS:
+        if row["source_class"] == "primary" and row["frederick_role"] in function_map:
+            title = row["title"].replace("&", r"\&")
+            spine_rows.append(
+                rf"{row['year']} & {title[:40] + ('...' if len(title) > 40 else '')} & {function_map[row['frederick_role']].replace('&', r'\&')} \\"
+            )
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering",
+        r"\small",
+        r"\begin{tabular}{p{0.08\linewidth}p{0.33\linewidth}p{0.46\linewidth}}",
+        r"\toprule",
+        r"Year & Document & Function in argument \\",
+        r"\midrule",
+        *spine_rows,
+        r"\bottomrule",
+        r"\end{tabular}",
+        r"\caption{The three-document Frederick primary spine used in the paper's core local argument. These records anchor the claim before later contextual sources are added.}",
+        r"\label{tab:frederickspine}",
+        r"\end{table}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def table_place_nodes_tex() -> str:
+    rows = []
+    for row in SUMMARY["place_node_weights"]:
+        rows.append(
+            rf"{row['node'].replace('&', r'\&')} & {row['overall_weight']} & {row['primary_only_weight']} \\"
+        )
+    lines = [
+        r"\begin{table}[t]",
+        r"\centering",
+        r"\small",
+        r"\begin{tabular}{lrr}",
+        r"\toprule",
+        r"Place node & Full corpus & Primary-only \\",
+        r"\midrule",
+        *rows,
+        r"\bottomrule",
+        r"\end{tabular}",
+        r"\caption{Place-node ranking in the connection network. Frederick Town dominates both in the full corpus and in the primary-only subset, reinforcing its role as the paper's central local geography.}",
+        r"\label{tab:placenodes}",
+        r"\end{table}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def write_text(path: Path, content: str) -> None:
     path.write_text(content)
 
@@ -215,12 +398,24 @@ def main() -> None:
     timeline = timeline_tex()
     network = network_tex()
     table_findings = table_findings_tex()
+    table_evidence = table_evidence_tex()
     table_themes = table_themes_tex()
+    table_theme_rates = table_theme_rates_tex()
+    table_primary_network = table_primary_network_tex()
+    table_phase_modes = table_phase_modes_tex()
+    table_frederick_spine = table_frederick_spine_tex()
+    table_place_nodes = table_place_nodes_tex()
 
     write_text(PAPER_FIGURES / "FIG_timeline.tex", timeline)
     write_text(PAPER_FIGURES / "FIG_network.tex", network)
     write_text(PAPER_FIGURES / "TABLE_findings.tex", table_findings)
+    write_text(PAPER_FIGURES / "TABLE_evidence.tex", table_evidence)
     write_text(PAPER_FIGURES / "TABLE_themes.tex", table_themes)
+    write_text(PAPER_FIGURES / "TABLE_theme_rates.tex", table_theme_rates)
+    write_text(PAPER_FIGURES / "TABLE_primary_network.tex", table_primary_network)
+    write_text(PAPER_FIGURES / "TABLE_phase_modes.tex", table_phase_modes)
+    write_text(PAPER_FIGURES / "TABLE_frederick_spine.tex", table_frederick_spine)
+    write_text(PAPER_FIGURES / "TABLE_place_nodes.tex", table_place_nodes)
 
     write_text(ASSET_TIMELINE / "timeline_standalone.tex", standalone_from_inner(timeline, captionless=True))
     write_text(ASSET_NETWORK / "network_standalone.tex", standalone_from_inner(network, captionless=True))

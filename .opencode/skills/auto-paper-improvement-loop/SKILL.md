@@ -20,6 +20,7 @@ Unlike `/auto-review-loop` (which iterates on **research** — running experimen
 - **MAX_ROUNDS = 2** — Two rounds of review→fix→recompile. Empirically, Round 1 catches structural issues (4→6/10), Round 2 catches remaining presentation issues (6→7/10). Diminishing returns beyond 2 rounds for writing-only improvements.
 - **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for paper review.
 - **REVIEW_LOG = `PAPER_IMPROVEMENT_LOG.md`** — Cumulative log of all rounds, stored in paper directory.
+- **ROUND_REVIEWS = `review/ROUND_REVIEWS.md`** — Serialized round-by-round review ledger. Each round `N+1` must be driven by the criticisms recorded for round `N`.
 - **FINAL_REVIEW_OPINION = `review/REVIEW_OPINION.md`** — Final structured review opinion, stored in the project root.
 - **FINAL_SCORECARD = `review/review_scorecard.json`** — Final machine-readable score summary, stored in the project root.
 
@@ -96,7 +97,7 @@ mcp__codex__codex:
     self-containedness, notation consistency.
 ```
 
-Save the threadId for Round 2.
+Save the threadId for Round 2. Also immediately append the full structured review to `review/ROUND_REVIEWS.md` under a `## Round 0 Review` heading, because Round 1 fixes must be auditable as responses to that exact criticism set.
 
 ### Step 3: Implement Round 1 Fixes
 
@@ -148,6 +149,14 @@ mcp__codex__codex-reply:
     Please re-score and re-assess. Same format:
     Score, Confidence, Summary, Strengths, Weaknesses, Actionable fixes, Verdict.
 ```
+
+Append the new full review to `review/ROUND_REVIEWS.md` under `## Round 1 Review`, explicitly listing:
+
+- paper reviewed
+- score
+- verdict
+- main criticisms
+- required fixes for the next round
 
 ### Step 6: Implement Round 2 Fixes
 
@@ -247,6 +256,8 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 - `main_round2.pdf` — Final version after Round 2 fixes
 ```
 
+Also write `review/ROUND_REVIEWS.md` in the project root if it does not already exist. This file is the serialized review ledger and is required whenever the loop contains more than one round. It must preserve the round `N` criticisms that directly drove the round `N+1` fixes.
+
 Also write final review artifacts in the project root:
 
 `review/REVIEW_OPINION.md`
@@ -325,6 +336,7 @@ paper/
 └── PAPER_IMPROVEMENT_LOG.md    # Full review log with scores
 
 review/
+├── ROUND_REVIEWS.md           # Serialized review chain: round N criticism → round N+1 fixes
 ├── REVIEW_OPINION.md           # Final review opinion for the completed paper
 └── review_scorecard.json       # Final machine-readable score summary
 ```
@@ -332,6 +344,8 @@ review/
 ## Key Rules
 
 - **Preserve all PDF versions** — user needs to compare progression
+- **Each round must be review-driven** — do not invent extra rounds that are not tied to the immediately previous round's criticisms
+- **Persist the serialized review chain** — `review/ROUND_REVIEWS.md` is mandatory for multi-round examples
 - **Save FULL raw review text** — do not summarize or truncate GPT-5.4 responses
 - **Use `mcp__codex__codex-reply`** for Round 2 to maintain conversation context
 - **Always recompile after fixes** — verify 0 errors before proceeding

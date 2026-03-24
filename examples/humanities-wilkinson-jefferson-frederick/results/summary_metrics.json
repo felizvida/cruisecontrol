@@ -3,6 +3,8 @@
   "direct_jefferson_wilkinson_records": 11,
   "frederick_records": 6,
   "frederick_share": 0.353,
+  "frederick_primary_records": 3,
+  "frederick_local_records": 3,
   "frederick_phase_counts": {
     "frederick_repair": 1,
     "rehabilitation": 2,
@@ -25,6 +27,35 @@
     "retrospective_memory": 2,
     "local_context": 3
   },
+  "phase_mode_counts": {
+    "access_and_utility": {
+      "instrumental": 2,
+      "social_access": 1
+    },
+    "frederick_repair": {
+      "self_vindication": 1
+    },
+    "frontier_brokerage": {
+      "instrumental": 1
+    },
+    "burr_crisis": {
+      "protective": 3
+    },
+    "rehabilitation": {
+      "retrospective_defense": 1,
+      "protective": 1,
+      "self_vindication": 1,
+      "official_settlement": 1
+    },
+    "retrospective_memory": {
+      "retrospective_esteem": 2
+    },
+    "local_context": {
+      "infrastructure": 1,
+      "biographical_context": 1,
+      "legal_alliance": 1
+    }
+  },
   "relationship_counts": {
     "instrumental": 3,
     "social_access": 1,
@@ -45,12 +76,22 @@
     "James Wilkinson": {
       "warmth": 4,
       "utility": 5,
-      "defense": 6
+      "defense": 6,
+      "records": 9,
+      "tokens": 366,
+      "warmth_per_1000_tokens": 10.93,
+      "utility_per_1000_tokens": 13.66,
+      "defense_per_1000_tokens": 16.39
     },
     "Thomas Jefferson": {
       "warmth": 2,
       "utility": 4,
-      "defense": 2
+      "defense": 2,
+      "records": 4,
+      "tokens": 183,
+      "warmth_per_1000_tokens": 10.93,
+      "utility_per_1000_tokens": 21.86,
+      "defense_per_1000_tokens": 10.93
     }
   },
   "top_nodes": [
@@ -139,10 +180,119 @@
       "weight": 1
     }
   ],
+  "primary_only_top_nodes": [
+    {
+      "node": "James Wilkinson",
+      "weight": 23
+    },
+    {
+      "node": "Thomas Jefferson",
+      "weight": 16
+    },
+    {
+      "node": "Frederick Town",
+      "weight": 6
+    },
+    {
+      "node": "Aaron Burr",
+      "weight": 6
+    },
+    {
+      "node": "James Madison",
+      "weight": 5
+    },
+    {
+      "node": "Zebulon Pike",
+      "weight": 3
+    },
+    {
+      "node": "John Adams",
+      "weight": 2
+    },
+    {
+      "node": "Meriwether Lewis",
+      "weight": 1
+    }
+  ],
+  "primary_only_top_edges": [
+    {
+      "source": "James Wilkinson",
+      "target": "Thomas Jefferson",
+      "weight": 11
+    },
+    {
+      "source": "Aaron Burr",
+      "target": "James Wilkinson",
+      "weight": 4
+    },
+    {
+      "source": "James Wilkinson",
+      "target": "Zebulon Pike",
+      "weight": 3
+    },
+    {
+      "source": "Frederick Town",
+      "target": "James Wilkinson",
+      "weight": 2
+    },
+    {
+      "source": "Aaron Burr",
+      "target": "Thomas Jefferson",
+      "weight": 2
+    },
+    {
+      "source": "James Madison",
+      "target": "James Wilkinson",
+      "weight": 2
+    },
+    {
+      "source": "Frederick Town",
+      "target": "James Madison",
+      "weight": 2
+    },
+    {
+      "source": "Meriwether Lewis",
+      "target": "Thomas Jefferson",
+      "weight": 1
+    },
+    {
+      "source": "James Wilkinson",
+      "target": "John Adams",
+      "weight": 1
+    },
+    {
+      "source": "Frederick Town",
+      "target": "John Adams",
+      "weight": 1
+    }
+  ],
+  "place_node_weights": [
+    {
+      "node": "Frederick Town",
+      "overall_weight": 10,
+      "primary_only_weight": 6
+    },
+    {
+      "node": "Frederick Barracks",
+      "overall_weight": 3,
+      "primary_only_weight": 0
+    },
+    {
+      "node": "Monocacy",
+      "overall_weight": 2,
+      "primary_only_weight": 0
+    }
+  ],
   "core_claim_metrics": {
     "instrumental_plus_protective_modes": 10,
     "social_access_modes": 1,
     "retrospective_esteem_modes": 2,
     "frederick_rehabilitation_records": 2
+  },
+  "evidence_tiers": {
+    "direct_relationship_primary": 11,
+    "primary_frederick_venue": 3,
+    "contextual_frederick_local": 3,
+    "frederick_primary_share": 0.5
   }
 }

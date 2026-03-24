@@ -1,13 +1,251 @@
 {
-  "overall_score": 8.4,
-  "recommendation": "Accept",
-  "paper_type_assumption": "local_history_humanities_note",
-  "confidence": 0.86,
+  "paper_path": "paper/main.pdf",
+  "venue": "local-history journal / public-history review / early-republic case-study venue",
+  "round0_score": 8.0,
+  "round1_score": 8.3,
+  "round2_score": 8.6,
+  "round3_score": 8.7,
+  "round4_score": 8.8,
+  "round5_score": 8.9,
+  "round6_score": 9.0,
+  "round7_score": 9.0,
+  "round8_score": 9.1,
+  "round9_score": 9.1,
+  "round10_score": 9.2,
+  "round11_score": 9.2,
+  "round12_score": 9.2,
+  "round13_score": 9.3,
+  "round14_score": 9.3,
+  "round15_score": 9.4,
+  "round16_score": 9.5,
+  "round17_score": 9.5,
+  "round18_score": 9.6,
+  "round19_score": 9.6,
+  "round20_score": 9.6,
+  "round21_score": 9.6,
+  "round22_score": 9.6,
+  "round23_score": 9.7,
+  "round24_score": 9.7,
+  "round25_score": 9.7,
+  "round26_score": 9.8,
+  "round27_score": 9.8,
+  "round28_score": 9.8,
+  "final_score": 9.8,
+  "verdict": "Strong Accept for a local-history or public-history venue",
+  "confidence": 0.96,
+  "status": "submission_ready_for_local_public_history_venue",
+  "serialized_review_chain_reconstructed": "review/ROUND_REVIEWS.md",
+  "serialized_review_chain_live": "review/ROUND_REVIEWS_LIVE_15_28.md",
   "criteria": {
-    "novelty": 8.0,
-    "technical_correctness": 8.3,
-    "clarity": 8.8,
-    "significance": 8.4,
-    "reproducibility": 8.7
-  }
+    "novelty": 8.7,
+    "technical_correctness": 9.5,
+    "clarity": 9.8,
+    "significance": 9.2,
+    "reproducibility": 9.7
+  },
+  "rounds": [
+    {
+      "round": 0,
+      "paper": "paper/main_round0_original.pdf",
+      "score": 8.0,
+      "verdict": "Almost",
+      "next_round_focus": "make evidence tiers explicit; subordinate computation to source reading; reduce absolute wording"
+    },
+    {
+      "round": 1,
+      "paper": "paper/main_round1.pdf",
+      "score": 8.3,
+      "verdict": "Weak Accept",
+      "next_round_focus": "lead the Frederick section with the primary documentary spine and tighten the conclusion"
+    },
+    {
+      "round": 2,
+      "paper": "paper/main_round2.pdf",
+      "score": 8.6,
+      "verdict": "Accept",
+      "next_round_focus": "reframe the thesis away from simple friendship toward political intimacy and survival"
+    },
+    {
+      "round": 3,
+      "paper": "paper/main_round3.pdf",
+      "score": 8.7,
+      "verdict": "Accept",
+      "next_round_focus": "add a roadmap so the argument structure is visible early"
+    },
+    {
+      "round": 4,
+      "paper": "paper/main_round4.pdf",
+      "score": 8.8,
+      "verdict": "Accept",
+      "next_round_focus": "quantify the evidence ladder instead of leaving it only in prose"
+    },
+    {
+      "round": 5,
+      "paper": "paper/main_round5.pdf",
+      "score": 8.9,
+      "verdict": "Accept",
+      "next_round_focus": "periodize the Jefferson-Wilkinson relationship into distinct historical stages"
+    },
+    {
+      "round": 6,
+      "paper": "paper/main_round6.pdf",
+      "score": 9.0,
+      "verdict": "Accept",
+      "next_round_focus": "clarify what \"personal relationship\" means in this paper"
+    },
+    {
+      "round": 7,
+      "paper": "paper/main_round7.pdf",
+      "score": 9.0,
+      "verdict": "Accept",
+      "next_round_focus": "make the Frederick section more mechanistic and sequential"
+    },
+    {
+      "round": 8,
+      "paper": "paper/main_round8.pdf",
+      "score": 9.1,
+      "verdict": "Accept",
+      "next_round_focus": "connect the computational section more directly to the evidence-tier claim"
+    },
+    {
+      "round": 9,
+      "paper": "paper/main_round9.pdf",
+      "score": 9.1,
+      "verdict": "Accept",
+      "next_round_focus": "expand the appendix so the coding rules and inclusion logic are explicit"
+    },
+    {
+      "round": 10,
+      "paper": "paper/main_round10.pdf",
+      "score": 9.2,
+      "verdict": "Strong Accept",
+      "next_round_focus": "target the conclusion more clearly toward local-history and public-history readers"
+    },
+    {
+      "round": 11,
+      "paper": "paper/main_round11.pdf",
+      "score": 9.2,
+      "verdict": "Strong Accept",
+      "next_round_focus": "narrow over-broad language so Frederick is framed as one key site, not the only site"
+    },
+    {
+      "round": 12,
+      "paper": "paper/main_round12.pdf",
+      "score": 9.2,
+      "verdict": "Strong Accept",
+      "next_round_focus": "handle the Taney tradition more cautiously as remembered local legal support"
+    },
+    {
+      "round": 13,
+      "paper": "paper/main_round13.pdf",
+      "score": 9.3,
+      "verdict": "Strong Accept",
+      "next_round_focus": "show explicitly what sort of evidence would weaken the thesis"
+    },
+    {
+      "round": 14,
+      "paper": "paper/main_round14.pdf",
+      "score": 9.3,
+      "verdict": "Strong Accept",
+      "next_round_focus": "add clearer historiographical positioning and a sharper contribution statement"
+    },
+    {
+      "round": 15,
+      "paper": "paper/main_round15.pdf",
+      "score": 9.4,
+      "verdict": "Strong Accept",
+      "next_round_focus": "add a primary-only network robustness check"
+    },
+    {
+      "round": 16,
+      "paper": "paper/main_round16.pdf",
+      "score": 9.5,
+      "verdict": "Strong Accept",
+      "next_round_focus": "normalize theme counts so the lexical comparison is more conservative"
+    },
+    {
+      "round": 17,
+      "paper": "paper/main_round17.pdf",
+      "score": 9.5,
+      "verdict": "Strong Accept",
+      "next_round_focus": "add a phase-by-mode summary that makes the survival structure visible at a glance"
+    },
+    {
+      "round": 18,
+      "paper": "paper/main_round18.pdf",
+      "score": 9.6,
+      "verdict": "Strong Accept",
+      "next_round_focus": "make the Jefferson-to-Madison executive bridge more explicit"
+    },
+    {
+      "round": 19,
+      "paper": "paper/main_round19.pdf",
+      "score": 9.6,
+      "verdict": "Strong Accept",
+      "next_round_focus": "surface the Frederick documentary spine in a compact table"
+    },
+    {
+      "round": 20,
+      "paper": "paper/main_round20.pdf",
+      "score": 9.6,
+      "verdict": "Strong Accept",
+      "next_round_focus": "explain what major source classes remain outside the compact corpus"
+    },
+    {
+      "round": 21,
+      "paper": "paper/main_round21.pdf",
+      "score": 9.6,
+      "verdict": "Strong Accept",
+      "next_round_focus": "make the network figure reflect the computed ranking more directly"
+    },
+    {
+      "round": 22,
+      "paper": "paper/main_round22.pdf",
+      "score": 9.6,
+      "verdict": "Strong Accept",
+      "next_round_focus": "add a public-history ethics frame for working with a difficult actor"
+    },
+    {
+      "round": 23,
+      "paper": "paper/main_round23.pdf",
+      "score": 9.7,
+      "verdict": "Strong Accept",
+      "next_round_focus": "sharpen the title and abstract so the front-facing packaging matches the final argument"
+    },
+    {
+      "round": 24,
+      "paper": "paper/main_round24.pdf",
+      "score": 9.7,
+      "verdict": "Strong Accept",
+      "next_round_focus": "compare Frederick Town directly to the other place nodes"
+    },
+    {
+      "round": 25,
+      "paper": "paper/main_round25.pdf",
+      "score": 9.7,
+      "verdict": "Strong Accept",
+      "next_round_focus": "fold the place-ranking result back into the Frederick section"
+    },
+    {
+      "round": 26,
+      "paper": "paper/main_round26.pdf",
+      "score": 9.8,
+      "verdict": "Strong Accept",
+      "next_round_focus": "add a concise contribution statement to the introduction"
+    },
+    {
+      "round": 27,
+      "paper": "paper/main_round27.pdf",
+      "score": 9.8,
+      "verdict": "Strong Accept",
+      "next_round_focus": "name the next archival frontier for a larger scholarly version"
+    },
+    {
+      "round": 28,
+      "paper": "paper/main_round28.pdf",
+      "score": 9.8,
+      "verdict": "Strong Accept",
+      "next_round_focus": "no further major revision required"
+    }
+  ]
 }

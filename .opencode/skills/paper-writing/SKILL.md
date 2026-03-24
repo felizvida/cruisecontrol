@@ -209,7 +209,7 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 - Strengthen limitations section
 - Add theory-aligned experiments if needed
 
-**Output:** Three PDFs for comparison + `PAPER_IMPROVEMENT_LOG.md` + `review/REVIEW_OPINION.md` + `review/review_scorecard.json`.
+**Output:** Three PDFs for comparison + `PAPER_IMPROVEMENT_LOG.md` + `review/ROUND_REVIEWS.md` + `review/REVIEW_OPINION.md` + `review/review_scorecard.json`.
 
 **Format check** (included in improvement loop Step 8): After final recompilation, auto-detect and fix overfull hboxes (content exceeding margins), verify page count vs venue limit, and ensure compact formatting. Any overfull > 10pt is fixed before generating the final PDF.
 
@@ -245,6 +245,7 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 - paper/main_round1.pdf — After round 1
 - paper/main_round2.pdf — After round 2
 - paper/PAPER_IMPROVEMENT_LOG.md — Full review log
+- review/ROUND_REVIEWS.md — Serialized review chain showing which criticisms drove each new round
 - review/REVIEW_OPINION.md — Final structured review opinion
 - review/review_scorecard.json — Final machine-readable score summary
 
