@@ -43,7 +43,8 @@ Any paper presented as a final paper package in this repo must be backed by real
 - Do not rely on hand-authored benchmark numbers, cosmetic result tables, or placeholder empirical claims for a final paper.
 - Use local compute for lightweight pilots, smoke tests, and small simulations.
 - Use Biowulf when the work needs serious CPU or GPU capacity. Keep requests moderate and do not exceed one node unless the user explicitly asks for that.
-- A complete final paper package still includes the finished PDF and source, code, data or a source-data manifest, high-resolution figure assets, a detailed review opinion, and a score.
+- A complete final paper package still includes the finished PDF and source, round-by-round paper-improvement artifacts, code, data or a source-data manifest, high-resolution figure assets, a detailed review opinion, and a score.
+- Do not stop at `paper/main.pdf` if the paper-improvement loop is available. Persist the review opinion, scorecard, and revision history.
 
 ## Biowulf Operational Rules
 

@@ -1,5 +1,0 @@
-ordering,adj_mean_span,adj_median_span,adj_p90_span,adj_retention_le_8,adj_retention_le_16,adj_retention_le_32,support_median_radius,support_p90_radius,recoverability_le_128,recoverability_le_256,recoverability_le_512
-Hilbert,149.9021,5,427,0.5981,0.652,0.7145,146,1238,0.4857,0.595,0.7176
-Morton,139.1649,4,439,0.5717,0.6455,0.7196,220,1757,0.4477,0.5858,0.7044
-Raster,91.1667,16,256,0.3325,0.666,0.666,272,273,0.0289,0.3133,1.0
-Random,1352.3707,1181,2760,0.0032,0.006,0.0139,1957,3163,0.0,0.0015,0.016

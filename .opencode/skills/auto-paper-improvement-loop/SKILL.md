@@ -5,7 +5,7 @@ argument-hint: [paper-directory]
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, mcp__codex__codex, mcp__codex__codex-reply
 ---
 
-# Auto Paper Improvement Loop: Review → Fix → Recompile
+# Auto Paper Improvement Loop: Review Opinion + Score → Fix → Recompile
 
 Autonomously improve the paper at: **$ARGUMENTS**
 
@@ -13,18 +13,21 @@ Autonomously improve the paper at: **$ARGUMENTS**
 
 This skill is designed to run **after** Workflow 3 (`/paper-plan` → `/paper-figure` → `/paper-write` → `/paper-compile`). It takes a compiled paper and iteratively improves it through external LLM review.
 
-Unlike `/auto-review-loop` (which iterates on **research** — running experiments, collecting data, rewriting narrative), this skill iterates on **paper writing quality** — fixing theoretical inconsistencies, softening overclaims, adding missing content, and improving presentation.
+Unlike `/auto-review-loop` (which iterates on **research** — running experiments, collecting data, rewriting narrative), this skill iterates on **paper quality** using an explicit review opinion and score — fixing theoretical inconsistencies, softening overclaims, adding missing content, improving presentation, and preserving a traceable score progression.
 
 ## Constants
 
 - **MAX_ROUNDS = 2** — Two rounds of review→fix→recompile. Empirically, Round 1 catches structural issues (4→6/10), Round 2 catches remaining presentation issues (6→7/10). Diminishing returns beyond 2 rounds for writing-only improvements.
 - **REVIEWER_MODEL = `gpt-5.4`** — Model used via Codex MCP for paper review.
 - **REVIEW_LOG = `PAPER_IMPROVEMENT_LOG.md`** — Cumulative log of all rounds, stored in paper directory.
+- **FINAL_REVIEW_OPINION = `review/REVIEW_OPINION.md`** — Final structured review opinion, stored in the project root.
+- **FINAL_SCORECARD = `review/review_scorecard.json`** — Final machine-readable score summary, stored in the project root.
 
 ## Inputs
 
 1. **Compiled paper** — `paper/main.pdf` + LaTeX source files
 2. **All section `.tex` files** — concatenated for review prompt
+3. **Project root** — create `review/` if it does not already exist
 
 ## State Persistence (Compact Recovery)
 
@@ -81,12 +84,13 @@ mcp__codex__codex:
     ## Review Instructions
     Please act as a senior ML reviewer ([VENUE] level). Provide:
     1. **Overall Score** (1-10, where 6 = weak accept, 7 = accept)
-    2. **Summary** (2-3 sentences)
-    3. **Strengths** (bullet list, ranked)
-    4. **Weaknesses** (bullet list, ranked: CRITICAL > MAJOR > MINOR)
-    5. **For each CRITICAL/MAJOR weakness**: A specific, actionable fix
-    6. **Missing References** (if any)
-    7. **Verdict**: Ready for submission? Yes / Almost / No
+    2. **Confidence** (0-1)
+    3. **Summary** (2-3 sentences)
+    4. **Strengths** (bullet list, ranked)
+    5. **Weaknesses** (bullet list, ranked: CRITICAL > MAJOR > MINOR)
+    6. **For each CRITICAL/MAJOR weakness**: A specific, actionable fix
+    7. **Missing References** (if any)
+    8. **Verdict**: Ready for submission? Yes / Almost / No
 
     Focus on: theoretical rigor, claims vs evidence alignment, writing clarity,
     self-containedness, notation consistency.
@@ -142,7 +146,7 @@ mcp__codex__codex-reply:
     ...
 
     Please re-score and re-assess. Same format:
-    Score, Summary, Strengths, Weaknesses, Actionable fixes, Verdict.
+    Score, Confidence, Summary, Strengths, Weaknesses, Actionable fixes, Verdict.
 ```
 
 ### Step 6: Implement Round 2 Fixes
@@ -243,7 +247,59 @@ Create `PAPER_IMPROVEMENT_LOG.md` in the paper directory:
 - `main_round2.pdf` — Final version after Round 2 fixes
 ```
 
-### Step 9: Summary
+Also write final review artifacts in the project root:
+
+`review/REVIEW_OPINION.md`
+
+```markdown
+# Final Review Opinion
+
+## Submission Snapshot
+- Paper: `paper/main.pdf`
+- Venue:
+- Final round:
+
+## Score
+- Overall score: X/10
+- Verdict: Weak Reject / Borderline / Weak Accept / Accept
+- Confidence: 0.00
+
+## Summary
+[2-3 sentence reviewer summary]
+
+## Strengths
+- ...
+
+## Weaknesses
+- ...
+
+## Improvements Across Rounds
+- Round 0 → 1:
+- Round 1 → 2:
+
+## Remaining Risks Before Submission
+- ...
+```
+
+`review/review_scorecard.json`
+
+```json
+{
+  "paper_path": "paper/main.pdf",
+  "venue": "ICLR",
+  "round0_score": 5.8,
+  "round1_score": 6.6,
+  "round2_score": 7.1,
+  "final_score": 7.1,
+  "verdict": "Weak Accept",
+  "confidence": 0.72,
+  "status": "submission_ready_with_known_risks"
+}
+```
+
+The review opinion and scorecard should reflect the **final** round while the improvement log preserves the full round-by-round history.
+
+### Step 10: Summary
 
 Report to user:
 - Score progression table
@@ -267,6 +323,10 @@ paper/
 ├── main_round2.pdf             # After Round 2 (final)
 ├── main.pdf                    # = main_round2.pdf
 └── PAPER_IMPROVEMENT_LOG.md    # Full review log with scores
+
+review/
+├── REVIEW_OPINION.md           # Final review opinion for the completed paper
+└── review_scorecard.json       # Final machine-readable score summary
 ```
 
 ## Key Rules

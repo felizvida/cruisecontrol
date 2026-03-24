@@ -16,7 +16,7 @@ This workflow is for cases where the user brings a paper URL and wants a full pu
 ```
 paper link → source-paper review → literature gap scan → breakthrough gate
 → upgrade plan → narrative report → /paper-writing → paper/main.pdf
-                               └→ improvement log / diff report
+                               └→ improvement log / final review opinion / scorecard / diff report
 ```
 
 The workflow must aim for a real contribution increase, not a cosmetic rewrite.
@@ -221,6 +221,8 @@ Expected outputs:
 - `PAPER_PLAN.md`
 - `paper/main.pdf`
 - `paper/PAPER_IMPROVEMENT_LOG.md`
+- `review/REVIEW_OPINION.md`
+- `review/review_scorecard.json`
 
 ### Stage 9: Final Upgrade Report
 
@@ -251,6 +253,8 @@ A successful run should leave:
 - `UPGRADE_SUMMARY.md`
 - `paper/main.pdf`
 - `paper/PAPER_IMPROVEMENT_LOG.md`
+- `review/REVIEW_OPINION.md`
+- `review/review_scorecard.json`
 
 ## Key Rules
 

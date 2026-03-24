@@ -38,23 +38,26 @@ A good full run gives you:
 - `AUTO_REVIEW.md`
 - `NARRATIVE_REPORT.md`
 - `paper/main.pdf`
+- `paper/main_round0_original.pdf`
+- `paper/main_round1.pdf`
+- `paper/main_round2.pdf`
 - `paper/PAPER_IMPROVEMENT_LOG.md`
+- `review/REVIEW_OPINION.md`
+- `review/review_scorecard.json`
 
-That is the paper-draft stage. In this repo, a **complete** final paper package should also include:
+That is the review-improved paper stage, not just the first compiled draft. In this repo, a **complete** final paper package should also include:
 
 - results generated from real executable computation
 - code used to build or support the paper
 - sample data or a source-data manifest
 - a dedicated high-resolution figure folder
-- a detailed review opinion
-- a score
+- the detailed review opinion and score shown above
 
 If the claimed results need more compute than this machine can provide, move the heavy run to Biowulf and bring the resulting artifacts back into the local paper package.
 
 If you want to see a sample artifact set first, read [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
 If you want the full sample ending in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).
 If you want to start from an existing paper on the internet instead of a fresh research direction, use `/paper-upgrade "paper-url — this is my paper"` and see [examples/paper-upgrade-sample/README.md](examples/paper-upgrade-sample/README.md).
-If you want a concrete linked-paper upgrade that ends in a completed package, read [examples/paper-upgrade-1802-02532/README.md](examples/paper-upgrade-1802-02532/README.md).
 
 ## 5. Keep going
 

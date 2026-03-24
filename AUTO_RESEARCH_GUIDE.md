@@ -255,7 +255,7 @@ The pipeline then helps convert that into:
 - figures and tables
 - LaTeX sections
 - a compiled PDF
-- a paper-improvement loop
+- a scored paper-improvement loop
 
 When the workflow is promoted to a complete final paper package in this repo, it should also leave behind:
 
@@ -263,6 +263,8 @@ When the workflow is promoted to a complete final paper package in this repo, it
 - code used to build or support the paper
 - sample data or a source-data manifest
 - a dedicated high-resolution figure folder
+- `paper/main_round0_original.pdf`, `paper/main_round1.pdf`, and `paper/main_round2.pdf`
+- `paper/PAPER_IMPROVEMENT_LOG.md`
 - a detailed review opinion
 - a score
 
@@ -305,7 +307,7 @@ If you want the shortest path to a productive session, use this sequence:
 /research-pipeline "your research direction"
 ```
 
-That is the one-command path from fuzzy direction to a paper draft.
+That is the one-command path from fuzzy direction to a scored, revision-tracked paper package.
 If you want more control, you can still break it back into the smaller workflow commands.
 
 ## How To Tell If You Are Using It Well

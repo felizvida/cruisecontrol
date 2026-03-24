@@ -59,6 +59,7 @@ Fill the sections that apply to your project. The migrated skills read this file
 - Use the remote server or Biowulf when the experiment needs serious CPU or GPU capacity.
 - Record the actual launch path used for paper-critical runs: environment setup, modules, allocation command, code directory, and result artifact locations.
 - For Biowulf, record where large inputs were staged and where large outputs were written. Do not treat `$HOME` as bulk data storage.
+- Do not treat a compiled `paper/main.pdf` as the finish line by itself. Preserve the scored paper-improvement loop outputs too: round PDFs, `paper/PAPER_IMPROVEMENT_LOG.md`, `review/REVIEW_OPINION.md`, and `review/review_scorecard.json`.
 
 ## Notes
 

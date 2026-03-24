@@ -37,7 +37,7 @@ It should:
 4. refuse to proceed if the result would only be a facelift
 5. generate a new polished paper and a clear improvement memo
 
-For a concrete tracked example of this workflow carried all the way to a completed paper package, see [../paper-upgrade-1802-02532/README.md](../paper-upgrade-1802-02532/README.md).
+Use this folder as the reference shape for a project-local linked-paper upgrade package.
 
 ## Guardrail
 

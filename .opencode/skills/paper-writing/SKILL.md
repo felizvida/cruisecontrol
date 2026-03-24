@@ -1,6 +1,6 @@
 ---
 name: paper-writing
-description: "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop to go from a narrative report to a polished, submission-ready PDF. Use when user says \"写论文全流程\", \"write paper pipeline\", \"从报告到PDF\", \"paper writing\", or wants the complete paper generation workflow."
+description: "Workflow 3: Full paper writing pipeline. Orchestrates paper-plan → paper-figure → paper-write → paper-compile → auto-paper-improvement-loop to go from a narrative report to a polished paper package with iterative review-score-driven revisions. Use when user says \"写论文全流程\", \"write paper pipeline\", \"从报告到PDF\", \"paper writing\", or wants the complete paper generation workflow."
 argument-hint: [narrative-report-path-or-topic]
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
 ---
@@ -18,7 +18,7 @@ This skill chains five sub-skills into a single automated pipeline:
   (outline)     (plots)        (LaTeX)        (build PDF)       (review & polish ×2)
 ```
 
-Each phase builds on the previous one's output. The final deliverable is a polished, reviewed `paper/` directory with LaTeX source and compiled PDF.
+Each phase builds on the previous one's output. The final deliverable is a polished, reviewed paper package with LaTeX source, compiled PDFs, score-tracked revision rounds, and final review artifacts.
 
 All generated paper artifacts stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate outputs.
 
@@ -198,9 +198,9 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 
 **What this does (2 rounds):**
 
-**Round 1:** GPT-5.4 xhigh reviews the full paper → identifies CRITICAL/MAJOR/MINOR issues → Claude Code implements fixes → recompile → save `main_round1.pdf`
+**Round 1:** GPT-5.4 xhigh writes a scored review opinion for the full paper → identifies CRITICAL/MAJOR/MINOR issues → Claude Code implements fixes → recompile → save `main_round1.pdf`
 
-**Round 2:** GPT-5.4 xhigh re-reviews with conversation context → identifies remaining issues → Claude Code implements fixes → recompile → save `main_round2.pdf`
+**Round 2:** GPT-5.4 xhigh re-reviews with conversation context, updates the score, and identifies remaining issues → Claude Code implements fixes → recompile → save `main_round2.pdf`
 
 **Typical improvements:**
 - Fix assumption-model mismatches
@@ -209,7 +209,7 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 - Strengthen limitations section
 - Add theory-aligned experiments if needed
 
-**Output:** Three PDFs for comparison + `PAPER_IMPROVEMENT_LOG.md`.
+**Output:** Three PDFs for comparison + `PAPER_IMPROVEMENT_LOG.md` + `review/REVIEW_OPINION.md` + `review/review_scorecard.json`.
 
 **Format check** (included in improvement loop Step 8): After final recompilation, auto-detect and fix overfull hboxes (content exceeding margins), verify page count vs venue limit, and ensure compact formatting. Any overfull > 10pt is fixed before generating the final PDF.
 
@@ -230,7 +230,7 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 | 2. Figures | ✅ | figures/ ([N] auto + [M] placeholder/manual-upgrade) |
 | 3. LaTeX Writing | ✅ | paper/sections/*.tex ([N] sections, [M] citations) |
 | 4. Compilation | ✅ | paper/main.pdf ([X] pages) |
-| 5. Improvement | ✅ | [score0]/10 → [score2]/10 |
+| 5. Improvement | ✅ | [score0]/10 → [score2]/10 + final review opinion |
 
 ## Improvement Scores
 | Round | Score | Key Changes |
@@ -245,6 +245,8 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 - paper/main_round1.pdf — After round 1
 - paper/main_round2.pdf — After round 2
 - paper/PAPER_IMPROVEMENT_LOG.md — Full review log
+- review/REVIEW_OPINION.md — Final structured review opinion
+- review/review_scorecard.json — Final machine-readable score summary
 
 ## Remaining Issues (if any)
 - [items from final review that weren't addressed]
@@ -258,6 +260,8 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 ## Key Rules
 
 - **Don't skip phases.** Each phase builds on the previous one — skipping leads to errors.
+- **Do not stop at compilation if the improvement loop is available.** In this repo, the paper is not considered finished until the scored paper-review loop runs and its artifacts are written.
+- **Persist the review artifacts.** The final package should preserve both the round-by-round log and the final review opinion / scorecard.
 - **Checkpoint between phases** when AUTO_PROCEED=false. Present results and wait for approval.
 - **Do not stall in fully automatic mode.** If a figure would normally require manual artwork, generate a clearly labeled placeholder version and continue.
 - **Compilation must succeed** before entering the improvement loop. Fix all errors first.
@@ -288,4 +292,4 @@ Or use /research-pipeline for the full Workflow 1+2+3 end-to-end flow.
 | 4. Compilation | 2-5 min | No |
 | 5. Improvement | 15-30 min | Yes ✅ |
 
-**Total: ~45-90 min** for a full paper from narrative report to polished PDF.
+**Total: ~45-90 min** for a full paper from narrative report to a review-improved paper package.

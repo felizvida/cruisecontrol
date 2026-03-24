@@ -1,6 +1,6 @@
 ---
 name: research-pipeline
-description: "Full research pipeline: Workflow 1 (idea discovery) → implementation → Workflow 2 (auto review loop) → Workflow 3 (paper writing). Goes from a broad research direction to a compiled paper in one command. Use when user says \"全流程\", \"full pipeline\", \"从找idea到投稿\", \"end-to-end research\", or wants the complete autonomous research lifecycle."
+description: "Full research pipeline: Workflow 1 (idea discovery) → implementation → Workflow 2 (auto review loop) → Workflow 3 (paper writing). Goes from a broad research direction to a review-improved paper package in one command. Use when user says \"全流程\", \"full pipeline\", \"从找idea到投稿\", \"end-to-end research\", or wants the complete autonomous research lifecycle."
 argument-hint: [research-direction]
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Agent, Skill, mcp__codex__codex, mcp__codex__codex-reply
 ---
@@ -217,7 +217,7 @@ Once `NARRATIVE_REPORT.md` exists, continue directly into the paper pipeline:
 - Compile `paper/main.pdf`
 - Run the paper improvement loop
 
-**Output:** `paper/` directory containing LaTeX source, intermediate PDFs, `PAPER_IMPROVEMENT_LOG.md`, and final `paper/main.pdf`.
+**Output:** `paper/` directory containing LaTeX source, intermediate PDFs, `PAPER_IMPROVEMENT_LOG.md`, final `paper/main.pdf`, and `review/` artifacts containing the final review opinion and score.
 
 ### Stage 7: Final Summary
 
@@ -253,12 +253,14 @@ After the paper pipeline completes, write a final status report:
 - PAPER_PLAN.md
 - paper/main.pdf
 - paper/PAPER_IMPROVEMENT_LOG.md
+- review/REVIEW_OPINION.md
+- review/review_scorecard.json
 ```
 
 ## Key Rules
 
 - **Present checkpoints, but auto-continue by default.** Only block if the user explicitly asked for manual approval at each stage.
-- **Stages 2-6 should run autonomously** once the idea is chosen. This is the "sleep and wake up to a paper draft" path.
+- **Stages 2-6 should run autonomously** once the idea is chosen. This is the "sleep and wake up to a review-improved paper package" path.
 - **If Stage 4 ends at round 4 without positive assessment**, do not loop forever. Write an honest `NARRATIVE_REPORT.md`, then continue into paper-writing with limitations clearly stated.
 - **Do not stall on missing manual figures.** Use the paper-writing placeholder path and flag upgrades in the final report.
 - **Budget awareness**: Track total GPU-hours across the pipeline. Flag if approaching user-defined limits.
@@ -276,4 +278,4 @@ After the paper pipeline completes, write a final status report:
 | 5. Narrative Consolidation | 5-15 min | Yes ✅ |
 | 6. Paper Writing | 45-90 min | Yes ✅ |
 
-**Sweet spot**: Run Stage 1-2 in the evening, launch Stages 3-6 before bed, wake up to a compiled paper and review log.
+**Sweet spot**: Run Stage 1-2 in the evening, launch Stages 3-6 before bed, wake up to a compiled paper, score-tracked revision history, and final review artifacts.
