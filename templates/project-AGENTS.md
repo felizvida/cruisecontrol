@@ -8,6 +8,14 @@ Fill the sections that apply to your project. The migrated skills read this file
 - Optional route: `opencode`
 - Note: if this section is absent, the repo default is `codex`
 
+## External Review
+
+- Paper review backend: `paperreview.ai`
+- Submission email: `your.email@institution.edu`
+- Retrieval note: once the token is saved locally, later review retrieval is token-based and does not require the email again
+- Preferred score venue: `ICLR`
+- Notes: `paperreview.ai` currently analyzes only English PDFs, up to 10MB, and only the first 15 pages
+
 ## Paper Library
 
 - Local PDFs: `/absolute/path/to/papers`

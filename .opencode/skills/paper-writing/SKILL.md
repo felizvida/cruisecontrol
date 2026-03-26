@@ -29,7 +29,8 @@ All generated paper artifacts stay in the current local repository. Do not inven
 - **VENUE = `ICLR`** — Target venue. Options: `ICLR`, `NeurIPS`, `ICML`. Affects style file, page limit, citation format.
 - **MAX_IMPROVEMENT_ROUNDS = 2** — Number of review→fix→recompile rounds in the improvement loop.
 - **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
-- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
+- **PAPER_REVIEW_BACKEND = `paperreview.ai` when configured** — The paper-improvement loop prefers paperreview.ai if a submission email is available; otherwise it falls back to the route-local reviewer.
+- **REVIEWER_MODE = route-dependent local fallback** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
 - **AUTO_PROCEED = true** — Auto-continue between phases. Set `false` to pause and wait for user approval after each phase.
 - **ALLOW_PLACEHOLDER_FIGURES = true** — In fully automatic mode, generate clearly labeled placeholder diagrams or panels instead of blocking on manual artwork.
 
@@ -201,9 +202,9 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 
 **What this does (2 rounds):**
 
-**Round 1:** A reviewer-agent pass writes a scored review opinion for the full paper → identifies CRITICAL/MAJOR/MINOR issues → implement fixes → recompile → save `main_round1.pdf`
+**Round 1:** Prefer a `paperreview.ai` review pass for the full paper, with a route-local fallback if external review is unavailable → identify CRITICAL/MAJOR/MINOR issues → implement fixes → recompile → save `main_round1.pdf`
 
-**Round 2:** A fresh reviewer-agent pass re-reviews using the saved prior review plus the updated paper, updates the score, and identifies remaining issues → implement fixes → recompile → save `main_round2.pdf`
+**Round 2:** Run a fresh `paperreview.ai` review again if possible, otherwise a fresh local reviewer pass, using the saved prior review plus the updated paper → update the score if available and identify remaining issues → implement fixes → recompile → save `main_round2.pdf`
 
 **Typical improvements:**
 - Fix assumption-model mismatches
@@ -212,7 +213,7 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 - Strengthen limitations section
 - Add theory-aligned experiments if needed
 
-**Output:** Three PDFs for comparison + `PAPER_IMPROVEMENT_LOG.md` + `review/ROUND_REVIEWS.md` + `review/REVIEW_OPINION.md` + `review/review_scorecard.json`.
+**Output:** Three PDFs for comparison + `PAPER_IMPROVEMENT_LOG.md` + `review/ROUND_REVIEWS.md` + per-round review artifacts + `review/REVIEW_OPINION.md` + `review/review_scorecard.json`.
 
 **Format check** (included in improvement loop Step 8): After final recompilation, auto-detect and fix overfull hboxes (content exceeding margins), verify page count vs venue limit, and ensure compact formatting. Any overfull > 10pt is fixed before generating the final PDF.
 

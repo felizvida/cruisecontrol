@@ -44,6 +44,17 @@ The command files in `.opencode/commands/` are thin wrappers. They exist to recr
 
 Unless a wrapper explicitly says otherwise, the generic command name should mean the **Codex-default** route.
 
+## External Paper Review
+
+Paper-improvement loops should prefer `paperreview.ai` as the external review backend when it is configured.
+
+- Resolve the submission email from explicit user input, `PAPERREVIEW_EMAIL`, or the project `AGENTS.md` `## External Review` section.
+- Save the returned review token locally; do not rely on email delivery alone.
+- After submission, treat the token as the primary retrieval handle. The email is for submission and optional notification, not for later access once the token has been saved.
+- Current service limits: English papers, PDF only, max `10MB`, first `15` pages analyzed.
+- The site currently exposes a calibrated `1-10` score only for `ICLR`.
+- If `paperreview.ai` is unavailable or unsuitable for the paper, fall back to the route-local reviewer and say so in the saved artifacts.
+
 ## Artifact Destinations
 
 All intermediate artifacts, reports, notes, figures, and state files must stay in the current local working repository unless the user explicitly asks to publish or push them elsewhere.

@@ -54,6 +54,17 @@ Read [WORKFLOW_ROUTES.md](WORKFLOW_ROUTES.md) for the exact command surface.
 5. For the shortest setup path, read [QUICKSTART.md](QUICKSTART.md).
 6. For the narrative walkthrough, read [AUTO_RESEARCH_GUIDE.md](AUTO_RESEARCH_GUIDE.md).
 
+## External Paper Review Backend
+
+Paper-improvement loops now prefer [paperreview.ai](https://paperreview.ai/) when it is configured.
+
+- Set `PAPERREVIEW_EMAIL` or add a project `AGENTS.md` `## External Review` section with the submission email.
+- The workflow saves the returned token locally and polls the review endpoint, so it does not depend on email delivery to continue.
+- The email is part of submission and optional notification. After submission, the saved token is enough to retrieve the review.
+- Current service limits: English PDFs only, max `10MB`, first `15` pages analyzed.
+- The site currently exposes its calibrated numeric score only for `ICLR`.
+- If the service is unavailable or unsuitable for the paper, the workflow falls back to the route-local reviewer and records that fallback in local artifacts.
+
 ## Complete Final Paper Standard
 
 In this repo, a paper is only considered a complete final paper package when it includes:

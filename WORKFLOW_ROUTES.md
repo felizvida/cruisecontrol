@@ -2,6 +2,11 @@
 
 This repo supports two end-to-end execution routes.
 
+Route selection and paper-review backend selection are separate:
+
+- the route controls whether the workflow body runs through **Codex** or **OpenCode**
+- the paper-improvement loop now prefers **paperreview.ai** as its external reviewer when configured, with local fallback if needed
+
 ## Default: Pure Codex
 
 This is the default route from this point forward.

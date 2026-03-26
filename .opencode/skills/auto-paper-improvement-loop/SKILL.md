@@ -1,6 +1,6 @@
 ---
 name: auto-paper-improvement-loop
-description: "Autonomously improve a generated paper via review → implement fixes → recompile, for 2 rounds. Default route is pure Codex; pure OpenCode is opt-in. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper."
+description: "Autonomously improve a generated paper via review → implement fixes → recompile, for 2 rounds. Prefer paperreview.ai as the external review backend when configured; otherwise fall back to the local Codex/OpenCode reviewer route. Default route is pure Codex; pure OpenCode is opt-in. Use when user says \"改论文\", \"improve paper\", \"论文润色循环\", \"auto improve\", or wants to iteratively polish a generated paper."
 argument-hint: [paper-directory]
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent
 ---
@@ -19,7 +19,8 @@ Unlike `/auto-review-loop` (which iterates on **research** — running experimen
 
 - **MAX_ROUNDS = 2** — Two rounds of review→fix→recompile. Empirically, Round 1 catches structural issues (4→6/10), Round 2 catches remaining presentation issues (6→7/10). Diminishing returns beyond 2 rounds for writing-only improvements.
 - **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
-- **REVIEWER_MODE = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
+- **REVIEW_BACKEND = `paperreview.ai` when configured** — Preferred external paper reviewer for this loop. The service currently needs a submission email for upload, but later review retrieval is token-based. If we can supply a submission email, use `paperreview.ai`; otherwise fall back to the route-local fresh review pass.
+- **LOCAL_FALLBACK_REVIEWER = route-dependent fresh review pass** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
 - **REVIEW_LOG = `PAPER_IMPROVEMENT_LOG.md`** — Cumulative log of all rounds, stored in paper directory.
 - **ROUND_REVIEWS = `review/ROUND_REVIEWS.md`** — Serialized round-by-round review ledger. Each round `N+1` must be driven by the criticisms recorded for round `N`.
 - **FINAL_REVIEW_OPINION = `review/REVIEW_OPINION.md`** — Final structured review opinion, stored in the project root.
@@ -30,6 +31,7 @@ Unlike `/auto-review-loop` (which iterates on **research** — running experimen
 1. **Compiled paper** — `paper/main.pdf` + LaTeX source files
 2. **All section `.tex` files** — concatenated for review prompt
 3. **Project root** — create `review/` if it does not already exist
+4. **External review config** — prefer explicit user input, then `PAPERREVIEW_EMAIL`, then project `AGENTS.md` `## External Review`; after submission, treat the saved token as the primary retrieval credential
 
 ## State Persistence (Compact Recovery)
 
@@ -68,16 +70,45 @@ for f in paper/sections/*.tex; do
 done > /tmp/paper_full_text.txt
 ```
 
+### Step 1.5: Resolve Review Backend
+
+Resolve the paper-review backend before the first round:
+
+1. If `paperreview.ai` is configured with a submission email, use it.
+2. Otherwise, use the local route reviewer (`codex` or `opencode`).
+
+For `paperreview.ai`, remember the current service constraints:
+- PDF only
+- max `10MB`
+- first `15` pages analyzed
+- calibrated numeric score exposed only for `ICLR`
+
+If `paperreview.ai` is selected, use the `paperreview-ai-review` skill and its bundled script:
+
+```bash
+python3 .opencode/skills/paperreview-ai-review/scripts/paperreview_client.py submit-and-wait ...
+```
+
+Save the returned token locally. Do not rely on the email notification alone; the token is enough to retrieve the finished review later.
+
 ### Step 2: Round 1 Review
 
-Launch a fresh review pass and give it:
+Preferred path: submit `paper/main_round0_original.pdf` to `paperreview.ai` and wait for the review.
+
+Save:
+- `review/round00_paperreview_submission.json`
+- `review/round00_paperreview_response.json`
+- `review/round00_review.md`
+- `review/round00_scorecard.json`
+
+If `paperreview.ai` is unavailable or not configured, launch a fresh local review pass and give it:
 
 - the full paper text
 - venue context
 - instructions to act as a senior reviewer
 - instructions to return: score, confidence, summary, strengths, weaknesses, actionable fixes, missing references, and verdict
 
-Focus the review on:
+Focus either backend’s review on:
 - theoretical rigor
 - claims vs evidence alignment
 - writing clarity
@@ -118,7 +149,15 @@ Verify: 0 undefined references, 0 undefined citations.
 
 ### Step 5: Round 2 Review
 
-Launch a fresh review pass. Do not rely on hidden thread state. Pass:
+Preferred path: submit `paper/main_round1.pdf` to `paperreview.ai` and wait for a fresh review.
+
+Save:
+- `review/round01_paperreview_submission.json`
+- `review/round01_paperreview_response.json`
+- `review/round01_review.md`
+- `review/round01_scorecard.json`
+
+If `paperreview.ai` is unavailable or not configured, launch a fresh local review pass. Do not rely on hidden thread state. Pass:
 
 - the prior round review
 - the fixes implemented since that review
@@ -319,9 +358,15 @@ paper/
 └── PAPER_IMPROVEMENT_LOG.md    # Full review log with scores
 
 review/
-├── ROUND_REVIEWS.md           # Serialized review chain: round N criticism → round N+1 fixes
-├── REVIEW_OPINION.md           # Final review opinion for the completed paper
-└── review_scorecard.json       # Final machine-readable score summary
+├── ROUND_REVIEWS.md                # Serialized review chain: round N criticism → round N+1 fixes
+├── round00_review.md               # Round 0 review text (paperreview.ai or local fallback)
+├── round00_scorecard.json          # Round 0 machine-readable score summary
+├── round01_review.md               # Round 1 review text (paperreview.ai or local fallback)
+├── round01_scorecard.json          # Round 1 machine-readable score summary
+├── round00_paperreview_*.json      # If using paperreview.ai: submission and raw response for round 0
+├── round01_paperreview_*.json      # If using paperreview.ai: submission and raw response for round 1
+├── REVIEW_OPINION.md               # Final review opinion for the completed paper
+└── review_scorecard.json           # Final machine-readable score summary
 ```
 
 ## Key Rules
@@ -329,8 +374,10 @@ review/
 - **Preserve all PDF versions** — user needs to compare progression
 - **Each round must be review-driven** — do not invent extra rounds that are not tied to the immediately previous round's criticisms
 - **Persist the serialized review chain** — `review/ROUND_REVIEWS.md` is mandatory for multi-round examples
+- **Prefer paperreview.ai when configured** — use the external review backend for paper rounds unless file-size, language, or service constraints force a fallback
 - **Save FULL raw review text** — do not summarize or truncate reviewer-agent responses
 - Use a fresh review pass for every round; continuity must come from the saved round review ledger
+- **Save the token locally** when paperreview.ai returns it
 - **Always recompile after fixes** — verify 0 errors before proceeding
 - **Do not fabricate experimental results** — synthetic validation must describe methodology, not invent numbers
 - **Respect the paper's claims** — soften overclaims rather than adding unsupported new claims
