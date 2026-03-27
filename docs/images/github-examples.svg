@@ -1,0 +1,66 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="exBg" x1="110" y1="70" x2="1180" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6E8D1"/>
+      <stop offset="1" stop-color="#E7EFE3"/>
+    </linearGradient>
+    <linearGradient id="bioCard" x1="80" y1="206" x2="378" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A4A4A"/>
+      <stop offset="1" stop-color="#296A5D"/>
+    </linearGradient>
+    <linearGradient id="theoryCard" x1="490" y1="206" x2="790" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2F516B"/>
+      <stop offset="1" stop-color="#537A93"/>
+    </linearGradient>
+    <linearGradient id="humanCard" x1="900" y1="206" x2="1200" y2="650" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7B4A30"/>
+      <stop offset="1" stop-color="#A86A43"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="760" rx="28" fill="url(#exBg)"/>
+  <text x="82" y="106" fill="#183934" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">Examples with different temperatures</text>
+  <text x="84" y="150" fill="#4A6964" font-family="Helvetica, Arial, sans-serif" font-size="24">Same workflow spine, different kinds of thinking: empirical biology, theory, and public-facing humanities.</text>
+
+  <g>
+    <rect x="80" y="206" width="320" height="432" rx="30" fill="url(#bioCard)"/>
+    <circle cx="138" cy="268" r="18" fill="#EFCB67"/>
+    <path d="M168 268H342" stroke="#F8F4EB" stroke-width="2" stroke-linecap="round"/>
+    <path d="M168 292H308" stroke="#D9E7E3" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="118" y="354" fill="#F8F4EB" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700">Biology</text>
+    <text x="118" y="392" fill="#DCE8E4" font-family="Helvetica, Arial, sans-serif" font-size="21">Distinct proteoform regimes in adult zebrafish brain regions.</text>
+    <text x="118" y="470" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">PACKAGE</text>
+    <text x="118" y="502" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="20">real computation</text>
+    <text x="118" y="532" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="20">external review loop</text>
+    <text x="118" y="562" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="20">JPR-facing submission materials</text>
+  </g>
+
+  <g>
+    <rect x="480" y="206" width="320" height="432" rx="30" fill="url(#theoryCard)"/>
+    <circle cx="538" cy="268" r="18" fill="#F09A4A"/>
+    <path d="M568 268H742" stroke="#F8F4EB" stroke-width="2" stroke-linecap="round"/>
+    <path d="M568 292H700" stroke="#D9E7E3" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="518" y="354" fill="#F8F4EB" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700">Theory</text>
+    <text x="518" y="392" fill="#DBE7EF" font-family="Helvetica, Arial, sans-serif" font-size="21">A cleaner pedagogical route into a Gleason-type argument.</text>
+    <text x="518" y="470" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">PACKAGE</text>
+    <text x="518" y="502" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="20">formal note + plain-language companion</text>
+    <text x="518" y="532" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="20">proof checks and figure assets</text>
+    <text x="518" y="562" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="20">multiple revision rounds preserved</text>
+  </g>
+
+  <g>
+    <rect x="880" y="206" width="320" height="432" rx="30" fill="url(#humanCard)"/>
+    <circle cx="938" cy="268" r="18" fill="#7ED1B0"/>
+    <path d="M968 268H1142" stroke="#F8F4EB" stroke-width="2" stroke-linecap="round"/>
+    <path d="M968 292H1100" stroke="#F9E5D3" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="918" y="354" fill="#FFF5EC" font-family="Georgia, 'Times New Roman', serif" font-size="38" font-weight="700">Humanities</text>
+    <text x="918" y="392" fill="#F9E5D3" font-family="Helvetica, Arial, sans-serif" font-size="21">Wilkinson, Jefferson, Frederick, and the survival of scandal.</text>
+    <text x="918" y="470" fill="#FFF5EC" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">PACKAGE</text>
+    <text x="918" y="502" fill="#FFF5EC" font-family="Helvetica, Arial, sans-serif" font-size="20">curated corpus and coded evidence</text>
+    <text x="918" y="532" fill="#FFF5EC" font-family="Helvetica, Arial, sans-serif" font-size="20">local-history narrative and review trail</text>
+    <text x="918" y="562" fill="#FFF5EC" font-family="Helvetica, Arial, sans-serif" font-size="20">public-history friendly final paper</text>
+  </g>
+
+  <path d="M140 686H1140" stroke="#C9B490" stroke-width="2"/>
+  <text x="84" y="726" fill="#5F6F68" font-family="Helvetica, Arial, sans-serif" font-size="22">The point is not that every paper looks the same. The point is that each one leaves behind a complete, inspectable research object.</text>
+</svg>

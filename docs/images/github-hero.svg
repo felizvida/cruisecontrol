@@ -1,0 +1,104 @@
+<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1180" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F4E6C8"/>
+      <stop offset="0.45" stop-color="#EAD9B7"/>
+      <stop offset="1" stop-color="#D9E5D6"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="220" y1="100" x2="1040" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#153B39"/>
+      <stop offset="1" stop-color="#254F6A"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="784" y1="118" x2="1088" y2="470" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F09A4A" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#C95A38" stop-opacity="0.88"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1280" height="720" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#1C2F2E" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="720" rx="28" fill="url(#bg)"/>
+  <path d="M0 550C168 486 286 470 456 506C604 536 720 628 912 632C1062 636 1168 594 1280 528V720H0V550Z" fill="#D5C39C" fill-opacity="0.55"/>
+  <path d="M886 60C1032 88 1166 166 1280 302V0H902L886 60Z" fill="#E8D4AE" fill-opacity="0.75"/>
+
+  <g opacity="0.28">
+    <path d="M108 88H578" stroke="#52716B" stroke-width="2"/>
+    <path d="M108 128H514" stroke="#52716B" stroke-width="2"/>
+    <path d="M108 168H604" stroke="#52716B" stroke-width="2"/>
+    <path d="M92 240H610" stroke="#52716B" stroke-width="1.5"/>
+    <path d="M92 280H610" stroke="#52716B" stroke-width="1.5"/>
+    <path d="M92 320H610" stroke="#52716B" stroke-width="1.5"/>
+    <path d="M92 360H610" stroke="#52716B" stroke-width="1.5"/>
+    <path d="M92 400H610" stroke="#52716B" stroke-width="1.5"/>
+    <path d="M92 440H610" stroke="#52716B" stroke-width="1.5"/>
+    <path d="M92 480H610" stroke="#52716B" stroke-width="1.5"/>
+  </g>
+
+  <circle cx="1068" cy="164" r="124" fill="url(#glow)"/>
+  <circle cx="1068" cy="164" r="164" fill="#F6D6A1" fill-opacity="0.22"/>
+
+  <g filter="url(#shadow)">
+    <rect x="706" y="118" width="454" height="484" rx="26" fill="url(#ink)"/>
+    <rect x="742" y="160" width="382" height="92" rx="18" fill="#FAF5EB" fill-opacity="0.1" stroke="#FAF5EB" stroke-opacity="0.16"/>
+    <rect x="742" y="276" width="382" height="132" rx="18" fill="#FAF5EB" fill-opacity="0.08" stroke="#FAF5EB" stroke-opacity="0.16"/>
+    <rect x="742" y="430" width="182" height="128" rx="18" fill="#FAF5EB" fill-opacity="0.08" stroke="#FAF5EB" stroke-opacity="0.16"/>
+    <rect x="942" y="430" width="182" height="128" rx="18" fill="#FAF5EB" fill-opacity="0.08" stroke="#FAF5EB" stroke-opacity="0.16"/>
+    <circle cx="778" cy="196" r="18" fill="#F09A4A"/>
+    <circle cx="778" cy="330" r="18" fill="#6FC3A2"/>
+    <circle cx="778" cy="482" r="18" fill="#E5C163"/>
+    <circle cx="978" cy="482" r="18" fill="#8DB4D8"/>
+    <path d="M804 196H1088" stroke="#FAF5EB" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+    <path d="M804 330H1088" stroke="#FAF5EB" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+    <path d="M804 482H892" stroke="#FAF5EB" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+    <path d="M1004 482H1092" stroke="#FAF5EB" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+    <path d="M804 216H1044" stroke="#D8E8E4" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M804 350H1068" stroke="#D8E8E4" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M804 502H870" stroke="#D8E8E4" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <path d="M1004 502H1070" stroke="#D8E8E4" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <text x="96" y="170" fill="#14332F" font-family="Georgia, 'Times New Roman', serif" font-size="96" font-weight="700" letter-spacing="1.5">
+    ARIS
+  </text>
+  <text x="100" y="230" fill="#224B59" font-family="Helvetica, Arial, sans-serif" font-size="34" font-weight="700" letter-spacing="3">
+    OPENCODE + CODEX
+  </text>
+  <text x="98" y="308" fill="#1F3533" font-family="Georgia, 'Times New Roman', serif" font-size="34">
+    End-to-end research workflows that can think,
+  </text>
+  <text x="98" y="352" fill="#1F3533" font-family="Georgia, 'Times New Roman', serif" font-size="34">
+    compute, revise, and leave behind a real paper.
+  </text>
+  <text x="98" y="430" fill="#355957" font-family="Helvetica, Arial, sans-serif" font-size="24">
+    Real computation. External review loops. Biowulf-ready runs.
+  </text>
+  <text x="98" y="468" fill="#355957" font-family="Helvetica, Arial, sans-serif" font-size="24">
+    Complete paper packages with code, data manifests, figures, and scores.
+  </text>
+
+  <g>
+    <rect x="96" y="548" width="180" height="50" rx="25" fill="#143B39"/>
+    <rect x="288" y="548" width="184" height="50" rx="25" fill="#EF9B4A"/>
+    <rect x="484" y="548" width="148" height="50" rx="25" fill="#6CB59B"/>
+    <text x="126" y="580" fill="#FAF5EB" font-family="Helvetica, Arial, sans-serif" font-size="21" font-weight="700">PURE CODEX</text>
+    <text x="318" y="580" fill="#1A2C31" font-family="Helvetica, Arial, sans-serif" font-size="21" font-weight="700">PAPERREVIEWS</text>
+    <text x="524" y="580" fill="#183434" font-family="Helvetica, Arial, sans-serif" font-size="21" font-weight="700">BIOWULF</text>
+  </g>
+
+  <text x="742" y="188" fill="#FAF5EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">DEFAULT ROUTE</text>
+  <text x="804" y="203" fill="#FAF5EB" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700">Codex as the working lab</text>
+  <text x="804" y="222" fill="#DCE8E4" font-family="Helvetica, Arial, sans-serif" font-size="18">Plan, critique, write, and revise in one continuous path.</text>
+
+  <text x="742" y="322" fill="#FAF5EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">COMMON STANDARD</text>
+  <text x="804" y="339" fill="#FAF5EB" font-family="Georgia, 'Times New Roman', serif" font-size="32" font-weight="700">Evidence before elegance</text>
+  <text x="804" y="360" fill="#DCE8E4" font-family="Helvetica, Arial, sans-serif" font-size="18">Results come from executable computation, then pass through review.</text>
+  <text x="804" y="383" fill="#DCE8E4" font-family="Helvetica, Arial, sans-serif" font-size="18">The paper still has to read like a real paper.</text>
+
+  <text x="742" y="474" fill="#FAF5EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">OUTPUT</text>
+  <text x="804" y="491" fill="#FAF5EB" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700">Paper package</text>
+  <text x="804" y="514" fill="#DCE8E4" font-family="Helvetica, Arial, sans-serif" font-size="16">PDF, code, data manifest, figures, score</text>
+  <text x="942" y="474" fill="#FAF5EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">VOICES</text>
+  <text x="1004" y="491" fill="#FAF5EB" font-family="Georgia, 'Times New Roman', serif" font-size="26" font-weight="700">Monod to Stent</text>
+  <text x="1004" y="514" fill="#DCE8E4" font-family="Helvetica, Arial, sans-serif" font-size="16">Clear, narrative, reflective prose</text>
+</svg>

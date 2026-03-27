@@ -1,5 +1,7 @@
 # ARIS for OpenCode and Codex
 
+![ARIS hero](docs/images/github-hero.svg)
+
 OpenCode-native port of [wanshuiyin/Auto-claude-code-research-in-sleep](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep) at upstream commit `e8ab30fdd01cfce03bd1695de9943f629849b792`.
 
 ## Attribution
@@ -34,6 +36,8 @@ This repo now supports two explicit execution routes:
 - **Pure OpenCode** — opt-in when you explicitly want the OpenCode-native path
 
 Read [WORKFLOW_ROUTES.md](WORKFLOW_ROUTES.md) for the exact command surface.
+
+![Workflow routes](docs/images/github-routes.svg)
 
 ## Quick Start
 
@@ -103,6 +107,8 @@ If you want to see a concrete sample artifact set before running anything yourse
 The intended one-command end state of `/research-pipeline` is now: `IDEA_REPORT.md` + `AUTO_REVIEW.md` + `NARRATIVE_REPORT.md` + `paper/main.pdf` + `paper/PAPER_IMPROVEMENT_LOG.md` + `review/REVIEW_OPINION.md` + `review/review_scorecard.json`.
 If you want a tracked sample that ends in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).
 If you want the linked-paper upgrade workflow shape, read [examples/paper-upgrade-sample/README.md](examples/paper-upgrade-sample/README.md).
+
+![Example showcase](docs/images/github-examples.svg)
 
 ## Porting Notes
 

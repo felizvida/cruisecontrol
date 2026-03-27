@@ -1,0 +1,73 @@
+<svg width="1280" height="760" viewBox="0 0 1280 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="routesBg" x1="120" y1="60" x2="1180" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F7F0DE"/>
+      <stop offset="1" stop-color="#E3EEE6"/>
+    </linearGradient>
+    <linearGradient id="codexCard" x1="126" y1="172" x2="536" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#173D3A"/>
+      <stop offset="1" stop-color="#245A57"/>
+    </linearGradient>
+    <linearGradient id="openCard" x1="744" y1="172" x2="1154" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2C4F69"/>
+      <stop offset="1" stop-color="#3E7186"/>
+    </linearGradient>
+    <filter id="soft" x="0" y="0" width="1280" height="760" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="14" stdDeviation="22" flood-color="#183434" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="760" rx="28" fill="url(#routesBg)"/>
+  <text x="90" y="110" fill="#163632" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700">Two routes, one standard</text>
+  <text x="92" y="154" fill="#436260" font-family="Helvetica, Arial, sans-serif" font-size="24">Choose the engine you want. Keep the same bar for evidence, review, and prose.</text>
+
+  <g filter="url(#soft)">
+    <rect x="90" y="190" width="430" height="378" rx="28" fill="url(#codexCard)"/>
+    <rect x="760" y="190" width="430" height="378" rx="28" fill="url(#openCard)"/>
+    <rect x="425" y="280" width="430" height="284" rx="28" fill="#F8F4EB" stroke="#D8CAB1"/>
+  </g>
+
+  <text x="122" y="250" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">DEFAULT</text>
+  <text x="122" y="294" fill="#F8F4EB" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700">Pure Codex</text>
+  <text x="122" y="332" fill="#DCE8E4" font-family="Helvetica, Arial, sans-serif" font-size="21">Use when you want the strongest end-to-end research path.</text>
+
+  <g fill="#F8F4EB">
+    <circle cx="142" cy="390" r="7"/>
+    <circle cx="142" cy="446" r="7"/>
+    <circle cx="142" cy="502" r="7"/>
+  </g>
+  <text x="166" y="397" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="22">planning, critique, and paper loops live in one place</text>
+  <text x="166" y="453" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="22">best fit for serious paper generation from this repo</text>
+  <text x="166" y="509" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="22">recommended for flagship examples and public-facing artifacts</text>
+
+  <text x="792" y="250" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="2">OPTIONAL</text>
+  <text x="792" y="294" fill="#F8F4EB" font-family="Georgia, 'Times New Roman', serif" font-size="42" font-weight="700">Pure OpenCode</text>
+  <text x="792" y="332" fill="#DBE7EF" font-family="Helvetica, Arial, sans-serif" font-size="21">Use when you want to validate the native OpenCode route itself.</text>
+
+  <g fill="#F8F4EB">
+    <circle cx="812" cy="390" r="7"/>
+    <circle cx="812" cy="446" r="7"/>
+    <circle cx="812" cy="502" r="7"/>
+  </g>
+  <text x="836" y="397" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="22">same workflow shape, different backend model</text>
+  <text x="836" y="453" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="22">good for route testing and head-to-head comparisons</text>
+  <text x="836" y="509" fill="#F8F4EB" font-family="Helvetica, Arial, sans-serif" font-size="22">still held to the same paper and evidence standard</text>
+
+  <path d="M520 380H630" stroke="#C66A3C" stroke-width="5" stroke-linecap="round"/>
+  <path d="M760 380H650" stroke="#C66A3C" stroke-width="5" stroke-linecap="round"/>
+  <path d="M618 364L648 380L618 396" stroke="#C66A3C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="458" y="330" fill="#8A4B2C" font-family="Helvetica, Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="2">SHARED BAR</text>
+  <text x="458" y="378" fill="#143A36" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700">Real computation</text>
+  <text x="458" y="420" fill="#30504D" font-family="Helvetica, Arial, sans-serif" font-size="20">Results come from code, not decorative tables.</text>
+  <text x="458" y="458" fill="#143A36" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700">Fresh reviews</text>
+  <text x="458" y="500" fill="#30504D" font-family="Helvetica, Arial, sans-serif" font-size="20">Each paper loop is supposed to answer criticism, not just churn.</text>
+  <text x="458" y="538" fill="#143A36" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700">Human prose</text>
+  <text x="458" y="580" fill="#30504D" font-family="Helvetica, Arial, sans-serif" font-size="20">Monod, Jacob, Brenner, Stent, Crick: clear, narrative, reflective.</text>
+
+  <g>
+    <rect x="90" y="620" width="1100" height="88" rx="24" fill="#143C39"/>
+    <text x="126" y="672" fill="#F7F0DE" font-family="Georgia, 'Times New Roman', serif" font-size="30" font-weight="700">Both routes should converge on the same end state:</text>
+    <text x="748" y="672" fill="#F7F0DE" font-family="Helvetica, Arial, sans-serif" font-size="22">paper PDF, code, data manifest, figures, review opinion, and score</text>
+  </g>
+</svg>
