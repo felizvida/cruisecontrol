@@ -1,0 +1,3 @@
+functional_axis,matched_count,spillover_count,alignment_fraction,wilson_low,wilson_high,expected_fraction_under_region_prevalence,alignment_lift_over_prevalence
+telencephalon,28,3,0.9032,0.751,0.9665,0.8,0.1032
+optic_tectum,4,0,1.0,0.5101,1.0,0.2,0.8

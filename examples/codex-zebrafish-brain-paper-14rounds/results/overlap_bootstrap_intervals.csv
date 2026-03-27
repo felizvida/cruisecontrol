@@ -1,0 +1,6 @@
+metric,bootstrap_trials,low_95,median,high_95,note
+exact_id_jaccard,10000,0.0133,0.0227,0.0326,Row-bootstrap sensitivity interval for accession+proteoform Jaccard over the released Tel2 and Teo2 tables.
+canonicalized_jaccard,10000,0.0308,0.0436,0.0567,Same resampling scheme after canonicalizing proteoform strings for the discrepancy diagnostic.
+protein_overlap_fraction,10000,0.1528,0.1831,0.2133,Row-bootstrap sensitivity interval after collapsing the released tables to protein accessions.
+weighted_jaccard_overlap,10000,0.003,0.0212,0.0639,Row-bootstrap sensitivity interval for weighted Jaccard using resampled mean duplicate intensities.
+bray_curtis_similarity,10000,0.006,0.0415,0.1201,Row-bootstrap sensitivity interval for Bray--Curtis similarity using resampled mean duplicate intensities.

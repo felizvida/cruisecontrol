@@ -1,0 +1,11 @@
+{
+  "backend": "paperreview.ai",
+  "pdf_path": "examples/codex-zebrafish-brain-paper-14rounds/paper/main_round16.pdf",
+  "filename": "main_round16.pdf",
+  "venue": "Other",
+  "email_redacted": true,
+  "email_domain": "nih.gov",
+  "token": "22lhcr3cdSHOHDV5-UfaWVk0gXOmJisi_rZ9JeFiXug",
+  "message": "Paper uploaded successfully. You will receive an email when the review is ready.",
+  "s3_key": "uploads/20260327_171037_8dfc5645_main_round16.pdf"
+}

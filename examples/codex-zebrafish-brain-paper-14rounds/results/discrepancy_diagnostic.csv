@@ -1,0 +1,4 @@
+comparison_basis,shared_count,union_count,jaccard_overlap,note
+article_reported_aggregate,35,807,0.0434,Published aggregate summary from the 2022 paper.
+exact_accession_plus_proteoform,29,805,0.036,Strict accession+proteoform matching across the released Tel2 and Teo2 tables.
+accession_plus_canonicalized_sequence,44,715,0.0615,"Bracketed PTM annotations, punctuation, and non-sequence characters removed before matching; the article's 35 shared proteoforms lies between the strict and canonicalized counts."

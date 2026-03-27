@@ -71,6 +71,16 @@ Any paper presented as a final paper package in this repo must be backed by real
 - A complete final paper package still includes the finished PDF and source, round-by-round paper-improvement artifacts, code, data or a source-data manifest, high-resolution figure assets, a detailed review opinion, and a score.
 - Do not stop at `paper/main.pdf` if the paper-improvement loop is available. Persist the review opinion, scorecard, and revision history.
 
+## Writing Style Default
+
+For paper prose in this repo, default to the skill at [.opencode/skills/classic-biology-prose/SKILL.md](.opencode/skills/classic-biology-prose/SKILL.md) unless the user explicitly asks for another voice.
+
+- Aim for the clarity of Monod and Crick, the narrative movement of Jacob, the personality of Brenner, and the reflective cadence of Stent.
+- Open with the scientific or historical question, not with workflow framing.
+- State the central point early and let the evidence carry the claim.
+- Avoid machine-sounding prose such as "this paper argues", "we do not claim", "artifact package", or self-conscious workflow narration.
+- Keep limitations honest and brief, and end with a reflective closing sentence rather than generic future-work filler.
+
 ## Biowulf Operational Rules
 
 When using Biowulf from this repo:

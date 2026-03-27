@@ -1,5 +1,7 @@
 {
   "odds_ratio": 1173.0,
+  "odds_ratio_ci_high": 13495.1061,
+  "odds_ratio_ci_low": 101.9576,
   "one_sided_p_greater": 5.124494710467904e-22,
   "table": {
     "tel_axis_in_tel": 23,

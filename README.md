@@ -19,7 +19,7 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
 
 - `.opencode/skills/` — 18 upstream research skills copied from ARIS
 - `.opencode/commands/` — OpenCode command wrappers, including explicit OpenCode and Codex route variants for the top-level workflows
-- port-native additions — `paper-upgrade` for linked-paper improvement and `biowulf-gpu` for one-node Biowulf GPU allocation, module setup, and scratch-disk staging
+- port-native additions — `paper-upgrade` for linked-paper improvement, `biowulf-gpu` for one-node Biowulf GPU allocation, module setup, and scratch-disk staging, and `classic-biology-prose` for natural paper writing
 - `AGENTS.md` — repo-level instructions for using the port in OpenCode
 - `opencode.jsonc` — sample OpenCode-native model and optional MCP configuration
 - `templates/project-AGENTS.md` — project metadata template for GPU servers, paper libraries, and paper defaults
@@ -54,6 +54,21 @@ Read [WORKFLOW_ROUTES.md](WORKFLOW_ROUTES.md) for the exact command surface.
 5. For the shortest setup path, read [QUICKSTART.md](QUICKSTART.md).
 6. For the narrative walkthrough, read [AUTO_RESEARCH_GUIDE.md](AUTO_RESEARCH_GUIDE.md).
 
+## Writing Style Default
+
+Paper prose in this repo now defaults to [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md).
+
+That means the writing workflow aims for:
+
+- the clarity of Monod and Crick
+- the narrative movement of Jacob
+- the personality of Brenner
+- the reflective cadence of Stent
+
+In practice, the paper should open with the scientific or historical question, state the central point early, avoid machine-sounding workflow prose, and end with a closing paragraph that feels reflective rather than canned.
+
+If a venue or project needs a different voice, you can still override it explicitly in the prompt or in the target project's `AGENTS.md`.
+
 ## External Paper Review Backend
 
 Paper-improvement loops now prefer [paperreview.ai](https://paperreview.ai/) when it is configured.
@@ -79,6 +94,8 @@ In this repo, a paper is only considered a complete final paper package when it 
 - a score
 
 The compiled PDF is necessary, but it is not sufficient on its own. If the work is too large for local compute, use Biowulf for the serious experimental runs and package the resulting code, artifacts, and provenance locally with the paper.
+
+The prose standard matters too. A final paper in this repo should read like a serious human paper, not like a system report that happens to compile.
 
 ## Sample Example
 

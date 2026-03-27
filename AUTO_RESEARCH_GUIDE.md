@@ -29,6 +29,8 @@ If you choose the pure OpenCode route, [opencode.jsonc](opencode.jsonc) pins the
 
 That pure OpenCode route stays entirely inside OpenCode. The default Codex route instead uses Codex end to end for critique, planning, writing, and paper-improvement passes.
 
+Whichever route you choose, the paper-writing side now defaults to [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md): question first, claim early, evidence doing the work, and a calmer, more human closing cadence.
+
 ## Act I: Start With A Direction, Not A Thesis
 
 Start with the broadest useful command:
@@ -258,6 +260,8 @@ The pipeline then helps convert that into:
 - figures and tables
 - LaTeX sections
 - a compiled PDF
+
+At that stage the repo is not trying to sound "AI polished." It is trying to sound like a serious paper: clear, exact, and readable enough that another researcher would keep going rather than mentally editing every sentence.
 - a scored paper-improvement loop
 
 When the workflow is promoted to a complete final paper package in this repo, it should also leave behind:

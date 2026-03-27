@@ -16,6 +16,7 @@ Draft a LaTeX paper based on: **$ARGUMENTS**
 - **TARGET_VENUE = `ICLR`** — Default venue. Supported: `ICLR`, `NeurIPS`, `ICML`. Determines style file and formatting.
 - **ANONYMOUS = true** — If true, use anonymous author block. Set `false` for camera-ready.
 - **MAX_PAGES = 9** — Main body page limit. Counts from first page to end of Conclusion section. References and appendix are NOT counted.
+- **WRITING_STYLE_DEFAULT = `classic-biology-prose`** — Unless the user explicitly asks for another voice, use the repo skill at `../classic-biology-prose/SKILL.md` for prose-heavy sections.
 
 ## Inputs
 
@@ -122,6 +123,8 @@ Process sections in order. For each section:
 4. **Insert figures/tables** — use snippets from `figures/latex_includes.tex`
 5. **Add citations** — use `\citep{}` / `\citet{}` (all three venues use `natbib`)
 
+Before drafting or revising prose-heavy sections, read and apply the style rules in [classic-biology-prose](../classic-biology-prose/SKILL.md) unless the user explicitly asks for a different voice.
+
 #### Section-Specific Guidelines
 
 **§0 Abstract:**
@@ -134,6 +137,7 @@ Process sections in order. For each section:
 
 **§1 Introduction:**
 - Open with a compelling hook (1-2 sentences, problem motivation)
+- Open with the scientific question, not with workflow framing
 - State the gap clearly ("However, ...")
 - List contributions as a numbered or bulleted list
 - End with a brief roadmap ("The rest of this paper is organized as...")
@@ -166,6 +170,7 @@ Process sections in order. For each section:
 - Summarize contributions (NOT copy-paste from intro — rephrase)
 - Limitations (be honest — reviewers appreciate this)
 - Future work (1-2 concrete directions)
+- End with one reflective sentence that feels earned, not generic
 - Ethics statement and reproducibility statement (if venue requires)
 - Target: 0.5 pages
 
@@ -220,6 +225,7 @@ After drafting all sections, scan for common AI writing patterns and fix them:
 - Remove filler: "It is worth noting that", "Importantly,", "Notably,"
 - Avoid rule-of-three lists ("X, Y, and Z" appearing repeatedly)
 - Don't start consecutive sentences with "This" or "We"
+- Remove workflow prose such as "this paper argues", "we do not claim", "artifact package", or "re-analysis note" unless the paper genuinely needs those exact terms
 
 ### Step 6: Cross-Review with REVIEWER_MODE
 

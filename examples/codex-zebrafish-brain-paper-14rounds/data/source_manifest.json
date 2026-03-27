@@ -23,6 +23,130 @@
       "role": "data availability and repository provenance"
     },
     {
+      "id": "pxd027741_tel2_table",
+      "type": "dataset_component",
+      "title": "Proteoform_ID_Tel2.xlsx",
+      "year": 2023,
+      "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD027741/Proteoform_ID_Tel2.xlsx",
+      "role": "released telencephalon region table used for exact-ID overlap, duplicate-incidence sensitivity, abundance-normalization checks, and marker-family traceability"
+    },
+    {
+      "id": "pxd027741_teo2_table",
+      "type": "dataset_component",
+      "title": "proteoform_ID_Teo2.xlsx",
+      "year": 2023,
+      "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD027741/proteoform_ID_Teo2.xlsx",
+      "role": "released optic-tectum region table used for exact-ID overlap, duplicate-incidence sensitivity, abundance-normalization checks, and marker-family traceability"
+    },
+    {
+      "id": "d1mo00335f_supporting_information",
+      "type": "dataset_component",
+      "title": "Supporting Information workbook",
+      "year": 2022,
+      "url": "https://www.rsc.org/suppdata/d1/mo/d1mo00335f/d1mo00335f1.xlsx",
+      "role": "journal supplementary workbook containing a note sheet with TopPIC and TopDiff processing details plus Teo2 and Tel2 table copies that match the standalone PRIDE XLSX files"
+    },
+    {
+      "id": "pxd027741_tel2_run1_raw",
+      "type": "dataset_component",
+      "title": "Tel2_1.raw",
+      "year": 2023,
+      "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD027741/Tel2_1.raw",
+      "role": "raw Tel2 duplicate run listed on the OmicsDI/PRIDE landing page; not reprocessed in this note"
+    },
+    {
+      "id": "pxd027741_tel2_run2_raw",
+      "type": "dataset_component",
+      "title": "Tel2_2.raw",
+      "year": 2023,
+      "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD027741/Tel2_2.raw",
+      "role": "raw Tel2 duplicate run listed on the OmicsDI/PRIDE landing page; not reprocessed in this note"
+    },
+    {
+      "id": "pxd027741_teo2_run1_raw",
+      "type": "dataset_component",
+      "title": "Teo2_1.raw",
+      "year": 2023,
+      "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD027741/Teo2_1.raw",
+      "role": "raw Teo2 duplicate run listed on the OmicsDI/PRIDE landing page; not reprocessed in this note"
+    },
+    {
+      "id": "pxd027741_teo2_run2_raw",
+      "type": "dataset_component",
+      "title": "Teo2_2.raw",
+      "year": 2023,
+      "url": "https://ftp.pride.ebi.ac.uk/pride/data/archive/2023/03/PXD027741/Teo2_2.raw",
+      "role": "raw Teo2 duplicate run listed on the OmicsDI/PRIDE landing page; not reprocessed in this note"
+    },
+    {
+      "id": "chiu2014",
+      "type": "primary_article",
+      "title": "An improved nonparametric lower bound of species richness via a modified Good-Turing frequency formula",
+      "authors": [
+        "Chun-Huo Chiu",
+        "Yi-Ting Wang",
+        "Bruno A. Walther",
+        "Anne Chao"
+      ],
+      "year": 2014,
+      "journal": "Biometrics",
+      "doi": "10.1111/biom.12200",
+      "url": "https://doi.org/10.1111/biom.12200",
+      "role": "background on higher-order unseen-richness estimators that are not identifiable from the released duplicate-only zebrafish tables"
+    },
+    {
+      "id": "chung2019",
+      "type": "primary_article",
+      "title": "Jaccard/Tanimoto similarity test and estimation methods for biological presence-absence data",
+      "authors": [
+        "Neo Christopher Chung",
+        "Błażej Miasojedow",
+        "Michał Startek",
+        "Anna Gambin"
+      ],
+      "year": 2019,
+      "journal": "BMC Bioinformatics",
+      "doi": "10.1186/s12859-019-3118-5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6929325/",
+      "role": "prevalence-adjusted overlap-significance framework used to show that the telencephalon/optic-tectum overlap remains far below the fixed-margin independence baseline"
+    },
+    {
+      "id": "ito2010",
+      "type": "primary_article",
+      "title": "Characterization of neural stem cells and their progeny in the adult zebrafish optic tectum",
+      "authors": [
+        "Yoko Ito",
+        "Hideomi Tanaka",
+        "Hitoshi Okamoto",
+        "Toshio Ohshima"
+      ],
+      "year": 2010,
+      "journal": "Developmental Biology",
+      "doi": "10.1016/j.ydbio.2010.03.008",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20346355/",
+      "role": "independent optic-tectum radial-glia marker source for GFAP, FABP7a, and S100B"
+    },
+    {
+      "id": "siems2021",
+      "type": "primary_article",
+      "title": "Proteome Profile of Myelin in the Zebrafish Brain",
+      "authors": [
+        "Sebastian B. Siems",
+        "Olaf Jahn",
+        "Laura J. Hoodless",
+        "Rachel B. Jung",
+        "Daniel Hesse",
+        "Wiebke Möbius",
+        "Tim Czopka",
+        "Hauke B. Werner"
+      ],
+      "year": 2021,
+      "journal": "Frontiers in Cell and Developmental Biology",
+      "doi": "10.3389/fcell.2021.640169",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33898427/",
+      "role": "independent adult zebrafish CNS myelin marker source for PLP1b, MBP, and MPZ/P0"
+    },
+    {
       "id": "stednitz2018",
       "type": "primary_article",
       "title": "Forebrain control of behaviorally-driven social orienting in zebrafish",
@@ -70,6 +194,19 @@
       "role": "optic tectum visuomotor context"
     },
     {
+      "id": "orger2016",
+      "type": "review",
+      "title": "The Cellular Organization of Zebrafish Visuomotor Circuits",
+      "authors": [
+        "Michael B. Orger"
+      ],
+      "year": 2016,
+      "journal": "Current Biology",
+      "doi": "10.1016/j.cub.2016.03.054",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/27166700/",
+      "role": "optic tectum and visuomotor circuit context"
+    },
+    {
       "id": "reemst2023",
       "type": "review",
       "title": "Learning and memory formation in zebrafish: Protein dynamics and molecular tools",
@@ -83,7 +220,106 @@
       "doi": "10.3389/fcell.2023.1120984",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10034119/",
       "role": "memory and telencephalic functional background"
+    },
+    {
+      "id": "askarani2025",
+      "type": "primary_article",
+      "title": "Top-Down Proteomics Study of Aging and Sexual Dimorphism of Zebrafish Brains",
+      "authors": [
+        "Mehrdad Falamarzi Askarani",
+        "William Poulos",
+        "Maryam Rahimzadeh Dashtaki",
+        "Seyed Amirhossein Sadeghi",
+        "Jose B. Cibelli",
+        "Fei Fang",
+        "Liangliang Sun"
+      ],
+      "year": 2025,
+      "journal": "Journal of Mass Spectrometry",
+      "doi": "10.1002/jms.70009",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12750134/",
+      "role": "recent top-down zebrafish-brain proteomics context"
+    },
+    {
+      "id": "shaban2025",
+      "type": "preprint",
+      "title": "A Foundation Model for Spatial Proteomics",
+      "authors": [
+        "Muhammad Shaban",
+        "and others"
+      ],
+      "year": 2025,
+      "doi": "10.48550/arXiv.2506.03373",
+      "url": "https://doi.org/10.48550/arXiv.2506.03373",
+      "role": "broader spatial-proteomics foundation-model context"
+    },
+    {
+      "id": "madhu2025",
+      "type": "preprint",
+      "title": "HEIST: A Graph Foundation Model for Spatial Transcriptomics and Proteomics Data",
+      "authors": [
+        "Hiren Madhu",
+        "João Felipe Rocha",
+        "Tinglin Huang",
+        "Siddharth Viswanath",
+        "Smita Krishnaswamy",
+        "Rex Ying"
+      ],
+      "year": 2025,
+      "doi": "10.48550/arXiv.2506.11152",
+      "url": "https://doi.org/10.48550/arXiv.2506.11152",
+      "role": "broader spatial multi-omics foundation-model context"
+    },
+    {
+      "id": "karpievitch2009",
+      "type": "primary_article",
+      "title": "Normalization of peak intensities in bottom-up MS-based proteomics using singular value decomposition",
+      "authors": [
+        "Yuliya V. Karpievitch",
+        "Thomas Taverner",
+        "Joshua N. Adkins",
+        "Stephen J. Callister",
+        "Gordon A. Anderson",
+        "Richard D. Smith",
+        "Alan R. Dabney"
+      ],
+      "year": 2009,
+      "journal": "Bioinformatics",
+      "doi": "10.1093/bioinformatics/btp426",
+      "url": "https://doi.org/10.1093/bioinformatics/btp426",
+      "role": "EigenMS normalization context for why richer bias-removal models need broader replication than the released zebrafish duplicate tables provide"
+    },
+    {
+      "id": "karpievitch2012",
+      "type": "primary_article",
+      "title": "Normalization and missing value imputation for label-free LC-MS analysis",
+      "authors": [
+        "Yuliya V. Karpievitch",
+        "Alan R. Dabney",
+        "Richard D. Smith"
+      ],
+      "year": 2012,
+      "journal": "BMC Bioinformatics",
+      "doi": "10.1186/1471-2105-13-S16-S5",
+      "url": "https://doi.org/10.1186/1471-2105-13-S16-S5",
+      "role": "normalization and missing-value context for the discussion of why this note uses no-imputation sensitivity checks rather than model-heavy completion"
+    },
+    {
+      "id": "lazar2016",
+      "type": "primary_article",
+      "title": "Accounting for the Multiple Natures of Missing Values in Label-Free Quantitative Proteomics Data Sets to Compare Imputation Strategies",
+      "authors": [
+        "Celine Lazar",
+        "Laurent Gatto",
+        "Myriam Ferro",
+        "Cecile Bruley",
+        "Thomas Burger"
+      ],
+      "year": 2016,
+      "journal": "Journal of Proteome Research",
+      "doi": "10.1021/acs.jproteome.5b00981",
+      "url": "https://doi.org/10.1021/acs.jproteome.5b00981",
+      "role": "missingness-mechanism context supporting the paper's caution that public-table zeros are absent detections, not necessarily biological zero abundance"
     }
   ]
 }
-

@@ -11,11 +11,11 @@ dir.create(assets_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(figures_dir, recursive = TRUE, showWarnings = FALSE)
 
 summary_df <- read.csv(file.path(results_dir, "region_summary.csv"), stringsAsFactors = FALSE)
+overlap_df <- read.csv(file.path(results_dir, "source_table_overlap_metrics.csv"), stringsAsFactors = FALSE)
 marker_df <- read.csv(file.path(results_dir, "marker_bias.csv"), stringsAsFactors = FALSE)
 axis_df <- read.csv(file.path(results_dir, "axis_summary.csv"), stringsAsFactors = FALSE)
-loo_df <- read.csv(file.path(results_dir, "leave_one_out_alignment.csv"), stringsAsFactors = FALSE)
 ptm_df <- read.csv(file.path(results_dir, "ptm_summary.csv"), stringsAsFactors = FALSE)
-tech_df <- read.csv(file.path(results_dir, "technical_replicate_summary.csv"), stringsAsFactors = FALSE)
+ptm_marker_df <- read.csv(file.path(results_dir, "marker_ptm_summary.csv"), stringsAsFactors = FALSE)
 
 metric_value <- function(name) {
   as.numeric(summary_df$value[summary_df$metric == name][1])
@@ -57,17 +57,33 @@ save_asset_set(
       ylab = "Identified proteoforms",
       main = "Region totals"
     )
+    comparison_values <- c(
+      metric_value("jaccard_overlap"),
+      metric_value("source_table_jaccard_overlap"),
+      metric_value("source_table_sorensen_overlap"),
+      metric_value("source_table_weighted_jaccard_overlap"),
+      metric_value("protein_overlap_fraction")
+    )
+    comparison_labels <- c(
+      "Article\nJaccard",
+      "Exact-ID\nJaccard",
+      "Exact-ID\nSorensen",
+      "Weighted\nJaccard",
+      "Protein\noverlap"
+    )
     barplot(
-      c(metric_value("telencephalon_unique"), metric_value("shared_proteoforms"), metric_value("optic_tectum_unique")),
-      names.arg = c("Tel only", "Shared", "Teo only"),
-      col = c("#4063D8", "#7F7F7F", "#CB3C33"),
-      ylab = "Proteoforms",
-      main = "Unique versus shared"
+      comparison_values,
+      names.arg = comparison_labels,
+      col = c("#5B8FF9", "#1D39C4", "#91D5FF", "#13C2C2", "#7CB305"),
+      ylab = "Similarity / overlap",
+      ylim = c(0, max(comparison_values) * 1.25),
+      las = 2,
+      main = "Overlap metrics across views"
     )
     mtext(
       paste0(
-        "Jaccard = ", metric_value("jaccard_overlap"),
-        " | Protein overlap = ", metric_value("protein_overlap_fraction")
+        "Published shared = ", metric_value("shared_proteoforms"),
+        " | Exact-ID shared = ", metric_value("source_table_shared_proteoforms")
       ),
       side = 1,
       outer = FALSE,
@@ -123,18 +139,30 @@ save_asset_set(
     )
     legend("topright", legend = c("Matched region", "Spillover"), fill = c("#2E8B57", "#E69F00"), bty = "n", cex = 0.85)
 
-    loo_df <- loo_df[order(loo_df$remaining_alignment_fraction), ]
-    barplot(
-      loo_df$remaining_alignment_fraction,
-      names.arg = loo_df$removed_marker,
-      horiz = TRUE,
-      las = 1,
-      col = "#7A68A6",
-      xlim = c(0.9, 1.0),
-      xlab = "Alignment after removing one marker",
-      main = "Robustness to leave-one-out marker removal"
+    robustness_values <- c(
+      metric_value("marker_alignment_fraction"),
+      metric_value("leave_one_out_min_alignment"),
+      metric_value("motor_family_exclusion_alignment"),
+      metric_value("protein_collapsed_alignment_fraction"),
+      metric_value("intensity_alignment_fraction")
     )
-    abline(v = metric_value("marker_alignment_fraction"), lty = 2, col = "gray40")
+    robustness_labels <- c(
+      "Observed\ncount panel",
+      "Leave-one-out\nminimum",
+      "Exclude motor\nfamilies",
+      "Protein-\ncollapsed",
+      "Intensity-\nweighted"
+    )
+    barplot(
+      robustness_values,
+      names.arg = robustness_labels,
+      col = c("#5B8FF9", "#9254DE", "#FA8C16", "#36CFC9", "#52C41A"),
+      ylim = c(0.85, 1.0),
+      ylab = "Matched-region fraction",
+      las = 2,
+      main = "Robustness across representations"
+    )
+    abline(h = metric_value("expected_alignment_under_region_prevalence"), lty = 2, col = "gray40")
   },
   width = 10.5,
   height = 4.6,
@@ -145,33 +173,34 @@ save_asset_set(
   "ptm_and_sensitivity",
   function() {
     par(mfrow = c(1, 2), mar = c(8, 4, 3, 1) + 0.1, family = "serif")
-    cols <- ifelse(ptm_df$modification %in% c("total_proteoforms", "modified_total", "unmodified"), "#7F7F7F", "#009E73")
+    ptm_cols <- c("#5B8FF9", "#CB3C33")
     barplot(
-      ptm_df$count,
-      names.arg = gsub("_", "\n", ptm_df$modification),
+      ptm_marker_df$acetylated_fraction,
+      names.arg = c("Tel matched\nmarkers", "Teo matched\nmarkers"),
       las = 2,
-      col = cols,
-      ylab = "Proteoforms",
-      main = "PTM inventory"
+      col = ptm_cols,
+      ylab = "N-terminal acetylation fraction",
+      ylim = c(0, max(ptm_marker_df$acetylated_fraction) * 1.25),
+      main = "PTM bias within matched markers"
     )
-    bar_centers <- barplot(
-      tech_df$duplicate_mean,
-      names.arg = c("Telencephalon", "Optic tectum"),
-      col = c("#4063D8", "#CB3C33"),
-      ylab = "Proteoforms per duplicate set",
-      main = "Technical sensitivity",
-      ylim = c(0, max(tech_df$duplicate_mean + tech_df$duplicate_sd) * 1.25)
+    sensitivity_df <- overlap_df[overlap_df$scenario != "article_reported_counts", ]
+    sensitivity_labels <- c(
+      source_table_exact_ids = "Exact-ID\nobserved",
+      source_table_duplicate_adjusted_shared_fixed = "Chao\nfixed-shared",
+      source_table_duplicate_adjusted_scaled_min = "Chao\nscaled-min",
+      source_table_duplicate_adjusted_scaled_geomean = "Chao\nscaled-geo",
+      source_table_duplicate_adjusted_scaled_max = "Chao\nscaled-max",
+      source_table_jackknife1_adjusted_shared_fixed = "Jackknife\nfixed-shared"
     )
-    arrows(
-      x0 = bar_centers,
-      y0 = tech_df$duplicate_mean - tech_df$duplicate_sd,
-      x1 = bar_centers,
-      y1 = tech_df$duplicate_mean + tech_df$duplicate_sd,
-      angle = 90,
-      code = 3,
-      length = 0.05
+    barplot(
+      sensitivity_df$jaccard_overlap,
+      names.arg = unname(sensitivity_labels[sensitivity_df$scenario]),
+      col = c("#1D39C4", "#13C2C2", "#52C41A", "#36CFC9", "#FAAD14", "#9254DE"),
+      ylab = "Jaccard overlap",
+      ylim = c(0, max(sensitivity_df$jaccard_overlap) * 1.25),
+      las = 2,
+      main = "Duplicate-informed overlap sensitivity"
     )
-    abline(h = metric_value("single_run_high_water_mark"), lty = 2, col = "gray40")
   },
   width = 10.5,
   height = 4.8,

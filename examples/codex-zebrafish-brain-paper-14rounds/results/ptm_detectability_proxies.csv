@@ -1,0 +1,5 @@
+metric,tel_mean,teo_mean,tel_median,teo_median,absolute_mean_difference,permutation_p_two_sided,note
+precursor_mass,10824.5614,6202.4116,11405.5515,5304.61,4622.1498,0.000305,Public tables expose precursor mass but not charge state or spectrum-quality scores.
+sequence_span_length,106.0714,55.8125,113.5,47.5,50.2589,7.5e-05,Span length is derived from the public first-residue and last-residue columns.
+first_residue,1,1.9375,1.0,2.0,0.9375,5e-06,Lower first-residue values are a coarse public-table proxy for N-terminus coverage.
+avg_intensity,241875889.2857,131590375.0,61200000.0,49517250.0,110285514.2857,0.416763,Average duplicate intensity is the only abundance-like detectability proxy exposed for all rows.

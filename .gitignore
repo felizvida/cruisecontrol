@@ -3,3 +3,5 @@ upstream/
 .local_artifacts/
 .local_runtime/
 __pycache__/
+examples/opencode-zebrafish-brain-paper/
+examples/opencode-zebrafish-brain-proteome-smoke/

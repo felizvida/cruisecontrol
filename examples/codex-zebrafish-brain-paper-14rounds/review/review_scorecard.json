@@ -1,40 +1,63 @@
 {
-  "artifact": "paper/main_round14.pdf",
-  "final_score": 9.4,
-  "verdict": "Accept for a reproducible re-analysis or data-note venue",
-  "dimensions": {
-    "claim_discipline": 9.6,
-    "computational_rigor": 9.1,
-    "clarity": 9.3,
-    "reproducibility": 9.8,
-    "biological_scope_honesty": 9.7,
-    "venue_fit": 8.9
+  "artifact": "paper/main_round26.pdf",
+  "latest_external_review": {
+    "backend": "paperreview.ai",
+    "round_label": "round20",
+    "reviewed_artifact": "paper/main_round20.pdf",
+    "venue": "Other",
+    "final_score": null,
+    "verdict": "No calibrated score returned",
+    "score_note": "paperreview.ai does not expose a calibrated numeric score for venue Other"
   },
-  "round_scores": [
-    6.6,
-    7.1,
-    7.5,
-    7.9,
-    8.1,
-    8.3,
-    8.4,
-    8.5,
-    8.6,
-    8.8,
-    9.0,
-    9.1,
-    9.2,
-    9.3,
-    9.4
-  ],
+  "latest_external_accept": {
+    "backend": "paperreview.ai",
+    "round_label": "round19",
+    "reviewed_artifact": "paper/main_round19.pdf",
+    "final_score": null,
+    "verdict": "Accept"
+  },
+  "current_revision_state": {
+    "artifact": "paper/main_round26.pdf",
+    "externally_rereviewed": false,
+    "note": "Implements the completed round20 external review requests and later authorial framing passes, but the next external rereview has not occurred because paperreview.ai rate-limited both the round21 and round26 submission attempts before a token was issued."
+  },
+  "round21_submission_blocked": {
+    "status": "rate_limited",
+    "note": "See review/round21_submission_blocked.md for the repeated submission attempts and the external-service error."
+  },
+  "round26_submission_blocked": {
+    "status": "rate_limited",
+    "note": "See review/round26_submission_blocked.md for the failed immediate retry and short-cooldown retry on the current manuscript."
+  },
+  "last_calibrated_internal_review": {
+    "artifact": "paper/main_round14.pdf",
+    "final_score": 9.4,
+    "verdict": "Accept for a reproducible re-analysis or data-note venue"
+  },
   "headline_metrics": {
-    "jaccard_overlap": 0.0434,
+    "article_jaccard_overlap": 0.0434,
+    "exact_id_jaccard_overlap": 0.036,
+    "exact_id_centered_jaccard": -0.2792,
+    "exact_id_overlap_lower_tail_neg_log10_p": 182.2549,
+    "canonicalized_jaccard_overlap": 0.0615,
     "protein_overlap_fraction": 0.2151,
+    "protein_level_overlap_lower_tail_neg_log10_p": 32.2336,
     "marker_alignment_fraction": 0.9766,
-    "expected_alignment_under_region_prevalence": 0.5811,
-    "alignment_excess_over_prevalence": 0.3955,
-    "group_level_one_sided_sign_p": 0.001953,
-    "leave_one_out_min_alignment": 0.9625,
-    "leave_one_out_max_alignment": 0.9911
+    "expected_alignment_under_region_prevalence": 0.6904,
+    "alignment_excess_over_prevalence": 0.2861,
+    "odds_ratio": 1173.0,
+    "odds_ratio_ci_low": 101.9576,
+    "odds_ratio_ci_high": 13495.1061,
+    "marker_permutation_p_upper_bound": 5e-06,
+    "stress_test_min_alignment": 0.9297,
+    "motor_family_exclusion_alignment": 0.931,
+    "independent_panel_alignment_fraction": 0.9143,
+    "independent_panel_one_sided_p_greater": 0.0006684491978609625,
+    "mnar_half_q05_fill_weighted_jaccard_overlap": 0.0456,
+    "mnar_half_q10_fill_weighted_jaccard_overlap": 0.0483,
+    "acetylation_adjusted_odds_ratio": 2.9387,
+    "acetylation_adjusted_p_value": 0.139943,
+    "acetylation_first_residue_leq_2_odds_ratio": 0.8788,
+    "acetylation_first_residue_leq_2_p_value": 0.714235
   }
 }

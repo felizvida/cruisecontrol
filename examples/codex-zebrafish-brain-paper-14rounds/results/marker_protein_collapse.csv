@@ -1,0 +1,4 @@
+functional_axis,matched_proteins,spillover_proteins,matched_fraction
+telencephalon,7,1,0.875
+optic_tectum,21,1,0.9545
+overall,28,2,0.9333

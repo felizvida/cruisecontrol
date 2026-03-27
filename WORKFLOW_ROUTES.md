@@ -6,6 +6,7 @@ Route selection and paper-review backend selection are separate:
 
 - the route controls whether the workflow body runs through **Codex** or **OpenCode**
 - the paper-improvement loop now prefers **paperreview.ai** as its external reviewer when configured, with local fallback if needed
+- the default prose style is shared across both routes through [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md), unless the user explicitly asks for another voice
 
 ## Default: Pure Codex
 

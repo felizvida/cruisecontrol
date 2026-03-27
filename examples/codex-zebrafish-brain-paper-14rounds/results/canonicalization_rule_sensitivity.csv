@@ -1,0 +1,5 @@
+rule,shared_count,union_count,jaccard_overlap,note
+strict_accession_plus_proteoform,29,805,0.036,Primary exact-ID analysis unit.
+accession_plus_canonical_sequence,44,715,0.0615,"Bracketed annotations, punctuation, and non-sequence characters removed before matching."
+accession_plus_canonical_sequence_and_residue_window,44,722,0.0609,"Same canonical sequence rule, but residue bounds must also agree."
+accession_plus_residue_window,44,722,0.0609,Residue-window-only matching to probe whether sequence stripping over-merges shifted strings.

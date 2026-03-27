@@ -1,0 +1,6 @@
+scenario,matched_count,spillover_count,alignment_fraction,odds_ratio,odds_ratio_ci_low,odds_ratio_ci_high,one_sided_p_greater,notes
+baseline,32,3,0.9143,73.2857,3.2181,1668.9513,0.0006684491978609625,Observed curated marker panel.
+matched_to_spillover_shift_1_per_axis,30,5,0.8571,20.25,1.6706,245.4548,0.019385026737967912,Pessimistic stress test moving 1 matched count(s) per functional axis into spillover.
+matched_to_spillover_shift_2_per_axis,28,7,0.8,5.2,0.5871,46.0565,0.17098930481283423,Pessimistic stress test moving 2 matched count(s) per functional axis into spillover.
+matched_to_spillover_shift_3_per_axis,26,9,0.7429,1.3889,0.122,15.8125,0.608957219251337,Pessimistic stress test moving 3 matched count(s) per functional axis into spillover.
+exclude_motor_marker_families,32,3,0.9143,73.2857,3.2181,1668.9513,0.0006684491978609625,"Excludes myosin, actin, and troponin families to stress-test tissue-contamination concerns."

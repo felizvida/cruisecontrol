@@ -83,6 +83,8 @@ That is the review-improved paper stage, not just the first compiled draft. In t
 
 If the claimed results need more compute than this machine can provide, move the heavy run to Biowulf and bring the resulting artifacts back into the local paper package.
 
+By default, the paper-writing route now uses [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md), so the manuscript should read like a human paper rather than a workflow transcript.
+
 If you want to see a sample artifact set first, read [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
 If you want the full sample ending in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).
 If you want to start from an existing paper on the internet instead of a fresh research direction, use `/paper-upgrade "paper-url — this is my paper"` and see [examples/paper-upgrade-sample/README.md](examples/paper-upgrade-sample/README.md).

@@ -1,0 +1,5 @@
+tel_run,teo_run,weighted_jaccard_overlap,bray_curtis_similarity,per_run_total_normalized_weighted_jaccard_overlap,per_run_total_normalized_bray_curtis_similarity
+Proteoform intensity_Tel2_run1,Proteoform intensity_teo2_run1,0.0246,0.048,0.0238,0.0464
+Proteoform intensity_Tel2_run1,Proteoform intensity_teo2_run2,0.0192,0.0377,0.02,0.0393
+Proteoform intensity_Tel2_run2,Proteoform intensity_teo2_run1,0.035,0.0676,0.0395,0.0759
+Proteoform intensity_Tel2_run2,Proteoform intensity_teo2_run2,0.0476,0.0909,0.0687,0.1285

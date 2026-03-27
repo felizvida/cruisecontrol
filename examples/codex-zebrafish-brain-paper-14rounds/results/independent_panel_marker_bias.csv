@@ -1,0 +1,8 @@
+gene,label,functional_axis,match_rule,tel_count,teo_count,matched_count,spillover_count,matched_share,log2_tel_over_teo_plus1,tel_avg_intensity,teo_avg_intensity,tel_protein_count,teo_protein_count,tel_acetylated_count,teo_acetylated_count,interpretation
+plp1b,PLP1b,telencephalon,Gene symbol extracted from GN= field equals `plp1b`.,1,0,1,0,1.0,1.0,1632500.0,0,1,0,1,0,CNS myelin-associated proteolipid marker from adult zebrafish myelin literature.
+mbpa,MBPa,telencephalon,Gene symbol extracted from GN= field equals `mbpa`.,19,2,19,2,0.9048,2.737,438238350.0,15079500.0,6,1,14,0,CNS myelin basic protein marker from adult zebrafish myelin literature.
+mbpb,MBPb,telencephalon,Gene symbol extracted from GN= field equals `mbpb`.,4,1,4,1,0.8,1.322,23209500.0,33930000.0,2,1,3,0,Paralogous myelin basic protein marker from adult zebrafish myelin literature.
+mpz,MPZ/P0,telencephalon,Gene symbol extracted from GN= field equals `mpz`.,4,0,4,0,1.0,2.322,9028500.0,0,1,0,0,0,Teleost CNS myelin protein zero marker from adult zebrafish myelin literature.
+gfap,GFAP,optic_tectum,Gene symbol extracted from GN= field equals `gfap`.,0,1,1,0,1.0,-1.0,0,22565000.0,0,1,0,0,Adult optic tectum radial-glia marker from the PGZ/deep-layer literature.
+fabp7a,FABP7a,optic_tectum,Gene symbol extracted from GN= field equals `fabp7a`.,0,2,2,0,1.0,-1.585,0,170780000.0,0,2,0,1,Adult optic tectum radial-glia marker from the PGZ/deep-layer literature.
+s100b,S100B,optic_tectum,Gene symbol extracted from GN= field equals `s100b`.,0,1,1,0,1.0,-1.0,0,6045000.0,0,1,0,0,Adult optic tectum glial marker from the PGZ/deep-layer literature.

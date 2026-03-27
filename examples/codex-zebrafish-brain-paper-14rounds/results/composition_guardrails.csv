@@ -1,0 +1,5 @@
+panel,genes,tel_count,teo_count,tel_share,interpretation
+glial_support,"gfap,s100b",0,2,0.0,astroglial support markers
+myelin,"mbpa,mbpb",23,3,0.8846,myelin-associated markers
+housekeeping_translation,"eef1a,gapdh-2",0,2,0.0,generic abundant translation and glycolysis markers
+microtubule_structural,"nefma,tuba1c,tubb2b",0,7,0.0,generic structural/neurofilament markers

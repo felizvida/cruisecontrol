@@ -60,6 +60,12 @@ Fill the sections that apply to your project. The migrated skills read this file
 - Main body page limit: `9`
 - Bibliography source: `refs/full.bib`
 
+## Writing Defaults
+
+- Default paper prose skill: `.opencode/skills/classic-biology-prose/SKILL.md`
+- Voice note: clear, elegant, human prose; question first, evidence early, reflective closing
+- Override note: if a project or venue needs a different voice, state it here explicitly
+
 ## Experiment Defaults
 
 - Max pilot budget per idea: `2 GPU-hours`

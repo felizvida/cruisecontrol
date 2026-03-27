@@ -24,6 +24,8 @@ Each phase builds on the previous one's output. The final deliverable is a polis
 
 All generated paper artifacts stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate outputs.
 
+For prose style, default to the repo skill [classic-biology-prose](../classic-biology-prose/SKILL.md) unless the user explicitly asks for a different voice.
+
 ## Constants
 
 - **VENUE = `ICLR`** — Target venue. Options: `ICLR`, `NeurIPS`, `ICML`. Affects style file, page limit, citation format.

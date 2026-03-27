@@ -1,0 +1,6 @@
+metric,value,note
+observed_matched_count,14,Observed matched-region protein counts across the curated family panel.
+observed_matched_fraction,0.875,Observed matched-region fraction after collapsing curated families to unique proteins.
+null_mean_matched_count,9.0026,Mean matched protein counts under family-size-preserving label randomization.
+null_q95_matched_count,12,95th percentile of matched protein counts under the same null.
+p_upper_bound,0.0081,One-sided Monte Carlo upper bound at the protein-collapsed family level.

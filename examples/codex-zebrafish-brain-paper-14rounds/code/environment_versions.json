@@ -1,0 +1,13 @@
+{
+  "platform": "macOS-15.7.5-arm64-arm-64bit-Mach-O",
+  "tools": {
+    "python3": "Python 3.14.3",
+    "Rscript": "Rscript (R) version 4.4.3 (2025-02-28)",
+    "latexmk": "Latexmk, John Collins, 15 June 2025. Version 4.87",
+    "pdflatex": "pdfTeX 3.141592653-2.6-1.40.29 (TeX Live 2026)",
+    "pdfinfo": "pdfinfo version 26.03.0"
+  },
+  "repository_url": "https://github.com/felizvida/cruisecontrol",
+  "repository_doi": null,
+  "note": "Repository URL is available, but no archival DOI has been minted for this example package."
+}

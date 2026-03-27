@@ -1,0 +1,8 @@
+scenario,shared_proteoforms,union_proteoforms,jaccard_overlap,sorensen_overlap,note
+article_reported_counts,35,807,0.0434,0.0831,Published aggregate counts quoted in the 2022 paper.
+source_table_exact_ids,29,805,0.036,0.0689,Exact accession+proteoform matches across the released Tel2 and Teo2 tables.
+source_table_duplicate_adjusted_shared_fixed,29,1243.506,0.0233,,Conservative Chao2 sensitivity with unseen richness added but shared overlap held fixed.
+source_table_duplicate_adjusted_scaled_min,36.1799,1236.3261,0.0293,,Shared overlap scaled by the smaller of the two duplicate-inflation factors.
+source_table_duplicate_adjusted_scaled_max,48.2609,1224.2451,0.0394,,Shared overlap scaled by the larger duplicate-inflation factor.
+source_table_duplicate_adjusted_scaled_geomean,41.7861,1230.72,0.034,,Shared overlap scaled by the geometric mean of the two duplicate-inflation factors.
+source_table_jackknife1_adjusted_shared_fixed,29,1067.5,0.0272,,First-order incidence jackknife lower bound with shared exact IDs held fixed.

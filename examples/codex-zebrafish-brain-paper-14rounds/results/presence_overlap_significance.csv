@@ -1,0 +1,4 @@
+representation,tel_count,teo_count,shared_count,universe_count,observed_jaccard,expected_jaccard_under_independence,centered_jaccard,lower_tail_p,lower_tail_neg_log10_p,note
+exact_id,303,531,29,805,0.036,0.3152,-0.2792,5.56094e-183,182.2549,"Conditional lower-tail hypergeometric test on exact accession+proteoform overlap, with centered Jaccard reported relative to the marginal-prevalence independence baseline."
+canonicalized,274,485,44,715,0.0615,0.3243,-0.2627,5.01026e-143,142.3001,Same prevalence-adjusted overlap test after deterministic canonicalization of the proteoform strings.
+protein_level,150,189,60,279,0.2151,0.428,-0.213,5.84011e-33,32.2336,Same prevalence-adjusted overlap test after collapsing to protein accessions.

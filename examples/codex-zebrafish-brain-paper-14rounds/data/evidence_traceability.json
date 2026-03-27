@@ -1,0 +1,359 @@
+{
+  "article_reference": {
+    "note": "Traceability references the published Molecular Omics article and the released PRIDE region tables.",
+    "pmcid": "PMC9066772"
+  },
+  "evidence_fields": {
+    "derived.source_table_shared_proteoforms": {
+      "article_location": "Derived from exact accession+proteoform intersections in the released Tel2 and Teo2 tables; contrast with the article's published aggregate value of 35 shared proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/source_table_shared_ids.csv"
+      ],
+      "value": 29
+    },
+    "marker_counts.actin.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Actin`.",
+      "value": 0
+    },
+    "marker_counts.actin.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Actin`.",
+      "value": 19
+    },
+    "marker_counts.myosin.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Myosin`.",
+      "value": 0
+    },
+    "marker_counts.myosin.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Myosin`.",
+      "value": 48
+    },
+    "marker_counts.npy.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `npy`.",
+      "value": 1
+    },
+    "marker_counts.npy.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `npy`.",
+      "value": 0
+    },
+    "marker_counts.nrgna.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `nrgna`.",
+      "value": 6
+    },
+    "marker_counts.nrgna.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `nrgna`.",
+      "value": 0
+    },
+    "marker_counts.penkb.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `penkb`.",
+      "value": 1
+    },
+    "marker_counts.penkb.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `penkb`.",
+      "value": 0
+    },
+    "marker_counts.pyya.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `pyya`.",
+      "value": 1
+    },
+    "marker_counts.pyya.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Gene symbol extracted from GN= field equals `pyya`.",
+      "value": 0
+    },
+    "marker_counts.reticulon.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Reticulon`.",
+      "value": 0
+    },
+    "marker_counts.reticulon.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Reticulon`.",
+      "value": 4
+    },
+    "marker_counts.synucleins.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Synuclein`.",
+      "value": 14
+    },
+    "marker_counts.synucleins.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Synuclein`.",
+      "value": 2
+    },
+    "marker_counts.troponin.tel_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Troponin`.",
+      "value": 1
+    },
+    "marker_counts.troponin.teo_count": {
+      "article_location": "PMC9066772 Results and discussion paragraph listing neuropeptide Y, PENKB, PYY-A, neurogranin, synucleins, reticulon, myosin, actin, and troponin as region-linked markers.",
+      "local_source_tables": [
+        "data/source_tables/proteoform_ID_Teo2.xlsx",
+        "results/marker_family_membership.csv"
+      ],
+      "match_rule": "Protein description contains `Troponin`.",
+      "value": 31
+    },
+    "ptm_totals.disulfide": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 15
+    },
+    "ptm_totals.methylated": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 12
+    },
+    "ptm_totals.modified_total": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 358
+    },
+    "ptm_totals.n_terminal_acetylated": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 211
+    },
+    "ptm_totals.oxidized": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 25
+    },
+    "ptm_totals.phosphorylated": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 3
+    },
+    "ptm_totals.total_proteoforms": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 807
+    },
+    "ptm_totals.unmodified": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 449 unmodified, 211 N-terminal acetylated, 25 oxidized, 15 disulfide-bonded, 12 methylated, and 3 phosphorylated proteoforms.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 449
+    },
+    "region_totals.cells_per_run_estimate": {
+      "article_location": "PMC9066772 discussion around duplicate analyses and the 418-proteoform single-run high-water mark.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 250
+    },
+    "region_totals.cells_per_section_estimate": {
+      "article_location": "PMC9066772 discussion around duplicate analyses and the 418-proteoform single-run high-water mark.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 5000
+    },
+    "region_totals.optic_tectum_proteoforms": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 309 telencephalon proteoforms, 533 optic tectum proteoforms, 35 shared proteoforms, and 60 shared proteins.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 533
+    },
+    "region_totals.protein_overlap": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 309 telencephalon proteoforms, 533 optic tectum proteoforms, 35 shared proteoforms, and 60 shared proteins.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 60
+    },
+    "region_totals.protein_union": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 309 telencephalon proteoforms, 533 optic tectum proteoforms, 35 shared proteoforms, and 60 shared proteins.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 279
+    },
+    "region_totals.shared_proteoforms": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 309 telencephalon proteoforms, 533 optic tectum proteoforms, 35 shared proteoforms, and 60 shared proteins.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 35
+    },
+    "region_totals.single_run_high_water_mark": {
+      "article_location": "PMC9066772 discussion around duplicate analyses and the 418-proteoform single-run high-water mark.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 418
+    },
+    "region_totals.tel_duplicate_mean": {
+      "article_location": "PMC9066772 discussion around duplicate analyses and the 418-proteoform single-run high-water mark.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 232
+    },
+    "region_totals.tel_duplicate_sd": {
+      "article_location": "PMC9066772 discussion around duplicate analyses and the 418-proteoform single-run high-water mark.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 28
+    },
+    "region_totals.telencephalon_proteoforms": {
+      "article_location": "PMC9066772 Results and discussion paragraph reporting 309 telencephalon proteoforms, 533 optic tectum proteoforms, 35 shared proteoforms, and 60 shared proteins.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 309
+    },
+    "region_totals.teo_duplicate_mean": {
+      "article_location": "PMC9066772 discussion around duplicate analyses and the 418-proteoform single-run high-water mark.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 356
+    },
+    "region_totals.teo_duplicate_sd": {
+      "article_location": "PMC9066772 discussion around duplicate analyses and the 418-proteoform single-run high-water mark.",
+      "local_source_tables": [
+        "data/source_tables/Proteoform_ID_Tel2.xlsx",
+        "data/source_tables/proteoform_ID_Teo2.xlsx"
+      ],
+      "value": 88
+    }
+  },
+  "review_relevant_files": [
+    "results/source_table_metrics.json",
+    "results/source_table_overlap_metrics.csv",
+    "results/abundance_normalization_sensitivity.csv",
+    "results/run_pair_similarity.csv",
+    "results/overlap_bootstrap_intervals.csv",
+    "results/presence_overlap_significance.csv",
+    "results/discrepancy_diagnostic.csv",
+    "results/canonicalization_rule_sensitivity.csv",
+    "results/source_table_shared_ids.csv",
+    "results/marker_family_membership.csv",
+    "results/marker_permutation_test.csv",
+    "results/protein_level_permutation_test.csv",
+    "results/composition_guardrails.csv",
+    "results/ptm_scope_screen.csv",
+    "results/ptm_detectability_proxies.csv",
+    "results/mnar_similarity_sensitivity.csv",
+    "results/acetylation_covariate_sensitivity.csv",
+    "results/independent_panel_marker_bias.csv"
+  ]
+}

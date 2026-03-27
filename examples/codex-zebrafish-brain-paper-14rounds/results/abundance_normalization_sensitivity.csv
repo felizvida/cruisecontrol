@@ -1,0 +1,6 @@
+normalization,weighted_jaccard_overlap,bray_curtis_similarity,note
+raw_mean_duplicate_intensity,0.0427,0.082,Mean of the two duplicate intensities in each released source-table row.
+per_run_total_intensity,0.0557,0.1055,Each duplicate run scaled by its own total ion-intensity sum before averaging rows.
+region_total_sum,0.046,0.0879,Region-level compositional normalization using total summed average intensity.
+upper_quartile,0.0452,0.0864,Upper-quartile scaling on region-level average intensities.
+median_ratio,0.043,0.0824,Median-ratio scaling using exact-ID shared proteoforms with positive intensity in both regions.

@@ -1,0 +1,4 @@
+scenario,tel_fill_value,teo_fill_value,weighted_jaccard_overlap,bray_curtis_similarity,note
+observed_zero_as_absence,0.0,0.0,0.0427,0.082,Baseline analysis: blank intensity cells are treated as zeros.
+mnar_half_q05_fill,342575.0,195225.0,0.0456,0.0873,Minimal MNAR sensitivity where undetected rows are imputed to half of the region-specific 5th percentile nonzero intensity.
+mnar_half_q10_fill,636600.0,444750.0,0.0483,0.0922,Stronger MNAR sensitivity where undetected rows are imputed to half of the region-specific 10th percentile nonzero intensity.

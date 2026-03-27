@@ -1,0 +1,20 @@
+{
+  "backend": "paperreview.ai",
+  "paper_path": "examples/codex-zebrafish-brain-paper-14rounds/paper/main_round20.pdf",
+  "round_label": "round20",
+  "title": "Quantitative Re-analysis of Published Top-Down Proteoform Counts Reveals Regional Separation in the Adult Zebrafish Brain",
+  "venue": "Other",
+  "submission_date": "2026-03-27T18:13:32.561150",
+  "final_score": null,
+  "verdict": "No calibrated score returned",
+  "score_note": "paperreview.ai calibrated score is currently exposed for ICLR submissions only",
+  "available_sections": [
+    "assessment",
+    "binary_scores",
+    "detailed_comments",
+    "questions",
+    "strengths",
+    "summary",
+    "weaknesses"
+  ]
+}

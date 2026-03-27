@@ -1,0 +1,3 @@
+scenario,acetylation_odds_ratio,ci_low,ci_high,p_value,sample_size,note
+coarse_logistic_adjustment,2.9387,0.7022,12.2974,0.139943,125,"Logistic sensitivity with region as the outcome and acetylation plus log precursor mass, sequence span length, and first-residue position as predictors."
+first_residue_leq_2_subset,0.8788,0.1991,3.8797,0.714235,38,Restriction to matched-marker rows with first residue at or within two residues of the N terminus.

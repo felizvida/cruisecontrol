@@ -1,0 +1,6 @@
+metric,value,note
+observed_matched_count,125,Observed matched-region counts in the curated marker panel.
+observed_matched_fraction,0.9766,Observed matched-region fraction in the curated marker panel.
+null_mean_matched_count,88.3758,Mean matched counts under family-size-preserving label randomization.
+null_q95_matched_count,95,95th percentile of matched counts under the same null.
+p_upper_bound,5e-06,One-sided Monte Carlo upper bound for a randomization achieving at least the observed match total.
