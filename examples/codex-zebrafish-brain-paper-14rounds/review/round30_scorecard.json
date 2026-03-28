@@ -1,0 +1,20 @@
+{
+  "backend": "paperreview.ai",
+  "paper_path": "paper/main_round29.pdf",
+  "round_label": "round30",
+  "title": "Distinct Proteoform Regimes in Adult Zebrafish Telencephalon and Optic Tectum",
+  "venue": "Other",
+  "submission_date": "2026-03-28T04:23:39.991979",
+  "final_score": null,
+  "verdict": "No calibrated score returned",
+  "score_note": "paperreview.ai calibrated score is currently exposed for ICLR submissions only",
+  "available_sections": [
+    "assessment",
+    "binary_scores",
+    "detailed_comments",
+    "questions",
+    "strengths",
+    "summary",
+    "weaknesses"
+  ]
+}

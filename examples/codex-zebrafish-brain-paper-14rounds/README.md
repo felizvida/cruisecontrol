@@ -24,6 +24,11 @@ source curation -> local computation -> NARRATIVE_REPORT.md -> PAPER_PLAN.md
 -> round25 style pass informed by Monod, Jacob, Brenner, Stent, and Crick
 -> round26 final style pass tightening cadence and compression
 -> round26 paperreview.ai retry blocked by service rate limit
+-> round27 paperreview.ai rereview returns Accept on paper/main_round26.pdf
+-> round28 JPR-facing editorial pass shortens the paper, moves deeper computation into the appendix, and strengthens the biological framing
+-> round29 abstract rewrite follows recent JPR abstract patterns and removes excess numerical detail from the opening summary
+-> round30 paperreview.ai rereview evaluates paper/main_round29.pdf and returns a favorable assessment without a calibrated score for venue Other
+-> round31 revision implements the round30 requests with a duplicate-based detectability model, conservative misidentification bounds, ProForma-oriented canonicalization examples, and clearer figure/sample-size recap
 ```
 
 Open these first:
@@ -36,6 +41,13 @@ Open these first:
 - `paper/main_round24.pdf`
 - `paper/main_round25.pdf`
 - `paper/main_round26.pdf`
+- `paper/main_round28.pdf`
+- `paper/main_round29.pdf`
+- `paper/main_round31.pdf`
+- `review/round30_review.md`
+- `review/round30_scorecard.json`
+- `review/round27_review.md`
+- `review/round27_scorecard.json`
 - `review/round19_review.md`
 - `review/round20_review.md`
 - `review/round21_submission_blocked.md`
@@ -48,22 +60,27 @@ Final status:
 
 - route: `pure Codex`
 - final paper: `paper/main.pdf`
-- latest externally reviewed artifact: `paper/main_round20.pdf`
-- latest completed external review: `round20` from `paperreview.ai` with no calibrated numeric score for venue `Other`
-- latest explicit external accept: `round19`
-- latest frozen artifact awaiting external rereview: `paper/main_round26.pdf`
+- latest externally reviewed artifact: `paper/main_round29.pdf`
+- latest completed external review: `round30` from `paperreview.ai`
+- latest explicit external accept: `round27`
+- latest unre-reviewed revision implementing external feedback: `paper/main_round31.pdf`
+- external-review score: `not returned` for venue `Other`
 - round21 submission status: blocked by `paperreview.ai` rate limit before a token was issued
 - round26 submission status: blocked again by `paperreview.ai` rate limit before a token was issued
 - last calibrated internal score: `9.4 / 10` on `paper/main_round14.pdf`
-- validation: `18` pages, embedded fonts, and no `Overfull`, `Underfull`, or `undefined` matches in `paper/main.log`
+- validation: `13` pages, embedded fonts, and no `Overfull`, `Underfull`, or `undefined` matches in `paper/main.log`
 
 Key final results:
 
 - article-level proteoform Jaccard overlap: `0.0434`
 - exact-ID proteoform Jaccard overlap: `0.0360`
+- occupancy-adjusted shared exact IDs: `43.1859`
+- occupancy-adjusted exact-ID Jaccard overlap: `0.0432`
 - exact-ID centered Jaccard relative to independence: `-0.2792`
 - exact-ID lower-tail overlap significance: `5.56e-183`
 - canonicalized proteoform Jaccard overlap: `0.0615`
+- 5% misidentification-adjusted exact-ID Jaccard ceiling: `0.0540`
+- 10% misidentification-adjusted exact-ID Jaccard ceiling: `0.0725`
 - protein-level overlap fraction: `0.2151`
 - marker alignment fraction: `0.9766`
 - expected alignment under regional prevalence: `0.6904`
@@ -97,6 +114,9 @@ The final package includes:
 - `paper/main_round24.pdf`
 - `paper/main_round25.pdf`
 - `paper/main_round26.pdf`
+- `paper/main_round28.pdf`
+- `paper/main_round29.pdf`
+- `paper/main_round31.pdf`
 - `paper/PAPER_IMPROVEMENT_LOG.md`
 - `review/round00_review.md` through `review/round13_review.md`
 - `review/round15_review.md`
@@ -105,6 +125,8 @@ The final package includes:
 - `review/round18_review.md`
 - `review/round19_review.md`
 - `review/round20_review.md`
+- `review/round30_review.md`
+- `review/round27_review.md`
 - `review/round21_submission_blocked.md`
 - `review/round26_submission_blocked.md`
 - `review/ROUND_REVIEWS_LIVE.md`
@@ -114,14 +136,21 @@ The final package includes:
 - `review/round16_paperreview_submission.json`
 - `review/round17_paperreview_submission.json`
 - `review/round18_paperreview_submission.json`
+- `review/round30_paperreview_submission.json`
+- `review/round30_paperreview_response.json`
+- `review/round27_paperreview_submission.json`
+- `review/round27_paperreview_response.json`
 - `code/`
 - `data/`
 - `results/`
 - `figure_assets/`
 
-This example stays honest about scope. It does not claim a new wet-lab experiment or a raw-data reprocessing pipeline. Its claim is narrower and more defensible: a public proteoform dataset can yield a real new regional-organization statement once the overlap structure, marker architecture, missingness sensitivity, and confounding checks are made explicit. The package includes the internal 14-round loop, multiple live `paperreview.ai` rounds, the blocked round-21 rereview attempt, a round-22 reframing pass that turned the manuscript into a direct knowledge-claim paper, a round-23 cleanup pass that removed the remaining diminishing re-analysis/audit language, a round-24 prose pass that made the academic writing more natural, a round-25 style pass informed by classic molecular-biology prose, a round-26 final pass that tightened cadence and compression, and a second blocked `paperreview.ai` rereview attempt on `paper/main_round26.pdf`. The saved submission metadata redacts the email address and keeps the returned review token local to this working copy.
+This example stays honest about scope. The biological claim rests on public top-down proteomics tables rather than on a new wet-lab run, but it is not just a packaging exercise. The paper now shows that the regional split remains visible after duplicate-based detectability correction, conservative misidentification bounds, marker-panel stress tests, and a standards-aware canonicalization pass. The package includes the internal 14-round loop, multiple live `paperreview.ai` rounds, the blocked round-21 rereview attempt, a round-22 reframing pass that turned the manuscript into a direct knowledge-claim paper, a round-23 cleanup pass that removed the remaining diminishing re-analysis/audit language, a round-24 prose pass that made the academic writing more natural, a round-25 style pass informed by classic molecular-biology prose, a round-26 final pass that tightened cadence and compression, the successful `round27` external rereview that returned `Accept` on `paper/main_round26.pdf`, a later `round28` editorial pass that shortened the paper and made the JPR-facing version more biology-first, a `round29` abstract pass that follows recent JPR abstract patterns more closely, a `round30` external review on the current manuscript, and the new `round31` revision that directly implements those reviewer requests. The saved submission metadata redacts the email address and keeps the returned review token local to this working copy.
 
 Submission support:
 
 - `submission/COVER_LETTER_JPR.md`
+- `submission/README.md`
+- `submission/JPR_20_PAPER_STYLE_MAP.md`
+- `submission/JPR_SUBMISSION_CHECKLIST.md`
 - `review/JPR_COMPARISON_2026-03-24.md`

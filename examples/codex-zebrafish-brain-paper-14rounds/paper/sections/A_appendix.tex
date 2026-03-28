@@ -6,7 +6,19 @@ The package is backed by the source files in \texttt{data/}, the local analysis 
 
 \subsection{Formulas}
 
-The main derived formulas are the Jaccard overlap, specialization fractions, marker-level stabilized log-bias, Wilson intervals for axis-level alignment fractions, an approximate odds-ratio interval for the $2\times2$ matched-versus-spillover table, an exact test on the same table, and a prevalence-adjusted overlap-significance check based on the fixed-margin hypergeometric null.
+The main derived formulas are the Jaccard overlap, specialization fractions, marker-level stabilized log-bias, Wilson intervals for axis-level alignment fractions, an approximate odds-ratio interval for the $2\times2$ matched-versus-spillover table, an exact test on the same table, a prevalence-adjusted overlap-significance check based on the fixed-margin hypergeometric null, a two-run detectability correction based on duplicate rediscovery, and a conservative misidentification ceiling based on paired collapse of region-unique IDs.
+
+\subsection{Extended computational details}
+
+The main text reports only the quantities needed to follow the biology. The full computational path remains local and explicit. Exact-ID overlap is defined on accession-plus-proteoform pairs. The discrepancy diagnostic compares that strict unit with relaxed accession-plus-canonicalized-sequence matches that strip bracketed PTM annotations and punctuation while preserving accession identity. Protein-collapsed summaries merge rows at the protein identifier level. Abundance-weighted comparisons use mean duplicate intensities within each region and report both weighted Jaccard and Bray--Curtis similarity.
+
+For prevalence-adjusted overlap, the observed telencephalon and optic-tectum margins are held fixed and the overlap count is evaluated against the fixed-margin hypergeometric null. The paper reports the observed Jaccard, the marginal-prevalence baseline under independence, the centered Jaccard, and the exact lower-tail $p$ value. For marker alignment, the analysis uses a matched-versus-spillover table together with Wilson intervals, an approximate odds-ratio interval, and an exact directional test. Family-size-preserving randomization keeps family sizes and the global telencephalon/optic-tectum label totals fixed while shuffling labels across the panel counts.
+
+Missingness and abundance sensitivities are likewise kept local and inspectable. The duplicate \texttt{Match}/\texttt{No match} flags in the released tables provide the incidence counts used for Chao2 and first-order jackknife lower-bound richness calculations. Blank intensity cells are treated as absent detections in the baseline analysis, and the MNAR-style sensitivity fills missing exact IDs to half of the region-specific 5th-percentile or 10th-percentile nonzero intensity. Alternative abundance normalizations include per-run total-intensity scaling before duplicate averaging, region-level total-sum scaling, upper-quartile scaling, and median-ratio scaling on shared exact IDs.
+
+The detectability bound uses the same duplicate structure in a different way. After collapsing each region to unique accession-plus-proteoform IDs, each exact ID is treated as detected in one run or both runs. Under a simple homogeneous two-run model, the duplicate-rediscovery counts give a region-specific per-run detection probability and therefore an estimated ``seen at least once'' probability for that region. The observed cross-region shared exact IDs are then divided by the product of those two region-level detection probabilities to estimate how much overlap could be hidden by uneven duplicate recovery alone. This is intentionally simpler than a full hierarchical model, but it answers the reviewer's immediate question with quantities that are actually supported by the released duplicate tables.
+
+The misidentification sensitivity files are equally conservative. They do not claim to estimate the true false-discovery process. Instead, they ask how much the exact-ID Jaccard could rise if an equal fraction of region-unique exact IDs in both regions were actually paired representation or identification errors. The 1\% and 5\% scenarios track the PrSM- and proteoform-level FDR values reported in the source supplement. A second set of rows asks what error fractions would be required to raise the exact-ID Jaccard to 0.10 or all the way to the observed protein-level overlap.
 
 \subsection{Scope note}
 
@@ -14,7 +26,7 @@ The computation uses values recoverable from the published article and the relea
 
 \subsection{Canonicalization and missing-intensity note}
 
-Canonicalization is used only as a discrepancy diagnostic, not as the paper's primary biological unit. The strict analysis unit remains accession plus proteoform string. In the diagnostic view, bracketed PTM annotations, punctuation, and non-sequence characters are removed before matching. The file \texttt{results/canonicalization\_examples.csv} gives concrete before/after cases. Blank intensity cells in the released tables are treated as absent detections in the baseline analysis and contribute zero intensity; the reviewer-driven MNAR sensitivity file records two low-intensity-limit alternatives.
+Canonicalization is used only as a discrepancy diagnostic, not as the paper's primary biological unit. The strict analysis unit remains accession plus proteoform string. In the diagnostic view, bracketed PTM annotations, punctuation, and non-sequence characters are removed before matching. The file \texttt{results/canonicalization\_examples.csv} now separates each example into sequence core, modification tokens, residue window, and canonicalized sequence so that the discrepancy can be inspected in a ProForma-oriented way \citep{leduc2018proforma,leduc2022proforma2}. We do not emit full ProForma 2.0 strings for the whole dataset because the public tables do not expose the localization metadata needed for exact standard-compliant serialization. Blank intensity cells in the released tables are treated as absent detections in the baseline analysis and contribute zero intensity; the reviewer-driven MNAR sensitivity file records two low-intensity-limit alternatives.
 
 \subsection{Reproducibility metadata}
 
@@ -58,7 +70,7 @@ The full leave-one-out table and the reviewer-driven sensitivity scenarios are s
 \toprule
 Claim & Evidence & Main limit \\
 \midrule
-Proteoform-level regional separation & Article Jaccard 0.0434, exact-ID Jaccard 0.0360, protein overlap 0.2151, duplicate-informed sensitivity band 0.0233--0.0394 & Public tables, not raw-feature reprocessing \\
+Proteoform-level regional separation & Article Jaccard 0.0434, exact-ID Jaccard 0.0360, occupancy-adjusted Jaccard 0.0432, 5\% misidentification ceiling 0.0540, protein overlap 0.2151 & Public tables, not raw-feature reprocessing \\
 Functional markers align with expected region & Axis alignment, exact test, sign check, leave-one-out table, protein collapse, intensity weighting & Curated marker panel only \\
 PTM layer contains a suggestive but unstable acetylation asymmetry & Unadjusted acetylation 14/23 versus 16/102; detectability and covariate sensitivity files & Public tables do not separate biology cleanly from geometry/coverage bias \\
 Package improves auditability & Local code, figures, manifests, exact marker membership, and evidence traceability & Does not replace the source experiment \\

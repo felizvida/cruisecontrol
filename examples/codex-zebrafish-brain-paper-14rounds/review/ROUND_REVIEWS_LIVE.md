@@ -1,6 +1,6 @@
 # Round Reviews Live
 
-This file summarizes the serialized review-driven path from the baseline paper through the completed `paperreview.ai` rounds and the current externally blocked retry.
+This file summarizes the serialized review-driven path from the baseline paper through the completed `paperreview.ai` rounds, including the later successful rereview of `paper/main_round26.pdf`, the newer external review of `paper/main_round29.pdf`, and the current `paper/main_round31.pdf` revision that answers the latest external critique.
 
 | Round reviewed | Score | Verdict | Main issue pushed into next round |
 | --- | ---: | --- | --- |
@@ -26,13 +26,17 @@ This file summarizes the serialized review-driven path from the baseline paper t
 | `round20` via `paperreview.ai` | -- | No calibrated score returned | add prevalence-adjusted overlap significance, MNAR-style intensity sensitivity, an independent literature-derived marker panel, and a stronger confounding check that may weaken the acetylation claim |
 | `round21` submission attempt | -- | Blocked by rate limit | revised paper frozen as `paper/main_round21.pdf`, but `paperreview.ai` returned `Rate limit exceeded` before issuing a token |
 | `round26` submission attempt | -- | Blocked by rate limit | style-refined manuscript frozen as `paper/main_round26.pdf`, but two live submission attempts both failed before token issuance |
+| `round27` via `paperreview.ai` | -- | Accept | release fuller reproducibility details, make canonicalization and protein-collapse rules fully explicit, surface code/data links, and expand standards/context discussion |
+| `round30` via `paperreview.ai` | -- | No calibrated score returned | next issues are occupancy-style detectability modeling, misidentification-sensitive uniqueness bounds, ProForma-aligned canonicalization, clearer figure/sample-size recap, and stronger standards-context positioning |
+| `round31` author revision | -- | Pending rereview | implements the round30 requests with a duplicate-based occupancy model, conservative misidentification ceilings, standards-oriented canonicalization examples, and clearer figure/sample-size recap |
 
 Current external-review state:
 
-- latest externally reviewed artifact: `paper/main_round20.pdf`
+- latest externally reviewed artifact: `paper/main_round29.pdf`
 - latest completed external verdict: `No calibrated score returned`
-- last explicit external `Accept`: `round19`
-- latest frozen artifact blocked at external submission: `paper/main_round26.pdf`
-- current manuscript also includes later authorial framing passes after the blocked submission, recorded as `paper/main_round22.pdf`, `paper/main_round23.pdf`, `paper/main_round24.pdf`, `paper/main_round25.pdf`, and `paper/main_round26.pdf`
-- documented external submission blocks: `review/round21_submission_blocked.md` and `review/round26_submission_blocked.md`
+- latest completed external review: `review/round30_review.md`
+- latest saved external response payload: `review/round30_paperreview_response.json`
+- last explicit external `Accept`: `round27`
+- current manuscript includes the later authorial framing passes recorded as `paper/main_round22.pdf`, `paper/main_round23.pdf`, `paper/main_round24.pdf`, `paper/main_round25.pdf`, the externally accepted `paper/main_round26.pdf`, the later JPR-facing editorial revision `paper/main_round28.pdf`, the abstract-refined and externally rereviewed `paper/main_round29.pdf`, and the current `paper/main_round31.pdf` revision implementing the round30 reviewer requests
+- documented external submission blocks retained for provenance: `review/round21_submission_blocked.md` and `review/round26_submission_blocked.md`
 - last calibrated internal score before the external loop: `9.4 / 10` on `paper/main_round14.pdf`

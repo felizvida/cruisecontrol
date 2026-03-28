@@ -395,6 +395,18 @@ def canonicalize_proteoform(proteoform: str) -> str:
     return re.sub(r"[^A-Z]", "", cleaned)
 
 
+def proteoform_sequence_core(proteoform: str) -> str:
+    parts = proteoform.split(".")
+    if len(parts) >= 3:
+        return ".".join(parts[1:-1]) if len(parts) > 3 else parts[1]
+    return proteoform.strip(".")
+
+
+def proteoform_modification_tokens(proteoform: str) -> str:
+    tokens = re.findall(r"\[([^\]]+)\]", proteoform)
+    return ";".join(tokens) if tokens else "none"
+
+
 def modification_bucket(proteoform: str) -> str:
     tags = re.findall(r"\[([^\]]+)\]", proteoform)
     if not tags:
@@ -444,6 +456,30 @@ def load_source_rows(filename: str, region: str) -> list[dict[str, object]]:
             }
         )
     return enriched_rows
+
+
+def aggregate_exact_ids(rows: list[dict[str, object]]) -> dict[tuple[str, str], dict[str, object]]:
+    aggregated: dict[tuple[str, str], dict[str, object]] = {}
+    for row in rows:
+        proteoform_id = row["proteoform_id"]
+        if proteoform_id not in aggregated:
+            aggregated[proteoform_id] = {
+                "region": row["region"],
+                "protein_accession": row["protein_accession"],
+                "proteoform": row["proteoform"],
+                "canonicalized_proteoform": row["canonicalized_proteoform"],
+                "first_residue": row["first_residue"],
+                "last_residue": row["last_residue"],
+                "run_intensities": [0.0, 0.0],
+            }
+        aggregated_row = aggregated[proteoform_id]
+        current = aggregated_row["run_intensities"]
+        run_values = row["run_intensities"]
+        aggregated_row["run_intensities"] = [
+            float(current[0]) + float(run_values[0]),
+            float(current[1]) + float(run_values[1]),
+        ]
+    return aggregated
 
 
 def bootstrap_overlap_intervals(
@@ -729,6 +765,244 @@ def build_presence_overlap_significance(
             }
         )
     return summary, rows
+
+
+def build_occupancy_detectability_model(
+    tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]]
+) -> tuple[dict[str, object], list[dict[str, object]]]:
+    tel_exact = aggregate_exact_ids(tel_rows)
+    teo_exact = aggregate_exact_ids(teo_rows)
+
+    def summarize_region(
+        aggregated_rows: dict[tuple[str, str], dict[str, object]], region: str
+    ) -> tuple[dict[str, object], dict[str, float]]:
+        q1 = 0
+        q2 = 0
+        for row in aggregated_rows.values():
+            detections = sum(1 for value in row["run_intensities"] if float(value) > 0)
+            if detections == 1:
+                q1 += 1
+            elif detections == 2:
+                q2 += 1
+        exact_id_count = len(aggregated_rows)
+        per_run_detection = (2 * q2 / (q1 + 2 * q2)) if (q1 + 2 * q2) else 0.0
+        detected_at_least_once = 2 * per_run_detection - per_run_detection * per_run_detection
+        latent_richness = exact_id_count / detected_at_least_once if detected_at_least_once else 0.0
+        row = {
+            "section": "region_effort",
+            "region": region,
+            "exact_id_count": exact_id_count,
+            "single_run_only_count": q1,
+            "duplicate_reobserved_count": q2,
+            "per_run_detection_probability": round(per_run_detection, 4),
+            "detected_at_least_once_probability": round(detected_at_least_once, 4),
+            "latent_richness_estimate": round(latent_richness, 4),
+            "adjusted_shared_exact_ids": "",
+            "adjusted_jaccard_overlap": "",
+            "note": (
+                "Two-run occupancy-style bound estimated from exact-ID duplicate rediscovery. "
+                "The model treats each exact proteoform as latent and uses only whether it was seen in one run or both."
+            ),
+        }
+        return row, {
+            "q1": q1,
+            "q2": q2,
+            "exact_id_count": exact_id_count,
+            "per_run_detection": per_run_detection,
+            "detected_at_least_once": detected_at_least_once,
+            "latent_richness": latent_richness,
+        }
+
+    tel_row, tel_summary = summarize_region(tel_exact, "telencephalon")
+    teo_row, teo_summary = summarize_region(teo_exact, "optic_tectum")
+
+    observed_shared = len(set(tel_exact) & set(teo_exact))
+    adjusted_shared = (
+        observed_shared
+        / (tel_summary["detected_at_least_once"] * teo_summary["detected_at_least_once"])
+        if tel_summary["detected_at_least_once"] and teo_summary["detected_at_least_once"]
+        else 0.0
+    )
+    adjusted_union = (
+        tel_summary["latent_richness"] + teo_summary["latent_richness"] - adjusted_shared
+        if adjusted_shared
+        else 0.0
+    )
+    adjusted_jaccard = adjusted_shared / adjusted_union if adjusted_union else 0.0
+    hidden_shared_increment = adjusted_shared - observed_shared
+
+    overlap_row = {
+        "section": "cross_region_overlap",
+        "region": "paired_regions",
+        "exact_id_count": "",
+        "single_run_only_count": "",
+        "duplicate_reobserved_count": "",
+        "per_run_detection_probability": "",
+        "detected_at_least_once_probability": "",
+        "latent_richness_estimate": round(adjusted_union, 4),
+        "adjusted_shared_exact_ids": round(adjusted_shared, 4),
+        "adjusted_jaccard_overlap": round(adjusted_jaccard, 4),
+        "note": (
+            "Cross-region overlap after correcting the observed shared exact IDs for the region-specific "
+            "two-run detection probabilities. This quantifies how much hidden overlap could be attributed "
+            "to uneven duplicate recovery alone."
+        ),
+    }
+
+    summary = {
+        "occupancy_tel_q1_exact_ids": tel_summary["q1"],
+        "occupancy_tel_q2_exact_ids": tel_summary["q2"],
+        "occupancy_teo_q1_exact_ids": teo_summary["q1"],
+        "occupancy_teo_q2_exact_ids": teo_summary["q2"],
+        "occupancy_tel_per_run_detection_probability": round(tel_summary["per_run_detection"], 4),
+        "occupancy_teo_per_run_detection_probability": round(teo_summary["per_run_detection"], 4),
+        "occupancy_tel_detected_at_least_once_probability": round(
+            tel_summary["detected_at_least_once"], 4
+        ),
+        "occupancy_teo_detected_at_least_once_probability": round(
+            teo_summary["detected_at_least_once"], 4
+        ),
+        "occupancy_tel_latent_richness_estimate": round(tel_summary["latent_richness"], 4),
+        "occupancy_teo_latent_richness_estimate": round(teo_summary["latent_richness"], 4),
+        "occupancy_adjusted_shared_exact_ids": round(adjusted_shared, 4),
+        "occupancy_adjusted_hidden_shared_increment": round(hidden_shared_increment, 4),
+        "occupancy_adjusted_jaccard_overlap": round(adjusted_jaccard, 4),
+    }
+
+    return summary, [tel_row, teo_row, overlap_row]
+
+
+def build_misidentification_sensitivity_bounds(
+    tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]], protein_overlap_fraction: float
+) -> tuple[dict[str, object], list[dict[str, object]]]:
+    tel_exact_ids = {row["proteoform_id"] for row in tel_rows}
+    teo_exact_ids = {row["proteoform_id"] for row in teo_rows}
+    shared = len(tel_exact_ids & teo_exact_ids)
+    union = len(tel_exact_ids | teo_exact_ids)
+    tel_unique = len(tel_exact_ids) - shared
+    teo_unique = len(teo_exact_ids) - shared
+
+    rows: list[dict[str, object]] = []
+    summary: dict[str, object] = {}
+    scenario_rates = [0.01, 0.025, 0.05, 0.10]
+    for rate in scenario_rates:
+        reclassified_pairs = min(tel_unique * rate, teo_unique * rate)
+        adjusted_shared = shared + reclassified_pairs
+        adjusted_union = union - reclassified_pairs
+        adjusted_jaccard = adjusted_shared / adjusted_union
+        rows.append(
+            {
+                "scenario_type": "assumed_unique_id_error_rate",
+                "scenario": f"{int(rate * 1000) / 10:g}% conservative paired reclassification",
+                "assumed_error_rate": round(rate, 4),
+                "reclassified_pairs": round(reclassified_pairs, 4),
+                "adjusted_shared_count": round(adjusted_shared, 4),
+                "adjusted_union_count": round(adjusted_union, 4),
+                "adjusted_jaccard_overlap": round(adjusted_jaccard, 4),
+                "tel_unique_error_fraction_needed": "",
+                "teo_unique_error_fraction_needed": "",
+                "note": (
+                    "Conservative upper bound that lets an equal fraction of region-unique exact IDs in "
+                    "both regions collapse into paired shared IDs. The 1% and 5% scenarios match the "
+                    "PrSM- and proteoform-level FDR values reported for the source workflow."
+                ),
+            }
+        )
+        summary[f"misidentification_{str(rate).replace('.', '_')}_adjusted_jaccard_overlap"] = round(
+            adjusted_jaccard, 4
+        )
+
+    target_specs = [
+        ("jaccard_0_10", 0.10, "Rate needed to lift the exact-ID Jaccard to 0.10."),
+        (
+            "protein_overlap_fraction",
+            protein_overlap_fraction,
+            "Rate needed to lift the exact-ID Jaccard all the way to the observed protein-level overlap.",
+        ),
+    ]
+    for label, target_jaccard, note in target_specs:
+        reclassified_pairs = (target_jaccard * union - shared) / (1 + target_jaccard)
+        tel_rate = reclassified_pairs / tel_unique if tel_unique else 0.0
+        teo_rate = reclassified_pairs / teo_unique if teo_unique else 0.0
+        rows.append(
+            {
+                "scenario_type": "target_jaccard_threshold",
+                "scenario": label,
+                "assumed_error_rate": "",
+                "reclassified_pairs": round(reclassified_pairs, 4),
+                "adjusted_shared_count": round(shared + reclassified_pairs, 4),
+                "adjusted_union_count": round(union - reclassified_pairs, 4),
+                "adjusted_jaccard_overlap": round(target_jaccard, 4),
+                "tel_unique_error_fraction_needed": round(tel_rate, 4),
+                "teo_unique_error_fraction_needed": round(teo_rate, 4),
+                "note": note,
+            }
+        )
+        summary[f"misidentification_rate_needed_for_{label}_tel"] = round(tel_rate, 4)
+        summary[f"misidentification_rate_needed_for_{label}_teo"] = round(teo_rate, 4)
+
+    return summary, rows
+
+
+def build_canonicalization_examples(
+    tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]], limit: int = 12
+) -> list[dict[str, object]]:
+    tel_exact_ids = {row["proteoform_id"] for row in tel_rows}
+    teo_exact_ids = {row["proteoform_id"] for row in teo_rows}
+    tel_canonical: dict[tuple[str, str], list[dict[str, object]]] = {}
+    teo_canonical: dict[tuple[str, str], list[dict[str, object]]] = {}
+    for row in tel_rows:
+        key = (str(row["protein_accession"]), str(row["canonicalized_proteoform"]))
+        tel_canonical.setdefault(key, []).append(row)
+    for row in teo_rows:
+        key = (str(row["protein_accession"]), str(row["canonicalized_proteoform"]))
+        teo_canonical.setdefault(key, []).append(row)
+
+    rows: list[dict[str, object]] = []
+    for key in sorted(tel_canonical.keys() & teo_canonical.keys()):
+        tel_candidates = tel_canonical[key]
+        teo_candidates = teo_canonical[key]
+        example_pair: tuple[dict[str, object], dict[str, object]] | None = None
+        for tel_row in tel_candidates:
+            for teo_row in teo_candidates:
+                if tel_row["proteoform_id"] != teo_row["proteoform_id"]:
+                    example_pair = (tel_row, teo_row)
+                    break
+            if example_pair is not None:
+                break
+        if example_pair is None:
+            continue
+        tel_row, teo_row = example_pair
+        rows.append(
+            {
+                "protein_accession": tel_row["protein_accession"],
+                "telencephalon_proteoform": tel_row["proteoform"],
+                "optic_tectum_proteoform": teo_row["proteoform"],
+                "telencephalon_sequence_core": proteoform_sequence_core(str(tel_row["proteoform"])),
+                "optic_tectum_sequence_core": proteoform_sequence_core(str(teo_row["proteoform"])),
+                "telencephalon_modification_tokens": proteoform_modification_tokens(
+                    str(tel_row["proteoform"])
+                ),
+                "optic_tectum_modification_tokens": proteoform_modification_tokens(
+                    str(teo_row["proteoform"])
+                ),
+                "canonicalized_sequence": key[1],
+                "telencephalon_residue_window": f"{tel_row['first_residue']}-{tel_row['last_residue']}",
+                "optic_tectum_residue_window": f"{teo_row['first_residue']}-{teo_row['last_residue']}",
+                "standards_note": (
+                    "The source strings are decomposed into sequence-core and modification-token parts so "
+                    "they can be compared in a ProForma-oriented way, even though the public tables do not "
+                    "expose the full localization metadata needed for full ProForma 2.0 serialization."
+                ),
+                "note": (
+                    "Strict proteoform strings differ, but accession identity plus the canonicalized sequence "
+                    "still indicate the same proteoform family."
+                ),
+            }
+        )
+        if len(rows) >= limit:
+            break
+    return rows
 
 
 def permutation_test_mean_difference(
@@ -2137,6 +2411,9 @@ def build_traceability(
             "results/presence_overlap_significance.csv",
             "results/discrepancy_diagnostic.csv",
             "results/canonicalization_rule_sensitivity.csv",
+            "results/canonicalization_examples.csv",
+            "results/occupancy_detectability_model.csv",
+            "results/misidentification_sensitivity.csv",
             "results/source_table_shared_ids.csv",
             "results/marker_family_membership.csv",
             "results/marker_permutation_test.csv",
@@ -2182,8 +2459,13 @@ def main() -> None:
     overlap_bootstrap_summary, overlap_bootstrap_rows = bootstrap_overlap_intervals(tel_rows, teo_rows)
     run_pair_summary, run_pair_rows = build_run_pair_similarity(tel_rows, teo_rows)
     canonicalization_summary, canonicalization_rows = build_canonicalization_rule_sensitivity(tel_rows, teo_rows)
+    canonicalization_example_rows = build_canonicalization_examples(tel_rows, teo_rows)
     overlap_significance_summary, overlap_significance_rows = build_presence_overlap_significance(
         tel_rows, teo_rows
+    )
+    occupancy_summary, occupancy_rows = build_occupancy_detectability_model(tel_rows, teo_rows)
+    misidentification_summary, misidentification_rows = build_misidentification_sensitivity_bounds(
+        tel_rows, teo_rows, source_metrics["source_table_protein_overlap_fraction"]
     )
     ptm_detectability_summary, ptm_detectability_rows = build_ptm_detectability_proxy_screen(membership_rows)
     mnar_similarity_summary, mnar_similarity_rows = build_mnar_similarity_sensitivity(tel_rows, teo_rows)
@@ -2299,7 +2581,10 @@ def main() -> None:
     summary.update(overlap_bootstrap_summary)
     summary.update(run_pair_summary)
     summary.update(canonicalization_summary)
+    summary["canonicalization_examples_count"] = len(canonicalization_example_rows)
     summary.update(overlap_significance_summary)
+    summary.update(occupancy_summary)
+    summary.update(misidentification_summary)
     summary.update(ptm_detectability_summary)
     summary.update(mnar_similarity_summary)
     summary.update(acetylation_adjusted_summary)
@@ -2549,6 +2834,57 @@ def main() -> None:
         RESULTS_DIR / "canonicalization_rule_sensitivity.csv",
         canonicalization_rows,
         ["rule", "shared_count", "union_count", "jaccard_overlap", "note"],
+    )
+    write_csv(
+        RESULTS_DIR / "canonicalization_examples.csv",
+        canonicalization_example_rows,
+        [
+            "protein_accession",
+            "telencephalon_proteoform",
+            "optic_tectum_proteoform",
+            "telencephalon_sequence_core",
+            "optic_tectum_sequence_core",
+            "telencephalon_modification_tokens",
+            "optic_tectum_modification_tokens",
+            "canonicalized_sequence",
+            "telencephalon_residue_window",
+            "optic_tectum_residue_window",
+            "standards_note",
+            "note",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "occupancy_detectability_model.csv",
+        occupancy_rows,
+        [
+            "section",
+            "region",
+            "exact_id_count",
+            "single_run_only_count",
+            "duplicate_reobserved_count",
+            "per_run_detection_probability",
+            "detected_at_least_once_probability",
+            "latent_richness_estimate",
+            "adjusted_shared_exact_ids",
+            "adjusted_jaccard_overlap",
+            "note",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "misidentification_sensitivity.csv",
+        misidentification_rows,
+        [
+            "scenario_type",
+            "scenario",
+            "assumed_error_rate",
+            "reclassified_pairs",
+            "adjusted_shared_count",
+            "adjusted_union_count",
+            "adjusted_jaccard_overlap",
+            "tel_unique_error_fraction_needed",
+            "teo_unique_error_fraction_needed",
+            "note",
+        ],
     )
     write_csv(
         RESULTS_DIR / "ptm_detectability_proxies.csv",

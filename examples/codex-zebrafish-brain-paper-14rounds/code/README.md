@@ -3,7 +3,7 @@
 This example uses a small local computation stack:
 
 - `../results/analyze_region_proteome.py`
-  Computes article-level overlap, exact-ID and canonicalized source-table overlap, prevalence-adjusted overlap significance, duplicate-informed Chao2 and jackknife missingness sensitivity, MNAR-style low-intensity sensitivity, normalization-sensitive abundance similarities, marker-bias, axis-alignment, family-size-preserving permutation tests, an independent literature-derived marker panel, intensity-weighted and protein-collapsed robustness, PTM follow-up, covariate-adjusted acetylation sensitivity, composition guardrails, and technical-replicate summaries.
+  Computes article-level overlap, exact-ID and canonicalized source-table overlap, prevalence-adjusted overlap significance, a duplicate-based detectability model, conservative misidentification bounds, duplicate-informed Chao2 and jackknife missingness sensitivity, MNAR-style low-intensity sensitivity, normalization-sensitive abundance similarities, marker-bias, axis-alignment, family-size-preserving permutation tests, an independent literature-derived marker panel, intensity-weighted and protein-collapsed robustness, PTM follow-up, covariate-adjusted acetylation sensitivity, composition guardrails, and technical-replicate summaries.
 
 - `../results/render_figures.R`
   Generates publication-ready PDF, SVG, and 600 DPI PNG figure assets.
@@ -22,7 +22,10 @@ The analysis stage now also emits:
 - `../results/source_table_metrics.json`
 - `../results/abundance_normalization_sensitivity.csv`
 - `../results/presence_overlap_significance.csv`
+- `../results/occupancy_detectability_model.csv`
+- `../results/misidentification_sensitivity.csv`
 - `../results/discrepancy_diagnostic.csv`
+- `../results/canonicalization_examples.csv`
 - `../results/source_table_shared_ids.csv`
 - `../results/source_table_proteoforms.csv`
 - `../results/marker_family_membership.csv`

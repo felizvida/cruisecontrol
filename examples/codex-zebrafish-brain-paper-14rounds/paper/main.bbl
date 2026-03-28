@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{14}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -15,63 +15,12 @@ Mehrdad~Falamarzi Askarani, William Poulos, Maryam~Rahimzadeh Dashtaki,
   e70009, 2025.
 \newblock \doi{10.1002/jms.70009}.
 
-\bibitem[Bryan et~al.(2016)Bryan, Jarboui, Raso, Bernal-Llinares, McCann,
-  Rauch, Boldt, and Lynn]{bryan2016hiquant}
-Kenneth Bryan, Mohamed-Ali Jarboui, Cinzia Raso, Manuel Bernal-Llinares,
-  Brendan McCann, Jens Rauch, Karsten Boldt, and David~J. Lynn.
-\newblock {HiQuant}: Rapid postquantification analysis of large-scale
-  {MS}-generated proteomics data.
-\newblock \emph{Journal of Proteome Research}, 15\penalty0 (6):\penalty0
-  2072--2079, 2016.
-\newblock \doi{10.1021/acs.jproteome.5b01008}.
-
-\bibitem[Chao et~al.(2005)Chao, Chazdon, Colwell, and Shen]{chao2005similarity}
-Anne Chao, Robin~L. Chazdon, Robert~K. Colwell, and Tsung-Jen Shen.
-\newblock A new statistical approach for assessing similarity of species
-  composition with incidence and abundance data.
-\newblock \emph{Ecology Letters}, 8\penalty0 (2):\penalty0 148--159, 2005.
-\newblock \doi{10.1111/j.1461-0248.2004.00707.x}.
-
-\bibitem[Chiu et~al.(2014)Chiu, Wang, Walther, and Chao]{chiu2014goodturing}
-Chun-Huo Chiu, Yi-Ting Wang, Bruno~A. Walther, and Anne Chao.
-\newblock An improved nonparametric lower bound of species richness via a
-  modified {Good--Turing} frequency formula.
-\newblock \emph{Biometrics}, 70\penalty0 (3):\penalty0 671--682, 2014.
-\newblock \doi{10.1111/biom.12200}.
-
 \bibitem[Choi and Liu(2022)]{choi2022toppic}
 In~Kwon Choi and Xiaowen Liu.
 \newblock Top-down mass spectrometry data analysis using {TopPIC} suite.
 \newblock In \emph{Top-Down Proteomics}, volume 2500 of \emph{Methods in
   Molecular Biology}, pages 83--103. Humana, 2022.
 \newblock \doi{10.1007/978-1-0716-2325-1_8}.
-
-\bibitem[Chung et~al.(2019)Chung, Miasojedow, Startek, and
-  Gambin]{chung2019jaccard}
-Neo~Christopher Chung, B{\l}a{\.z}ej Miasojedow, Micha{\l} Startek, and Anna
-  Gambin.
-\newblock Jaccard/{Tanimoto} similarity test and estimation methods for
-  biological presence-absence data.
-\newblock \emph{BMC Bioinformatics}, 20\penalty0 (Suppl 15):\penalty0 644,
-  2019.
-\newblock \doi{10.1186/s12859-019-3118-5}.
-
-\bibitem[Ito et~al.(2010)Ito, Tanaka, Okamoto, and Ohshima]{ito2010tectum}
-Yoko Ito, Hideomi Tanaka, Hitoshi Okamoto, and Toshio Ohshima.
-\newblock Characterization of neural stem cells and their progeny in the adult
-  zebrafish optic tectum.
-\newblock \emph{Developmental Biology}, 342\penalty0 (1):\penalty0 26--38,
-  2010.
-\newblock \doi{10.1016/j.ydbio.2010.03.008}.
-
-\bibitem[Karpievitch et~al.(2009)Karpievitch, Taverner, Adkins, Callister,
-  Anderson, Smith, and Dabney]{karpievitch2009eigenms}
-Yuliya~V. Karpievitch, Thomas Taverner, Joshua~N. Adkins, Stephen~J. Callister,
-  Gordon~A. Anderson, Richard~D. Smith, and Alan~R. Dabney.
-\newblock Normalization of peak intensities in bottom-up {MS}-based proteomics
-  using singular value decomposition.
-\newblock \emph{Bioinformatics}, 25\penalty0 (19):\penalty0 2573--2580, 2009.
-\newblock \doi{10.1093/bioinformatics/btp426}.
 
 \bibitem[Karpievitch et~al.(2012)Karpievitch, Dabney, and
   Smith]{karpievitch2012missing}
@@ -99,6 +48,21 @@ Richard~D. LeDuc, Veit Schw{\"a}mmle, Michael~R. Shortreed, Anthony~J. Cesnik,
 \newblock \emph{Journal of Proteome Research}, 17\penalty0 (3):\penalty0
   1321--1325, 2018.
 \newblock \doi{10.1021/acs.jproteome.7b00851}.
+
+\bibitem[LeDuc et~al.(2022)LeDuc, Deutsch, Binz, Fellers, Cesnik, Klein, Van
+  Den~Bossche, Gabriels, Yalavarthi, Perez-Riverol, Carver, Bittremieux,
+  Kawano, Pullman, Bandeira, Kelleher, Thomas, and
+  Vizca{\'\i}no]{leduc2022proforma2}
+Richard~D. LeDuc, Eric~W. Deutsch, Pierre-Alain Binz, Ryan~T. Fellers,
+  Anthony~J. Cesnik, Jason~A. Klein, Tim Van Den~Bossche, Ruben Gabriels, Anoop
+  Yalavarthi, Yasset Perez-Riverol, Jeremy Carver, Wout Bittremieux, Shin
+  Kawano, Bryan Pullman, Nuno Bandeira, Neil~L. Kelleher, Philip~M. Thomas, and
+  Juan~A. Vizca{\'\i}no.
+\newblock Proteomics standards initiative's {ProForma} 2.0: Unifying the
+  encoding of proteoforms and peptidoforms.
+\newblock \emph{Journal of Proteome Research}, 21\penalty0 (4):\penalty0
+  1189--1195, 2022.
+\newblock \doi{10.1021/acs.jproteome.1c00771}.
 
 \bibitem[Lubeckyj and Sun(2022)]{lubeckyj2022lcmcze}
 Rachele~A. Lubeckyj and Liangliang Sun.
@@ -151,15 +115,6 @@ Muhammad Shaban et~al.
 \newblock A foundation model for spatial proteomics.
 \newblock \emph{CoRR}, abs/2506.03373, 2025.
 \newblock \doi{10.48550/arXiv.2506.03373}.
-
-\bibitem[Siems et~al.(2021)Siems, Jahn, Hoodless, Jung, Hesse, M{\"o}bius,
-  Czopka, and Werner]{siems2021myelin}
-Sebastian~B. Siems, Olaf Jahn, Laura~J. Hoodless, Rachel~B. Jung, Daniel Hesse,
-  Wiebke M{\"o}bius, Tim Czopka, and Hauke~B. Werner.
-\newblock Proteome profile of myelin in the zebrafish brain.
-\newblock \emph{Frontiers in Cell and Developmental Biology}, 9:\penalty0
-  640169, 2021.
-\newblock \doi{10.3389/fcell.2021.640169}.
 
 \bibitem[Stednitz et~al.(2018)Stednitz, McDermott, Ncube, Tallafuss, Eisen, and
   Washbourne]{stednitz2018social}

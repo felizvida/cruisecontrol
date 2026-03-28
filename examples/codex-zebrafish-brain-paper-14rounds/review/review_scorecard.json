@@ -1,9 +1,9 @@
 {
-  "artifact": "paper/main_round26.pdf",
+  "artifact": "paper/main_round31.pdf",
   "latest_external_review": {
     "backend": "paperreview.ai",
-    "round_label": "round20",
-    "reviewed_artifact": "paper/main_round20.pdf",
+    "round_label": "round30",
+    "reviewed_artifact": "paper/main_round29.pdf",
     "venue": "Other",
     "final_score": null,
     "verdict": "No calibrated score returned",
@@ -11,15 +11,27 @@
   },
   "latest_external_accept": {
     "backend": "paperreview.ai",
-    "round_label": "round19",
-    "reviewed_artifact": "paper/main_round19.pdf",
+    "round_label": "round27",
+    "reviewed_artifact": "paper/main_round26.pdf",
     "final_score": null,
     "verdict": "Accept"
   },
   "current_revision_state": {
-    "artifact": "paper/main_round26.pdf",
+    "artifact": "paper/main_round31.pdf",
     "externally_rereviewed": false,
-    "note": "Implements the completed round20 external review requests and later authorial framing passes, but the next external rereview has not occurred because paperreview.ai rate-limited both the round21 and round26 submission attempts before a token was issued."
+    "note": "The current manuscript, paper/main_round31.pdf, implements the round30 external review requests with new detectability, misidentification, and standards-oriented analyses, but it has not yet been sent back out for external rereview."
+  },
+  "round28_jpr_editorial_pass": {
+    "status": "completed",
+    "note": "See paper/main_round28.pdf and submission/JPR_20_PAPER_STYLE_MAP.md for the biology-first, JPR-facing revision made after the round27 external acceptance."
+  },
+  "round29_abstract_rewrite": {
+    "status": "completed",
+    "note": "See paper/main_round29.pdf for the subsequent abstract rewrite based on JPR abstract patterns, with fewer metrics in the abstract and smoother biological framing."
+  },
+  "round31_external_feedback_revision": {
+    "status": "completed",
+    "note": "See paper/main_round31.pdf, results/occupancy_detectability_model.csv, results/misidentification_sensitivity.csv, and results/canonicalization_examples.csv for the revision that directly implements the round30 external reviewer requests."
   },
   "round21_submission_blocked": {
     "status": "rate_limited",
@@ -29,6 +41,14 @@
     "status": "rate_limited",
     "note": "See review/round26_submission_blocked.md for the failed immediate retry and short-cooldown retry on the current manuscript."
   },
+  "round27_successful_rereview": {
+    "status": "completed",
+    "note": "See review/round27_review.md, review/round27_scorecard.json, and review/round27_paperreview_response.json for the successful acceptance review of paper/main_round26.pdf."
+  },
+  "round30_successful_rereview": {
+    "status": "completed",
+    "note": "See review/round30_review.md, review/round30_scorecard.json, and review/round30_paperreview_response.json for the latest external review of paper/main_round29.pdf."
+  },
   "last_calibrated_internal_review": {
     "artifact": "paper/main_round14.pdf",
     "final_score": 9.4,
@@ -37,9 +57,15 @@
   "headline_metrics": {
     "article_jaccard_overlap": 0.0434,
     "exact_id_jaccard_overlap": 0.036,
+    "occupancy_adjusted_shared_exact_ids": 43.1859,
+    "occupancy_adjusted_jaccard_overlap": 0.0432,
     "exact_id_centered_jaccard": -0.2792,
     "exact_id_overlap_lower_tail_neg_log10_p": 182.2549,
     "canonicalized_jaccard_overlap": 0.0615,
+    "misidentification_0_05_adjusted_jaccard_overlap": 0.054,
+    "misidentification_0_1_adjusted_jaccard_overlap": 0.0725,
+    "misidentification_rate_needed_for_jaccard_0_10_tel": 0.1709,
+    "misidentification_rate_needed_for_jaccard_0_10_teo": 0.0933,
     "protein_overlap_fraction": 0.2151,
     "protein_level_overlap_lower_tail_neg_log10_p": 32.2336,
     "marker_alignment_fraction": 0.9766,

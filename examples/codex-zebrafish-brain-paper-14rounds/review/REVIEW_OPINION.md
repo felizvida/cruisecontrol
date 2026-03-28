@@ -1,8 +1,8 @@
 # Latest Review Opinion
 
-Reviewed artifact: `paper/main_round20.pdf`
+Reviewed artifact: `paper/main_round29.pdf`
 
-Current final artifact: `paper/main_round26.pdf`
+Current final artifact: `paper/main_round31.pdf`
 
 Backend: `paperreview.ai`
 
@@ -12,36 +12,48 @@ Verdict: `No calibrated score returned`
 
 ## Summary
 
-The latest completed external review was `round20` on `paper/main_round20.pdf`. It remained broadly positive about the paper's value, but it asked for another substantive revision pass before the package should be treated as fully settled. The strongest reviewer asks were:
+The latest completed external review is `round30` on `paper/main_round29.pdf`. `paperreview.ai` did not return a calibrated score for venue `Other`, but the assessment was favorable and treated the paper as publishable after targeted clarifications. Those clarifications have now been implemented in `paper/main_round31.pdf`. The round30 requests were:
 
-1. a prevalence-adjusted overlap significance analysis instead of descriptive Jaccard alone
-2. a minimal MNAR-aware sensitivity for the intensity similarities
-3. a simple confounding check for the acetylation result using public detectability proxies
-4. a small independently curated marker panel not inherited from the source paper
+1. quantify detectability more formally with an occupancy-style or hierarchical effort model
+2. bound possible uniqueness inflation under assumed misidentification rates
+3. align canonicalization more explicitly with ProForma 2.0 and related community standards
+4. tighten figure/sample-size recap and connect the work more directly to standards and missingness frameworks in proteomics
 
-## What Changed In `main_round22.pdf`
+## What The Latest Revision Added
 
-The current frozen artifact `paper/main_round26.pdf` preserves those scientific revisions and adds later authorial passes that reframe the manuscript as a direct knowledge contribution rather than as a reconstruction exercise.
+`paper/main_round31.pdf` responds directly to the latest external review by adding:
 
-1. Added a prevalence-adjusted overlap-significance analysis using a fixed-margin lower-tail hypergeometric test and centered Jaccard reporting in `results/presence_overlap_significance.csv`.
-2. Added a minimal MNAR-style low-intensity sensitivity in `results/mnar_similarity_sensitivity.csv`.
-3. Added a coarse covariate-adjusted acetylation sensitivity and a first-residue-restricted recheck in `results/acetylation_covariate_sensitivity.csv`.
-4. Added an independent literature-derived panel built from adult zebrafish CNS myelin markers and adult optic-tectum radial-glia markers in `results/independent_panel_*.csv`.
-5. Revised the manuscript so the acetylation claim is now explicitly weaker and more honest: suggestive in the raw counts, but not robust after covariate-sensitive follow-up.
+1. a duplicate-based occupancy model that estimates per-run detectability in telencephalon and optic tectum and shows that detectability correction raises exact-ID Jaccard only modestly, from `0.0360` to `0.0432`
+2. conservative misidentification bounds showing that even a `5%` reclassification scenario lifts exact-ID Jaccard only to `0.0540`, while `10%` reaches `0.0725`
+3. a ProForma-oriented canonicalization appendix with explicit worked examples and a standards citation
+4. figure captions and main-text recap that now state the main sample sizes, overlaps, and curated family counts more plainly
+
+## What The Accepted Review Recognized
+
+The latest external review specifically credited the paper for:
+
+1. exact-ID, canonicalized, prevalence-adjusted, and protein-collapsed views that all support the same low-overlap conclusion
+2. marker-panel alignment that remains strong under family-preserving randomization, conservative spillover perturbations, and an independent literature-derived panel
+3. disciplined treatment of PTMs, especially the decision to weaken rather than force the acetylation claim after detectability-aware sensitivity work
+4. transparent provenance and a bounded statement of what the released tables can and cannot support
+5. a concise narrative that foregrounds biological separation rather than workflow mechanics
 
 ## Current Recommendation
 
-The regional-separation and marker-alignment core of the paper is now stronger than it was at `round20`. In particular:
+The paper remains in a strong submission state. In particular:
 
 - the low-overlap conclusion is now backed by both descriptive and prevalence-adjusted significance views
 - the biological alignment story now survives both the source-paper marker panel and an independent literature-derived composition panel
 - the PTM section is more trustworthy because it became more conservative instead of forcing a positive result
+- the latest reviewer's requests have now been addressed in the current manuscript, so the next useful step is rereview rather than another speculative rewrite
 
-The main unresolved external-review issue is not scientific at this moment. It is operational: `paperreview.ai` rate-limited the attempted `round21` submission before returning a token, and it did the same thing again for `round26` after the later style and framing passes. Later authorial revisions produced `paper/main_round22.pdf`, `paper/main_round23.pdf`, `paper/main_round24.pdf`, `paper/main_round25.pdf`, and `paper/main_round26.pdf`, but those artifacts remain externally unreviewed because the service did not issue a token for either blocked submission.
+The earlier `round21` and `round26` submission blocks remain part of the package history, but they are no longer the current state. A later retry succeeded, returned a token, and produced the accepted `round27` review on `paper/main_round26.pdf`. The current manuscript, `paper/main_round29.pdf`, has now also been externally reviewed in `round30`. That latest review did not return a calibrated score for venue `Other`, so `round27` remains the last explicit external `Accept`, while `round30` is the newest external assessment of the current manuscript.
+The manuscript has since been revised to `paper/main_round31.pdf` in direct response to `round30`, but that newer version has not yet gone back out for external rereview.
 
 ## Remaining Honest Limits
 
 1. The strongest biological claim still rests on released summary tables rather than a raw-feature or raw-file reprocessing workflow.
 2. The marker-alignment results are strong, but they still summarize curated subsets rather than the full latent proteome.
 3. The acetylation contrast should now be read as hypothesis-generating only.
-4. The package still lacks an archival DOI, and the planned next external rereview is currently blocked by the external service rather than by the paper itself.
+4. The package still lacks an archival DOI and could further improve its public-facing reproducibility by surfacing code/data links and standards mapping even more directly.
+5. The current manuscript has not yet been externally rereviewed after the new detectability and misidentification analyses were added in `paper/main_round31.pdf`.
