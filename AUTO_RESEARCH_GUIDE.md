@@ -29,7 +29,7 @@ If you choose the pure OpenCode route, [opencode.jsonc](opencode.jsonc) pins the
 
 That pure OpenCode route stays entirely inside OpenCode. The default Codex route instead uses Codex end to end for critique, planning, writing, and paper-improvement passes.
 
-Whichever route you choose, the paper-writing side now defaults to [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md): question first, claim early, evidence doing the work, and a calmer, more human closing cadence.
+Whichever route you choose, the paper-writing side now defaults to [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md): question first, claim early, evidence doing the work, a calmer closing cadence, and no slipping back into project-report or workflow-diary prose.
 
 ## Act I: Start With A Direction, Not A Thesis
 

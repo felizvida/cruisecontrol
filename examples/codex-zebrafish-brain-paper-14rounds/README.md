@@ -4,7 +4,7 @@ This folder is a fresh **Codex-only** build for the prompt:
 
 > how does the proteome of specific, functionally distinct regions of the adult zebrafish brains, such as optic tectum vs telencephalon, differ, and how do these differences relate to their known biological functions?
 
-The manuscript is now framed as a knowledge contribution, not just as a reconstruction of an older paper. It argues that the public top-down proteomics record already supports a specific new claim: adult zebrafish telencephalon and optic tectum occupy sharply distinct proteoform regimes, and that split is biologically organized in ways that match known regional function.
+The manuscript is now framed as a knowledge contribution, not just as a reconstruction of an older paper. Its central claim is that the released top-down proteomics dataset already supports a specific biological conclusion: adult zebrafish telencephalon and optic tectum have distinct proteoform profiles, and that split is organized in ways that match known regional function.
 
 The artifact chain is:
 
@@ -29,6 +29,13 @@ source curation -> local computation -> NARRATIVE_REPORT.md -> PAPER_PLAN.md
 -> round29 abstract rewrite follows recent JPR abstract patterns and removes excess numerical detail from the opening summary
 -> round30 paperreview.ai rereview evaluates paper/main_round29.pdf and returns a favorable assessment without a calibrated score for venue Other
 -> round31 revision implements the round30 requests with a duplicate-based detectability model, conservative misidentification bounds, ProForma-oriented canonicalization examples, and clearer figure/sample-size recap
+-> round32 language pass replaces awkward phrasing with more natural biology prose and retitles the manuscript around proteoform profiles rather than proteoform regimes
+-> round33 sentence-level prose revision replaces vague repository shorthand with concrete language about deposited spreadsheets, PRIDE, and the actual biological claims
+-> round34 scientific-prose revision rewrites the abstract and core narrative so the paper reads as a direct biological argument rather than as annotated homework notes
+-> round35 paperreview.ai rereview evaluates paper/main_round34.pdf and treats the manuscript as publishable after minor revision
+-> round36 revision implements the round35 requests with clearer traceability, overlap-model assumptions, accession handling, prevalence-adjusted statistics, and detectability-model detail
+-> round37 paperreview.ai rereview evaluates paper/main_round36.pdf and returns Accept with a last set of minor auditability and robustness requests
+-> round38 revision implements the round37 requests with accession-level motor-family breakdown, gene-symbol sensitivity, stratified detectability checks, inverse acetylation modeling, and a minimal reproducibility notebook
 ```
 
 Open these first:
@@ -44,6 +51,15 @@ Open these first:
 - `paper/main_round28.pdf`
 - `paper/main_round29.pdf`
 - `paper/main_round31.pdf`
+- `paper/main_round32.pdf`
+- `paper/main_round33.pdf`
+- `paper/main_round34.pdf`
+- `paper/main_round36.pdf`
+- `paper/main_round38.pdf`
+- `review/round37_review.md`
+- `review/round37_scorecard.json`
+- `review/round35_review.md`
+- `review/round35_scorecard.json`
 - `review/round30_review.md`
 - `review/round30_scorecard.json`
 - `review/round27_review.md`
@@ -60,10 +76,10 @@ Final status:
 
 - route: `pure Codex`
 - final paper: `paper/main.pdf`
-- latest externally reviewed artifact: `paper/main_round29.pdf`
-- latest completed external review: `round30` from `paperreview.ai`
-- latest explicit external accept: `round27`
-- latest unre-reviewed revision implementing external feedback: `paper/main_round31.pdf`
+- latest externally reviewed artifact: `paper/main_round36.pdf`
+- latest completed external review: `round37` from `paperreview.ai`
+- latest explicit external accept: `round37`
+- latest unre-reviewed revision implementing external feedback: `paper/main_round38.pdf`
 - external-review score: `not returned` for venue `Other`
 - round21 submission status: blocked by `paperreview.ai` rate limit before a token was issued
 - round26 submission status: blocked again by `paperreview.ai` rate limit before a token was issued
@@ -76,9 +92,13 @@ Key final results:
 - exact-ID proteoform Jaccard overlap: `0.0360`
 - occupancy-adjusted shared exact IDs: `43.1859`
 - occupancy-adjusted exact-ID Jaccard overlap: `0.0432`
+- mass-tertile detectability-adjusted Jaccard overlap: `0.0451`
+- intensity-tertile detectability-adjusted Jaccard overlap: `0.0445`
 - exact-ID centered Jaccard relative to independence: `-0.2792`
 - exact-ID lower-tail overlap significance: `5.56e-183`
 - canonicalized proteoform Jaccard overlap: `0.0615`
+- gene-symbol Jaccard overlap: `0.2302`
+- gene-symbol centered Jaccard relative to independence: `-0.2034`
 - 5% misidentification-adjusted exact-ID Jaccard ceiling: `0.0540`
 - 10% misidentification-adjusted exact-ID Jaccard ceiling: `0.0725`
 - protein-level overlap fraction: `0.2151`
@@ -91,10 +111,13 @@ Key final results:
 - leave-one-out range: `0.9625` to `0.9911`
 - review-driven sensitivity floor: `0.9297`
 - motor-family exclusion alignment: `0.9310`
+- motor-family skeletal/cardiac-like annotation fraction: `0.8625`
+- marker-panel gene-collapsed alignment fraction: `0.9200`
 - independent panel alignment fraction: `0.9143`
 - independent panel one-sided exact `p`: `6.68e-04`
 - MNAR-style weighted Jaccard range: `0.0456` to `0.0483`
 - acetylation adjusted odds ratio: `2.94` with `p = 0.140`
+- inverse acetylation-region odds ratio: `0.26` with `p = 0.180`
 - first-residue<=2 acetylation recheck: odds ratio `0.88`, `p = 0.714`
 
 The final package includes:
@@ -117,6 +140,11 @@ The final package includes:
 - `paper/main_round28.pdf`
 - `paper/main_round29.pdf`
 - `paper/main_round31.pdf`
+- `paper/main_round32.pdf`
+- `paper/main_round33.pdf`
+- `paper/main_round34.pdf`
+- `paper/main_round36.pdf`
+- `paper/main_round38.pdf`
 - `paper/PAPER_IMPROVEMENT_LOG.md`
 - `review/round00_review.md` through `review/round13_review.md`
 - `review/round15_review.md`
@@ -125,6 +153,8 @@ The final package includes:
 - `review/round18_review.md`
 - `review/round19_review.md`
 - `review/round20_review.md`
+- `review/round35_review.md`
+- `review/round37_review.md`
 - `review/round30_review.md`
 - `review/round27_review.md`
 - `review/round21_submission_blocked.md`
@@ -136,6 +166,10 @@ The final package includes:
 - `review/round16_paperreview_submission.json`
 - `review/round17_paperreview_submission.json`
 - `review/round18_paperreview_submission.json`
+- `review/round35_paperreview_submission.json`
+- `review/round35_paperreview_response.json`
+- `review/round37_paperreview_submission.json`
+- `review/round37_paperreview_response.json`
 - `review/round30_paperreview_submission.json`
 - `review/round30_paperreview_response.json`
 - `review/round27_paperreview_submission.json`
@@ -145,7 +179,7 @@ The final package includes:
 - `results/`
 - `figure_assets/`
 
-This example stays honest about scope. The biological claim rests on public top-down proteomics tables rather than on a new wet-lab run, but it is not just a packaging exercise. The paper now shows that the regional split remains visible after duplicate-based detectability correction, conservative misidentification bounds, marker-panel stress tests, and a standards-aware canonicalization pass. The package includes the internal 14-round loop, multiple live `paperreview.ai` rounds, the blocked round-21 rereview attempt, a round-22 reframing pass that turned the manuscript into a direct knowledge-claim paper, a round-23 cleanup pass that removed the remaining diminishing re-analysis/audit language, a round-24 prose pass that made the academic writing more natural, a round-25 style pass informed by classic molecular-biology prose, a round-26 final pass that tightened cadence and compression, the successful `round27` external rereview that returned `Accept` on `paper/main_round26.pdf`, a later `round28` editorial pass that shortened the paper and made the JPR-facing version more biology-first, a `round29` abstract pass that follows recent JPR abstract patterns more closely, a `round30` external review on the current manuscript, and the new `round31` revision that directly implements those reviewer requests. The saved submission metadata redacts the email address and keeps the returned review token local to this working copy.
+This example stays honest about scope. The biological claim rests on the deposited proteoform spreadsheets rather than on a new wet-lab run, but it is not just a packaging exercise. The paper now shows that the regional split remains visible after duplicate-based detectability correction, conservative misidentification bounds, gene-symbol and protein collapse, marker-panel stress tests, and a standards-aware canonicalization pass. The package includes the internal 14-round loop, multiple live `paperreview.ai` rounds, the blocked round-21 rereview attempt, a round-22 reframing pass that turned the manuscript into a direct knowledge-claim paper, a round-23 cleanup pass that removed the remaining diminishing re-analysis/audit language, a round-24 prose pass that made the academic writing more natural, a round-25 style pass informed by classic molecular-biology prose, a round-26 final pass that tightened cadence and compression, the successful `round27` external rereview that returned `Accept` on `paper/main_round26.pdf`, a later `round28` editorial pass that shortened the paper and made the JPR-facing version more biology-first, a `round29` abstract pass that follows recent JPR abstract patterns more closely, a `round30` external review and its `round31` response, the `round32` and `round33` language revisions, the `round34` scientific-prose rewrite, the `round35` external review and `round36` response revision, and the later `round37` external `Accept` followed by the current `round38` response revision. The saved submission metadata redacts the email address and external-review handles before publication.
 
 Submission support:
 

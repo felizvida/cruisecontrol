@@ -24,7 +24,7 @@ Each phase builds on the previous one's output. The final deliverable is a polis
 
 All generated paper artifacts stay in the current local repository. Do not invent external GitHub repositories, GitHub URLs, or remote destinations for intermediate outputs.
 
-For prose style, default to the repo skill [classic-biology-prose](../classic-biology-prose/SKILL.md) unless the user explicitly asks for a different voice.
+For prose style, default to the repo skill [classic-biology-prose](../classic-biology-prose/SKILL.md) unless the user explicitly asks for a different voice. The generated manuscript should read as an authoritative paper, not as a project report or workflow summary.
 
 ## Constants
 
@@ -207,6 +207,8 @@ Invoke `/auto-paper-improvement-loop` to polish the paper:
 **Round 1:** Prefer a `paperreview.ai` review pass for the full paper, with a route-local fallback if external review is unavailable → identify CRITICAL/MAJOR/MINOR issues → implement fixes → recompile → save `main_round1.pdf`
 
 **Round 2:** Run a fresh `paperreview.ai` review again if possible, otherwise a fresh local reviewer pass, using the saved prior review plus the updated paper → update the score if available and identify remaining issues → implement fixes → recompile → save `main_round2.pdf`
+
+A review round is only complete when a revision round follows it. Do not stop the workflow after generating reviewer feedback; persist the paper revision that answers that feedback, even if the changes are small.
 
 **Typical improvements:**
 - Fix assumption-model mismatches

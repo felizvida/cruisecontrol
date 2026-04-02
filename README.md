@@ -71,6 +71,8 @@ That means the writing workflow aims for:
 
 In practice, the paper should open with the scientific or historical question, state the central point early, avoid machine-sounding workflow prose, and end with a closing paragraph that feels reflective rather than canned.
 
+Just as important, the default is **not** project-report prose. Papers in this repo should not read like build logs, revision memos, homework notes, or annotated workflow transcripts. They should read like authoritative papers written by serious researchers.
+
 If a venue or project needs a different voice, you can still override it explicitly in the prompt or in the target project's `AGENTS.md`.
 
 ## External Paper Review Backend

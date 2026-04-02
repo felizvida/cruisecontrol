@@ -1,0 +1,16 @@
+family_key,gene,protein_accession,protein_description,annotation_class,telencephalon_count,optic_tectum_count,matched_count,spillover_count,source_rows
+myosin,mylz3,tr|Q9I8U7|Q9I8U7_DANRE,Fast skeletal muscle myosin light polypeptide 3 OS=Danio rerio OX=7955 GN=mylz3 PE=1 SV=1,skeletal-muscle-like,0,17,17,0,131;132;146;262;271;275;276;280;289;293;309;311;334;336;354;380;460
+myosin,myhc4,tr|A2BGX6|A2BGX6_DANRE,Myosin heavy chain 4 OS=Danio rerio OX=7955 GN=myhc4 PE=1 SV=1,unspecified,0,10,10,0,28;41;48;111;112;263;349;456;489;508
+myosin,mylpfa,tr|A0A2R8QTL0|A0A2R8QTL0_DANRE,"Myosin light chain, phosphorylatable, fast skeletal muscle a OS=Danio rerio OX=7955 GN=mylpfa PE=1 SV=1",skeletal-muscle-like,0,9,9,0,133;223;230;234;236;254;257;278;488
+myosin,myhz1.2,tr|A0A2R8Q2N5|A0A2R8Q2N5_DANRE,"Myosin, heavy polypeptide 1.2, skeletal muscle OS=Danio rerio OX=7955 GN=myhz1.2 PE=3 SV=1",skeletal-muscle-like,0,4,4,0,39;208;345;486
+myosin,mylpfb,tr|E9QG51|E9QG51_DANRE,"Myosin light chain, phosphorylatable, fast skeletal muscle b (Fragment) OS=Danio rerio OX=7955 GN=mylpfb PE=1 SV=1",skeletal-muscle-like,0,2,2,0,326;505
+myosin,mylz3,tr|B8JKH7|B8JKH7_DANRE,"Myosin, light polypeptide 3, skeletal muscle (Fragment) OS=Danio rerio OX=7955 GN=mylz3 PE=1 SV=1",skeletal-muscle-like,0,2,2,0,282;285
+myosin,myhz1.1,tr|E7FAD0|E7FAD0_DANRE,"Myosin, heavy polypeptide 1.1, skeletal muscle OS=Danio rerio OX=7955 GN=myhz1.1 PE=1 SV=3",skeletal-muscle-like,0,1,1,0,219
+myosin,myl10,tr|A0A0R4IKJ0|A0A0R4IKJ0_DANRE,"Myosin, light chain 10, regulatory OS=Danio rerio OX=7955 GN=myl10 PE=1 SV=1",regulatory-or-non-muscle-like,0,1,1,0,450
+myosin,myl13,tr|Q7ZUB0|Q7ZUB0_DANRE,Atrial myosin light chain OS=Danio rerio OX=7955 GN=myl13 PE=1 SV=1,cardiac-like,0,1,1,0,58
+myosin,mylpfb,tr|Q66I73|Q66I73_DANRE,"Myosin light chain, phosphorylatable, fast skeletal muscle b OS=Danio rerio OX=7955 GN=mylpfb PE=1 SV=1",skeletal-muscle-like,0,1,1,0,325
+troponin,tnnt3b,tr|A0A1D5NS25|A0A1D5NS25_DANRE,"Troponin T type 3b (skeletal, fast) (Fragment) OS=Danio rerio OX=7955 GN=tnnt3b PE=1 SV=1",skeletal-muscle-like,0,15,15,0,3;31;78;82;96;104;130;139;151;183;184;190;196;204;504
+troponin,tnni2b.2,tr|Q6DHP2|Q6DHP2_DANRE,"Troponin I type 2b (skeletal, fast), tandem duplicate 2 OS=Danio rerio OX=7955 GN=tnni2b.2 PE=1 SV=1",skeletal-muscle-like,0,10,10,0,20;38;50;72;188;189;212;225;449;474
+troponin,tnnt3b,tr|E9QDI4|E9QDI4_DANRE,"Troponin T type 3b (skeletal, fast) (Fragment) OS=Danio rerio OX=7955 GN=tnnt3b PE=1 SV=2",skeletal-muscle-like,0,4,4,0,35;306;344;392
+troponin,tnnt3b,tr|A0A1D5NSI6|A0A1D5NSI6_DANRE,"Troponin T type 3b (skeletal, fast) OS=Danio rerio OX=7955 GN=tnnt3b PE=1 SV=1",skeletal-muscle-like,1,1,1,1,268;89
+troponin,tnnt3b,tr|A0A1D5NSK1|A0A1D5NSK1_DANRE,"Troponin T type 3b (skeletal, fast) (Fragment) OS=Danio rerio OX=7955 GN=tnnt3b PE=1 SV=1",skeletal-muscle-like,0,1,1,0,187

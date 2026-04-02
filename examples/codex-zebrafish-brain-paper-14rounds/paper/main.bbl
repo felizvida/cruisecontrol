@@ -1,4 +1,4 @@
-\begin{thebibliography}{14}
+\begin{thebibliography}{16}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -29,6 +29,15 @@ Yuliya~V. Karpievitch, Alan~R. Dabney, and Richard~D. Smith.
   analysis.
 \newblock \emph{BMC Bioinformatics}, 13\penalty0 (Suppl 16):\penalty0 S5, 2012.
 \newblock \doi{10.1186/1471-2105-13-S16-S5}.
+
+\bibitem[Kiss et~al.(2014)Kiss, Smith, Reschke, Powell, and
+  Heeren]{kiss2014laesi}
+Andr{\'a}s Kiss, Donald~F. Smith, Brent~R. Reschke, Matthew~J. Powell, and Ron
+  M.~A. Heeren.
+\newblock Top-down mass spectrometry imaging of intact proteins by laser
+  ablation {ESI FT-ICR MS}.
+\newblock \emph{Proteomics}, 14\penalty0 (10):\penalty0 1283--1289, 2014.
+\newblock \doi{10.1002/pmic.201300306}.
 
 \bibitem[Lazar et~al.(2016)Lazar, Gatto, Ferro, Bruley, and
   Burger]{lazar2016missing}
@@ -72,15 +81,6 @@ Rachele~A. Lubeckyj and Liangliang Sun.
 \newblock \emph{Molecular Omics}, 18\penalty0 (2):\penalty0 112--122, 2022.
 \newblock \doi{10.1039/d1mo00335f}.
 
-\bibitem[Madhu et~al.(2025)Madhu, Rocha, Huang, Viswanath, Krishnaswamy, and
-  Ying]{madhu2025heist}
-Hiren Madhu, Jo{\~a}o~Felipe Rocha, Tinglin Huang, Siddharth Viswanath, Smita
-  Krishnaswamy, and Rex Ying.
-\newblock {HEIST}: A graph foundation model for spatial transcriptomics and
-  proteomics data.
-\newblock \emph{CoRR}, abs/2506.11152, 2025.
-\newblock \doi{10.48550/arXiv.2506.11152}.
-
 \bibitem[Orger(2016)]{orger2016visuomotor}
 Michael~B. Orger.
 \newblock The cellular organization of zebrafish visuomotor circuits.
@@ -110,11 +110,15 @@ Tobias Roeser and Herwig Baier.
   2003.
 \newblock \doi{10.1523/JNEUROSCI.23-09-03726.2003}.
 
-\bibitem[Shaban et~al.(2025)]{shaban2025kronos}
-Muhammad Shaban et~al.
-\newblock A foundation model for spatial proteomics.
-\newblock \emph{CoRR}, abs/2506.03373, 2025.
-\newblock \doi{10.48550/arXiv.2506.03373}.
+\bibitem[Schaffer et~al.(2018)Schaffer, Shortreed, Cesnik, Frey, Solntsev,
+  Scalf, and Smith]{schaffer2018proteoformfamilies}
+Leah~V. Schaffer, Michael~R. Shortreed, Anthony~J. Cesnik, Brian~L. Frey,
+  Stefan~K. Solntsev, Mark Scalf, and Lloyd~M. Smith.
+\newblock Expanding proteoform identifications in top-down proteomic analyses
+  by constructing proteoform families.
+\newblock \emph{Analytical Chemistry}, 90\penalty0 (2):\penalty0 1325--1333,
+  2018.
+\newblock \doi{10.1021/acs.analchem.7b04221}.
 
 \bibitem[Stednitz et~al.(2018)Stednitz, McDermott, Ncube, Tallafuss, Eisen, and
   Washbourne]{stednitz2018social}
@@ -125,5 +129,20 @@ Sarah~J. Stednitz, Erin~M. McDermott, Denver Ncube, Alexandra Tallafuss,
 \newblock \emph{Current Biology}, 28\penalty0 (15):\penalty0 2445--2451.e3,
   2018.
 \newblock \doi{10.1016/j.cub.2018.06.016}.
+
+\bibitem[Vanderaa and Gatto(2023)]{vanderaa2023singlecell}
+Christophe Vanderaa and Laurent Gatto.
+\newblock The current state of single-cell proteomics data analysis.
+\newblock \emph{Current Protocols}, 3\penalty0 (1):\penalty0 e658, 2023.
+\newblock \doi{10.1002/cpz1.658}.
+
+\bibitem[Yang et~al.(2022)Yang, Hu, Su, Thomas, Camarillo, Greer, Early,
+  Fellers, Kelleher, and Laskin]{yang2022nanodesi}
+Manxi Yang, Hang Hu, Pei Su, Paul~M. Thomas, Jeannie~M. Camarillo, Joseph~B.
+  Greer, Bryan~P. Early, Ryan~T. Fellers, Neil~L. Kelleher, and Julia Laskin.
+\newblock Proteoform-selective imaging of tissues using mass spectrometry.
+\newblock \emph{Angewandte Chemie International Edition}, 61\penalty0
+  (29):\penalty0 e202200721, 2022.
+\newblock \doi{10.1002/anie.202200721}.
 
 \end{thebibliography}

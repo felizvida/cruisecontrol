@@ -17,18 +17,24 @@ This example uses a small local computation stack:
 - `validate_artifacts.sh`
   Checks the final paper package, saved review chain, figure assets, and PDF metadata.
 
+- `reproduce_tables_and_figures.ipynb`
+  Minimal notebook that loads the saved outputs used for the main tables and figures and points back to the rebuild commands.
+
 The analysis stage now also emits:
 
 - `../results/source_table_metrics.json`
 - `../results/abundance_normalization_sensitivity.csv`
+- `../results/gene_symbol_sensitivity.csv`
 - `../results/presence_overlap_significance.csv`
 - `../results/occupancy_detectability_model.csv`
+- `../results/detectability_stratified_sensitivity.csv`
 - `../results/misidentification_sensitivity.csv`
 - `../results/discrepancy_diagnostic.csv`
 - `../results/canonicalization_examples.csv`
 - `../results/source_table_shared_ids.csv`
 - `../results/source_table_proteoforms.csv`
 - `../results/marker_family_membership.csv`
+- `../results/motor_family_breakdown.csv`
 - `../results/marker_permutation_test.csv`
 - `../results/independent_panel_marker_bias.csv`
 - `../results/independent_panel_axis_summary.csv`

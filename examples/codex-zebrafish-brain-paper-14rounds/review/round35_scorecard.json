@@ -1,0 +1,20 @@
+{
+  "backend": "paperreview.ai",
+  "paper_path": "paper/main_round34.pdf",
+  "round_label": "round35",
+  "title": "Proteoform Profiles Distinguish Adult Zebrafish Telencephalon and Optic Tectum",
+  "venue": "Other",
+  "submission_date": "2026-03-30T14:42:03.403520",
+  "final_score": null,
+  "verdict": "No calibrated score returned",
+  "score_note": "paperreview.ai calibrated score is currently exposed for ICLR submissions only",
+  "available_sections": [
+    "assessment",
+    "binary_scores",
+    "detailed_comments",
+    "questions",
+    "strengths",
+    "summary",
+    "weaknesses"
+  ]
+}

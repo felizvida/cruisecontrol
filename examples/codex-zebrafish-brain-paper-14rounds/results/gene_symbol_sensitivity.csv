@@ -1,0 +1,3 @@
+analysis,shared_count,union_count,jaccard_overlap,expected_jaccard_under_independence,centered_jaccard,lower_tail_p,lower_tail_neg_log10_p,alignment_fraction,odds_ratio,odds_ratio_ci_low,odds_ratio_ci_high,note
+all_detected_gene_overlap,58,252,0.2302,0.4335,-0.2034,6.29414e-28,27.2011,,,,,All detected entries collapsed to gene symbols before overlap is recomputed.
+marker_panel_gene_collapse,,,,,,0.000127,3.8973,0.92,55.0,4.8798,619.8996,Curated marker panel collapsed to unique gene symbols within each functional axis.

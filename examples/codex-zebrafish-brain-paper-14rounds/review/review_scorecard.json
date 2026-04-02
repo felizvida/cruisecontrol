@@ -1,25 +1,54 @@
 {
-  "artifact": "paper/main_round31.pdf",
+  "artifact": "paper/main_round38.pdf",
   "latest_external_review": {
     "backend": "paperreview.ai",
-    "round_label": "round30",
-    "reviewed_artifact": "paper/main_round29.pdf",
+    "round_label": "round37",
+    "reviewed_artifact": "paper/main_round36.pdf",
     "venue": "Other",
     "final_score": null,
-    "verdict": "No calibrated score returned",
-    "score_note": "paperreview.ai does not expose a calibrated numeric score for venue Other"
+    "verdict": "Accept",
+    "score_note": "paperreview.ai does not expose a calibrated numeric score for venue Other",
+    "review_note": "The round37 assessment accepted the paper after minor revision requests centered on auditability, heterogeneity checks, and final reproducibility surfacing."
   },
   "latest_external_accept": {
     "backend": "paperreview.ai",
-    "round_label": "round27",
-    "reviewed_artifact": "paper/main_round26.pdf",
+    "round_label": "round37",
+    "reviewed_artifact": "paper/main_round36.pdf",
     "final_score": null,
     "verdict": "Accept"
   },
   "current_revision_state": {
-    "artifact": "paper/main_round31.pdf",
+    "artifact": "paper/main_round38.pdf",
     "externally_rereviewed": false,
-    "note": "The current manuscript, paper/main_round31.pdf, implements the round30 external review requests with new detectability, misidentification, and standards-oriented analyses, but it has not yet been sent back out for external rereview."
+    "note": "The current manuscript, paper/main_round38.pdf, implements the round37 external review requests after the earlier round30 and round35 analysis/prose revisions, but it has not yet been sent back out for external rereview."
+  },
+  "round38_external_feedback_revision": {
+    "status": "completed",
+    "note": "See paper/main_round38.pdf for the revision that answers the round37 external review with accession-level motor-family breakdown, gene-symbol sensitivity, stratified detectability modeling, inverse acetylation orientation, and a minimal reproducibility notebook."
+  },
+  "round37_successful_rereview": {
+    "status": "completed",
+    "note": "See review/round37_review.md, review/round37_scorecard.json, and review/round37_paperreview_response.json for the accepted external review of paper/main_round36.pdf."
+  },
+  "round36_external_feedback_revision": {
+    "status": "completed",
+    "note": "See paper/main_round36.pdf for the revision that answers the round35 external review with clearer traceability, overlap-model assumptions, accession handling, and detectability-model detail."
+  },
+  "round35_successful_rereview": {
+    "status": "completed",
+    "note": "See review/round35_review.md, review/round35_scorecard.json, and review/round35_paperreview_response.json for the latest external review of paper/main_round34.pdf."
+  },
+  "round34_scientific_prose_revision": {
+    "status": "completed",
+    "note": "See paper/main_round34.pdf for the revision that rewrites the abstract and core narrative into a calmer, more authoritative scientific voice."
+  },
+  "round33_sentence_level_prose_revision": {
+    "status": "completed",
+    "note": "See paper/main_round33.pdf for the broader prose revision that defines PRIDE plainly, refers to deposited spreadsheets instead of vague released tables, and rewrites the main text for clarity and readability."
+  },
+  "round32_language_cleanup": {
+    "status": "completed",
+    "note": "See paper/main_round32.pdf for the prose cleanup that replaces terms such as proteoform regimes, public top-down record, and detectability-aware follow-up with more natural biology language."
   },
   "round28_jpr_editorial_pass": {
     "status": "completed",
@@ -47,7 +76,7 @@
   },
   "round30_successful_rereview": {
     "status": "completed",
-    "note": "See review/round30_review.md, review/round30_scorecard.json, and review/round30_paperreview_response.json for the latest external review of paper/main_round29.pdf."
+    "note": "See review/round30_review.md, review/round30_scorecard.json, and review/round30_paperreview_response.json for the earlier external review of paper/main_round29.pdf."
   },
   "last_calibrated_internal_review": {
     "artifact": "paper/main_round14.pdf",
@@ -59,9 +88,13 @@
     "exact_id_jaccard_overlap": 0.036,
     "occupancy_adjusted_shared_exact_ids": 43.1859,
     "occupancy_adjusted_jaccard_overlap": 0.0432,
+    "mass_tertiles_adjusted_jaccard_overlap": 0.0451,
+    "intensity_tertiles_adjusted_jaccard_overlap": 0.0445,
     "exact_id_centered_jaccard": -0.2792,
     "exact_id_overlap_lower_tail_neg_log10_p": 182.2549,
     "canonicalized_jaccard_overlap": 0.0615,
+    "gene_symbol_jaccard_overlap": 0.2302,
+    "gene_symbol_centered_jaccard": -0.2034,
     "misidentification_0_05_adjusted_jaccard_overlap": 0.054,
     "misidentification_0_1_adjusted_jaccard_overlap": 0.0725,
     "misidentification_rate_needed_for_jaccard_0_10_tel": 0.1709,
@@ -77,12 +110,16 @@
     "marker_permutation_p_upper_bound": 5e-06,
     "stress_test_min_alignment": 0.9297,
     "motor_family_exclusion_alignment": 0.931,
+    "marker_gene_collapsed_alignment_fraction": 0.92,
+    "motor_family_skeletal_like_fraction": 0.8625,
     "independent_panel_alignment_fraction": 0.9143,
     "independent_panel_one_sided_p_greater": 0.0006684491978609625,
     "mnar_half_q05_fill_weighted_jaccard_overlap": 0.0456,
     "mnar_half_q10_fill_weighted_jaccard_overlap": 0.0483,
     "acetylation_adjusted_odds_ratio": 2.9387,
     "acetylation_adjusted_p_value": 0.139943,
+    "acetylation_inverse_region_odds_ratio": 0.2556,
+    "acetylation_inverse_region_p_value": 0.180244,
     "acetylation_first_residue_leq_2_odds_ratio": 0.8788,
     "acetylation_first_residue_leq_2_p_value": 0.714235
   }

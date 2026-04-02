@@ -117,6 +117,8 @@ Focus either backend’s review on:
 
 Immediately append the full structured review to `review/ROUND_REVIEWS.md` under a `## Round 0 Review` heading, because Round 1 fixes must be auditable as responses to that exact criticism set.
 
+**Hard rule:** a completed review round is never the stopping point. Every finished review must be followed by an explicit revision pass that is saved as the next paper round, even if the reviewer asks only for minor clarification.
+
 ### Step 3: Implement Round 1 Fixes
 
 Parse the review and implement fixes by severity:
@@ -179,6 +181,8 @@ Append the new full review to `review/ROUND_REVIEWS.md` under `## Round 1 Review
 - verdict
 - main criticisms
 - required fixes for the next round
+
+Again, do not stop after saving the review. Round 2 must be an actual revision round responding to those criticisms.
 
 ### Step 6: Implement Round 2 Fixes
 

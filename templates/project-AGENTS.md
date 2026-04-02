@@ -15,6 +15,7 @@ Fill the sections that apply to your project. The migrated skills read this file
 - Retrieval note: once the token is saved locally, later review retrieval is token-based and does not require the email again
 - Preferred score venue: `ICLR`
 - Notes: `paperreview.ai` currently analyzes only English PDFs, up to 10MB, and only the first 15 pages
+- Process rule: every completed review round must be followed by a saved revision round; do not let the workflow stop at feedback alone
 
 ## Paper Library
 
@@ -64,6 +65,7 @@ Fill the sections that apply to your project. The migrated skills read this file
 
 - Default paper prose skill: `.opencode/skills/classic-biology-prose/SKILL.md`
 - Voice note: clear, elegant, human prose; question first, evidence early, reflective closing
+- Negative rule: do not let the paper read like a project report, workflow transcript, homework note, or internal build memo
 - Override note: if a project or venue needs a different voice, state it here explicitly
 
 ## Experiment Defaults

@@ -470,6 +470,10 @@ def aggregate_exact_ids(rows: list[dict[str, object]]) -> dict[tuple[str, str], 
                 "canonicalized_proteoform": row["canonicalized_proteoform"],
                 "first_residue": row["first_residue"],
                 "last_residue": row["last_residue"],
+                "gene": row["gene"],
+                "protein_description": row["protein_description"],
+                "precursor_mass": float(row["precursor_mass"]),
+                "avg_intensity": float(row["avg_intensity"]),
                 "run_intensities": [0.0, 0.0],
             }
         aggregated_row = aggregated[proteoform_id]
@@ -480,6 +484,38 @@ def aggregate_exact_ids(rows: list[dict[str, object]]) -> dict[tuple[str, str], 
             float(current[1]) + float(run_values[1]),
         ]
     return aggregated
+
+
+def summarize_detectability(
+    aggregated_rows: dict[tuple[str, str], dict[str, object]],
+    fallback_detected_at_least_once: float | None = None,
+) -> dict[str, float]:
+    q1 = 0
+    q2 = 0
+    for row in aggregated_rows.values():
+        detections = sum(1 for value in row["run_intensities"] if float(value) > 0)
+        if detections == 1:
+            q1 += 1
+        elif detections == 2:
+            q2 += 1
+    exact_id_count = len(aggregated_rows)
+    per_run_detection = (2 * q2 / (q1 + 2 * q2)) if (q1 + 2 * q2) else 0.0
+    detected_at_least_once = 2 * per_run_detection - per_run_detection * per_run_detection
+    fallback_used = 0.0
+    if detected_at_least_once == 0.0 and fallback_detected_at_least_once:
+        detected_at_least_once = fallback_detected_at_least_once
+        per_run_detection = 1.0 - math.sqrt(max(0.0, 1.0 - detected_at_least_once))
+        fallback_used = 1.0
+    latent_richness = exact_id_count / detected_at_least_once if detected_at_least_once else 0.0
+    return {
+        "q1": q1,
+        "q2": q2,
+        "exact_id_count": exact_id_count,
+        "per_run_detection": per_run_detection,
+        "detected_at_least_once": detected_at_least_once,
+        "latent_richness": latent_richness,
+        "fallback_used": fallback_used,
+    }
 
 
 def bootstrap_overlap_intervals(
@@ -776,27 +812,16 @@ def build_occupancy_detectability_model(
     def summarize_region(
         aggregated_rows: dict[tuple[str, str], dict[str, object]], region: str
     ) -> tuple[dict[str, object], dict[str, float]]:
-        q1 = 0
-        q2 = 0
-        for row in aggregated_rows.values():
-            detections = sum(1 for value in row["run_intensities"] if float(value) > 0)
-            if detections == 1:
-                q1 += 1
-            elif detections == 2:
-                q2 += 1
-        exact_id_count = len(aggregated_rows)
-        per_run_detection = (2 * q2 / (q1 + 2 * q2)) if (q1 + 2 * q2) else 0.0
-        detected_at_least_once = 2 * per_run_detection - per_run_detection * per_run_detection
-        latent_richness = exact_id_count / detected_at_least_once if detected_at_least_once else 0.0
+        summary = summarize_detectability(aggregated_rows)
         row = {
             "section": "region_effort",
             "region": region,
-            "exact_id_count": exact_id_count,
-            "single_run_only_count": q1,
-            "duplicate_reobserved_count": q2,
-            "per_run_detection_probability": round(per_run_detection, 4),
-            "detected_at_least_once_probability": round(detected_at_least_once, 4),
-            "latent_richness_estimate": round(latent_richness, 4),
+            "exact_id_count": int(summary["exact_id_count"]),
+            "single_run_only_count": int(summary["q1"]),
+            "duplicate_reobserved_count": int(summary["q2"]),
+            "per_run_detection_probability": round(summary["per_run_detection"], 4),
+            "detected_at_least_once_probability": round(summary["detected_at_least_once"], 4),
+            "latent_richness_estimate": round(summary["latent_richness"], 4),
             "adjusted_shared_exact_ids": "",
             "adjusted_jaccard_overlap": "",
             "note": (
@@ -804,14 +829,7 @@ def build_occupancy_detectability_model(
                 "The model treats each exact proteoform as latent and uses only whether it was seen in one run or both."
             ),
         }
-        return row, {
-            "q1": q1,
-            "q2": q2,
-            "exact_id_count": exact_id_count,
-            "per_run_detection": per_run_detection,
-            "detected_at_least_once": detected_at_least_once,
-            "latent_richness": latent_richness,
-        }
+        return row, summary
 
     tel_row, tel_summary = summarize_region(tel_exact, "telencephalon")
     teo_row, teo_summary = summarize_region(teo_exact, "optic_tectum")
@@ -1003,6 +1021,301 @@ def build_canonicalization_examples(
         if len(rows) >= limit:
             break
     return rows
+
+
+def tertile_label(value: float, thresholds: tuple[float, float]) -> str:
+    low_cut, high_cut = thresholds
+    if value <= low_cut:
+        return "low"
+    if value <= high_cut:
+        return "middle"
+    return "high"
+
+
+def build_detectability_stratified_sensitivity(
+    tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]]
+) -> tuple[dict[str, object], list[dict[str, object]]]:
+    tel_exact = aggregate_exact_ids(tel_rows)
+    teo_exact = aggregate_exact_ids(teo_rows)
+    observed_shared_ids = sorted(set(tel_exact) & set(teo_exact))
+    tel_global = summarize_detectability(tel_exact)
+    teo_global = summarize_detectability(teo_exact)
+    rows: list[dict[str, object]] = []
+    summary: dict[str, object] = {}
+
+    scheme_specs = [
+        (
+            "mass_tertiles",
+            "precursor_mass",
+            "Exact IDs are stratified by region-specific precursor-mass tertiles before duplicate-based detectability is estimated.",
+        ),
+        (
+            "intensity_tertiles",
+            "avg_intensity",
+            "Exact IDs are stratified by region-specific mean duplicate-intensity tertiles before duplicate-based detectability is estimated.",
+        ),
+    ]
+
+    for scheme, value_key, note in scheme_specs:
+        tel_thresholds = (
+            quantile([float(row[value_key]) for row in tel_exact.values()], 1 / 3),
+            quantile([float(row[value_key]) for row in tel_exact.values()], 2 / 3),
+        )
+        teo_thresholds = (
+            quantile([float(row[value_key]) for row in teo_exact.values()], 1 / 3),
+            quantile([float(row[value_key]) for row in teo_exact.values()], 2 / 3),
+        )
+        tel_bins = {
+            identifier: tertile_label(float(row[value_key]), tel_thresholds)
+            for identifier, row in tel_exact.items()
+        }
+        teo_bins = {
+            identifier: tertile_label(float(row[value_key]), teo_thresholds)
+            for identifier, row in teo_exact.items()
+        }
+        tel_bin_summaries: dict[str, dict[str, float]] = {}
+        teo_bin_summaries: dict[str, dict[str, float]] = {}
+
+        for region_name, exact_rows, bin_assignments, region_summary, store in [
+            ("telencephalon", tel_exact, tel_bins, tel_global, tel_bin_summaries),
+            ("optic_tectum", teo_exact, teo_bins, teo_global, teo_bin_summaries),
+        ]:
+            for label in ("low", "middle", "high"):
+                subset = {
+                    identifier: exact_rows[identifier]
+                    for identifier, bin_label in bin_assignments.items()
+                    if bin_label == label
+                }
+                bin_summary = summarize_detectability(
+                    subset,
+                    fallback_detected_at_least_once=region_summary["detected_at_least_once"],
+                )
+                store[label] = bin_summary
+                rows.append(
+                    {
+                        "scheme": scheme,
+                        "section": "region_bin",
+                        "region": region_name,
+                        "bin": label,
+                        "exact_id_count": int(bin_summary["exact_id_count"]),
+                        "single_run_only_count": int(bin_summary["q1"]),
+                        "duplicate_reobserved_count": int(bin_summary["q2"]),
+                        "per_run_detection_probability": round(bin_summary["per_run_detection"], 4),
+                        "detected_at_least_once_probability": round(
+                            bin_summary["detected_at_least_once"], 4
+                        ),
+                        "latent_richness_estimate": round(bin_summary["latent_richness"], 4),
+                        "adjusted_shared_exact_ids": "",
+                        "adjusted_jaccard_overlap": "",
+                        "fallback_used": "yes" if bin_summary["fallback_used"] else "no",
+                        "note": note,
+                    }
+                )
+
+        tel_latent = sum(
+            1.0 / tel_bin_summaries[tel_bins[identifier]]["detected_at_least_once"]
+            for identifier in tel_exact
+        )
+        teo_latent = sum(
+            1.0 / teo_bin_summaries[teo_bins[identifier]]["detected_at_least_once"]
+            for identifier in teo_exact
+        )
+        adjusted_shared = sum(
+            1.0
+            / (
+                tel_bin_summaries[tel_bins[identifier]]["detected_at_least_once"]
+                * teo_bin_summaries[teo_bins[identifier]]["detected_at_least_once"]
+            )
+            for identifier in observed_shared_ids
+        )
+        adjusted_union = tel_latent + teo_latent - adjusted_shared
+        adjusted_jaccard = adjusted_shared / adjusted_union if adjusted_union else 0.0
+        rows.append(
+            {
+                "scheme": scheme,
+                "section": "cross_region_overlap",
+                "region": "paired_regions",
+                "bin": "all",
+                "exact_id_count": "",
+                "single_run_only_count": "",
+                "duplicate_reobserved_count": "",
+                "per_run_detection_probability": "",
+                "detected_at_least_once_probability": "",
+                "latent_richness_estimate": round(adjusted_union, 4),
+                "adjusted_shared_exact_ids": round(adjusted_shared, 4),
+                "adjusted_jaccard_overlap": round(adjusted_jaccard, 4),
+                "fallback_used": "",
+                "note": note,
+            }
+        )
+        summary[f"{scheme}_adjusted_shared_exact_ids"] = round(adjusted_shared, 4)
+        summary[f"{scheme}_adjusted_jaccard_overlap"] = round(adjusted_jaccard, 4)
+
+    return summary, rows
+
+
+def build_gene_symbol_sensitivity(
+    tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]], membership_rows: list[dict[str, object]]
+) -> tuple[dict[str, object], list[dict[str, object]]]:
+    tel_genes = {str(row["gene"]) for row in tel_rows if str(row["gene"])}
+    teo_genes = {str(row["gene"]) for row in teo_rows if str(row["gene"])}
+    shared = len(tel_genes & teo_genes)
+    union = len(tel_genes | teo_genes)
+    observed_jaccard = shared / union if union else 0.0
+    tel_prevalence = len(tel_genes) / union if union else 0.0
+    teo_prevalence = len(teo_genes) / union if union else 0.0
+    expected_jaccard = (
+        (tel_prevalence * teo_prevalence)
+        / (tel_prevalence + teo_prevalence - tel_prevalence * teo_prevalence)
+        if tel_prevalence + teo_prevalence - tel_prevalence * teo_prevalence
+        else 0.0
+    )
+    gene_p, gene_neg_log10 = hypergeom_lower_tail_p(shared, len(tel_genes), len(teo_genes), union)
+
+    tel_matched_genes = {
+        str(row["gene"])
+        for row in membership_rows
+        if row["functional_axis"] == "telencephalon" and row["role"] == "matched" and str(row["gene"])
+    }
+    tel_spill_genes = {
+        str(row["gene"])
+        for row in membership_rows
+        if row["functional_axis"] == "telencephalon" and row["role"] == "spillover" and str(row["gene"])
+    }
+    teo_matched_genes = {
+        str(row["gene"])
+        for row in membership_rows
+        if row["functional_axis"] == "optic_tectum" and row["role"] == "matched" and str(row["gene"])
+    }
+    teo_spill_genes = {
+        str(row["gene"])
+        for row in membership_rows
+        if row["functional_axis"] == "optic_tectum" and row["role"] == "spillover" and str(row["gene"])
+    }
+    a = len(tel_matched_genes)
+    b = len(tel_spill_genes)
+    c = len(teo_spill_genes)
+    d = len(teo_matched_genes)
+    gene_or, gene_low, gene_high = odds_ratio_with_ci(a, b, c, d, correction=0.5)
+    gene_panel_p = fisher_one_sided_greater(a, b, c, d)
+    gene_alignment = (a + d) / (a + b + c + d) if (a + b + c + d) else 0.0
+
+    rows = [
+        {
+            "analysis": "all_detected_gene_overlap",
+            "shared_count": shared,
+            "union_count": union,
+            "jaccard_overlap": round(observed_jaccard, 4),
+            "expected_jaccard_under_independence": round(expected_jaccard, 4),
+            "centered_jaccard": round(observed_jaccard - expected_jaccard, 4),
+            "lower_tail_p": f"{gene_p:.6g}" if gene_p > 0 else "<1e-323",
+            "lower_tail_neg_log10_p": round(gene_neg_log10, 4),
+            "alignment_fraction": "",
+            "odds_ratio": "",
+            "odds_ratio_ci_low": "",
+            "odds_ratio_ci_high": "",
+            "note": "All detected entries collapsed to gene symbols before overlap is recomputed.",
+        },
+        {
+            "analysis": "marker_panel_gene_collapse",
+            "shared_count": "",
+            "union_count": "",
+            "jaccard_overlap": "",
+            "expected_jaccard_under_independence": "",
+            "centered_jaccard": "",
+            "lower_tail_p": round(gene_panel_p, 6),
+            "lower_tail_neg_log10_p": round(-math.log10(max(gene_panel_p, 1e-323)), 4),
+            "alignment_fraction": round(gene_alignment, 4),
+            "odds_ratio": round(gene_or, 4),
+            "odds_ratio_ci_low": round(gene_low, 4),
+            "odds_ratio_ci_high": round(gene_high, 4),
+            "note": "Curated marker panel collapsed to unique gene symbols within each functional axis.",
+        },
+    ]
+    summary = {
+        "gene_symbol_jaccard_overlap": round(observed_jaccard, 4),
+        "gene_symbol_centered_jaccard": round(observed_jaccard - expected_jaccard, 4),
+        "gene_symbol_lower_tail_neg_log10_p": round(gene_neg_log10, 4),
+        "marker_gene_collapsed_alignment_fraction": round(gene_alignment, 4),
+        "marker_gene_collapsed_odds_ratio": round(gene_or, 4),
+        "marker_gene_collapsed_one_sided_p_greater": round(gene_panel_p, 6),
+    }
+    return summary, rows
+
+
+def muscle_annotation(description: str) -> str:
+    description_lower = description.lower()
+    if "skeletal" in description_lower or "fast" in description_lower:
+        return "skeletal-muscle-like"
+    if "atrial" in description_lower or "cardiac" in description_lower:
+        return "cardiac-like"
+    if "regulatory" in description_lower or "non-muscle" in description_lower:
+        return "regulatory-or-non-muscle-like"
+    return "unspecified"
+
+
+def build_motor_family_breakdown(
+    membership_rows: list[dict[str, object]],
+) -> tuple[dict[str, object], list[dict[str, object]]]:
+    grouped: dict[tuple[str, str, str, str], dict[str, object]] = {}
+    for row in membership_rows:
+        family_key = str(row["family_key"])
+        if family_key not in {"myosin", "troponin"}:
+            continue
+        key = (
+            family_key,
+            str(row["gene"]),
+            str(row["protein_accession"]),
+            str(row["protein_description"]),
+        )
+        if key not in grouped:
+            grouped[key] = {
+                "family_key": family_key,
+                "gene": row["gene"],
+                "protein_accession": row["protein_accession"],
+                "protein_description": row["protein_description"],
+                "annotation_class": muscle_annotation(str(row["protein_description"])),
+                "telencephalon_count": 0,
+                "optic_tectum_count": 0,
+                "matched_count": 0,
+                "spillover_count": 0,
+                "source_rows": [],
+            }
+        grouped_row = grouped[key]
+        grouped_row[f"{row['region']}_count"] += 1
+        grouped_row[f"{row['role']}_count"] += 1
+        grouped_row["source_rows"].append(str(row["source_row"]))
+
+    rows: list[dict[str, object]] = []
+    skeletal_like_total = 0
+    all_total = 0
+    for grouped_row in sorted(
+        grouped.values(),
+        key=lambda value: (value["family_key"], -int(value["optic_tectum_count"]), str(value["gene"])),
+    ):
+        total = int(grouped_row["telencephalon_count"]) + int(grouped_row["optic_tectum_count"])
+        all_total += total
+        if grouped_row["annotation_class"] in {"skeletal-muscle-like", "cardiac-like"}:
+            skeletal_like_total += total
+        rows.append(
+            {
+                "family_key": grouped_row["family_key"],
+                "gene": grouped_row["gene"],
+                "protein_accession": grouped_row["protein_accession"],
+                "protein_description": grouped_row["protein_description"],
+                "annotation_class": grouped_row["annotation_class"],
+                "telencephalon_count": grouped_row["telencephalon_count"],
+                "optic_tectum_count": grouped_row["optic_tectum_count"],
+                "matched_count": grouped_row["matched_count"],
+                "spillover_count": grouped_row["spillover_count"],
+                "source_rows": ";".join(grouped_row["source_rows"]),
+            }
+        )
+    summary = {
+        "motor_family_skeletal_like_fraction": round(skeletal_like_total / all_total, 4) if all_total else 0.0,
+        "motor_family_total_observations": all_total,
+    }
+    return summary, rows
 
 
 def permutation_test_mean_difference(
@@ -2149,6 +2462,33 @@ def build_acetylation_covariate_sensitivity(
     adjusted_low = math.exp(acetyl_beta - 1.96 * acetyl_se)
     adjusted_high = math.exp(acetyl_beta + 1.96 * acetyl_se)
 
+    inverse_design = []
+    inverse_response = []
+    for row, mass_value, span_value, first_value in zip(
+        matched_rows, standardized_mass, standardized_span, standardized_first
+    ):
+        inverse_design.append(
+            [
+                1.0,
+                1.0 if row["functional_axis"] == "telencephalon" else 0.0,
+                mass_value,
+                span_value,
+                first_value,
+            ]
+        )
+        inverse_response.append(1 if row["is_acetylated"] == "yes" else 0)
+
+    inverse_beta, inverse_covariance, inverse_converged = logistic_regression(
+        inverse_design, inverse_response
+    )
+    inverse_region_beta = inverse_beta[1]
+    inverse_region_se = math.sqrt(max(inverse_covariance[1][1], 1e-12))
+    inverse_region_z = inverse_region_beta / inverse_region_se
+    inverse_region_p = 2 * (1 - normal_cdf(abs(inverse_region_z)))
+    inverse_region_or = math.exp(inverse_region_beta)
+    inverse_region_low = math.exp(inverse_region_beta - 1.96 * inverse_region_se)
+    inverse_region_high = math.exp(inverse_region_beta + 1.96 * inverse_region_se)
+
     n_terminal_rows = [row for row in matched_rows if int(row["first_residue"]) <= 2]
     tel_nterm = [row for row in n_terminal_rows if row["functional_axis"] == "telencephalon"]
     teo_nterm = [row for row in n_terminal_rows if row["functional_axis"] == "optic_tectum"]
@@ -2178,6 +2518,15 @@ def build_acetylation_covariate_sensitivity(
             "sample_size": len(n_terminal_rows),
             "note": "Restriction to matched-marker rows with first residue at or within two residues of the N terminus.",
         },
+        {
+            "scenario": "inverse_logistic_region_predictor",
+            "acetylation_odds_ratio": round(inverse_region_or, 4),
+            "ci_low": round(inverse_region_low, 4),
+            "ci_high": round(inverse_region_high, 4),
+            "p_value": round(inverse_region_p, 6),
+            "sample_size": len(matched_rows),
+            "note": "Inverse logistic sensitivity with acetylation as the outcome and region plus log precursor mass, sequence span length, and first-residue position as predictors.",
+        },
     ]
     summary = {
         "acetylation_adjusted_odds_ratio": round(adjusted_or, 4),
@@ -2189,6 +2538,11 @@ def build_acetylation_covariate_sensitivity(
         "acetylation_first_residue_leq_2_ci_low": round(nterm_low, 4),
         "acetylation_first_residue_leq_2_ci_high": round(nterm_high, 4),
         "acetylation_first_residue_leq_2_p_value": round(nterm_p, 6),
+        "acetylation_inverse_region_odds_ratio": round(inverse_region_or, 4),
+        "acetylation_inverse_region_ci_low": round(inverse_region_low, 4),
+        "acetylation_inverse_region_ci_high": round(inverse_region_high, 4),
+        "acetylation_inverse_region_p_value": round(inverse_region_p, 6),
+        "acetylation_inverse_model_converged": inverse_converged,
     }
     return summary, rows
 
@@ -2407,15 +2761,18 @@ def build_traceability(
             "results/source_table_overlap_metrics.csv",
             "results/abundance_normalization_sensitivity.csv",
             "results/run_pair_similarity.csv",
+            "results/gene_symbol_sensitivity.csv",
             "results/overlap_bootstrap_intervals.csv",
             "results/presence_overlap_significance.csv",
             "results/discrepancy_diagnostic.csv",
             "results/canonicalization_rule_sensitivity.csv",
             "results/canonicalization_examples.csv",
             "results/occupancy_detectability_model.csv",
+            "results/detectability_stratified_sensitivity.csv",
             "results/misidentification_sensitivity.csv",
             "results/source_table_shared_ids.csv",
             "results/marker_family_membership.csv",
+            "results/motor_family_breakdown.csv",
             "results/marker_permutation_test.csv",
             "results/protein_level_permutation_test.csv",
             "results/composition_guardrails.csv",
@@ -2464,9 +2821,16 @@ def main() -> None:
         tel_rows, teo_rows
     )
     occupancy_summary, occupancy_rows = build_occupancy_detectability_model(tel_rows, teo_rows)
+    detectability_stratified_summary, detectability_stratified_rows = build_detectability_stratified_sensitivity(
+        tel_rows, teo_rows
+    )
     misidentification_summary, misidentification_rows = build_misidentification_sensitivity_bounds(
         tel_rows, teo_rows, source_metrics["source_table_protein_overlap_fraction"]
     )
+    gene_symbol_summary, gene_symbol_rows = build_gene_symbol_sensitivity(
+        tel_rows, teo_rows, membership_rows
+    )
+    motor_family_summary, motor_family_rows = build_motor_family_breakdown(membership_rows)
     ptm_detectability_summary, ptm_detectability_rows = build_ptm_detectability_proxy_screen(membership_rows)
     mnar_similarity_summary, mnar_similarity_rows = build_mnar_similarity_sensitivity(tel_rows, teo_rows)
     acetylation_adjusted_summary, acetylation_adjusted_rows = build_acetylation_covariate_sensitivity(
@@ -2584,7 +2948,10 @@ def main() -> None:
     summary["canonicalization_examples_count"] = len(canonicalization_example_rows)
     summary.update(overlap_significance_summary)
     summary.update(occupancy_summary)
+    summary.update(detectability_stratified_summary)
     summary.update(misidentification_summary)
+    summary.update(gene_symbol_summary)
+    summary.update(motor_family_summary)
     summary.update(ptm_detectability_summary)
     summary.update(mnar_similarity_summary)
     summary.update(acetylation_adjusted_summary)
@@ -2639,6 +3006,25 @@ def main() -> None:
             "bray_curtis_similarity",
             "per_run_total_normalized_weighted_jaccard_overlap",
             "per_run_total_normalized_bray_curtis_similarity",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "gene_symbol_sensitivity.csv",
+        gene_symbol_rows,
+        [
+            "analysis",
+            "shared_count",
+            "union_count",
+            "jaccard_overlap",
+            "expected_jaccard_under_independence",
+            "centered_jaccard",
+            "lower_tail_p",
+            "lower_tail_neg_log10_p",
+            "alignment_fraction",
+            "odds_ratio",
+            "odds_ratio_ci_low",
+            "odds_ratio_ci_high",
+            "note",
         ],
     )
     write_csv(
@@ -2735,6 +3121,22 @@ def main() -> None:
             "precursor_mass",
             "avg_intensity",
             "is_acetylated",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "motor_family_breakdown.csv",
+        motor_family_rows,
+        [
+            "family_key",
+            "gene",
+            "protein_accession",
+            "protein_description",
+            "annotation_class",
+            "telencephalon_count",
+            "optic_tectum_count",
+            "matched_count",
+            "spillover_count",
+            "source_rows",
         ],
     )
     write_csv(
@@ -2867,6 +3269,26 @@ def main() -> None:
             "latent_richness_estimate",
             "adjusted_shared_exact_ids",
             "adjusted_jaccard_overlap",
+            "note",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "detectability_stratified_sensitivity.csv",
+        detectability_stratified_rows,
+        [
+            "scheme",
+            "section",
+            "region",
+            "bin",
+            "exact_id_count",
+            "single_run_only_count",
+            "duplicate_reobserved_count",
+            "per_run_detection_probability",
+            "detected_at_least_once_probability",
+            "latent_richness_estimate",
+            "adjusted_shared_exact_ids",
+            "adjusted_jaccard_overlap",
+            "fallback_used",
             "note",
         ],
     )

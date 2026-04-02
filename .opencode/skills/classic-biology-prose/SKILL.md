@@ -42,6 +42,7 @@ The target voice is shaped by five habits:
 4. Let the evidence carry the claim. Do not narrate the act of arguing.
 5. Give the paper a clear arc: question, difficulty, finding, significance.
 6. End with a reflective conclusion, not a generic promise of future work.
+7. Write as an authoritative paper, not as a project report, homework note, lab log, or workflow diary.
 
 ## What To Avoid
 
@@ -54,8 +55,18 @@ Avoid machine-sounding framing such as:
 - "workflow-driven"
 - "the manuscript was rewritten to..."
 - "this study showcases..."
+- "the source paper"
+- "the released table"
+- "the deposited record"
 
 Avoid defensive prose that keeps explaining what the paper is not. State what the paper shows, then mark limits plainly and briefly.
+
+Avoid project-report habits such as:
+
+- explaining what round of revision produced the text
+- narrating file provenance when the reader needs biology
+- sounding like a memo to collaborators rather than a paper to the field
+- writing sentences that justify the workflow instead of advancing the argument
 
 Avoid inflated prose such as:
 
@@ -122,5 +133,6 @@ Before accepting a section, ask:
 2. Does the first paragraph sound like a real paper rather than a system report?
 3. If I remove phrases about the paper's process, does the argument get stronger?
 4. Does the conclusion leave the reader with an idea, not a workflow summary?
+5. Would a strong scientist sound comfortable signing this sentence as part of the paper itself?
 
 If the answer to any of these is no, rewrite.

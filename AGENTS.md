@@ -54,6 +54,7 @@ Paper-improvement loops should prefer `paperreview.ai` as the external review ba
 - Current service limits: English papers, PDF only, max `10MB`, first `15` pages analyzed.
 - The site currently exposes a calibrated `1-10` score only for `ICLR`.
 - If `paperreview.ai` is unavailable or unsuitable for the paper, fall back to the route-local reviewer and say so in the saved artifacts.
+- A review round is not complete until a revision round follows it. Always save the reviewed artifact, the review itself, and the next revised artifact as a pair in the paper history.
 
 ## Artifact Destinations
 
@@ -79,6 +80,7 @@ For paper prose in this repo, default to the skill at [.opencode/skills/classic-
 - Open with the scientific or historical question, not with workflow framing.
 - State the central point early and let the evidence carry the claim.
 - Avoid machine-sounding prose such as "this paper argues", "we do not claim", "artifact package", or self-conscious workflow narration.
+- Do not write papers as project reports, build logs, homework notes, or annotated workflow summaries. The default voice should be that of an authoritative scholar making a measured claim from evidence.
 - Keep limitations honest and brief, and end with a reflective closing sentence rather than generic future-work filler.
 
 ## Biowulf Operational Rules
