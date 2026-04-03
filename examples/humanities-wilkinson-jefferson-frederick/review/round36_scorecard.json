@@ -1,0 +1,20 @@
+{
+  "backend": "paperreview.ai",
+  "paper_path": "paper/main_round35.pdf",
+  "round_label": "round36",
+  "title": "Where Scandal Became Procedure: James Wilkinson, Thomas Jefferson, and Frederick-Town in the Politics of Survival",
+  "venue": "Other",
+  "submission_date": "2026-04-03T02:06:51.966139",
+  "final_score": null,
+  "verdict": "Accept",
+  "score_note": "paperreview.ai calibrated score is currently exposed for ICLR submissions only",
+  "available_sections": [
+    "assessment",
+    "binary_scores",
+    "detailed_comments",
+    "questions",
+    "strengths",
+    "summary",
+    "weaknesses"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "backend": "paperreview.ai",
+  "pdf_path": "examples/humanities-wilkinson-jefferson-frederick/paper/main_round35.pdf",
+  "filename": "main_round35.pdf",
+  "venue": "Other",
+  "email_redacted": true,
+  "email_domain": "nih.gov",
+  "token": "[redacted-local-only]",
+  "message": "Paper uploaded successfully. You will receive an email when the review is ready.",
+  "s3_key": "[redacted-local-only]"
+}

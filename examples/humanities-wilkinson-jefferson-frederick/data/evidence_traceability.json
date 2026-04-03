@@ -1,0 +1,797 @@
+{
+  "records": [
+    {
+      "id": "e01",
+      "date": "1801-02-23",
+      "title": "Jefferson routes letters to both Wilkinson and Meriwether Lewis",
+      "author": "Thomas Jefferson",
+      "recipient": "James Wilkinson",
+      "location": "Washington",
+      "phase": "access_and_utility",
+      "source_class": "primary",
+      "relationship_mode": "instrumental",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/01-33-02-0083",
+      "repository_identifier": "01-33-02-0083",
+      "survival_modes": [
+        "administrative_trust",
+        "western_usefulness"
+      ],
+      "excerpt": "Enclosures: TJ to Meriwether Lewis, 23 Feb. and TJ to James Wilkinson, 23 Feb.",
+      "summary": "Jefferson used the same forwarding network to reach Lewis and Wilkinson, suggesting that Wilkinson was part of the president's practical western operating circle.",
+      "local_relevance": "The same Jeffersonian western project later touched Frederick through the Frederick Town Barracks supply depot used for Lewis and Clark.",
+      "connections": [
+        [
+          "Thomas Jefferson",
+          "James Wilkinson"
+        ],
+        [
+          "Thomas Jefferson",
+          "Meriwether Lewis"
+        ]
+      ]
+    },
+    {
+      "id": "e02",
+      "date": "1802-01-18",
+      "title": "Wilkinson sends river water and fossils to Jefferson",
+      "author": "James Wilkinson",
+      "recipient": "Thomas Jefferson",
+      "location": "Mississippi Territory",
+      "phase": "access_and_utility",
+      "source_class": "primary",
+      "relationship_mode": "instrumental",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/01-36-02-0245",
+      "repository_identifier": "01-36-02-0245",
+      "survival_modes": [
+        "scientific_brokerage",
+        "frontier_usefulness"
+      ],
+      "excerpt": "A sample of the Waters of the Mississippi & Arkansaw Rivers ... may not be unacceptable to you.",
+      "summary": "Wilkinson cultivated favor by sending Jefferson natural specimens and practical frontier intelligence, mixing science with patronage.",
+      "local_relevance": "This scientific-broker posture later echoed in Frederick's role as a supply and information waypoint for western projects.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Thomas Jefferson"
+        ]
+      ]
+    },
+    {
+      "id": "e03",
+      "date": "1804-06-11",
+      "title": "Wilkinson regrets missing Jefferson's dinner invitation",
+      "author": "James Wilkinson",
+      "recipient": "Thomas Jefferson",
+      "location": "Washington",
+      "phase": "access_and_utility",
+      "source_class": "primary",
+      "relationship_mode": "social_access",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/01-43-02-0468-0001",
+      "repository_identifier": "01-43-02-0468-0001",
+      "survival_modes": [
+        "social_proximity",
+        "frontier_usefulness"
+      ],
+      "excerpt": "Your kind invitation to dinner this Day, increases the mortification I experience, from not being able to pay my respects to you.",
+      "summary": "The dinner invitation shows that the relationship was not purely bureaucratic; Wilkinson had social access to Jefferson, though still framed by public business.",
+      "local_relevance": "This is the clearest surviving sign of personal access before the relationship hardened into crisis management.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Thomas Jefferson"
+        ]
+      ]
+    },
+    {
+      "id": "e04",
+      "date": "1804-09-12",
+      "title": "Wilkinson writes to Adams from Frederick Town to defend military authority",
+      "author": "James Wilkinson",
+      "recipient": "John Adams",
+      "location": "Frederick Town, Maryland",
+      "phase": "frederick_repair",
+      "source_class": "primary",
+      "relationship_mode": "self_vindication",
+      "frederick_role": "reputational_repair",
+      "source_url": "https://founders.archives.gov/documents/Adams/99-02-02-5052",
+      "repository_identifier": "99-02-02-5052",
+      "survival_modes": [
+        "reputational_management",
+        "venue_choice"
+      ],
+      "excerpt": "Frederick Town Maryland Septr. 12th. 1804 ... the wanton cruel & wicked attacks made on my Honor ... determined me to devote my Life ... to the vindication of my Fame.",
+      "summary": "Before the famous 1811 court-martial, Wilkinson was already using Frederick Town as a place from which to defend contested military authority and discipline.",
+      "local_relevance": "This is one of the earliest clear moments where Frederick appears as a stage for Wilkinson's reputational repair.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "John Adams"
+        ],
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ],
+        [
+          "John Adams",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e05",
+      "date": "1805-10-22",
+      "title": "Wilkinson sends Jefferson a buffalo-hide map and political intelligence",
+      "author": "James Wilkinson",
+      "recipient": "Thomas Jefferson",
+      "location": "St. Louis",
+      "phase": "frontier_brokerage",
+      "source_class": "primary",
+      "relationship_mode": "instrumental",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/01-47-02-0475",
+      "repository_identifier": "01-47-02-0475",
+      "survival_modes": [
+        "frontier_usefulness",
+        "scientific_brokerage"
+      ],
+      "excerpt": "A Savage delineation on a Buffaloe Pelt ... may point the way to useful Enquiry. With Perfect respect & Sincere Attachment.",
+      "summary": "Wilkinson made himself valuable by delivering western objects, maps, and personnel to Jefferson. Affectional language rode alongside practical utility.",
+      "local_relevance": "Jefferson later displayed this buffalo-hide map at Monticello, a reminder that Wilkinson's usefulness reached the president through material culture as well as military reporting.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Thomas Jefferson"
+        ],
+        [
+          "James Wilkinson",
+          "Zebulon Pike"
+        ]
+      ]
+    },
+    {
+      "id": "e06",
+      "date": "1807-02-03",
+      "title": "Jefferson publicly and privately backs Wilkinson during the Burr crisis",
+      "author": "Thomas Jefferson",
+      "recipient": "James Wilkinson",
+      "location": "Washington",
+      "phase": "burr_crisis",
+      "source_class": "primary",
+      "relationship_mode": "protective",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/99-01-02-5012",
+      "repository_identifier": "99-01-02-5012",
+      "survival_modes": [
+        "executive_cover",
+        "public_legitimation"
+      ],
+      "excerpt": "We ... have not failed to strengthen the public confidence in you ... be assured that you will be cordially supported in the line of your duties.",
+      "summary": "This is the core document for Wilkinson's survival. Jefferson did not merely tolerate him; he actively worked to shore up public confidence when Burr made Wilkinson both useful and vulnerable.",
+      "local_relevance": "The later Frederick proceedings mattered because Jefferson had already invested political capital in Wilkinson's credibility.",
+      "connections": [
+        [
+          "Thomas Jefferson",
+          "James Wilkinson"
+        ],
+        [
+          "James Wilkinson",
+          "Aaron Burr"
+        ],
+        [
+          "Thomas Jefferson",
+          "Aaron Burr"
+        ]
+      ]
+    },
+    {
+      "id": "e07",
+      "date": "1807-03-20",
+      "title": "Wilkinson answers Jefferson with emotional gratitude and political dependency",
+      "author": "James Wilkinson",
+      "recipient": "Thomas Jefferson",
+      "location": "New Orleans",
+      "phase": "burr_crisis",
+      "source_class": "primary",
+      "relationship_mode": "protective",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/99-01-02-5318",
+      "repository_identifier": "99-01-02-5318",
+      "survival_modes": [
+        "executive_cover",
+        "self_vindication"
+      ],
+      "excerpt": "Your sympathy for my difficulties ... are received as the warrant of part confidence & the pledge of future trust.",
+      "summary": "Wilkinson's reply makes the asymmetry plain: Jefferson's approval gave him emotional relief and political cover at once.",
+      "local_relevance": "The tone foreshadows Wilkinson's later strategy of turning elite endorsement into personal survival.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Thomas Jefferson"
+        ],
+        [
+          "James Wilkinson",
+          "Aaron Burr"
+        ]
+      ]
+    },
+    {
+      "id": "e08",
+      "date": "1807-04-15",
+      "title": "Wilkinson asks Jefferson for orders and direction amid attacks on his honor",
+      "author": "James Wilkinson",
+      "recipient": "Thomas Jefferson",
+      "location": "New Orleans",
+      "phase": "burr_crisis",
+      "source_class": "primary",
+      "relationship_mode": "protective",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/99-01-02-5458",
+      "repository_identifier": "99-01-02-5458",
+      "survival_modes": [
+        "executive_cover",
+        "self_vindication",
+        "frontier_usefulness"
+      ],
+      "excerpt": "To you Sir who are best able to decide, I will presume to look for Orders & direction, in relation to time & place.",
+      "summary": "Wilkinson cast Jefferson as the arbiter of both policy and reputation. He justified himself by claiming that he had saved the country and defeated Burr.",
+      "local_relevance": "The later Frederick trial can be read as the institutional sequel to this plea for executive direction.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Thomas Jefferson"
+        ],
+        [
+          "James Wilkinson",
+          "Aaron Burr"
+        ]
+      ]
+    },
+    {
+      "id": "e09",
+      "date": "1811-01-21",
+      "title": "Wilkinson sends Jefferson his memoirs as a shield against calumny",
+      "author": "James Wilkinson",
+      "recipient": "Thomas Jefferson",
+      "location": "Washington",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "retrospective_defense",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/03-03-02-0246",
+      "repository_identifier": "03-03-02-0246",
+      "survival_modes": [
+        "memoir_strategy",
+        "elite_testimony",
+        "self_vindication"
+      ],
+      "excerpt": "The pressure of my persecutions ... and conscious Honor ... have prevented me. I ... send you [my memoirs].",
+      "summary": "Wilkinson turned authorship into defense, asking Jefferson to read a self-curated record before Congress and the public finished judging him.",
+      "local_relevance": "The memoir campaign set the stage for the Frederick proceedings by framing Wilkinson's case as history before it was fully law.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Thomas Jefferson"
+        ],
+        [
+          "James Wilkinson",
+          "Aaron Burr"
+        ]
+      ]
+    },
+    {
+      "id": "e10",
+      "date": "1811-03-10",
+      "title": "Jefferson reassures Wilkinson that calumny has not moved him",
+      "author": "Thomas Jefferson",
+      "recipient": "James Wilkinson",
+      "location": "Monticello",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "protective",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/03-03-02-0329",
+      "repository_identifier": "03-03-02-0329",
+      "survival_modes": [
+        "executive_cover",
+        "private_vindication"
+      ],
+      "excerpt": "My consciousness that no man on earth has me under his thumb, is evidence enough that you never used the expression ... my belief is that [your Argosy] will [ride out].",
+      "summary": "Jefferson's letter did not make Wilkinson innocent, but it gave him something almost as useful: a private certificate that Jefferson did not believe the worst charges against him.",
+      "local_relevance": "This mattered once the case moved to Frederick because Wilkinson could claim that even Jefferson remained unconvinced by the smear campaign.",
+      "connections": [
+        [
+          "Thomas Jefferson",
+          "James Wilkinson"
+        ],
+        [
+          "Thomas Jefferson",
+          "Aaron Burr"
+        ]
+      ]
+    },
+    {
+      "id": "e23",
+      "date": "1800-12-02",
+      "title": "War Department receipt places Wilkinson and his suite in Frederick Town",
+      "author": "C. Kimball",
+      "recipient": "Captain Campbell Smith",
+      "location": "Frederick Town, Maryland",
+      "phase": "access_and_utility",
+      "source_class": "primary",
+      "relationship_mode": "instrumental",
+      "frederick_role": "logistical_presence",
+      "source_url": "https://wardepartmentpapers.org/s/home/item/79117",
+      "repository_identifier": "wardepartment:79117",
+      "survival_modes": [
+        "military_logistics",
+        "administrative_presence"
+      ],
+      "excerpt": "Receipt for $12.25 for forage and subsistence for Wilkinson and his suite.",
+      "summary": "A War Department receipt from December 1800 places Wilkinson and his suite in Frederick Town, showing that the town was already part of the military-administrative geography around him before the better-known 1804 and 1811 documents.",
+      "local_relevance": "This is the earliest direct administrative trace tying Wilkinson himself to Frederick Town.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ],
+        [
+          "Captain Campbell Smith",
+          "Frederick Town"
+        ],
+        [
+          "James Wilkinson",
+          "Captain Campbell Smith"
+        ]
+      ]
+    },
+    {
+      "id": "e24",
+      "date": "1808-01-20",
+      "title": "Jefferson tells the House that Wilkinson's case is before a court of inquiry",
+      "author": "Thomas Jefferson",
+      "recipient": "House of Representatives",
+      "location": "Washington",
+      "phase": "burr_crisis",
+      "source_class": "primary",
+      "relationship_mode": "protective",
+      "frederick_role": null,
+      "source_url": "https://www.presidency.ucsb.edu/documents/special-message-2197",
+      "repository_identifier": "https://www.presidency.ucsb.edu/documents/special-message-2197",
+      "survival_modes": [
+        "executive_cover",
+        "procedural_inquiry"
+      ],
+      "excerpt": "A court of inquiry had been instituted at the request of General Wilkinson ... and the duties which this information devolves on me shall be exercised with rigorous impartiality.",
+      "summary": "Jefferson's special message shows that executive support for Wilkinson was paired with formal investigation. He routed the available papers into a court of inquiry, acknowledged Daniel Clark's evidence, and promised rigorous impartiality.",
+      "local_relevance": "This helps explain why the later Frederick proceedings mattered so much: they were the institutional successor to an earlier executive-managed inquiry.",
+      "connections": [
+        [
+          "Thomas Jefferson",
+          "James Wilkinson"
+        ],
+        [
+          "Thomas Jefferson",
+          "House of Representatives"
+        ],
+        [
+          "James Wilkinson",
+          "Aaron Burr"
+        ]
+      ]
+    },
+    {
+      "id": "e18",
+      "date": "1811-08-13",
+      "title": "Eustis tells Madison that Wilkinson plans to hold the court-martial in Frederick Town",
+      "author": "William Eustis",
+      "recipient": "James Madison",
+      "location": "Washington",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "procedural_management",
+      "frederick_role": "trial_planning",
+      "source_url": "https://founders.archives.gov/documents/Madison/03-03-02-0487",
+      "repository_identifier": "03-03-02-0487",
+      "survival_modes": [
+        "venue_choice",
+        "war_department_coordination"
+      ],
+      "excerpt": "Genl. W (as I hear) has said that he will have the court Martial in Frederick town.",
+      "summary": "Weeks before the better-known Frederick correspondence, the War Department already understood Frederick Town as the intended venue for Wilkinson's court-martial.",
+      "local_relevance": "This is the earliest direct administrative trace showing Frederick chosen as the place where Wilkinson's case would be processed.",
+      "connections": [
+        [
+          "William Eustis",
+          "James Madison"
+        ],
+        [
+          "William Eustis",
+          "Frederick Town"
+        ],
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e19",
+      "date": "1811-09-15",
+      "title": "Madison tells Eustis that the Frederick Town court-martial has possession of Wilkinson's case",
+      "author": "James Madison",
+      "recipient": "William Eustis",
+      "location": "Washington",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "procedural_management",
+      "frederick_role": "jurisdiction_management",
+      "source_url": "https://founders.archives.gov/documents/Madison/03-03-02-0550",
+      "repository_identifier": "03-03-02-0550",
+      "survival_modes": [
+        "jurisdiction_management",
+        "executive_supervision"
+      ],
+      "excerpt": "I have recd. yours ... inclosing a letter from Mr. Jones acting as Judge Advocate at Frederick Town. As the case of Genl. Wilkinson is in possession of the Court Martial ... no instructions seem to be requisite.",
+      "summary": "Madison treated the Frederick Town court-martial as an active legal forum with its own jurisdiction, to be left in possession of the charges unless later executive questions arose.",
+      "local_relevance": "Frederick appears here not merely as an address but as the seat of a tribunal whose proceedings the president chose not to preempt.",
+      "connections": [
+        [
+          "James Madison",
+          "William Eustis"
+        ],
+        [
+          "James Madison",
+          "Frederick Town"
+        ],
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e20",
+      "date": "1811-09-25",
+      "title": "Eustis reports that officers requested by the Frederick court-martial have been ordered to attend",
+      "author": "William Eustis",
+      "recipient": "James Madison",
+      "location": "Washington",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "procedural_management",
+      "frederick_role": "witness_coordination",
+      "source_url": "https://founders.archives.gov/documents/Madison/03-03-02-0558",
+      "repository_identifier": "03-03-02-0558",
+      "survival_modes": [
+        "witness_management",
+        "war_department_coordination"
+      ],
+      "excerpt": "An order issued to General Hampton directing the attendance of all the officers named in the request of the Court Martial.",
+      "summary": "The War Department moved officers and adjusted military constraints so the Frederick court-martial could hear the witnesses Wilkinson wanted.",
+      "local_relevance": "This shows Frederick as a working procedural center, not merely the formal location printed on the proceedings.",
+      "connections": [
+        [
+          "William Eustis",
+          "James Madison"
+        ],
+        [
+          "William Eustis",
+          "Frederick Town"
+        ],
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e11",
+      "date": "1811-10-09",
+      "title": "From Frederick Town, Wilkinson complains to Madison about trial prejudice",
+      "author": "James Wilkinson",
+      "recipient": "James Madison",
+      "location": "Frederick Town, Maryland",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "self_vindication",
+      "frederick_role": "trial_venue",
+      "source_url": "https://founders.archives.gov/documents/Madison/03-03-02-0571",
+      "repository_identifier": "03-03-02-0571",
+      "survival_modes": [
+        "venue_management",
+        "trial_strategy",
+        "executive_appeal"
+      ],
+      "excerpt": "Frederick Town Maryland ... I did hope ... there should not be even cause for Suspicion ... in depriving me of ... a fair & impartial decision.",
+      "summary": "By October 1811, Frederick was the literal place where Wilkinson translated political scandal into procedural argument.",
+      "local_relevance": "This is the strongest single document for Frederick as the geography of Wilkinson's survival.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "James Madison"
+        ],
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ],
+        [
+          "James Madison",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e21",
+      "date": "1811-10-02",
+      "title": "From Frederick Town, Jabeil Kinson sends Adams interrogatories by order of the court-martial",
+      "author": "Jabeil Kinson",
+      "recipient": "John Adams",
+      "location": "Frederick Town, Maryland",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "evidentiary_collection",
+      "frederick_role": "interrogatory_collection",
+      "source_url": "https://founders.archives.gov/documents/Adams/99-02-02-5689",
+      "repository_identifier": "99-02-02-5689",
+      "survival_modes": [
+        "evidentiary_collection",
+        "trial_strategy"
+      ],
+      "excerpt": "The enclosed interrogatories are submitted to you, by order of the General Court Martial ... addressed to me at this place.",
+      "summary": "From Frederick Town, the court-martial sought Adams's testimony by formal interrogatories, showing the proceeding actively collecting evidence beyond Maryland.",
+      "local_relevance": "Frederick appears here as the operating address from which the court reached outward for exculpatory testimony.",
+      "connections": [
+        [
+          "Jabeil Kinson",
+          "John Adams"
+        ],
+        [
+          "Jabeil Kinson",
+          "Frederick Town"
+        ],
+        [
+          "John Adams",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e12",
+      "date": "1812-02-07",
+      "title": "Madison reports that the Frederick-town court-martial acquitted Wilkinson",
+      "author": "James Madison",
+      "recipient": "Thomas Jefferson",
+      "location": "Washington",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "official_settlement",
+      "frederick_role": "trial_outcome",
+      "source_url": "https://founders.archives.gov/documents/Madison/03-04-02-0182",
+      "repository_identifier": "03-04-02-0182",
+      "survival_modes": [
+        "formal_acquittal",
+        "executive_confirmation"
+      ],
+      "excerpt": "I have examined ... the proceedings of the General Court Martial held at Frederick-town ... his acquittal ... is approved, and his sword is accordingly ordered to be restored.",
+      "summary": "The decisive act of survival was not simply Jefferson's private esteem; it was Madison's formal approval of the Frederick-town acquittal.",
+      "local_relevance": "Frederick becomes the place where scandal was converted into an executable federal verdict.",
+      "connections": [
+        [
+          "James Madison",
+          "Thomas Jefferson"
+        ],
+        [
+          "James Madison",
+          "James Wilkinson"
+        ],
+        [
+          "James Madison",
+          "Frederick Town"
+        ],
+        [
+          "Thomas Jefferson",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e22",
+      "date": "1811-10-12",
+      "title": "John Adams answers the Frederick interrogatories and calls the old suspicions calumnies",
+      "author": "John Adams",
+      "recipient": "James Wilkinson",
+      "location": "Quincy",
+      "phase": "rehabilitation",
+      "source_class": "primary",
+      "relationship_mode": "testimonial_support",
+      "frederick_role": "external_testimony",
+      "source_url": "https://founders.archives.gov/documents/Adams/99-02-02-5694",
+      "repository_identifier": "99-02-02-5694",
+      "survival_modes": [
+        "testimonial_support",
+        "reputational_management"
+      ],
+      "excerpt": "I thought it my duty to answer as soon as possible to the Interrogatories you enclosed ... I considered those rumours as Calumnies.",
+      "summary": "Adams answered the Frederick interrogatories by treating the long-running accusations against Wilkinson as unproved calumnies, giving the defense high-status testimonial support.",
+      "local_relevance": "This shows the Frederick proceedings drawing national witnesses into the work of turning reputation into admissible defense.",
+      "connections": [
+        [
+          "John Adams",
+          "James Wilkinson"
+        ],
+        [
+          "John Adams",
+          "Frederick Town"
+        ],
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e13",
+      "date": "1818-06-25",
+      "title": "Jefferson says his estimate of Wilkinson's services remains unaltered",
+      "author": "Thomas Jefferson",
+      "recipient": "James Wilkinson",
+      "location": "Monticello",
+      "phase": "retrospective_memory",
+      "source_class": "primary",
+      "relationship_mode": "retrospective_esteem",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/03-13-02-0105",
+      "repository_identifier": "03-13-02-0105",
+      "survival_modes": [
+        "reputational_afterlife",
+        "service_memory"
+      ],
+      "excerpt": "My estimate of their value remains unaltered ... my great and continued esteem and respect.",
+      "summary": "Long after Wilkinson's active usefulness had waned, Jefferson still framed him through remembered service rather than scandal.",
+      "local_relevance": "The letter helps explain why Wilkinson's career could end damaged yet not annihilated.",
+      "connections": [
+        [
+          "Thomas Jefferson",
+          "James Wilkinson"
+        ],
+        [
+          "James Wilkinson",
+          "Zebulon Pike"
+        ]
+      ]
+    },
+    {
+      "id": "e14",
+      "date": "1818-08-04",
+      "title": "Wilkinson answers Jefferson with gratitude for approbation and esteem",
+      "author": "James Wilkinson",
+      "recipient": "Thomas Jefferson",
+      "location": "Below New Orleans",
+      "phase": "retrospective_memory",
+      "source_class": "primary",
+      "relationship_mode": "retrospective_esteem",
+      "frederick_role": null,
+      "source_url": "https://founders.archives.gov/documents/Jefferson/03-13-02-0200",
+      "repository_identifier": "03-13-02-0200",
+      "survival_modes": [
+        "reputational_afterlife",
+        "service_memory"
+      ],
+      "excerpt": "I receive the testimony of approbation & esteem ... [as] an humble but faithful Citizen, who has been illy requited for his toils.",
+      "summary": "Wilkinson still needed Jefferson's approval in 1818, but now as moral compensation for a career that had survived without ever being fully cleansed.",
+      "local_relevance": "The exchange shows that survival did not mean vindication in the eyes of everyone; it meant retaining the esteem of the right witnesses.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Thomas Jefferson"
+        ],
+        [
+          "James Wilkinson",
+          "Zebulon Pike"
+        ]
+      ]
+    },
+    {
+      "id": "e15",
+      "date": "1812-04-01",
+      "title": "Frederick Town Barracks as western depot and War of 1812 military site",
+      "author": "Historic Frederick Barracks marker",
+      "recipient": "Public history audience",
+      "location": "Frederick, Maryland",
+      "phase": "local_context",
+      "source_class": "local",
+      "relationship_mode": "infrastructure",
+      "frederick_role": "infrastructure",
+      "source_url": "https://www.hmdb.org/m.asp?m=103369",
+      "repository_identifier": "hmdb:103369",
+      "survival_modes": [
+        "local_infrastructure"
+      ],
+      "excerpt": "1802 \u2014 Lewis and Clark used the barracks as a depot for supplies ... 1812 - 1815 \u2014 United States troops were quartered here.",
+      "summary": "The Frederick barracks linked Jeffersonian western expansion and wartime military administration in the same local built environment.",
+      "local_relevance": "This is the most striking local bridge between Jefferson's western agenda and Wilkinson's later military rehabilitation.",
+      "connections": [
+        [
+          "Frederick Barracks",
+          "Meriwether Lewis"
+        ],
+        [
+          "Frederick Barracks",
+          "Lewis and Clark Expedition"
+        ],
+        [
+          "Frederick Barracks",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e16",
+      "date": "1790-01-01",
+      "title": "Clements Library biographical note on Wilkinson's Monocacy medical practice",
+      "author": "Clements Library finding aid",
+      "recipient": "Researchers",
+      "location": "Monocacy, Maryland",
+      "phase": "local_context",
+      "source_class": "local",
+      "relationship_mode": "biographical_context",
+      "frederick_role": "local_origin",
+      "source_url": "https://findingaids.lib.umich.edu/catalog/umich-wcl-M-858wil",
+      "repository_identifier": "clements:umich-wcl-M-858wil",
+      "survival_modes": [
+        "local_origin"
+      ],
+      "excerpt": "He studied medicine and had a medical practice in Monocacy, Maryland.",
+      "summary": "Long before the court-martial, Wilkinson already had a Frederick County connection through medical practice near Monocacy.",
+      "local_relevance": "This strengthens the argument that Frederick was not random scenery but part of Wilkinson's longer Maryland geography.",
+      "connections": [
+        [
+          "James Wilkinson",
+          "Monocacy"
+        ],
+        [
+          "Monocacy",
+          "Frederick Town"
+        ]
+      ]
+    },
+    {
+      "id": "e17",
+      "date": "1918-01-01",
+      "title": "Maryland Historical Magazine on Taney's unpaid defense of Wilkinson",
+      "author": "J. Thomas Scharf via Delaplaine article",
+      "recipient": "Historical readers",
+      "location": "Frederick, Maryland",
+      "phase": "local_context",
+      "source_class": "local",
+      "relationship_mode": "legal_alliance",
+      "frederick_role": "legal_alliance",
+      "source_url": "https://msa.maryland.gov/megafile/msa/speccol/sc5800/sc5881/000001/000000/000050/pdf/msa_sc_5881_1_50.pdf",
+      "repository_identifier": "msa:msa_sc_5881_1_50.pdf",
+      "survival_modes": [
+        "legal_alliance",
+        "frederick_elites"
+      ],
+      "excerpt": "For nearly four months they drew heavily upon their resources in defending him and refused to accept any fee.",
+      "summary": "A local Frederick legal alliance, centered on Roger B. Taney and colleagues, helped turn Wilkinson's court-martial into a survivable proceeding.",
+      "local_relevance": "This is the clearest local evidence that Wilkinson's survival in Frederick depended on more than venue; it depended on Frederick lawyers.",
+      "connections": [
+        [
+          "Roger B. Taney",
+          "James Wilkinson"
+        ],
+        [
+          "Roger B. Taney",
+          "Frederick Town"
+        ],
+        [
+          "James Wilkinson",
+          "Frederick Town"
+        ]
+      ]
+    }
+  ]
+}

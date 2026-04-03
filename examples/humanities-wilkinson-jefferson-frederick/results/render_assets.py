@@ -33,6 +33,7 @@ NODE_POSITIONS = {
     "James Wilkinson": (0.0, 0.0),
     "Thomas Jefferson": (-3.4, 1.8),
     "James Madison": (3.2, 1.6),
+    "William Eustis": (1.8, 3.2),
     "John Adams": (3.4, -1.4),
     "Frederick Town": (5.4, 0.0),
     "Frederick Barracks": (4.7, 2.8),
@@ -41,6 +42,7 @@ NODE_POSITIONS = {
     "Aaron Burr": (-2.1, -2.5),
     "Zebulon Pike": (-4.3, -0.7),
     "Monocacy": (5.0, -2.7),
+    "Jabeil Kinson": (7.2, -1.7),
     "Roger B. Taney": (7.4, 1.0),
 }
 
@@ -80,12 +82,11 @@ def timeline_tex() -> str:
         y = 1.1 if idx % 2 == 0 else -1.1
         color = "yellow!60!orange!90!black" if row["frederick_role"] else PHASE_COLORS[row["phase"]]
         label = row["title"].replace("&", r"\&")
-        label = label[:54] + ("..." if len(label) > 54 else "")
         lines.append(rf"\filldraw[{color}] ({x:.2f},{y:.2f}) circle (2.2pt);")
         lines.append(rf"\draw[{color}, thin] ({x:.2f},0) -- ({x:.2f},{y:.2f});")
         anchor = "south" if y > 0 else "north"
         lines.append(
-            rf"\node[font=\scriptsize, align=center, text width=3.0cm, anchor={anchor}] at ({x:.2f},{y + (0.16 if y > 0 else -0.16):.2f}) {{{label}}};"
+            rf"\node[font=\tiny, align=center, text width=3.4cm, anchor={anchor}] at ({x:.2f},{y + (0.16 if y > 0 else -0.16):.2f}) {{{label}}};"
         )
 
     lines.extend(
@@ -207,7 +208,7 @@ def table_evidence_tex() -> str:
         rf"Primary share of Frederick-linked corpus & {primary_share}\% \\",
         r"\bottomrule",
         r"\end{tabular}",
-        r"\caption{Evidence ladder for the paper's core claims. The Jefferson--Wilkinson thesis rests mostly on direct correspondence, while the Frederick synthesis combines a three-document primary spine with three contextual local sources.}",
+        r"\caption{Evidence ladder for the paper's core claims. The Jefferson--Wilkinson thesis rests mostly on direct correspondence, while the Frederick synthesis combines a substantial primary procedural chain with contextual local sources.}",
         r"\label{tab:evidence}",
         r"\end{table}",
     ]
@@ -277,7 +278,7 @@ def table_primary_network_tex() -> str:
         *rows,
         r"\bottomrule",
         r"\end{tabular}",
-        r"\caption{Top nodes in the primary-only connection network. Frederick Town remains tied for the third-heaviest node even when the later local-context sources are removed.}",
+        r"\caption{Top nodes in the primary-only connection network. Frederick Town remains one of the heaviest nodes even when the later local-context sources are removed.}",
         r"\label{tab:primarynetwork}",
         r"\end{table}",
     ]
@@ -298,8 +299,10 @@ def table_phase_modes_tex() -> str:
         "instrumental",
         "protective",
         "self_vindication",
+        "procedural_management",
         "official_settlement",
         "retrospective_esteem",
+        "testimonial_support",
     ]
     rows = []
     for phase in [
@@ -320,14 +323,14 @@ def table_phase_modes_tex() -> str:
         r"\begin{table}[t]",
         r"\centering",
         r"\small",
-        r"\begin{tabular}{lccccc}",
+        r"\begin{tabular}{lccccccc}",
         r"\toprule",
-        r"Phase & Inst. & Prot. & Self-vind. & Official & Esteem \\",
+        r"Phase & Inst. & Prot. & Self-vind. & Proced. & Official & Esteem & Testimony \\",
         r"\midrule",
         *rows,
         r"\bottomrule",
         r"\end{tabular}",
-        r"\caption{Phase-by-mode summary from the coded corpus. The Burr crisis is almost purely protective, while rehabilitation mixes self-defense, protection, and official settlement.}",
+        r"\caption{Phase-by-mode summary from the coded corpus. The Burr crisis is almost purely protective, while rehabilitation mixes self-defense, procedure, testimony, and official settlement.}",
         r"\label{tab:phasemodes}",
         r"\end{table}",
     ]
@@ -336,29 +339,43 @@ def table_phase_modes_tex() -> str:
 
 def table_frederick_spine_tex() -> str:
     spine_rows = []
+    label_map = {
+        "reputational_repair": "Wilkinson to Adams on fame",
+        "trial_planning": "Eustis on venue",
+        "jurisdiction_management": "Madison on jurisdiction",
+        "witness_coordination": "Eustis on witness orders",
+        "interrogatory_collection": "Kinson with interrogatories",
+        "trial_venue": "Wilkinson on fairness",
+        "external_testimony": "Adams in reply",
+        "trial_outcome": "Madison on acquittal",
+    }
     function_map = {
         "reputational_repair": "Shows Frederick as an early site of reputational self-defense",
+        "trial_planning": "Shows Frederick chosen in advance as the intended court-martial venue",
+        "jurisdiction_management": "Shows the president leaving the Frederick tribunal in possession of the case",
+        "witness_coordination": "Shows the War Department mobilizing officers for the Frederick proceedings",
+        "interrogatory_collection": "Shows Frederick reaching outward to collect testimony by interrogatory",
         "trial_venue": "Shows Frederick as the place where Wilkinson sought procedural fairness",
+        "external_testimony": "Shows national testimony flowing back into the Frederick defense record",
         "trial_outcome": "Puts Frederick into the federal record through approved acquittal",
     }
     for row in TIMELINE_ROWS:
         if row["source_class"] == "primary" and row["frederick_role"] in function_map:
-            title = row["title"].replace("&", r"\&")
             spine_rows.append(
-                rf"{row['year']} & {title[:40] + ('...' if len(title) > 40 else '')} & {function_map[row['frederick_role']].replace('&', r'\&')} \\"
+                rf"{row['year']} & {label_map[row['frederick_role']].replace('&', r'\&')} & {function_map[row['frederick_role']].replace('&', r'\&')} \\"
             )
     lines = [
         r"\begin{table}[t]",
         r"\centering",
         r"\small",
-        r"\begin{tabular}{p{0.08\linewidth}p{0.33\linewidth}p{0.46\linewidth}}",
+        r"\begin{tabular}{p{0.08\linewidth}>{\raggedright\arraybackslash}p{0.28\linewidth}>{\raggedright\arraybackslash}p{0.51\linewidth}}",
         r"\toprule",
         r"Year & Document & Function in argument \\",
         r"\midrule",
         *spine_rows,
         r"\bottomrule",
         r"\end{tabular}",
-        r"\caption{The three-document Frederick primary spine used in the paper's core local argument. These records anchor the claim before later contextual sources are added.}",
+        r"\caption{The Frederick primary documentary chain used in the paper's core local argument. These records show venue choice, jurisdiction, evidence gathering, plea, and settlement before later contextual sources are added.}",
         r"\label{tab:frederickspine}",
         r"\end{table}",
     ]

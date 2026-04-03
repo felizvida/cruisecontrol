@@ -10,6 +10,12 @@ This humanities example uses a curated source corpus rather than an experimental
 - [source_manifest.json](source_manifest.json)
   Machine-readable list of primary and local sources plus generated outputs.
 
+- [corpus_inventory.json](corpus_inventory.json)
+  Complete 24-record inventory with stable source URLs and repository identifiers.
+
+- [evidence_traceability.json](evidence_traceability.json)
+  Full audit trail preserving the exact excerpts and summaries used in coding.
+
 - [../results/event_timeline.csv](../results/event_timeline.csv)
   Generated event timeline from the corpus.
 
@@ -29,3 +35,9 @@ The numeric outputs in this package do not replace reading the sources. They are
 4. network visualization
 
 The interpretive claims in the paper remain historical arguments built from those coded sources.
+
+The quickest audit route is:
+
+1. `curated_corpus.json` for the working records
+2. `corpus_inventory.json` for the compact citable inventory
+3. `evidence_traceability.json` for the exact text snippets used in analysis

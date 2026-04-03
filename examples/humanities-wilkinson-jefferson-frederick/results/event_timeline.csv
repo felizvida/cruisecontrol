@@ -9,8 +9,15 @@ e07,1807-03-20,1807,burr_crisis,Wilkinson answers Jefferson with emotional grati
 e08,1807-04-15,1807,burr_crisis,Wilkinson asks Jefferson for orders and direction amid attacks on his honor,James Wilkinson,Thomas Jefferson,New Orleans,primary,protective,
 e09,1811-01-21,1811,rehabilitation,Wilkinson sends Jefferson his memoirs as a shield against calumny,James Wilkinson,Thomas Jefferson,Washington,primary,retrospective_defense,
 e10,1811-03-10,1811,rehabilitation,Jefferson reassures Wilkinson that calumny has not moved him,Thomas Jefferson,James Wilkinson,Monticello,primary,protective,
+e23,1800-12-02,1800,access_and_utility,War Department receipt places Wilkinson and his suite in Frederick Town,C. Kimball,Captain Campbell Smith,"Frederick Town, Maryland",primary,instrumental,logistical_presence
+e24,1808-01-20,1808,burr_crisis,Jefferson tells the House that Wilkinson's case is before a court of inquiry,Thomas Jefferson,House of Representatives,Washington,primary,protective,
+e18,1811-08-13,1811,rehabilitation,Eustis tells Madison that Wilkinson plans to hold the court-martial in Frederick Town,William Eustis,James Madison,Washington,primary,procedural_management,trial_planning
+e19,1811-09-15,1811,rehabilitation,Madison tells Eustis that the Frederick Town court-martial has possession of Wilkinson's case,James Madison,William Eustis,Washington,primary,procedural_management,jurisdiction_management
+e20,1811-09-25,1811,rehabilitation,Eustis reports that officers requested by the Frederick court-martial have been ordered to attend,William Eustis,James Madison,Washington,primary,procedural_management,witness_coordination
 e11,1811-10-09,1811,rehabilitation,"From Frederick Town, Wilkinson complains to Madison about trial prejudice",James Wilkinson,James Madison,"Frederick Town, Maryland",primary,self_vindication,trial_venue
+e21,1811-10-02,1811,rehabilitation,"From Frederick Town, Jabeil Kinson sends Adams interrogatories by order of the court-martial",Jabeil Kinson,John Adams,"Frederick Town, Maryland",primary,evidentiary_collection,interrogatory_collection
 e12,1812-02-07,1812,rehabilitation,Madison reports that the Frederick-town court-martial acquitted Wilkinson,James Madison,Thomas Jefferson,Washington,primary,official_settlement,trial_outcome
+e22,1811-10-12,1811,rehabilitation,John Adams answers the Frederick interrogatories and calls the old suspicions calumnies,John Adams,James Wilkinson,Quincy,primary,testimonial_support,external_testimony
 e13,1818-06-25,1818,retrospective_memory,Jefferson says his estimate of Wilkinson's services remains unaltered,Thomas Jefferson,James Wilkinson,Monticello,primary,retrospective_esteem,
 e14,1818-08-04,1818,retrospective_memory,Wilkinson answers Jefferson with gratitude for approbation and esteem,James Wilkinson,Thomas Jefferson,Below New Orleans,primary,retrospective_esteem,
 e15,1812-04-01,1812,local_context,Frederick Town Barracks as western depot and War of 1812 military site,Historic Frederick Barracks marker,Public history audience,"Frederick, Maryland",local,infrastructure,infrastructure

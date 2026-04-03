@@ -19,6 +19,9 @@ This humanities example ships executable analysis code even though the argument 
 - `validate_artifacts.sh`
   Checks the paper PDF, LaTeX log, and embedded fonts.
 
+- `environment_versions.json`
+  Captured runtime metadata for the current build environment.
+
 ## Usage
 
 ```bash
@@ -30,3 +33,10 @@ cd examples/humanities-wilkinson-jefferson-frederick/code
 ## Scope Note
 
 The code does not "prove" the historical argument on its own. It makes the source coding, theme counts, network drawing, and paper figures reproducible.
+
+For audit and reuse, this package also ships:
+
+- `../data/corpus_inventory.json`
+- `../data/evidence_traceability.json`
+- `../results/sensitivity_checks.json`
+- `environment_versions.json`

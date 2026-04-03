@@ -220,6 +220,121 @@
     ]
   },
   {
+    "id": "e23",
+    "date": "1800-12-02",
+    "year": 1800,
+    "title": "War Department receipt places Wilkinson and his suite in Frederick Town",
+    "author": "C. Kimball",
+    "recipient": "Captain Campbell Smith",
+    "location": "Frederick Town, Maryland",
+    "phase": "access_and_utility",
+    "source_class": "primary",
+    "relationship_mode": "instrumental",
+    "survival_modes": ["military_logistics", "administrative_presence"],
+    "frederick_role": "logistical_presence",
+    "excerpt": "Receipt for $12.25 for forage and subsistence for Wilkinson and his suite.",
+    "summary": "A War Department receipt from December 1800 places Wilkinson and his suite in Frederick Town, showing that the town was already part of the military-administrative geography around him before the better-known 1804 and 1811 documents.",
+    "local_relevance": "This is the earliest direct administrative trace tying Wilkinson himself to Frederick Town.",
+    "source_url": "https://wardepartmentpapers.org/s/home/item/79117",
+    "connections": [
+      ["James Wilkinson", "Frederick Town"],
+      ["Captain Campbell Smith", "Frederick Town"],
+      ["James Wilkinson", "Captain Campbell Smith"]
+    ]
+  },
+  {
+    "id": "e24",
+    "date": "1808-01-20",
+    "year": 1808,
+    "title": "Jefferson tells the House that Wilkinson's case is before a court of inquiry",
+    "author": "Thomas Jefferson",
+    "recipient": "House of Representatives",
+    "location": "Washington",
+    "phase": "burr_crisis",
+    "source_class": "primary",
+    "relationship_mode": "protective",
+    "survival_modes": ["executive_cover", "procedural_inquiry"],
+    "frederick_role": null,
+    "excerpt": "A court of inquiry had been instituted at the request of General Wilkinson ... and the duties which this information devolves on me shall be exercised with rigorous impartiality.",
+    "summary": "Jefferson's special message shows that executive support for Wilkinson was paired with formal investigation. He routed the available papers into a court of inquiry, acknowledged Daniel Clark's evidence, and promised rigorous impartiality.",
+    "local_relevance": "This helps explain why the later Frederick proceedings mattered so much: they were the institutional successor to an earlier executive-managed inquiry.",
+    "source_url": "https://www.presidency.ucsb.edu/documents/special-message-2197",
+    "connections": [
+      ["Thomas Jefferson", "James Wilkinson"],
+      ["Thomas Jefferson", "House of Representatives"],
+      ["James Wilkinson", "Aaron Burr"]
+    ]
+  },
+  {
+    "id": "e18",
+    "date": "1811-08-13",
+    "year": 1811,
+    "title": "Eustis tells Madison that Wilkinson plans to hold the court-martial in Frederick Town",
+    "author": "William Eustis",
+    "recipient": "James Madison",
+    "location": "Washington",
+    "phase": "rehabilitation",
+    "source_class": "primary",
+    "relationship_mode": "procedural_management",
+    "survival_modes": ["venue_choice", "war_department_coordination"],
+    "frederick_role": "trial_planning",
+    "excerpt": "Genl. W (as I hear) has said that he will have the court Martial in Frederick town.",
+    "summary": "Weeks before the better-known Frederick correspondence, the War Department already understood Frederick Town as the intended venue for Wilkinson's court-martial.",
+    "local_relevance": "This is the earliest direct administrative trace showing Frederick chosen as the place where Wilkinson's case would be processed.",
+    "source_url": "https://founders.archives.gov/documents/Madison/03-03-02-0487",
+    "connections": [
+      ["William Eustis", "James Madison"],
+      ["William Eustis", "Frederick Town"],
+      ["James Wilkinson", "Frederick Town"]
+    ]
+  },
+  {
+    "id": "e19",
+    "date": "1811-09-15",
+    "year": 1811,
+    "title": "Madison tells Eustis that the Frederick Town court-martial has possession of Wilkinson's case",
+    "author": "James Madison",
+    "recipient": "William Eustis",
+    "location": "Washington",
+    "phase": "rehabilitation",
+    "source_class": "primary",
+    "relationship_mode": "procedural_management",
+    "survival_modes": ["jurisdiction_management", "executive_supervision"],
+    "frederick_role": "jurisdiction_management",
+    "excerpt": "I have recd. yours ... inclosing a letter from Mr. Jones acting as Judge Advocate at Frederick Town. As the case of Genl. Wilkinson is in possession of the Court Martial ... no instructions seem to be requisite.",
+    "summary": "Madison treated the Frederick Town court-martial as an active legal forum with its own jurisdiction, to be left in possession of the charges unless later executive questions arose.",
+    "local_relevance": "Frederick appears here not merely as an address but as the seat of a tribunal whose proceedings the president chose not to preempt.",
+    "source_url": "https://founders.archives.gov/documents/Madison/03-03-02-0550",
+    "connections": [
+      ["James Madison", "William Eustis"],
+      ["James Madison", "Frederick Town"],
+      ["James Wilkinson", "Frederick Town"]
+    ]
+  },
+  {
+    "id": "e20",
+    "date": "1811-09-25",
+    "year": 1811,
+    "title": "Eustis reports that officers requested by the Frederick court-martial have been ordered to attend",
+    "author": "William Eustis",
+    "recipient": "James Madison",
+    "location": "Washington",
+    "phase": "rehabilitation",
+    "source_class": "primary",
+    "relationship_mode": "procedural_management",
+    "survival_modes": ["witness_management", "war_department_coordination"],
+    "frederick_role": "witness_coordination",
+    "excerpt": "An order issued to General Hampton directing the attendance of all the officers named in the request of the Court Martial.",
+    "summary": "The War Department moved officers and adjusted military constraints so the Frederick court-martial could hear the witnesses Wilkinson wanted.",
+    "local_relevance": "This shows Frederick as a working procedural center, not merely the formal location printed on the proceedings.",
+    "source_url": "https://founders.archives.gov/documents/Madison/03-03-02-0558",
+    "connections": [
+      ["William Eustis", "James Madison"],
+      ["William Eustis", "Frederick Town"],
+      ["James Wilkinson", "Frederick Town"]
+    ]
+  },
+  {
     "id": "e11",
     "date": "1811-10-09",
     "year": 1811,
@@ -240,6 +355,29 @@
       ["James Wilkinson", "James Madison"],
       ["James Wilkinson", "Frederick Town"],
       ["James Madison", "Frederick Town"]
+    ]
+  },
+  {
+    "id": "e21",
+    "date": "1811-10-02",
+    "year": 1811,
+    "title": "From Frederick Town, Jabeil Kinson sends Adams interrogatories by order of the court-martial",
+    "author": "Jabeil Kinson",
+    "recipient": "John Adams",
+    "location": "Frederick Town, Maryland",
+    "phase": "rehabilitation",
+    "source_class": "primary",
+    "relationship_mode": "evidentiary_collection",
+    "survival_modes": ["evidentiary_collection", "trial_strategy"],
+    "frederick_role": "interrogatory_collection",
+    "excerpt": "The enclosed interrogatories are submitted to you, by order of the General Court Martial ... addressed to me at this place.",
+    "summary": "From Frederick Town, the court-martial sought Adams's testimony by formal interrogatories, showing the proceeding actively collecting evidence beyond Maryland.",
+    "local_relevance": "Frederick appears here as the operating address from which the court reached outward for exculpatory testimony.",
+    "source_url": "https://founders.archives.gov/documents/Adams/99-02-02-5689",
+    "connections": [
+      ["Jabeil Kinson", "John Adams"],
+      ["Jabeil Kinson", "Frederick Town"],
+      ["John Adams", "Frederick Town"]
     ]
   },
   {
@@ -264,6 +402,29 @@
       ["James Madison", "James Wilkinson"],
       ["James Madison", "Frederick Town"],
       ["Thomas Jefferson", "Frederick Town"]
+    ]
+  },
+  {
+    "id": "e22",
+    "date": "1811-10-12",
+    "year": 1811,
+    "title": "John Adams answers the Frederick interrogatories and calls the old suspicions calumnies",
+    "author": "John Adams",
+    "recipient": "James Wilkinson",
+    "location": "Quincy",
+    "phase": "rehabilitation",
+    "source_class": "primary",
+    "relationship_mode": "testimonial_support",
+    "survival_modes": ["testimonial_support", "reputational_management"],
+    "frederick_role": "external_testimony",
+    "excerpt": "I thought it my duty to answer as soon as possible to the Interrogatories you enclosed ... I considered those rumours as Calumnies.",
+    "summary": "Adams answered the Frederick interrogatories by treating the long-running accusations against Wilkinson as unproved calumnies, giving the defense high-status testimonial support.",
+    "local_relevance": "This shows the Frederick proceedings drawing national witnesses into the work of turning reputation into admissible defense.",
+    "source_url": "https://founders.archives.gov/documents/Adams/99-02-02-5694",
+    "connections": [
+      ["John Adams", "James Wilkinson"],
+      ["John Adams", "Frederick Town"],
+      ["James Wilkinson", "Frederick Town"]
     ]
   },
   {

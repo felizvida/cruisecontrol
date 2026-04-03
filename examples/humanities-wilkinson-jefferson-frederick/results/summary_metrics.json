@@ -1,35 +1,42 @@
 {
-  "total_records": 17,
+  "total_records": 24,
   "direct_jefferson_wilkinson_records": 11,
-  "frederick_records": 6,
-  "frederick_share": 0.353,
-  "frederick_primary_records": 3,
+  "frederick_records": 12,
+  "frederick_share": 0.5,
+  "frederick_primary_records": 9,
   "frederick_local_records": 3,
   "frederick_phase_counts": {
     "frederick_repair": 1,
-    "rehabilitation": 2,
+    "access_and_utility": 1,
+    "rehabilitation": 7,
     "local_context": 3
   },
   "frederick_roles": {
     "reputational_repair": 1,
+    "logistical_presence": 1,
+    "trial_planning": 1,
+    "jurisdiction_management": 1,
+    "witness_coordination": 1,
     "trial_venue": 1,
+    "interrogatory_collection": 1,
     "trial_outcome": 1,
+    "external_testimony": 1,
     "infrastructure": 1,
     "local_origin": 1,
     "legal_alliance": 1
   },
   "phase_counts": {
-    "access_and_utility": 3,
+    "access_and_utility": 4,
     "frederick_repair": 1,
     "frontier_brokerage": 1,
-    "burr_crisis": 3,
-    "rehabilitation": 4,
+    "burr_crisis": 4,
+    "rehabilitation": 9,
     "retrospective_memory": 2,
     "local_context": 3
   },
   "phase_mode_counts": {
     "access_and_utility": {
-      "instrumental": 2,
+      "instrumental": 3,
       "social_access": 1
     },
     "frederick_repair": {
@@ -39,13 +46,16 @@
       "instrumental": 1
     },
     "burr_crisis": {
-      "protective": 3
+      "protective": 4
     },
     "rehabilitation": {
       "retrospective_defense": 1,
       "protective": 1,
+      "procedural_management": 3,
       "self_vindication": 1,
-      "official_settlement": 1
+      "evidentiary_collection": 1,
+      "official_settlement": 1,
+      "testimonial_support": 1
     },
     "retrospective_memory": {
       "retrospective_esteem": 2
@@ -57,19 +67,22 @@
     }
   },
   "relationship_counts": {
-    "instrumental": 3,
+    "instrumental": 4,
     "social_access": 1,
     "self_vindication": 2,
-    "protective": 4,
+    "protective": 5,
     "retrospective_defense": 1,
+    "procedural_management": 3,
+    "evidentiary_collection": 1,
     "official_settlement": 1,
+    "testimonial_support": 1,
     "retrospective_esteem": 2,
     "infrastructure": 1,
     "biographical_context": 1,
     "legal_alliance": 1
   },
   "source_counts": {
-    "primary": 14,
+    "primary": 21,
     "local": 3
   },
   "theme_counts": {
@@ -85,63 +98,68 @@
     },
     "Thomas Jefferson": {
       "warmth": 2,
-      "utility": 4,
-      "defense": 2,
-      "records": 4,
-      "tokens": 183,
-      "warmth_per_1000_tokens": 10.93,
-      "utility_per_1000_tokens": 21.86,
-      "defense_per_1000_tokens": 10.93
+      "utility": 5,
+      "defense": 3,
+      "records": 5,
+      "tokens": 245,
+      "warmth_per_1000_tokens": 8.16,
+      "utility_per_1000_tokens": 20.41,
+      "defense_per_1000_tokens": 12.24
     }
   },
   "top_nodes": [
     {
       "node": "James Wilkinson",
-      "weight": 26
-    },
-    {
-      "node": "Thomas Jefferson",
-      "weight": 16
+      "weight": 35
     },
     {
       "node": "Frederick Town",
-      "weight": 10
+      "weight": 22
     },
     {
-      "node": "Aaron Burr",
-      "weight": 6
+      "node": "Thomas Jefferson",
+      "weight": 18
     },
     {
       "node": "James Madison",
+      "weight": 9
+    },
+    {
+      "node": "Aaron Burr",
+      "weight": 7
+    },
+    {
+      "node": "John Adams",
+      "weight": 6
+    },
+    {
+      "node": "William Eustis",
       "weight": 5
     },
     {
       "node": "Zebulon Pike",
       "weight": 3
-    },
-    {
-      "node": "Frederick Barracks",
-      "weight": 3
-    },
-    {
-      "node": "Meriwether Lewis",
-      "weight": 2
     }
   ],
   "top_edges": [
     {
       "source": "James Wilkinson",
       "target": "Thomas Jefferson",
-      "weight": 11
-    },
-    {
-      "source": "Aaron Burr",
-      "target": "James Wilkinson",
-      "weight": 4
+      "weight": 12
     },
     {
       "source": "Frederick Town",
       "target": "James Wilkinson",
+      "weight": 8
+    },
+    {
+      "source": "Aaron Burr",
+      "target": "James Wilkinson",
+      "weight": 5
+    },
+    {
+      "source": "Frederick Town",
+      "target": "John Adams",
       "weight": 3
     },
     {
@@ -150,80 +168,85 @@
       "weight": 3
     },
     {
+      "source": "James Madison",
+      "target": "William Eustis",
+      "weight": 3
+    },
+    {
+      "source": "Frederick Town",
+      "target": "James Madison",
+      "weight": 3
+    },
+    {
+      "source": "James Wilkinson",
+      "target": "John Adams",
+      "weight": 2
+    },
+    {
       "source": "Aaron Burr",
       "target": "Thomas Jefferson",
       "weight": 2
     },
     {
-      "source": "James Madison",
-      "target": "James Wilkinson",
-      "weight": 2
-    },
-    {
       "source": "Frederick Town",
-      "target": "James Madison",
+      "target": "William Eustis",
       "weight": 2
-    },
-    {
-      "source": "Meriwether Lewis",
-      "target": "Thomas Jefferson",
-      "weight": 1
-    },
-    {
-      "source": "James Wilkinson",
-      "target": "John Adams",
-      "weight": 1
-    },
-    {
-      "source": "Frederick Town",
-      "target": "John Adams",
-      "weight": 1
     }
   ],
   "primary_only_top_nodes": [
     {
       "node": "James Wilkinson",
-      "weight": 23
+      "weight": 32
     },
     {
       "node": "Thomas Jefferson",
-      "weight": 16
+      "weight": 18
     },
     {
       "node": "Frederick Town",
-      "weight": 6
-    },
-    {
-      "node": "Aaron Burr",
-      "weight": 6
+      "weight": 18
     },
     {
       "node": "James Madison",
+      "weight": 9
+    },
+    {
+      "node": "Aaron Burr",
+      "weight": 7
+    },
+    {
+      "node": "John Adams",
+      "weight": 6
+    },
+    {
+      "node": "William Eustis",
       "weight": 5
     },
     {
       "node": "Zebulon Pike",
       "weight": 3
-    },
-    {
-      "node": "John Adams",
-      "weight": 2
-    },
-    {
-      "node": "Meriwether Lewis",
-      "weight": 1
     }
   ],
   "primary_only_top_edges": [
     {
       "source": "James Wilkinson",
       "target": "Thomas Jefferson",
-      "weight": 11
+      "weight": 12
+    },
+    {
+      "source": "Frederick Town",
+      "target": "James Wilkinson",
+      "weight": 7
     },
     {
       "source": "Aaron Burr",
       "target": "James Wilkinson",
-      "weight": 4
+      "weight": 5
+    },
+    {
+      "source": "Frederick Town",
+      "target": "John Adams",
+      "weight": 3
     },
     {
       "source": "James Wilkinson",
@@ -231,8 +254,18 @@
       "weight": 3
     },
     {
+      "source": "James Madison",
+      "target": "William Eustis",
+      "weight": 3
+    },
+    {
       "source": "Frederick Town",
-      "target": "James Wilkinson",
+      "target": "James Madison",
+      "weight": 3
+    },
+    {
+      "source": "James Wilkinson",
+      "target": "John Adams",
       "weight": 2
     },
     {
@@ -241,36 +274,16 @@
       "weight": 2
     },
     {
-      "source": "James Madison",
-      "target": "James Wilkinson",
-      "weight": 2
-    },
-    {
       "source": "Frederick Town",
-      "target": "James Madison",
+      "target": "William Eustis",
       "weight": 2
-    },
-    {
-      "source": "Meriwether Lewis",
-      "target": "Thomas Jefferson",
-      "weight": 1
-    },
-    {
-      "source": "James Wilkinson",
-      "target": "John Adams",
-      "weight": 1
-    },
-    {
-      "source": "Frederick Town",
-      "target": "John Adams",
-      "weight": 1
     }
   ],
   "place_node_weights": [
     {
       "node": "Frederick Town",
-      "overall_weight": 10,
-      "primary_only_weight": 6
+      "overall_weight": 22,
+      "primary_only_weight": 18
     },
     {
       "node": "Frederick Barracks",
@@ -284,15 +297,15 @@
     }
   ],
   "core_claim_metrics": {
-    "instrumental_plus_protective_modes": 10,
+    "instrumental_plus_protective_modes": 18,
     "social_access_modes": 1,
     "retrospective_esteem_modes": 2,
-    "frederick_rehabilitation_records": 2
+    "frederick_rehabilitation_records": 7
   },
   "evidence_tiers": {
     "direct_relationship_primary": 11,
-    "primary_frederick_venue": 3,
+    "primary_frederick_venue": 9,
     "contextual_frederick_local": 3,
-    "frederick_primary_share": 0.5
+    "frederick_primary_share": 0.75
   }
 }

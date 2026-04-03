@@ -1,0 +1,62 @@
+{
+  "theme_excerpt_only": {
+    "James Wilkinson": {
+      "warmth": 4,
+      "utility": 2,
+      "defense": 6,
+      "records": 9,
+      "tokens": 182,
+      "warmth_per_1000_tokens": 21.98,
+      "utility_per_1000_tokens": 10.99,
+      "defense_per_1000_tokens": 32.97
+    },
+    "Thomas Jefferson": {
+      "warmth": 2,
+      "utility": 3,
+      "defense": 1,
+      "records": 5,
+      "tokens": 109,
+      "warmth_per_1000_tokens": 18.35,
+      "utility_per_1000_tokens": 27.52,
+      "defense_per_1000_tokens": 9.17
+    }
+  },
+  "theme_conservative_excerpt_only": {
+    "James Wilkinson": {
+      "warmth": 3,
+      "utility": 1,
+      "defense": 4,
+      "records": 9,
+      "tokens": 182,
+      "warmth_per_1000_tokens": 16.48,
+      "utility_per_1000_tokens": 5.49,
+      "defense_per_1000_tokens": 21.98
+    },
+    "Thomas Jefferson": {
+      "warmth": 2,
+      "utility": 2,
+      "defense": 0,
+      "records": 5,
+      "tokens": 109,
+      "warmth_per_1000_tokens": 18.35,
+      "utility_per_1000_tokens": 18.35,
+      "defense_per_1000_tokens": 0.0
+    }
+  },
+  "place_weights_full": {
+    "Frederick Town": 22,
+    "Frederick Barracks": 3,
+    "Monocacy": 2
+  },
+  "place_weights_primary_only": {
+    "Frederick Town": 18,
+    "Frederick Barracks": 0,
+    "Monocacy": 0
+  },
+  "leave_one_out_place_rank": {
+    "runs": 24,
+    "frederick_town_ranked_top_every_time": true,
+    "frederick_town_top_count": 24
+  },
+  "note": "These are descriptive perturbation checks only. They do not replace independent coding or larger archival recovery."
+}

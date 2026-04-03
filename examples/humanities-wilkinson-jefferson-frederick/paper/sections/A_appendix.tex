@@ -16,14 +16,33 @@ The corpus in this package is intentionally small and auditable. Each record sto
 
 This design makes the paper easy to inspect and criticize. A reader can disagree with the coding while still seeing exactly how the paper's figures were produced. That transparency matters for a humanities workflow because it prevents the computational layer from turning into black-box authority.
 
+\subsection*{Audit Trail and Environment}
+
+The package now releases the corpus in three progressively denser forms:
+
+\begin{itemize}[leftmargin=1.4em]
+  \item \path{data/source_manifest.json} describes the package at the source level;
+  \item \path{data/corpus_inventory.json} gives the full twenty-four-record inventory with stable URLs and repository identifiers;
+  \item \path{data/evidence_traceability.json} preserves the exact excerpts and summaries used in coding;
+  \item \path{code/environment_versions.json} records the runtime environment for the current build.
+\end{itemize}
+
+Together these files make the paper easier to audit than a narrative note whose data trail is left implicit.
+
 \subsection*{Coding Rules}
 
 Three coding rules matter especially for this note. First, a record is marked Frederick-linked only if Frederick, Frederick Town, Monocacy, the Frederick Barracks, or a clearly Frederick-based legal alliance is part of the document's historical function rather than a passing geographic mention. Second, direct Jefferson--Wilkinson correspondence is kept analytically distinct from surrounding official or local material because it carries the strongest weight for the relationship claim. Third, later local sources are used to thicken setting and legal memory, not to outrank contemporaneous presidential or court-martial records.
 
 \subsection*{Inclusion Logic}
 
-The corpus is not a complete Wilkinson archive. It is a purpose-built working set designed to answer one question well: how Jeffersonian protection and Frederick procedure intersected in Wilkinson's survival. A record is included if it illuminates at least one of four functions: access and usefulness, executive protection, Frederick as venue or infrastructure, or retrospective memory. That inclusion logic keeps the package compact enough for a local-history audience to audit while still broad enough to test the paper's main interpretive claim.
+The corpus is not a complete Wilkinson archive. It is a purpose-built working set designed to answer one question well: how Jeffersonian protection and Frederick procedure intersected in Wilkinson's survival. A record is included if it illuminates at least one of four functions: access and usefulness, executive protection, Frederick as venue or infrastructure, Frederick procedure or testimony, or retrospective memory. That inclusion logic keeps the package compact enough for a local-history audience to audit while still broad enough to test the paper's main interpretive claim.
 
 \subsection*{What Is Not Included}
 
 This corpus does not attempt to exhaust every possible Wilkinson source class. It does not include the full court-martial transcript, the complete Burr-era newspaper war, or the wider Wilkinson manuscript universe in Maryland, Louisiana, and federal military records. Those omissions matter if the goal is a larger archival monograph. They matter less for the narrower claim of this paper, which asks how Jeffersonian protection and Frederick procedure appear in a compact, inspectable documentary chain. The exclusions therefore limit the scale of the claim without collapsing it.
+
+\subsection*{Proceedings Note}
+
+The coded corpus still does not include the full printed court-martial proceedings or the complete RG 153 case file. The paper therefore relies on the procedural letters as its primary chain. To narrow that gap, the present revision also uses the editorial note accompanying Madison's 7 February 1812 letter, which preserves a favorable fragment of the court's own language \citep{madison1812}. It also notes Wilkinson's complaint a few weeks later that at least one transcribed copy of the proceedings had been made in haste and with errors, a reminder that the surviving record has to be handled critically even when it is official \citep{madison1812copy}. The next archival gains are therefore clear: the printed pamphlet, the RG 153 file, and any surviving Frederick press or docket material that can confirm how the proceeding looked on the ground.
+
+Spelling in the corpus follows the cited source transcription. The form ``Jabeil Kinson,'' for example, is kept because that is how the Founders Online text for the Adams interrogatory letter presents the name.

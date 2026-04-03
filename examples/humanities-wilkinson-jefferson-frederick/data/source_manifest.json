@@ -1,8 +1,8 @@
 {
   "artifact_type": "humanities_case_study_with_computational_source_coding",
   "paper_type": "history_note_with_local_public_history_angle",
-  "title": "Useful to Jefferson, Vindicated at Frederick-Town: James Wilkinson and the Geography of Political Survival",
-  "note": "This package studies Wilkinson's relationship with Jefferson and argues that Frederick was a recurring geography of repair, logistics, and legal survival.",
+  "title": "Where Scandal Became Procedure: James Wilkinson, Thomas Jefferson, and Frederick-Town in the Politics of Survival",
+  "note": "This package argues that executive protection became durable through venue, interrogatories, witnesses, and judgment in Frederick Town.",
   "primary_sources": [
     {
       "key": "jefferson1801",
@@ -110,10 +110,14 @@
     }
   ],
   "generated_artifacts": [
+    "corpus_inventory.json",
+    "evidence_traceability.json",
     "../results/event_timeline.csv",
     "../results/theme_counts.csv",
     "../results/network_edges.csv",
+    "../results/sensitivity_checks.json",
     "../results/summary_metrics.json",
+    "../code/environment_versions.json",
     "../paper/main.pdf"
   ]
 }

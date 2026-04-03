@@ -35,6 +35,7 @@ This log summarizes the round history. The serialized review chains that actuall
 | Round 26 | 9.8/10 | Strong Accept | Folded the place-ranking result back into the Frederick section itself |
 | Round 27 | 9.8/10 | Strong Accept | Added a compact three-part contribution statement to the introduction |
 | Round 28 | 9.8/10 | Strong Accept | Added a concrete archival next-step sentence to close the paper at the right scholarly scale |
+| Round 31 | 9.8/10 | Strong Accept | Integrated missing scholarship on military justice, War Department administration, and Frederick legal culture into the main argument |
 
 ## Round Groups
 
@@ -86,6 +87,29 @@ This log summarizes the round history. The serialized review chains that actuall
 - Added a concise three-part contribution statement.
 - Added a forward-looking sentence naming the next archival frontier for a larger scholarly version.
 
+### Post-Loop Editorial Pass: Round 29
+
+- Added a real historiographical frame drawn from Wilkinson biography, Burr-crisis scholarship, and early republic studies of honor, reputation, and scandal.
+- Rewrote the abstract and introduction so the paper reads more like a finished history article and less like a repository demonstration.
+- Tightened the Frederick Barracks and Taney paragraphs so they carry only the weight their present sources can bear.
+- Softened the computation section into corroborative support rather than a visible methodological centerpiece.
+- This round was a literature-driven editorial revision and has not yet been externally rereviewed.
+
+### Post-Loop Editorial Pass: Round 30
+
+- Added five new Frederick-linked primary records from 1811 to the curated corpus: venue planning, presidential noninterference with the tribunal, witness coordination, interrogatories, and Adams's testimonial reply.
+- Rewrote the Frederick section so the town's role rests on a procedural chain rather than on a thinner three-document spine plus local context.
+- Updated the evidence ladder, findings table, place ranking, and Frederick documentary-chain table to reflect the expanded corpus.
+- Reframed the conclusion so the strongest local claim is now about venue, testimony, and official settlement.
+- This round was a source-expansion editorial revision and has not yet been externally rereviewed.
+
+### Post-Loop Editorial Pass: Round 31
+
+- Integrated the missing military-justice, officer-corps, and Madison-administration scholarship into the introduction, methods, Frederick section, and conclusion.
+- Added Taney and Frederick legal-context scholarship so the local legal-memory paragraph rests on a clearer historiographical base.
+- Tightened the paper's language around procedure and administration so the Frederick argument now sits more securely inside early republic institutional history rather than standing alone as a local interpretation.
+- This round was a literature-integration editorial revision and has not yet been externally rereviewed.
+
 ## PDFs
 
 - `main_round0_original.pdf` — Original package before the review-refresh pass
@@ -117,13 +141,23 @@ This log summarizes the round history. The serialized review chains that actuall
 - `main_round26.pdf` — After Round 26 Frederick-integration pass
 - `main_round27.pdf` — After Round 27 contribution-statement pass
 - `main_round28.pdf` — After Round 28 archival-next-step pass
-- `main.pdf` — Final version, equal to `main_round28.pdf`
+- `main_round29.pdf` — After the literature-expansion and historiography pass
+- `main_round30.pdf` — After the Frederick procedural-chain source expansion
+- `main_round31.pdf` — After the military-justice, administrative, and Frederick legal-context integration pass
+- `main_round32.pdf` — After the archival-source integration pass
+- `main_round33.pdf` — After the local-newspaper integration pass
+- `main_round34.pdf` — After the user-source-packet integration pass
+- `main_round35.pdf` — After the thesis-reframing pass
+- `round36_review.md` — External `paperreview.ai` review of `main_round35.pdf`
+- `main_round37.pdf` — After the round36 external-review response pass
+- `main.pdf` — Current version, equal to `main_round37.pdf`
 - `main_round1_complete_package.pdf` — Legacy frozen snapshot from the earlier one-shot package build
 
 ## Build Status
 
 - Final PDF: `main.pdf`
-- Pages: `13`
+- Pages: `17`
+- Current local revision status: `round37 response to the round36 external review, not yet rereviewed`
 - Undefined references/citations: `0`
 - Overfull/underfull warnings detected in `main.log`: `0`
 - Fonts embedded: `yes`

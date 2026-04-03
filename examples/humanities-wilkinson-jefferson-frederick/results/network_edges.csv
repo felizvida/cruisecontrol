@@ -1,20 +1,27 @@
 source,target,weight
-Aaron Burr,James Wilkinson,4
+Aaron Burr,James Wilkinson,5
 Aaron Burr,Thomas Jefferson,2
+Captain Campbell Smith,Frederick Town,1
+Captain Campbell Smith,James Wilkinson,1
 Frederick Barracks,Frederick Town,1
 Frederick Barracks,Lewis and Clark Expedition,1
 Frederick Barracks,Meriwether Lewis,1
-Frederick Town,James Madison,2
-Frederick Town,James Wilkinson,3
-Frederick Town,John Adams,1
+Frederick Town,Jabeil Kinson,1
+Frederick Town,James Madison,3
+Frederick Town,James Wilkinson,8
+Frederick Town,John Adams,3
 Frederick Town,Monocacy,1
 Frederick Town,Roger B. Taney,1
 Frederick Town,Thomas Jefferson,1
+Frederick Town,William Eustis,2
+House of Representatives,Thomas Jefferson,1
+Jabeil Kinson,John Adams,1
 James Madison,James Wilkinson,2
 James Madison,Thomas Jefferson,1
-James Wilkinson,John Adams,1
+James Madison,William Eustis,3
+James Wilkinson,John Adams,2
 James Wilkinson,Monocacy,1
 James Wilkinson,Roger B. Taney,1
-James Wilkinson,Thomas Jefferson,11
+James Wilkinson,Thomas Jefferson,12
 James Wilkinson,Zebulon Pike,3
 Meriwether Lewis,Thomas Jefferson,1
