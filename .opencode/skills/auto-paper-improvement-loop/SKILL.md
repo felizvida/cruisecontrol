@@ -25,6 +25,7 @@ Unlike `/auto-review-loop` (which iterates on **research** — running experimen
 - **ROUND_REVIEWS = `review/ROUND_REVIEWS.md`** — Serialized round-by-round review ledger. Each round `N+1` must be driven by the criticisms recorded for round `N`.
 - **FINAL_REVIEW_OPINION = `review/REVIEW_OPINION.md`** — Final structured review opinion, stored in the project root.
 - **FINAL_SCORECARD = `review/review_scorecard.json`** — Final machine-readable score summary, stored in the project root.
+- **SUBMISSION_ASSURANCE = optional but recommended** — If the user wants the paper treated as submission-ready after the final revision, rerun `/paper-claim-audit` and `/citation-audit` on the updated paper before finalization.
 
 ## Inputs
 
@@ -232,6 +233,23 @@ grep -c "badness" paper/main.log 2>/dev/null || echo "0 badness warnings"
 | Underfull hbox (loose) | Rephrase for better line filling or add `\looseness=-1` |
 
 If any overfull hbox > 10pt is found, fix it and recompile before documenting.
+
+### Step 8.5: Refresh Submission Audits (if needed)
+
+If the user asked for a submission-ready finish, do not leave the audit layer stale after the last revision. Rerun:
+
+```text
+/paper-claim-audit "paper/"
+/citation-audit "paper/"
+```
+
+Then verify:
+
+```bash
+bash scripts/verify_paper_audits.sh paper --assurance submission
+```
+
+If the verifier fails, do not describe the paper as submission-ready.
 
 ### Step 9: Document Results
 

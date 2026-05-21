@@ -19,13 +19,14 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
 
 ## What is included
 
-- `.opencode/skills/` — 18 upstream research skills copied from ARIS
+- `.opencode/skills/` — the ported ARIS workflow skills plus local additions such as `classic-biology-prose`, `paperreview-ai-review`, `citation-audit`, `paper-claim-audit`, `figure-spec`, and `experiment-queue`
 - `.opencode/commands/` — OpenCode command wrappers, including explicit OpenCode and Codex route variants for the top-level workflows
-- port-native additions — `paper-upgrade` for linked-paper improvement, `biowulf-gpu` for one-node Biowulf GPU allocation, module setup, and scratch-disk staging, and `classic-biology-prose` for natural paper writing
+- port-native additions — `paper-upgrade` for linked-paper improvement, `biowulf-gpu` for one-node Biowulf GPU allocation, module setup, and scratch-disk staging, `classic-biology-prose` for natural paper writing, and a lightweight submission-assurance layer for claim and citation audits
 - `AGENTS.md` — repo-level instructions for using the port in OpenCode
 - `opencode.jsonc` — sample OpenCode-native model and optional MCP configuration
 - `templates/project-AGENTS.md` — project metadata template for GPU servers, paper libraries, and paper defaults
 - `WORKFLOW_ROUTES.md` — route map for pure Codex versus pure OpenCode execution
+- `docs/ALGORITHMS_FOR_BIOLOGISTS.md` and `docs/ALGORITHMS_FOR_BIOLOGISTS.pdf` — biologist-facing explanations and illustrations for the statistical, AI, and workflow algorithms used or discussed in ARIS projects
 - `UPSTREAM.md` — upstream source snapshot and provenance reference
 
 ## Workflow Routes
@@ -86,6 +87,23 @@ Paper-improvement loops now prefer [paperreview.ai](https://paperreview.ai/) whe
 - The site currently exposes its calibrated numeric score only for `ICLR`.
 - If the service is unavailable or unsuitable for the paper, the workflow falls back to the route-local reviewer and records that fallback in local artifacts.
 
+## Submission Assurance
+
+Recent upstream work added stronger submission-audit ideas. The most useful parts of that line are now ported here too:
+
+- [paper-claim-audit](.opencode/skills/paper-claim-audit/SKILL.md) checks whether the paper's quantitative claims match the raw evidence
+- [citation-audit](.opencode/skills/citation-audit/SKILL.md) checks whether references are real, correctly described, and used in the right context
+- [figure-spec](.opencode/skills/figure-spec/SKILL.md) generates deterministic SVG workflow and architecture figures
+- [experiment-queue](.opencode/skills/experiment-queue/SKILL.md) orchestrates larger multi-job sweeps when `/run-experiment` is no longer enough
+
+If you want a paper treated as submission-ready rather than merely polished, run:
+
+```bash
+bash scripts/verify_paper_audits.sh paper --assurance submission
+```
+
+That verifier expects fresh `paper/PAPER_CLAIM_AUDIT.json` and `paper/CITATION_AUDIT.json` artifacts.
+
 ## Complete Final Paper Standard
 
 In this repo, a paper is only considered a complete final paper package when it includes:
@@ -103,10 +121,13 @@ The compiled PDF is necessary, but it is not sufficient on its own. If the work 
 
 The prose standard matters too. A final paper in this repo should read like a serious human paper, not like a system report that happens to compile.
 
+If the paper is meant for submission, it should also carry the current claim and citation audit artifacts.
+
 ## Sample Example
 
 If you want to see a concrete sample artifact set before running anything yourself, start with [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
 The intended one-command end state of `/research-pipeline` is now: `IDEA_REPORT.md` + `AUTO_REVIEW.md` + `NARRATIVE_REPORT.md` + `paper/main.pdf` + `paper/PAPER_IMPROVEMENT_LOG.md` + `review/REVIEW_OPINION.md` + `review/review_scorecard.json`.
+For a submission-ready finish, add `paper/PAPER_CLAIM_AUDIT.*` and `paper/CITATION_AUDIT.*` too.
 If you want a tracked sample that ends in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).
 If you want the linked-paper upgrade workflow shape, read [examples/paper-upgrade-sample/README.md](examples/paper-upgrade-sample/README.md).
 
@@ -118,6 +139,7 @@ If you want the linked-paper upgrade workflow shape, read [examples/paper-upgrad
 - Upstream `~/.claude/feishu.json` references were changed to `~/.config/opencode/feishu.json`.
 - The original upstream workflow used a separate reviewer path. In this repo, the generic default route is now Codex, while a pure OpenCode route remains available by explicit choice.
 - The upstream repo did not ship actual command files. The command wrappers here are new and map one-to-one to the upstream workflow/skill names.
+- Recent upstream additions such as `citation-audit`, `paper-claim-audit`, `figure-spec`, `experiment-queue`, and audit-verifier ideas have now been cherry-picked into this port in local form rather than by replacing the repo's route-aware core skills wholesale.
 
 ## Recommended MCP Setup
 

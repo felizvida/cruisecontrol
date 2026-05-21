@@ -33,6 +33,7 @@ For prose style, default to the repo skill [classic-biology-prose](../classic-bi
 - **WORKFLOW_ROUTE = `codex`** — Default route. Override inline with `route: opencode`.
 - **PAPER_REVIEW_BACKEND = `paperreview.ai` when configured** — The paper-improvement loop prefers paperreview.ai if a submission email is available; otherwise it falls back to the route-local reviewer.
 - **REVIEWER_MODE = route-dependent local fallback** — Use Codex when `WORKFLOW_ROUTE=codex`; use the configured OpenCode model when `WORKFLOW_ROUTE=opencode`.
+- **ASSURANCE = `draft` by default** — Use `submission` when the user wants a submission-ready finish. Submission assurance runs `/paper-claim-audit`, `/citation-audit`, and `scripts/verify_paper_audits.sh`.
 - **AUTO_PROCEED = true** — Auto-continue between phases. Set `false` to pause and wait for user approval after each phase.
 - **ALLOW_PLACEHOLDER_FIGURES = true** — In fully automatic mode, generate clearly labeled placeholder diagrams or panels instead of blocking on manual artwork.
 
@@ -113,12 +114,13 @@ Invoke `/paper-figure` to generate data-driven plots and tables:
 - Read figure plan from PAPER_PLAN.md
 - Generate matplotlib/seaborn plots from JSON/CSV data
 - Generate LaTeX comparison tables
+- Use `/figure-spec` for structured architecture or workflow figures when the plan is specific enough
 - Create `figures/latex_includes.tex` for easy insertion
 - A reviewer-agent pass reviews figure quality and captions
 
 **Output:** `figures/` directory with PDFs, generation scripts, and LaTeX snippets.
 
-> **Scope:** Real data plots and tables should be generated from experiment outputs. If a figure still needs custom artwork and `ALLOW_PLACEHOLDER_FIGURES=true`, generate an honest placeholder figure instead of blocking. Label it clearly for later upgrade. See `/paper-figure` SKILL.md for details.
+> **Scope:** Real data plots and tables should be generated from experiment outputs. Structured workflow or architecture figures should prefer `/figure-spec` when possible. If a figure still needs custom artwork and `ALLOW_PLACEHOLDER_FIGURES=true`, generate an honest placeholder figure instead of blocking. Label it clearly for later upgrade. See `/paper-figure` SKILL.md for details.
 
 **Checkpoint:** List generated vs manual figures.
 
@@ -221,7 +223,24 @@ A review round is only complete when a revision round follows it. Do not stop th
 
 **Format check** (included in improvement loop Step 8): After final recompilation, auto-detect and fix overfull hboxes (content exceeding margins), verify page count vs venue limit, and ensure compact formatting. Any overfull > 10pt is fixed before generating the final PDF.
 
-### Phase 6: Final Report
+### Phase 6: Submission Assurance (when needed)
+
+If the user wants the paper treated as submission-ready, run:
+
+```text
+/paper-claim-audit "paper/"
+/citation-audit "paper/"
+```
+
+Then verify:
+
+```bash
+bash scripts/verify_paper_audits.sh paper --assurance submission
+```
+
+This stage checks that the paper's numbers still match the evidence, the references are real and honestly used, and the audit artifacts are not stale after the final revision.
+
+### Phase 7: Final Report
 
 ```markdown
 # Paper Writing Pipeline Report
@@ -239,6 +258,7 @@ A review round is only complete when a revision round follows it. Do not stop th
 | 3. LaTeX Writing | ✅ | paper/sections/*.tex ([N] sections, [M] citations) |
 | 4. Compilation | ✅ | paper/main.pdf ([X] pages) |
 | 5. Improvement | ✅ | [score0]/10 → [score2]/10 + final review opinion |
+| 6. Submission Assurance | ✅/⚪ | paper/PAPER_CLAIM_AUDIT.json + paper/CITATION_AUDIT.json |
 
 ## Improvement Scores
 | Round | Score | Key Changes |
@@ -256,6 +276,10 @@ A review round is only complete when a revision round follows it. Do not stop th
 - review/ROUND_REVIEWS.md — Serialized review chain showing which criticisms drove each new round
 - review/REVIEW_OPINION.md — Final structured review opinion
 - review/review_scorecard.json — Final machine-readable score summary
+- paper/PAPER_CLAIM_AUDIT.md — Claim-to-evidence audit report
+- paper/PAPER_CLAIM_AUDIT.json — Machine-readable claim audit artifact
+- paper/CITATION_AUDIT.md — Citation integrity report
+- paper/CITATION_AUDIT.json — Machine-readable citation audit artifact
 
 ## Remaining Issues (if any)
 - [items from final review that weren't addressed]

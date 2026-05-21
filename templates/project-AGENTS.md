@@ -17,6 +17,13 @@ Fill the sections that apply to your project. The migrated skills read this file
 - Notes: `paperreview.ai` currently analyzes only English PDFs, up to 10MB, and only the first 15 pages
 - Process rule: every completed review round must be followed by a saved revision round; do not let the workflow stop at feedback alone
 
+## Paper Assurance
+
+- Assurance mode: `draft` or `submission`
+- Mandatory submission audits: `paper-claim-audit`, `citation-audit`
+- Verifier command: `bash scripts/verify_paper_audits.sh paper --assurance submission`
+- Rule: if the paper changes after an audit run, rerun the affected audits before calling the paper submission-ready
+
 ## Paper Library
 
 - Local PDFs: `/absolute/path/to/papers`

@@ -9,6 +9,8 @@ allowed-tools: Bash(ssh *), Bash(echo *), Read, Write, Edit
 
 Monitor: $ARGUMENTS
 
+If the project is using `/experiment-queue`, prefer the queue state JSON over ad hoc shell inspection. That state file is the authoritative record of pending, running, completed, retried, and stuck jobs.
+
 ## Workflow
 
 ### Step 1: Check What's Running
@@ -32,6 +34,11 @@ ssh <server> "ls -lt <results_dir>/*.json 2>/dev/null | head -20"
 If JSON results exist, fetch and parse them:
 ```bash
 ssh <server> "cat <results_dir>/<latest>.json"
+```
+
+If a queue state file exists, check it first:
+```bash
+ssh <server> "cat <queue_state.json>"
 ```
 
 ### Step 4: Summarize Results

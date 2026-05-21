@@ -73,6 +73,8 @@ Lower-level commands default to Codex too:
 /research-review "scope"
 /auto-review-loop "scope"
 /auto-paper-improvement-loop "paper/"
+/paper-claim-audit "paper/"
+/citation-audit "paper/"
 ```
 
 If you need the pure OpenCode route for a lower-level command, append an inline override:
@@ -81,7 +83,18 @@ If you need the pure OpenCode route for a lower-level command, append an inline 
 /research-review "scope — route: opencode"
 /auto-review-loop "scope — route: opencode"
 /auto-paper-improvement-loop "paper/ — route: opencode"
+/paper-claim-audit "paper/ — route: opencode"
+/citation-audit "paper/ — route: opencode"
 ```
+
+Structured figure and batch-experiment helpers are local by default:
+
+```text
+/figure-spec "workflow diagram"
+/experiment-queue "manifest.json"
+```
+
+Those do not replace the route-aware core workflow. They extend it.
 
 ## Practical Recommendation
 

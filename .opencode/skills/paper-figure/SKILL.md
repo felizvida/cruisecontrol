@@ -16,11 +16,11 @@ Generate all figures and tables for a paper based on: **$ARGUMENTS**
 | **Data-driven plots** | ✅ Yes | Line plots (training curves), bar charts (method comparison), scatter plots, heatmaps, box/violin plots |
 | **Comparison tables** | ✅ Yes | LaTeX tables comparing prior bounds, method features, ablation results |
 | **Multi-panel figures** | ✅ Yes | Subfigure grids combining multiple plots (e.g., 3×3 dataset × method) |
-| **Architecture/pipeline diagrams** | ⚠️ Placeholder only | Model architecture, data flow diagrams, system overviews. Generate a simple box-and-arrow schematic or rough TikZ placeholder for autonomous runs, then replace later if needed |
+| **Architecture/pipeline diagrams** | ✅ Yes, if the structure is clear | Prefer deterministic SVG generation through [figure-spec](../figure-spec/SKILL.md). Fall back to an honest placeholder only when the figure is still too underspecified |
 | **Generated image grids** | ⚠️ Placeholder only | Grids of generated samples (e.g., GAN/diffusion outputs). If the actual images are unavailable, create a clearly labeled placeholder panel so the paper can still compile |
 | **Photographs / screenshots** | ❌ No — manual | Real-world images, UI screenshots, qualitative examples |
 
-**In practice:** For a typical ML paper, this skill should generate all data plots and tables directly from results. For the remaining conceptual or qualitative figures, generate a clearly labeled placeholder when running in fully automatic mode so the writing and compile stages can finish without waiting on manual artwork.
+**In practice:** For a typical ML paper, this skill should generate all data plots and tables directly from results. For structured non-data figures, prefer [figure-spec](../figure-spec/SKILL.md) so the figure stays deterministic and editable. Only generate a clearly labeled placeholder when the figure is still too underspecified to render honestly.
 
 ## Constants
 
@@ -166,14 +166,17 @@ Method & Rate & Depends on $D$? & Multi-modal? \\
 \end{table}
 ```
 
-**Architecture/pipeline diagrams** (placeholder path when needed):
+**Architecture/pipeline diagrams**:
 - If the figure already exists in `figures/`, preserve it and generate only the LaTeX `\includegraphics` snippet
-- Otherwise create a minimal placeholder using TikZ or matplotlib annotations:
+- If the structure is clear, hand off to [figure-spec](../figure-spec/SKILL.md) and save both:
+  - the JSON spec under `figures/specs/`
+  - the rendered SVG or converted PDF under `figures/`
+- If the figure is still too vague to render honestly, create a minimal placeholder:
   - boxes for inputs / method / outputs
   - arrows for flow
   - caption prefix `[AUTO_PLACEHOLDER]`
 - Save the placeholder as a normal figure asset so the paper compiles cleanly
-- Flag as `[AUTO_PLACEHOLDER]` in the figure plan and `latex_includes.tex`
+- Flag placeholders as `[AUTO_PLACEHOLDER]` in the figure plan and `latex_includes.tex`
 
 **Generated image grids / qualitative panels** (placeholder path when needed):
 - If real outputs exist, compose them into the final grid
@@ -245,6 +248,7 @@ figures/
 ├── fig1_architecture.pdf        # generated figures
 ├── fig2_training_curves.pdf
 ├── fig3_comparison.pdf
+├── specs/*.json                 # figure-spec sources for deterministic diagrams
 ├── latex_includes.tex           # LaTeX snippets for all figures
 └── TABLE_*.tex                  # standalone table LaTeX files
 ```

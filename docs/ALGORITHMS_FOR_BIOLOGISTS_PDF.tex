@@ -1,0 +1,567 @@
+\documentclass[10pt]{article}
+
+\usepackage[margin=0.72in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[default]{sourcesanspro}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+
+\definecolor{arisBlue}{HTML}{154B66}
+\definecolor{arisInk}{HTML}{172026}
+\definecolor{arisTeal}{HTML}{2C7A7B}
+\definecolor{arisGold}{HTML}{B7791F}
+\definecolor{arisMist}{HTML}{EEF7F6}
+\definecolor{arisSand}{HTML}{FFF7E6}
+\definecolor{arisRose}{HTML}{FCEEEE}
+\definecolor{arisLine}{HTML}{D7E5E4}
+
+\hypersetup{
+  pdftitle={Algorithms Used in ARIS Projects: A Biologist-Friendly Field Guide},
+  pdfauthor={ARIS for OpenCode and Codex},
+  pdfsubject={Biologist-friendly explanations of algorithms, embeddings, and workflow methods used in ARIS projects},
+  colorlinks=true,
+  linkcolor=arisBlue,
+  urlcolor=arisTeal
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=*, itemsep=2pt, topsep=2pt}
+\setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=2pt}
+
+\tikzset{
+  mini/.style={
+    rectangle,
+    rounded corners=4pt,
+    draw=arisBlue!55,
+    fill=arisMist,
+    text=arisInk,
+    align=center,
+    minimum height=7mm,
+    text width=2.7cm,
+    font=\scriptsize
+  },
+  arrow/.style={-{Latex[length=2mm]}, thick, draw=arisBlue!70},
+  note/.style={
+    rectangle,
+    rounded corners=4pt,
+    draw=arisGold!60,
+    fill=arisSand,
+    text=arisInk,
+    align=center,
+    minimum height=7mm,
+    text width=2.7cm,
+    font=\scriptsize
+  }
+}
+
+\newtcolorbox{methodbox}[1]{
+  enhanced,
+  breakable,
+  colback=white,
+  colframe=arisLine,
+  boxrule=0.7pt,
+  arc=3pt,
+  left=7pt,
+  right=7pt,
+  top=6pt,
+  bottom=6pt,
+  title={#1},
+  coltitle=white,
+  colbacktitle=arisBlue,
+  fonttitle=\bfseries
+}
+
+\newtcolorbox{takehomebox}[1]{
+  enhanced,
+  breakable,
+  colback=arisMist,
+  colframe=arisTeal!55,
+  boxrule=0.8pt,
+  arc=4pt,
+  left=8pt,
+  right=8pt,
+  top=6pt,
+  bottom=6pt,
+  title={#1},
+  coltitle=white,
+  colbacktitle=arisTeal,
+  fonttitle=\bfseries
+}
+
+\newcommand{\FlowThree}[3]{%
+  \begin{center}
+  \begin{tikzpicture}[node distance=5mm]
+    \node[mini] (a) {#1};
+    \node[mini, right=of a] (b) {#2};
+    \node[mini, right=of b] (c) {#3};
+    \draw[arrow] (a) -- (b);
+    \draw[arrow] (b) -- (c);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\FlowFour}[4]{%
+  \begin{center}
+  \begin{tikzpicture}[node distance=4.5mm]
+    \node[mini, text width=2.25cm] (a) {#1};
+    \node[mini, text width=2.25cm, right=of a] (b) {#2};
+    \node[mini, text width=2.25cm, right=of b] (c) {#3};
+    \node[mini, text width=2.25cm, right=of c] (d) {#4};
+    \draw[arrow] (a) -- (b);
+    \draw[arrow] (b) -- (c);
+    \draw[arrow] (c) -- (d);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\BranchDiagram}[5]{%
+  \begin{center}
+  \begin{tikzpicture}[node distance=8mm]
+    \node[mini] (a) {#1};
+    \node[mini, above right=of a] (b) {#2};
+    \node[mini, below right=of a] (c) {#3};
+    \node[note, right=18mm of a] (d) {#4};
+    \node[mini, right=of d] (e) {#5};
+    \draw[arrow] (a) -- (b);
+    \draw[arrow] (a) -- (c);
+    \draw[arrow] (b) -- (d);
+    \draw[arrow] (c) -- (d);
+    \draw[arrow] (d) -- (e);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\What}[1]{\textbf{What it does.} #1}
+\newcommand{\Bio}[1]{\textbf{Biologist's picture.} #1}
+\newcommand{\Watch}[1]{\textbf{Watch for.} #1}
+
+\begin{document}
+
+\begin{titlepage}
+\pagecolor{arisMist}
+\color{arisInk}
+\vspace*{0.7in}
+{\Huge \bfseries Algorithms Used in ARIS Projects\par}
+\vspace{0.18in}
+{\Large A biologist-friendly field guide\par}
+\vspace{0.35in}
+{\large From proteoform overlap and detectability checks to embeddings, Transformers, XGBoost, CNNs, BERT, GPT, and review-revision loops.\par}
+\vfill
+\begin{takehomebox}{How to read this PDF}
+An algorithm is not magic. It is a rule for turning observations into a comparison, prediction, uncertainty estimate, or decision. Each panel below gives the plain idea, a biological analogy, and a small visual cue.
+\end{takehomebox}
+\vspace{0.3in}
+{\large ARIS for OpenCode and Codex\par}
+{\small Generated from the local repository documentation.\par}
+\end{titlepage}
+\nopagecolor
+
+\tableofcontents
+\newpage
+
+\section{One-Page Orientation}
+
+\begin{takehomebox}{Four questions to ask before trusting a computation}
+\begin{enumerate}
+  \item What is the unit: proteoform, gene, document, token, cell, image, patient, or simulated episode?
+  \item What is being estimated: similarity, enrichment, prediction, missingness, uncertainty, or a decision?
+  \item What could break the estimate: batch, sparse counts, confounding, missing values, label leakage, or weak curation?
+  \item Was the claim stress-tested: bootstrap, permutation, leave-one-out, normalization, detectability, or fresh review?
+\end{enumerate}
+\end{takehomebox}
+
+\begin{tabularx}{\textwidth}{p{0.29\textwidth}X}
+\toprule
+\textbf{If the biological question is...} & \textbf{Natural methods} \\
+\midrule
+Do two tissues share the same molecules? & Jaccard, weighted Jaccard, Bray-Curtis. \\
+Is a feature enriched in one group? & Odds ratio, Fisher exact test, logistic regression. \\
+Could missing detections change the story? & Occupancy model, Chao2, jackknife, MNAR sensitivity. \\
+Is a result stable to sampling noise? & Bootstrap, permutation, leave-one-out. \\
+How does raw text, protein sequence, image, or tabular biology become model input? & Embeddings: token, positional, contextual, patch, protein-sequence, document, and category vectors. \\
+Which model predicts from assay tables? & Logistic regression, random forest, XGBoost, support vector machine. \\
+Which model handles images? & CNNs and vision Transformers. \\
+Which model reads or writes scientific text? & Transformer, GPT-style, and BERT-style language models. \\
+\bottomrule
+\end{tabularx}
+
+\section{Preparing Biological Objects for Analysis}
+
+\begin{methodbox}{Tokenization and Canonicalization}
+\What{Break raw text or labels into analyzable units, then clean superficial notation so equivalent objects can be compared.}
+
+\Bio{Like harmonizing gene names before enrichment analysis. \texttt{tp53}, \texttt{TP53}, and an accession-linked alias should not become three unrelated genes unless the biological question demands it.}
+
+\FlowFour{Raw labels\\or sentences}{Tokens}{Canonical\\forms}{Count, match,\\or classify}
+
+\Watch{Over-cleaning can erase real biological distinctions. Under-cleaning can create artificial differences.}
+\end{methodbox}
+
+\begin{methodbox}{Normalization}
+\What{Rescale samples so differences in loading, total signal, or sequencing depth do not dominate the biological comparison.}
+
+\Bio{This is the same instinct as RNA-seq library-size normalization: compare biology after correcting for how much material was measured.}
+
+\FlowFour{Raw intensity\\table}{Scaling rule}{Normalized\\profiles}{Fairer\\comparison}
+
+\Watch{No normalization is neutral. Good papers report whether conclusions survive several reasonable scaling rules.}
+\end{methodbox}
+
+\section{Embedding Methods Used in Original Model Training}
+
+\begin{takehomebox}{The embedding idea}
+An embedding turns a discrete object into a vector of numbers. In original model training, these vectors are usually learned while the model solves its training task: predicting the next token, recovering a masked token, classifying an image, matching text to image, or predicting sequence context.
+
+This repository uses Codex/OpenCode and external review services, but it does not expose proprietary backend embedding tables or private pretraining data. The descriptions here explain the standard mechanisms used by the model families discussed in ARIS projects.
+\end{takehomebox}
+
+\begin{tabularx}{\textwidth}{p{0.25\textwidth}p{0.31\textwidth}X}
+\toprule
+\textbf{Embedding} & \textbf{Where it appears} & \textbf{What it learns} \\
+\midrule
+Token embedding & GPT, BERT, text Transformers & A vector for each token or word piece. \\
+Positional embedding & GPT, BERT, most Transformers & Where a token sits in the sequence. \\
+Segment embedding & BERT-style sentence-pair training & Which sentence or text segment a token belongs to. \\
+Contextual embedding & Transformer hidden layers & How token meaning changes with surrounding context. \\
+Protein sequence embedding & Protein language models & Residue, motif, and long-range sequence context. \\
+Patch embedding & Vision Transformers & A vector for each image patch. \\
+CNN feature map & CNN image training & Local motifs such as edges, puncta, nuclei, or tissue texture. \\
+Category embedding & Deep tabular models & A vector for categories such as tissue, cell type, perturbation, or assay platform. \\
+Document embedding & Retrieval and semantic-search models & A compact vector for an abstract, paragraph, paper, or note. \\
+\bottomrule
+\end{tabularx}
+
+\begin{methodbox}{Token Embeddings}
+\What{Split text into tokens, often word pieces, and learn one vector for each token. Tokens appearing in similar contexts tend to develop related vectors.}
+
+\Bio{Like giving each gene a coordinate on a functional map learned from co-expression and context.}
+
+\FlowThree{Sentence}{Word-piece\\tokens}{Vector for\\each token}
+\end{methodbox}
+
+\begin{methodbox}{Positional Embeddings}
+\What{Tell the model where each token sits in the sequence. Without position, a Transformer sees a bag of tokens rather than an ordered sentence or protein sequence.}
+
+\Bio{Protein sequence order matters. The same residues in a different order are not the same molecule.}
+
+\BranchDiagram{Input token}{Token\\identity}{Position in\\sequence}{Combined\\vector}{Transformer}
+\end{methodbox}
+
+\begin{methodbox}{Segment and Sentence Embeddings}
+\What{Mark which sentence or segment a token belongs to, especially in BERT-style sentence-pair training.}
+
+\Bio{Like labeling two paired clinical notes as ``patient history'' and ``pathology report'' before asking whether they support the same diagnosis.}
+
+\FlowThree{Sentence A\\Sentence B}{Segment\\labels}{Paired-text\\representation}
+\end{methodbox}
+
+\begin{methodbox}{Contextual Embeddings}
+\What{Produce a different vector for the same token depending on surrounding context. The word ``cell'' changes meaning in ``cell culture'', ``single-cell RNA-seq'', and ``prison cell''.}
+
+\Bio{A gene's meaning changes with tissue, developmental stage, perturbation, and pathway context.}
+
+\BranchDiagram{Same word}{Context A}{Context B}{Different\\vectors}{Meaning in\\context}
+\end{methodbox}
+
+\begin{methodbox}{Protein and Biological Sequence Embeddings}
+\What{Treat amino acids, residues, or sequence fragments as tokens. Training teaches the model sequence regularities linked to motifs, structure, and function.}
+
+\Bio{Like learning from millions of protein sequences which residue neighborhoods tend to imply domains, active sites, or structural constraints.}
+
+\FlowFour{Protein\\sequence}{Residue or\\k-mer tokens}{Sequence\\embeddings}{Function or\\structure model}
+\end{methodbox}
+
+\begin{methodbox}{Image and Patch Embeddings}
+\What{CNNs learn filters directly from pixels. Vision Transformers divide an image into patches and embed each patch as a token.}
+
+\Bio{In microscopy, local pixels become edges, puncta, nuclei, cell borders, and tissue architecture.}
+
+\BranchDiagram{Image}{CNN\\filters}{Image\\patches}{Feature\\vectors}{Prediction or\\segmentation}
+\end{methodbox}
+
+\begin{methodbox}{Tabular Feature and Category Embeddings}
+\What{Numeric columns can enter models directly. Categorical fields, such as tissue, cell type, perturbation, or assay platform, can be one-hot encoded or learned as category embeddings.}
+
+\Bio{Like giving each tissue type a learned coordinate that captures how it behaves across many assays.}
+
+\FlowFour{Assay table}{Numeric\\columns}{Category\\vectors}{Model input}
+\end{methodbox}
+
+\begin{methodbox}{Document and Literature Embeddings}
+\What{Compress an abstract, paragraph, note, or paper into a single vector for semantic search and retrieval.}
+
+\Bio{Useful when two papers use different vocabulary but discuss the same biological mechanism.}
+
+\FlowThree{Abstract or\\paragraph}{Encoder}{Nearby papers\\or notes}
+\end{methodbox}
+
+\section{Comparing Tissues, Proteins, and Proteoforms}
+
+\begin{methodbox}{Jaccard Overlap}
+\What{Ask what fraction of all unique objects seen in either group is shared by both groups.}
+
+\Bio{If two brain regions each contain many proteoforms, Jaccard measures the size of the shared molecular core relative to the combined inventory.}
+
+\FlowThree{Set A}{Shared\\objects}{Set B}
+
+\Watch{Presence-only overlap ignores abundance. It is best paired with abundance-aware measures.}
+\end{methodbox}
+
+\begin{methodbox}{Weighted Jaccard and Bray-Curtis}
+\What{Compare abundance-aware profiles rather than simple presence or absence. They ask whether the dominant signals are shared.}
+
+\Bio{Two cell types may both contain actin and tubulin, but one may be dominated by synaptic proteins while another is dominated by contractile proteins.}
+
+\BranchDiagram{Detected\\molecules}{Names}{Abundances}{Similarity\\metric}{Biological\\distance}
+\end{methodbox}
+
+\begin{methodbox}{Wilson Interval}
+\What{Give a stable uncertainty interval for a proportion, especially when the sample is small or the proportion is near zero or one.}
+
+\Bio{If 9 of 10 markers align with expectation, the estimate is 90 percent, but the uncertainty is still wide because ten observations are few.}
+
+\FlowThree{Successes}{Total\\observations}{Proportion\\with interval}
+\end{methodbox}
+
+\begin{methodbox}{Odds Ratio}
+\What{Compare how strongly an event is associated with one group relative to another group.}
+
+\Bio{If a modification appears more often in telencephalon than optic tectum, an odds ratio summarizes the enrichment.}
+
+\BranchDiagram{Group 1}{Event}{No event}{Odds ratio}{Enrichment}
+\end{methodbox}
+
+\begin{methodbox}{Fisher Exact and Hypergeometric Tests}
+\What{Ask whether an observed overlap or enrichment is more extreme than expected by chance, given the group sizes.}
+
+\Bio{The logic is close to gene-set enrichment: how surprising is this overlap if objects were drawn randomly from the available universe?}
+
+\FlowFour{Fixed\\margins}{Chance\\draws}{Observed\\overlap}{p-value}
+\end{methodbox}
+
+\begin{methodbox}{Logistic Regression}
+\What{Model a yes/no outcome from several predictors. In the zebrafish paper, it asks whether acetylation remains region-associated after accounting for mass, sequence span, and position.}
+
+\Bio{Like testing whether a phenotype remains associated with a genotype after adjusting for age, sex, and batch.}
+
+\FlowFour{Outcome\\yes/no}{Predictors}{Probability}{Adjusted\\odds ratio}
+\end{methodbox}
+
+\section{Stress-Testing Scientific Claims}
+
+\begin{methodbox}{Bootstrap}
+\What{Resample the observed data many times and rerun the analysis. The spread of answers estimates stability.}
+
+\Bio{Like repeatedly drawing cells from the same sample to see whether a pattern depends on a few unusual cells.}
+
+\FlowFour{Observed\\table}{Resample\\rows}{Recompute\\statistic}{Interval}
+\end{methodbox}
+
+\begin{methodbox}{Permutation Test}
+\What{Shuffle labels while preserving data structure to ask what chance alone would produce.}
+
+\Bio{If marker families align with regions, shuffle the region labels. A real signal should exceed almost all shuffled worlds.}
+
+\FlowFour{Real labels}{Observed\\score}{Shuffled\\labels}{Chance\\distribution}
+\end{methodbox}
+
+\begin{methodbox}{Leave-One-Out Sensitivity}
+\What{Repeat an analysis after removing one observation, document, marker family, or record at a time.}
+
+\Bio{If removing one animal reverses a conclusion, the result is fragile. If every one-at-a-time removal preserves the claim, the result is steadier.}
+
+\FlowThree{Full dataset}{Remove one\\item}{Rerun and\\compare}
+\end{methodbox}
+
+\begin{methodbox}{Chao2 and Jackknife Richness}
+\What{Estimate unseen objects from repeated sampling, using how many objects appeared once versus multiple times.}
+
+\Bio{If many species are caught on only one trap night, more species probably remain unseen. Proteomics has the same detection problem.}
+
+\FlowFour{Seen twice}{Seen once}{Observed\\richness}{Likely\\unseen}
+\end{methodbox}
+
+\begin{methodbox}{Occupancy and Detectability Modeling}
+\What{Separate biological presence from experimental detection. A molecule can be present but missed.}
+
+\Bio{A bird may live in a forest even if a survey fails to hear it. A proteoform may exist in a region even if one run misses it.}
+
+\BranchDiagram{True\\presence}{Detected}{Missed}{Detection\\probability}{Hidden\\overlap}
+\end{methodbox}
+
+\begin{methodbox}{MNAR-Style Missingness Sensitivity}
+\What{Test whether plausible missing values, especially low-intensity values missing not at random, could change the conclusion.}
+
+\Bio{Low-copy transcription factors are easier to miss than actin. A good analysis asks whether filling plausible weak signals changes the story.}
+
+\FlowFour{Observed\\signals}{Likely\\missing lows}{Conservative\\fill}{Rerun result}
+\end{methodbox}
+
+\clearpage
+\section{Text, History, and Network Methods}
+
+\begin{methodbox}{Lexicon Counting}
+\What{Use pre-defined word lists to count themes in a text corpus.}
+
+\Bio{It resembles counting marker genes for cell states. The method is simple, transparent, and only as good as the marker list.}
+
+\FlowThree{Text}{Theme\\dictionary}{Theme\\counts}
+\end{methodbox}
+
+\begin{methodbox}{Co-Occurrence Network}
+\What{Connect entities that appear together. Nodes are people, places, genes, proteins, or concepts; edges record co-occurrence.}
+
+\Bio{A protein interaction network connects molecules. A document network connects historical actors and places.}
+
+\FlowFour{Documents}{Entity\\pairs}{Weighted\\edges}{Network}
+\end{methodbox}
+
+\clearpage
+\section{Simulation, Policies, and Workflow Algorithms}
+
+\begin{methodbox}{Monte Carlo Simulation}
+\What{Run many randomized replicas of a system to estimate average behavior and variability.}
+
+\Bio{Like simulating many virtual animals, each with slightly different noise and environment, to compare treatments or policies.}
+
+\FlowFour{System\\model}{Random\\episodes}{Outcome\\metrics}{Average\\behavior}
+\end{methodbox}
+
+\begin{methodbox}{Grid Search}
+\What{Try many candidate parameter values and keep the one with the best objective.}
+
+\Bio{Like testing several drug doses and choosing the best efficacy-to-toxicity balance.}
+
+\FlowThree{Candidate\\values}{Evaluate\\each}{Best\\setting}
+\end{methodbox}
+
+\begin{methodbox}{Sigmoid or Logistic Curve}
+\What{Convert a continuous score into a probability-like value between zero and one.}
+
+\Bio{Many biological responses rise slowly, transition sharply, then saturate. A sigmoid captures that threshold-like shape.}
+
+\FlowThree{Low\\evidence}{Sharp\\transition}{High\\probability}
+\end{methodbox}
+
+\begin{methodbox}{Heuristic Policy}
+\What{Use a transparent rule for action, such as adapt only when expected gain exceeds expected cost.}
+
+\Bio{Like a triage rule: treat if fever exceeds a threshold, monitor otherwise.}
+
+\BranchDiagram{Observed\\state}{Benefit}{Cost}{Decision\\rule}{Action}
+\end{methodbox}
+
+\begin{methodbox}{Queue Scheduler}
+\What{Assign jobs to available compute resources, track running and completed jobs, detect failures, and retry bounded failures.}
+
+\Bio{Like a core facility assigning samples to free instruments while preserving run logs and failed-run history.}
+
+\FlowFour{Pending\\jobs}{Free GPU}{Running\\job}{Completed\\output}
+\end{methodbox}
+
+\begin{methodbox}{Review-Revision Loop}
+\What{Treat critique as part of the algorithm: review, extract weaknesses, revise, rebuild, and re-review.}
+
+\Bio{Like protocol optimization: run assay, inspect failure modes, change protocol, rerun. Feedback matters only when it changes the manuscript or analysis.}
+
+\FlowFour{Draft}{Review}{Revision}{Re-review}
+\end{methodbox}
+
+\begin{methodbox}{External AI Reviewer}
+\What{Submit a PDF to a black-box review service and save the token, review text, scorecard, and revision artifacts.}
+
+\Bio{Like sending a manuscript to an outside statistical reviewer. The critique can be useful, but the internal review model is not fully visible.}
+
+\FlowThree{Paper PDF}{External\\review}{Local\\revision}
+\end{methodbox}
+
+\clearpage
+\section{Machine-Learning Model Families}
+
+\begin{methodbox}{Transformer}
+\What{Let each token consult other tokens through attention, then build context-aware representations.}
+
+\Bio{Like allowing every residue in a protein sequence to consult distant residues before deciding its structural or functional role.}
+
+\FlowFour{Tokens}{Embeddings}{Attention}{Context}
+\end{methodbox}
+
+\begin{methodbox}{GPT-Style Language Model}
+\What{Use a Transformer trained to predict the next token. Repeated next-token prediction produces text, code, summaries, and critiques.}
+
+\Bio{Like predicting the next residue from upstream sequence context, except the learned context includes language, code, and scientific writing.}
+
+\FlowFour{Prompt}{Next-token\\probabilities}{Choose\\token}{Repeat}
+\end{methodbox}
+
+\begin{methodbox}{BERT-Style Language Model}
+\What{Read text bidirectionally and learn representations for classification, retrieval, and information extraction.}
+
+\Bio{Like interpreting a mutation using both upstream and downstream sequence context.}
+
+\FlowThree{Full text}{Bidirectional\\encoder}{Meaning\\vector}
+\end{methodbox}
+
+\begin{methodbox}{Convolutional Neural Network}
+\What{Learn local filters that detect spatial motifs in images or grids, then combine small motifs into larger structures.}
+
+\Bio{In microscopy, early filters may detect edges or puncta; later layers detect nuclei, cells, tissue regions, or colonies.}
+
+\FlowFour{Image}{Local\\filters}{Feature\\maps}{Prediction}
+\end{methodbox}
+
+\begin{methodbox}{XGBoost}
+\What{Build many small decision trees in sequence. Each new tree corrects errors left by earlier trees.}
+
+\Bio{Like a diagnostic panel that starts with a rough rule and adds many small corrective rules until cases and controls separate well.}
+
+\FlowFour{Tabular\\features}{Tree 1}{Correction\\trees}{Final\\prediction}
+\end{methodbox}
+
+\begin{methodbox}{Random Forest}
+\What{Train many decision trees on slightly different samples and feature subsets, then average their votes.}
+
+\Bio{Like asking many partially independent pathologists to classify a slide, then taking the consensus.}
+
+\FlowThree{Many\\trees}{Votes}{Consensus}
+\end{methodbox}
+
+\begin{methodbox}{Support Vector Machine}
+\What{Find a boundary that separates groups while leaving the widest possible margin between them.}
+
+\Bio{Imagine drawing the cleanest line between responders and non-responders, as far as possible from the nearest patients on both sides.}
+
+\FlowThree{Samples}{Wide-margin\\boundary}{Class label}
+\end{methodbox}
+
+\begin{methodbox}{PCA, UMAP, and t-SNE}
+\What{Reduce thousands of variables into two or three visual axes. PCA preserves broad linear variation; UMAP and t-SNE emphasize local neighborhoods.}
+
+\Bio{They are maps. A map is not the tissue, but it can reveal whether samples cluster by cell type, treatment, disease, or batch.}
+
+\FlowThree{Many\\features}{Low-dimensional\\map}{Visible\\clusters}
+\end{methodbox}
+
+\begin{methodbox}{Linear Regression}
+\What{Estimate how a continuous outcome changes with one or more predictors.}
+
+\Bio{If enzyme activity rises with dose over a limited range, linear regression estimates the slope and uncertainty of that rise.}
+
+\FlowThree{Predictor}{Straight-line\\model}{Outcome}
+\end{methodbox}
+
+\section{Closing Rule}
+
+\begin{takehomebox}{A good algorithm sharpens a biological claim}
+Good computation is not a decorative layer on top of biology. It makes a claim precise enough to be challenged, repeated, and improved. The strongest ARIS papers pair biological meaning with stress-tested computation: not just "the model says so", but "the result survives reasonable ways it could have failed."
+\end{takehomebox}
+
+\end{document}

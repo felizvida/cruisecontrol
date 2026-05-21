@@ -9,6 +9,8 @@ allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Agent
 
 Deploy and run ML experiment: $ARGUMENTS
 
+If the request is really a queued batch rather than a one-off experiment, hand off to [experiment-queue](../experiment-queue/SKILL.md) instead of managing the sweep manually.
+
 ## Workflow
 
 ### Step 1: Detect Environment
@@ -93,6 +95,7 @@ After deployment is verified, check `~/.config/opencode/feishu.json`:
 - Run deployment commands with `run_in_background: true` to keep conversation responsive
 - Report back: which GPU, which screen/process, what command, estimated time
 - If multiple experiments, launch them in parallel on different GPUs
+- If the request is a 10+ job sweep, multi-seed grid, or phased chain, use `/experiment-queue`
 
 ## AGENTS.md Example
 

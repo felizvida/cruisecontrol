@@ -31,6 +31,11 @@ That pure OpenCode route stays entirely inside OpenCode. The default Codex route
 
 Whichever route you choose, the paper-writing side now defaults to [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md): question first, claim early, evidence doing the work, a calmer closing cadence, and no slipping back into project-report or workflow-diary prose.
 
+Two newer upstream-style finishing tools are worth knowing early:
+
+- [figure-spec](.opencode/skills/figure-spec/SKILL.md) for deterministic architecture or workflow figures
+- [paper-claim-audit](.opencode/skills/paper-claim-audit/SKILL.md) plus [citation-audit](.opencode/skills/citation-audit/SKILL.md) for the submission-assurance pass at the end
+
 ## Act I: Start With A Direction, Not A Thesis
 
 Start with the broadest useful command:
@@ -253,6 +258,39 @@ The paper workflow is strongest when you already know:
 - the evidence for that claim
 - which figures must exist
 - which reviewer objections must be preempted
+
+If one of those figures is a formal workflow or architecture figure, the cleaner route is now:
+
+```text
+/figure-spec "diagram description"
+```
+
+instead of improvising a one-off placeholder.
+
+## Act VI: Treat Submission Readiness As A Separate Step
+
+A polished paper and a submission-ready paper are not the same thing.
+
+Once the writing and review loop are done, the repo now has a separate assurance pass:
+
+```text
+/paper-claim-audit "paper/"
+/citation-audit "paper/"
+```
+
+Then:
+
+```bash
+bash scripts/verify_paper_audits.sh paper --assurance submission
+```
+
+That final check is useful because it asks different questions from the reviewer loop:
+
+- do the numbers still match the evidence?
+- are the citations real and honestly used?
+- did later edits make the audit layer stale?
+
+That is the last gate before calling the paper submission-ready.
 
 The pipeline then helps convert that into:
 

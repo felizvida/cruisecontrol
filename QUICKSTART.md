@@ -58,6 +58,12 @@ For the explicit OpenCode route:
 /research-pipeline-opencode "test-time adaptation for battery-constrained quadruped robots"
 ```
 
+For structured workflow or architecture figures later in the paper process:
+
+```text
+/figure-spec "workflow from narrative report to reviewed paper package"
+```
+
 ## 4. What you should get
 
 A good full run gives you:
@@ -84,6 +90,19 @@ That is the review-improved paper stage, not just the first compiled draft. In t
 If the claimed results need more compute than this machine can provide, move the heavy run to Biowulf and bring the resulting artifacts back into the local paper package.
 
 By default, the paper-writing route now uses [classic-biology-prose](.opencode/skills/classic-biology-prose/SKILL.md), so the manuscript should read like an authoritative human paper rather than a workflow transcript, project report, or set of homework notes.
+
+If you want the paper treated as submission-ready, run the assurance layer after the last revision:
+
+```text
+/paper-claim-audit "paper/"
+/citation-audit "paper/"
+```
+
+Then verify:
+
+```bash
+bash scripts/verify_paper_audits.sh paper --assurance submission
+```
 
 If you want to see a sample artifact set first, read [examples/end-to-end-sample/README.md](examples/end-to-end-sample/README.md).
 If you want the full sample ending in a complete paper package, read [examples/full-paper-sample/README.md](examples/full-paper-sample/README.md).

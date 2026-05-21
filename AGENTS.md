@@ -56,6 +56,16 @@ Paper-improvement loops should prefer `paperreview.ai` as the external review ba
 - If `paperreview.ai` is unavailable or unsuitable for the paper, fall back to the route-local reviewer and say so in the saved artifacts.
 - A review round is not complete until a revision round follows it. Always save the reviewed artifact, the review itself, and the next revised artifact as a pair in the paper history.
 
+## Paper Assurance
+
+When the user wants a paper treated as submission-ready, run the local assurance layer after the last revision:
+
+- `/paper-claim-audit`
+- `/citation-audit`
+- `bash scripts/verify_paper_audits.sh paper --assurance submission`
+
+Do not describe a paper as submission-ready if those artifacts are missing, stale, or blocking.
+
 ## Artifact Destinations
 
 All intermediate artifacts, reports, notes, figures, and state files must stay in the current local working repository unless the user explicitly asks to publish or push them elsewhere.
@@ -70,6 +80,7 @@ Any paper presented as a final paper package in this repo must be backed by real
 - Use local compute for lightweight pilots, smoke tests, and small simulations.
 - Use Biowulf when the work needs serious CPU or GPU capacity. Keep requests moderate and do not exceed one node unless the user explicitly asks for that.
 - A complete final paper package still includes the finished PDF and source, round-by-round paper-improvement artifacts, code, data or a source-data manifest, high-resolution figure assets, a detailed review opinion, and a score.
+- If the user is preparing for submission, the package should also include current `PAPER_CLAIM_AUDIT.*` and `CITATION_AUDIT.*` artifacts.
 - Do not stop at `paper/main.pdf` if the paper-improvement loop is available. Persist the review opinion, scorecard, and revision history.
 
 ## Writing Style Default

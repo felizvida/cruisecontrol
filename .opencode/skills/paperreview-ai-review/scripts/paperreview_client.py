@@ -100,7 +100,9 @@ def derive_verdict(score, assessment_text):
 
 def ensure_parent(path):
     if path:
-        os.makedirs(os.path.dirname(path), exist_ok=True)
+        directory = os.path.dirname(path)
+        if directory:
+            os.makedirs(directory, exist_ok=True)
 
 
 def write_json(path, payload):

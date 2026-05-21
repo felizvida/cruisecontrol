@@ -3,5 +3,12 @@ upstream/
 .local_artifacts/
 .local_runtime/
 __pycache__/
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+docs/ALGORITHMS_FOR_BIOLOGISTS_PDF.pdf
 examples/opencode-zebrafish-brain-paper/
 examples/opencode-zebrafish-brain-proteome-smoke/
