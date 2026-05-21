@@ -5,6 +5,7 @@ This repo packages the ARIS research workflow for both OpenCode and Codex.
 ## Layout
 
 - Skills live in `.opencode/skills/`
+- Skill-owned helper scripts should live under the owning skill's `scripts/` directory when practical
 - Command wrappers live in `.opencode/commands/`
 - Sample OpenCode config lives in `opencode.jsonc`
 - A reusable target-project template lives in `templates/project-AGENTS.md`

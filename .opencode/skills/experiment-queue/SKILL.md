@@ -25,10 +25,18 @@ Use `/run-experiment` for one-off jobs or very small batches.
 
 ## Tooling
 
-This repo ships a local queue scheduler:
+This skill owns its queue helpers under its own directory:
 
 ```bash
-python3 scripts/experiment_queue/queue_manager.py --manifest manifest.json --state queue_state.json --log queue.log
+python3 .opencode/skills/experiment-queue/scripts/build_manifest.py --config grid_spec.yaml --output manifest.json
+python3 .opencode/skills/experiment-queue/scripts/queue_manager.py --manifest manifest.json --state queue_state.json --log-dir logs
+```
+
+The legacy top-level entry points remain as compatibility shims:
+
+```bash
+python3 scripts/experiment_queue/build_manifest.py --config grid_spec.yaml --output manifest.json
+python3 scripts/experiment_queue/queue_manager.py --manifest manifest.json --state queue_state.json --log-dir logs
 ```
 
 The scheduler is designed to run where the jobs will actually launch. For remote machines, upload the manifest and the script, then run it there.
@@ -78,6 +86,8 @@ Save the manifest under a project-local queue folder such as:
 experiment_queue/<timestamp>/manifest.json
 ```
 
+For Cartesian grid specs, use `build_manifest.py` to expand phases and jobs before launch.
+
 ### Step 2: Pre-flight
 
 Before launching:
@@ -90,7 +100,7 @@ Before launching:
 
 ### Step 3: Launch the scheduler
 
-Run the queue manager in a detached session or background process on the target machine. The scheduler:
+Run the queue manager in a detached session or background process on the target machine. Copy both helper scripts when launching remotely, and prefer a per-run remote directory so concurrent queues do not collide. The scheduler:
 
 - finds free GPUs by `nvidia-smi`
 - launches each job in its own `screen`

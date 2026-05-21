@@ -31,7 +31,15 @@ For plots and tables, use `/paper-figure`.
 
 ## Tooling
 
-This repo ships a local renderer:
+This skill owns its renderer under its own directory:
+
+```bash
+python3 .opencode/skills/figure-spec/scripts/figure_renderer.py validate path/to/spec.json
+python3 .opencode/skills/figure-spec/scripts/figure_renderer.py render path/to/spec.json --output path/to/figure.svg
+python3 .opencode/skills/figure-spec/scripts/figure_renderer.py schema
+```
+
+The legacy top-level entry point remains as a compatibility shim:
 
 ```bash
 python3 scripts/figure_renderer.py validate path/to/spec.json
@@ -84,8 +92,8 @@ Minimal example:
 Validate first, then render:
 
 ```bash
-python3 scripts/figure_renderer.py validate figures/specs/workflow.json
-python3 scripts/figure_renderer.py render figures/specs/workflow.json --output figures/workflow.svg
+python3 .opencode/skills/figure-spec/scripts/figure_renderer.py validate figures/specs/workflow.json
+python3 .opencode/skills/figure-spec/scripts/figure_renderer.py render figures/specs/workflow.json --output figures/workflow.svg
 ```
 
 If you need LaTeX inclusion, convert the SVG to PDF with the local toolchain you already use for figure assets.

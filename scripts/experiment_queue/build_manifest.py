@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
-"""Compatibility entry point for the experiment queue manager.
+"""Compatibility entry point for experiment-queue manifest generation.
 
 The canonical helper lives with the skill that owns it:
-    .opencode/skills/experiment-queue/scripts/queue_manager.py
-
-This shim keeps older invocations working while avoiding two divergent queue
-schedulers in the repo.
+    .opencode/skills/experiment-queue/scripts/build_manifest.py
 """
 
 from __future__ import annotations
@@ -16,13 +13,13 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
-REAL = REPO_ROOT / ".opencode" / "skills" / "experiment-queue" / "scripts" / "queue_manager.py"
+REAL = REPO_ROOT / ".opencode" / "skills" / "experiment-queue" / "scripts" / "build_manifest.py"
 
 
 def main() -> int:
     if not REAL.is_file():
         sys.stderr.write(
-            f"ERROR: canonical queue_manager.py not found at {REAL}.\n"
+            f"ERROR: canonical build_manifest.py not found at {REAL}.\n"
             "       Expected it under .opencode/skills/experiment-queue/scripts/.\n"
         )
         return 1

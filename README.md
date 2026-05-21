@@ -20,6 +20,7 @@ This repo keeps the upstream research skills, ports the few Claude-specific file
 ## What is included
 
 - `.opencode/skills/` — the ported ARIS workflow skills plus local additions such as `classic-biology-prose`, `paperreview-ai-review`, `citation-audit`, `paper-claim-audit`, `figure-spec`, and `experiment-queue`
+- skill-local helper scripts — helpers for `figure-spec` and `experiment-queue` live beside those skills, with top-level `scripts/` shims kept for compatibility
 - `.opencode/commands/` — OpenCode command wrappers, including explicit OpenCode and Codex route variants for the top-level workflows
 - port-native additions — `paper-upgrade` for linked-paper improvement, `biowulf-gpu` for one-node Biowulf GPU allocation, module setup, and scratch-disk staging, `classic-biology-prose` for natural paper writing, and a lightweight submission-assurance layer for claim and citation audits
 - `AGENTS.md` — repo-level instructions for using the port in OpenCode

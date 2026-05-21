@@ -1,7 +1,7 @@
 ---
 name: citation-audit
 description: "Verify that a paper's references are real, correctly described, and used in contexts the cited works actually support. Use before submission or whenever you want a bibliography integrity pass."
-argument-hint: [paper-directory-or-bib-file]
+argument-hint: [paper-directory-or-bib-file] [--uncited] [--soft-only]
 allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, Agent
 ---
 
@@ -68,6 +68,13 @@ Save the extracted context list to:
 ```text
 .aris/citation-audit/contexts.txt
 ```
+
+Also record two sets:
+
+- `cited_keys`: unique cite keys used in `\cite{...}` calls
+- `bib_keys`: cite keys defined in the active bib file
+
+By default, audit only `cited_keys`. If the user passes `--uncited`, also report `bib_keys - cited_keys` as a detect-only cleanup section. Do not let uncited entries change the top-level verdict.
 
 ### Step 2: Verify each entry on three axes
 
@@ -148,6 +155,20 @@ Recommended `details` payload:
 }
 ```
 
+When `--uncited` is enabled, also include:
+
+```json
+{
+  "uncited_entries": [
+    {
+      "key": "smith2020unused",
+      "suggestion": "prune",
+      "reason": "present in bibliography but not cited in the manuscript"
+    }
+  ]
+}
+```
+
 ### Step 5: Write the human-readable report
 
 Write `CITATION_AUDIT.md` with:
@@ -162,6 +183,7 @@ The report should separate:
 - metadata fixes
 - wrong-context replacements
 - hallucinated or unverifiable references
+- uncited entries, when `--uncited` was requested
 
 ### Step 6: Apply safe fixes
 
@@ -174,6 +196,8 @@ Safe automatic fixes:
 - venue correction
 
 Do **not** automatically rewrite claim text or swap out a citation that changes the meaning of the sentence unless the user explicitly asked for auto-application.
+
+If the user passes `--soft-only`, run the same verification pass but do not mutate the `.bib` file. Convert suggested metadata, replacement, or removal actions into explicit follow-up edits against the citing prose instead.
 
 ## Output Semantics
 
@@ -191,6 +215,7 @@ Top-level audit verdicts:
 - Use a fresh review context for the audit run.
 - Check the real cited record, not a guess.
 - Treat wrong-context citations as more serious than typos.
+- Keep uncited-entry detection opt-in and non-blocking.
 - Always emit `CITATION_AUDIT.json`, even when the verdict is `NOT_APPLICABLE`, `BLOCKED`, or `ERROR`.
 - If the user asks for submission readiness, rerun this audit after any text edits that change the cited claims.
 
