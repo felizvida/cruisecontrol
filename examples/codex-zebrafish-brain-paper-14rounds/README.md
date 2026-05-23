@@ -36,6 +36,11 @@ source curation -> local computation -> NARRATIVE_REPORT.md -> PAPER_PLAN.md
 -> round36 revision implements the round35 requests with clearer traceability, overlap-model assumptions, accession handling, prevalence-adjusted statistics, and detectability-model detail
 -> round37 paperreview.ai rereview evaluates paper/main_round36.pdf and returns Accept with a last set of minor auditability and robustness requests
 -> round38 revision implements the round37 requests with accession-level motor-family breakdown, gene-symbol sensitivity, stratified detectability checks, inverse acetylation modeling, and a minimal reproducibility notebook
+-> round39 paperreview.ai rereview returns Weak Accept with requests for stronger fixed-margin formalization, count-normalized checks, and clearer processed-table limits
+-> round40 revision implements the round39 requests with Jaccard null intervals, identification-count rarefaction, and clearer executable provenance
+-> round41 updated-skill rewrite applies the latest local paper-write and classic-biology-prose guidance while preserving the computation-backed claim set
+-> round42 paperreview.ai rereview evaluates paper/main_round41.pdf and returns Accept with minor revision requests on purity sentinels, canonicalization transparency, top-intensity checks, and notation cleanup
+-> round43 response revision implements the round42 requests with tissue sentinels, top-intensity restrictions, full canonicalization maps, replicate-scope clarification, and notation cleanup
 ```
 
 Open these first:
@@ -56,6 +61,13 @@ Open these first:
 - `paper/main_round34.pdf`
 - `paper/main_round36.pdf`
 - `paper/main_round38.pdf`
+- `paper/main_round40.pdf`
+- `paper/main_round41.pdf`
+- `paper/main_round43.pdf`
+- `review/round43_revision_summary.md`
+- `review/round41_revision_summary.md`
+- `review/round42_review.md`
+- `review/round39_review.md`
 - `review/round37_review.md`
 - `review/round37_scorecard.json`
 - `review/round35_review.md`
@@ -76,15 +88,15 @@ Final status:
 
 - route: `pure Codex`
 - final paper: `paper/main.pdf`
-- latest externally reviewed artifact: `paper/main_round36.pdf`
-- latest completed external review: `round37` from `paperreview.ai`
-- latest explicit external accept: `round37`
-- latest unre-reviewed revision implementing external feedback: `paper/main_round38.pdf`
+- latest externally reviewed artifact: `paper/main_round41.pdf`
+- latest completed external review: `round42` from `paperreview.ai`
+- latest explicit external accept: `round42`
+- latest unre-reviewed revision after external feedback: `paper/main_round43.pdf`
 - external-review score: `not returned` for venue `Other`
 - round21 submission status: blocked by `paperreview.ai` rate limit before a token was issued
 - round26 submission status: blocked again by `paperreview.ai` rate limit before a token was issued
 - last calibrated internal score: `9.4 / 10` on `paper/main_round14.pdf`
-- validation: `13` pages, embedded fonts, and no `Overfull`, `Underfull`, or `undefined` matches in `paper/main.log`
+- validation: `12` pages, embedded fonts, and no `Overfull`, `Underfull`, `undefined`, warning, error, or `[VERIFY]` matches in the round43 build checks
 
 Key final results:
 
@@ -119,6 +131,12 @@ Key final results:
 - acetylation adjusted odds ratio: `2.94` with `p = 0.140`
 - inverse acetylation-region odds ratio: `0.26` with `p = 0.180`
 - first-residue<=2 acetylation recheck: odds ratio `0.88`, `p = 0.714`
+- top-100 intensity-restricted exact-ID Jaccard overlap: `0.0526`
+- top-100 intensity-restricted marker alignment: `1.0000`
+- skeletal/cardiac muscle sentinel rows: `2` telencephalon, `89` optic tectum
+- skeletal/cardiac muscle sentinel intensity share of each region: `0.042%` telencephalon, `11.0%` optic tectum
+- canonicalization full-map rows: `842`
+- cross-accession canonicalized sequence groups: `17`
 
 The final package includes:
 
@@ -145,6 +163,9 @@ The final package includes:
 - `paper/main_round34.pdf`
 - `paper/main_round36.pdf`
 - `paper/main_round38.pdf`
+- `paper/main_round40.pdf`
+- `paper/main_round41.pdf`
+- `paper/main_round43.pdf`
 - `paper/PAPER_IMPROVEMENT_LOG.md`
 - `review/round00_review.md` through `review/round13_review.md`
 - `review/round15_review.md`
@@ -157,6 +178,14 @@ The final package includes:
 - `review/round37_review.md`
 - `review/round30_review.md`
 - `review/round27_review.md`
+- `review/round39_review.md`
+- `review/round39_revision_summary.md`
+- `review/round41_revision_summary.md`
+- `review/round43_revision_summary.md`
+- `review/round42_paperreview_submission.json`
+- `review/round42_paperreview_response.json`
+- `review/round42_review.md`
+- `review/round42_scorecard.json`
 - `review/round21_submission_blocked.md`
 - `review/round26_submission_blocked.md`
 - `review/ROUND_REVIEWS_LIVE.md`
@@ -179,7 +208,7 @@ The final package includes:
 - `results/`
 - `figure_assets/`
 
-This example stays honest about scope. The biological claim rests on the deposited proteoform spreadsheets rather than on a new wet-lab run, but it is not just a packaging exercise. The paper now shows that the regional split remains visible after duplicate-based detectability correction, conservative misidentification bounds, gene-symbol and protein collapse, marker-panel stress tests, and a standards-aware canonicalization pass. The package includes the internal 14-round loop, multiple live `paperreview.ai` rounds, the blocked round-21 rereview attempt, a round-22 reframing pass that turned the manuscript into a direct knowledge-claim paper, a round-23 cleanup pass that removed the remaining diminishing re-analysis/audit language, a round-24 prose pass that made the academic writing more natural, a round-25 style pass informed by classic molecular-biology prose, a round-26 final pass that tightened cadence and compression, the successful `round27` external rereview that returned `Accept` on `paper/main_round26.pdf`, a later `round28` editorial pass that shortened the paper and made the JPR-facing version more biology-first, a `round29` abstract pass that follows recent JPR abstract patterns more closely, a `round30` external review and its `round31` response, the `round32` and `round33` language revisions, the `round34` scientific-prose rewrite, the `round35` external review and `round36` response revision, and the later `round37` external `Accept` followed by the current `round38` response revision. The saved submission metadata redacts the email address and external-review handles before publication.
+This example stays honest about scope. The biological claim rests on the deposited proteoform spreadsheets rather than on a new wet-lab run, but it is not just a packaging exercise. The paper now shows that the regional split remains visible after duplicate-based detectability correction, conservative misidentification bounds, gene-symbol and protein collapse, marker-panel stress tests, count-normalized rarefaction, fixed-margin overlap tests, top-intensity restriction, tissue-sentinel guardrails, and a standards-aware canonicalization pass. The package includes the internal 14-round loop, multiple live `paperreview.ai` rounds, the blocked round-21 rereview attempt, a round-22 reframing pass that turned the manuscript into a direct knowledge-claim paper, a round-23 cleanup pass that removed the remaining diminishing re-analysis/audit language, a round-24 prose pass that made the academic writing more natural, a round-25 style pass informed by classic molecular-biology prose, a round-26 final pass that tightened cadence and compression, the successful `round27` external rereview that returned `Accept` on `paper/main_round26.pdf`, a later `round28` editorial pass that shortened the paper and made the JPR-facing version more biology-first, a `round29` abstract pass, a `round30` external review and its `round31` response, the `round32` and `round33` language revisions, the `round34` scientific-prose rewrite, the `round35` external review and `round36` response revision, the later `round37` external `Accept`, the `round39` external `Weak Accept`, the `round40` response revision, the `round41` updated-skill rewrite, the `round42` external `Accept` on `paper/main_round41.pdf`, and the current `round43` response revision. The saved submission metadata redacts the email address and external-review handles before publication.
 
 Submission support:
 

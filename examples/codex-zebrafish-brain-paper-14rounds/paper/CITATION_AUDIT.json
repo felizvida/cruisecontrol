@@ -1,0 +1,268 @@
+{
+  "audit_skill": "citation-audit",
+  "verdict": "PASS",
+  "reason_code": "metadata_fix_applied_now_clean",
+  "summary": "All sixteen cited entries were checked for existence, metadata, and contextual use. One safe metadata repair was applied to the bibliography; no fabricated or wrong-context citations remained.",
+  "audited_input_hashes": {
+    "main.tex": "sha256:97d0adce76071edba4a1f52423686f5f861cc235cde2b486ebc9294bda944917",
+    "sections/0_abstract.tex": "sha256:fcee49b28d93b86ecc2c98eddbb33c526729b8fe13a95c4da37b4af48a0cb32f",
+    "sections/1_introduction.tex": "sha256:57634fd5b6688c3f37043a53c11a163ef2470b69bd47225544973dbe289f4c27",
+    "sections/2_data_and_methods.tex": "sha256:aac9260d1c3756fcdcbfb8de5bf3e0ea44ee731ba8920f506389a75d48573ece",
+    "sections/3_results.tex": "sha256:fad4303a7c37de51f0fbb1699fd47b504aea9cf6c53839701885022b733d9af5",
+    "sections/4_discussion.tex": "sha256:150b14ff7cc96b4602458b022cfe2bb9c012062c5fcc9a94cb266c32d25c4cc7",
+    "sections/5_conclusion.tex": "sha256:78ca3efc7f78fd94985fdffc55ffd9f1bef45ee3bda3872d9e2e7f36721b35ed",
+    "sections/A_appendix.tex": "sha256:3b860ed2e8d1cd253ec237e9dac86cb154d25041eda85c9cea9c83f92504e525",
+    "references.bib": "sha256:5f491f0bf1bf2309515a270a30170f16d57b3174692aa06f88103f79c2b14cd2"
+  },
+  "trace_path": ".aris/traces/citation-audit/2026-04-24_run01",
+  "thread_id": "local-zebrafish-assurance-2026-04-24",
+  "reviewer_model": "GPT-5 Codex",
+  "reviewer_reasoning": "high",
+  "generated_at": "2026-04-24T11:47:28-0400",
+  "details": {
+    "total_entries": 16,
+    "counts": {
+      "KEEP": 15,
+      "FIX": 1,
+      "REPLACE": 0,
+      "REMOVE": 0
+    },
+    "per_entry": [
+      {
+        "key": "lubeckyj2022lcmcze",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/0_abstract.tex",
+            "line": 1,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 5,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/2_data_and_methods.tex",
+            "line": 5,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "stednitz2018social",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 3,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 9,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "reemst2023memory",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 3,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "pandey2023telencephalon",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 3,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 9,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "roeser2003tectum",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 3,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 9,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "orger2016visuomotor",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 3,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 9,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "askarani2025aging",
+        "verdict": "FIX",
+        "axis_failures": [
+          "METADATA"
+        ],
+        "uses": [
+          {
+            "file": "sections/1_introduction.tex",
+            "line": 9,
+            "verdict": "SUPPORTS"
+          }
+        ],
+        "note": "Year corrected in references.bib from 2025 to 2026 after verification against PubMed PMID 41467253 / PMCID PMC12750134."
+      },
+      {
+        "key": "kiss2014laesi",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 13,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "yang2022nanodesi",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 13,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "leduc2018proforma",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 15,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/A_appendix.tex",
+            "line": 37,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "leduc2022proforma2",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 15,
+            "verdict": "SUPPORTS"
+          },
+          {
+            "file": "sections/A_appendix.tex",
+            "line": 37,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "vanderaa2023singlecell",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 15,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "schaffer2018proteoformfamilies",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 17,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "choi2022toppic",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 25,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "karpievitch2012missing",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 27,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      },
+      {
+        "key": "lazar2016missing",
+        "verdict": "KEEP",
+        "axis_failures": [],
+        "uses": [
+          {
+            "file": "sections/4_discussion.tex",
+            "line": 27,
+            "verdict": "SUPPORTS"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -66,6 +66,54 @@ COMPOSITION_SENTINELS = [
     },
 ]
 
+TISSUE_SENTINEL_PANELS = [
+    {
+        "panel": "skeletal_cardiac_muscle",
+        "gene_prefixes": ("myh", "myl", "tnn", "ttn", "desm"),
+        "description_keywords": (
+            "myosin",
+            "troponin",
+            "titin",
+            "desmin",
+            "skeletal muscle",
+            "cardiac",
+            "atrial",
+        ),
+        "interpretation": "skeletal/cardiac muscle carryover sentinels requested by review",
+    },
+    {
+        "panel": "contractile_cytoskeleton",
+        "gene_prefixes": ("act", "myh", "myl", "tnn", "tpm"),
+        "description_keywords": ("actin", "myosin", "troponin", "tropomyosin"),
+        "interpretation": "contractile and cytoskeletal motor proteins",
+    },
+    {
+        "panel": "neuronal_synaptic",
+        "gene_prefixes": ("snap", "stx", "syt", "syn", "nrg", "npy", "penk", "pyy"),
+        "description_keywords": (
+            "synaptic",
+            "synuclein",
+            "neurogranin",
+            "neuropeptide",
+            "vesicle",
+            "neuron",
+        ),
+        "interpretation": "neuronal and synaptic sentinels",
+    },
+    {
+        "panel": "glial_myelin",
+        "gene_prefixes": ("mbp", "plp", "mpz", "gfap", "s100", "fabp7"),
+        "description_keywords": ("myelin", "glial", "glia", "fatty acid binding protein"),
+        "interpretation": "glial and myelin sentinels",
+    },
+    {
+        "panel": "translation_housekeeping",
+        "gene_prefixes": ("eef", "rpl", "rps", "gapdh"),
+        "description_keywords": ("elongation factor", "ribosomal", "glyceraldehyde"),
+        "interpretation": "broad abundant housekeeping sentinels",
+    },
+]
+
 INDEPENDENT_MARKERS = [
     {
         "gene": "plp1b",
@@ -166,6 +214,31 @@ def hypergeom_lower_tail_p(a: int, row1: int, col1: int, total: int) -> tuple[fl
     p_value = math.exp(log_p) if log_p > -745 else 0.0
     neg_log10 = -log_p / math.log(10)
     return p_value, neg_log10
+
+
+def hypergeom_jaccard_summary(row1: int, col1: int, total: int) -> dict[str, float]:
+    lower = max(0, row1 + col1 - total)
+    upper = min(row1, col1)
+    support = list(range(lower, upper + 1))
+    log_probs = [hypergeom_log_prob(value, row1, col1, total) for value in support]
+    normalizer = logsumexp(log_probs)
+    probabilities = [math.exp(value - normalizer) for value in log_probs]
+    jaccards = [value / (row1 + col1 - value) for value in support]
+
+    def weighted_quantile(q: float) -> float:
+        cumulative = 0.0
+        for value, probability in zip(jaccards, probabilities):
+            cumulative += probability
+            if cumulative >= q:
+                return value
+        return jaccards[-1]
+
+    return {
+        "expected_shared": sum(value * probability for value, probability in zip(support, probabilities)),
+        "jaccard_mean": sum(value * probability for value, probability in zip(jaccards, probabilities)),
+        "jaccard_low_95": weighted_quantile(0.025),
+        "jaccard_high_95": weighted_quantile(0.975),
+    }
 
 
 def fisher_one_sided_greater(a: int, b: int, c: int, d: int) -> float:
@@ -780,9 +853,20 @@ def build_presence_overlap_significance(
             if tel_prevalence + teo_prevalence - tel_prevalence * teo_prevalence
             else 0.0
         )
+        null_jaccard = hypergeom_jaccard_summary(tel_count, teo_count, universe)
         p_value, neg_log10 = hypergeom_lower_tail_p(overlap, tel_count, teo_count, universe)
         summary[f"{label}_centered_jaccard"] = round(observed_jaccard - expected_jaccard, 4)
         summary[f"{label}_expected_jaccard_under_independence"] = round(expected_jaccard, 4)
+        summary[f"{label}_fixed_margin_expected_shared"] = round(
+            null_jaccard["expected_shared"], 4
+        )
+        summary[f"{label}_fixed_margin_jaccard_mean"] = round(null_jaccard["jaccard_mean"], 4)
+        summary[f"{label}_fixed_margin_jaccard_low_95"] = round(
+            null_jaccard["jaccard_low_95"], 4
+        )
+        summary[f"{label}_fixed_margin_jaccard_high_95"] = round(
+            null_jaccard["jaccard_high_95"], 4
+        )
         summary[f"{label}_overlap_lower_tail_p"] = p_value
         summary[f"{label}_overlap_lower_tail_neg_log10_p"] = round(neg_log10, 4)
         rows.append(
@@ -795,6 +879,10 @@ def build_presence_overlap_significance(
                 "observed_jaccard": round(observed_jaccard, 4),
                 "expected_jaccard_under_independence": round(expected_jaccard, 4),
                 "centered_jaccard": round(observed_jaccard - expected_jaccard, 4),
+                "fixed_margin_expected_shared": round(null_jaccard["expected_shared"], 4),
+                "fixed_margin_jaccard_mean": round(null_jaccard["jaccard_mean"], 4),
+                "fixed_margin_jaccard_low_95": round(null_jaccard["jaccard_low_95"], 4),
+                "fixed_margin_jaccard_high_95": round(null_jaccard["jaccard_high_95"], 4),
                 "lower_tail_p": f"{p_value:.6g}" if p_value > 0 else "<1e-323",
                 "lower_tail_neg_log10_p": round(neg_log10, 4),
                 "note": note,
@@ -1368,6 +1456,148 @@ def marker_rule_text(marker_key: str) -> str:
         return f"Gene symbol extracted from GN= field equals `{marker_key}`."
     keyword = keyword_map[marker_key]
     return f"Protein description contains `{keyword}`."
+
+
+def marker_alignment_fraction(
+    markers: list[dict[str, object]], tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]]
+) -> float:
+    matched = 0
+    total = 0
+    for marker in markers:
+        key = str(marker["gene"])
+        axis = str(marker["functional_axis"])
+        tel_count = sum(1 for row in tel_rows if marker_match_rule(row, key))
+        teo_count = sum(1 for row in teo_rows if marker_match_rule(row, key))
+        matched += tel_count if axis == "telencephalon" else teo_count
+        total += tel_count + teo_count
+    return matched / total if total else 0.0
+
+
+def jaccard(left: set[object], right: set[object]) -> float:
+    union = left | right
+    return len(left & right) / len(union) if union else 0.0
+
+
+def rarefy_larger_set_to_smaller(
+    left_ids: set[object], right_ids: set[object], trials: int, rng: random.Random
+) -> tuple[list[float], str, int]:
+    if len(left_ids) <= len(right_ids):
+        fixed_ids = left_ids
+        larger_ids = sorted(right_ids, key=repr)
+        sampled_region = "optic_tectum"
+    else:
+        fixed_ids = right_ids
+        larger_ids = sorted(left_ids, key=repr)
+        sampled_region = "telencephalon"
+    sample_size = len(fixed_ids)
+    values = []
+    for _ in range(trials):
+        sampled_ids = set(rng.sample(larger_ids, sample_size))
+        values.append(jaccard(fixed_ids, sampled_ids))
+    return values, sampled_region, sample_size
+
+
+def build_identification_count_rarefaction(
+    markers: list[dict[str, object]],
+    tel_rows: list[dict[str, object]],
+    teo_rows: list[dict[str, object]],
+    trials: int = 10_000,
+    seed: int = 20260515,
+) -> tuple[dict[str, object], list[dict[str, object]]]:
+    rng = random.Random(seed)
+    rows: list[dict[str, object]] = []
+    summary: dict[str, object] = {
+        "identification_count_rarefaction_trials": trials,
+        "identification_count_rarefaction_seed": seed,
+    }
+
+    metric_specs = [
+        (
+            "exact_id_jaccard",
+            {row["proteoform_id"] for row in tel_rows},
+            {row["proteoform_id"] for row in teo_rows},
+            "Exact accession+proteoform Jaccard after sampling the larger regional exact-ID set down to the smaller set size.",
+        ),
+        (
+            "canonicalized_jaccard",
+            {(row["protein_accession"], row["canonicalized_proteoform"]) for row in tel_rows},
+            {(row["protein_accession"], row["canonicalized_proteoform"]) for row in teo_rows},
+            "Canonicalized accession+sequence Jaccard after the same count-normalized sampling.",
+        ),
+        (
+            "protein_jaccard",
+            {row["protein_accession"] for row in tel_rows},
+            {row["protein_accession"] for row in teo_rows},
+            "Protein-accession Jaccard after the same count-normalized sampling.",
+        ),
+    ]
+    for metric_name, tel_ids, teo_ids, note in metric_specs:
+        values, sampled_region, sample_size = rarefy_larger_set_to_smaller(
+            set(tel_ids), set(teo_ids), trials, rng
+        )
+        low = percentile(values, 0.025)
+        median = percentile(values, 0.5)
+        high = percentile(values, 0.975)
+        observed = jaccard(set(tel_ids), set(teo_ids))
+        summary[f"rarefaction_{metric_name}_low_95"] = round(low, 4)
+        summary[f"rarefaction_{metric_name}_median"] = round(median, 4)
+        summary[f"rarefaction_{metric_name}_high_95"] = round(high, 4)
+        rows.append(
+            {
+                "metric": metric_name,
+                "trials": trials,
+                "seed": seed,
+                "sampled_region": sampled_region,
+                "sample_size": sample_size,
+                "low_95": round(low, 4),
+                "median": round(median, 4),
+                "high_95": round(high, 4),
+                "observed_full": round(observed, 4),
+                "note": note,
+            }
+        )
+
+    if len(tel_rows) <= len(teo_rows):
+        fixed_rows = tel_rows
+        larger_rows = teo_rows
+        sampled_region = "optic_tectum"
+    else:
+        fixed_rows = teo_rows
+        larger_rows = tel_rows
+        sampled_region = "telencephalon"
+    sample_size = len(fixed_rows)
+    marker_values = []
+    for _ in range(trials):
+        sampled_rows = rng.sample(larger_rows, sample_size)
+        if sampled_region == "optic_tectum":
+            marker_values.append(marker_alignment_fraction(markers, fixed_rows, sampled_rows))
+        else:
+            marker_values.append(marker_alignment_fraction(markers, sampled_rows, fixed_rows))
+    marker_low = percentile(marker_values, 0.025)
+    marker_median = percentile(marker_values, 0.5)
+    marker_high = percentile(marker_values, 0.975)
+    marker_observed = marker_alignment_fraction(markers, tel_rows, teo_rows)
+    summary["rarefaction_marker_alignment_fraction_low_95"] = round(marker_low, 4)
+    summary["rarefaction_marker_alignment_fraction_median"] = round(marker_median, 4)
+    summary["rarefaction_marker_alignment_fraction_high_95"] = round(marker_high, 4)
+    rows.append(
+        {
+            "metric": "marker_alignment_fraction",
+            "trials": trials,
+            "seed": seed,
+            "sampled_region": sampled_region,
+            "sample_size": sample_size,
+            "low_95": round(marker_low, 4),
+            "median": round(marker_median, 4),
+            "high_95": round(marker_high, 4),
+            "observed_full": round(marker_observed, 4),
+            "note": (
+                "Marker-axis alignment after sampling the larger regional row set down to the smaller "
+                "row count, preserving the locked marker rules."
+            ),
+        }
+    )
+    return summary, rows
 
 
 def build_source_table_metrics(
@@ -2629,6 +2859,197 @@ def build_composition_guardrails(
     return summary, rows
 
 
+def sentinel_panel_match(row: dict[str, object], panel: dict[str, object]) -> bool:
+    gene = str(row["gene"]).lower()
+    description = str(row["description_lower"]).lower()
+    gene_prefixes = tuple(str(value).lower() for value in panel["gene_prefixes"])
+    description_keywords = tuple(str(value).lower() for value in panel["description_keywords"])
+    return gene.startswith(gene_prefixes) or any(keyword in description for keyword in description_keywords)
+
+
+def build_tissue_purity_sentinel_screen(
+    tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]]
+) -> tuple[dict[str, object], list[dict[str, object]], list[dict[str, object]]]:
+    total_intensity_by_region = {
+        "telencephalon": sum(float(row["avg_intensity"]) for row in tel_rows),
+        "optic_tectum": sum(float(row["avg_intensity"]) for row in teo_rows),
+    }
+    panel_rows: list[dict[str, object]] = []
+    membership_rows: list[dict[str, object]] = []
+    summary: dict[str, object] = {}
+
+    for panel in TISSUE_SENTINEL_PANELS:
+        panel_name = str(panel["panel"])
+        matched_by_region = {
+            "telencephalon": [row for row in tel_rows if sentinel_panel_match(row, panel)],
+            "optic_tectum": [row for row in teo_rows if sentinel_panel_match(row, panel)],
+        }
+        tel_count = len(matched_by_region["telencephalon"])
+        teo_count = len(matched_by_region["optic_tectum"])
+        tel_intensity = sum(float(row["avg_intensity"]) for row in matched_by_region["telencephalon"])
+        teo_intensity = sum(float(row["avg_intensity"]) for row in matched_by_region["optic_tectum"])
+        total_count = tel_count + teo_count
+        total_panel_intensity = tel_intensity + teo_intensity
+        tel_count_share = tel_count / total_count if total_count else 0.0
+        tel_intensity_share = tel_intensity / total_panel_intensity if total_panel_intensity else 0.0
+        tel_region_intensity_fraction = (
+            tel_intensity / total_intensity_by_region["telencephalon"]
+            if total_intensity_by_region["telencephalon"]
+            else 0.0
+        )
+        teo_region_intensity_fraction = (
+            teo_intensity / total_intensity_by_region["optic_tectum"]
+            if total_intensity_by_region["optic_tectum"]
+            else 0.0
+        )
+        panel_rows.append(
+            {
+                "panel": panel_name,
+                "gene_prefixes": ",".join(panel["gene_prefixes"]),
+                "description_keywords": ",".join(panel["description_keywords"]),
+                "tel_count": tel_count,
+                "teo_count": teo_count,
+                "tel_count_share": round(tel_count_share, 4),
+                "tel_intensity": round(tel_intensity, 1),
+                "teo_intensity": round(teo_intensity, 1),
+                "tel_intensity_share": round(tel_intensity_share, 4),
+                "tel_fraction_of_region_intensity": round(tel_region_intensity_fraction, 6),
+                "teo_fraction_of_region_intensity": round(teo_region_intensity_fraction, 6),
+                "interpretation": panel["interpretation"],
+            }
+        )
+        summary[f"{panel_name}_tel_count"] = tel_count
+        summary[f"{panel_name}_teo_count"] = teo_count
+        summary[f"{panel_name}_tel_count_share"] = round(tel_count_share, 4)
+        summary[f"{panel_name}_tel_intensity_share"] = round(tel_intensity_share, 4)
+        summary[f"{panel_name}_tel_fraction_of_region_intensity"] = round(
+            tel_region_intensity_fraction, 6
+        )
+        summary[f"{panel_name}_teo_fraction_of_region_intensity"] = round(
+            teo_region_intensity_fraction, 6
+        )
+        for row in matched_by_region["telencephalon"] + matched_by_region["optic_tectum"]:
+            membership_rows.append(
+                {
+                    "panel": panel_name,
+                    "region": row["region"],
+                    "source_table": row["source_table"],
+                    "source_row": row["source_row"],
+                    "protein_accession": row["protein_accession"],
+                    "gene": row["gene"],
+                    "protein_description": row["protein_description"],
+                    "proteoform": row["proteoform"],
+                    "avg_intensity": round(float(row["avg_intensity"]), 1),
+                }
+            )
+    return summary, panel_rows, membership_rows
+
+
+def build_top_intensity_restriction(
+    markers: list[dict[str, object]],
+    tel_rows: list[dict[str, object]],
+    teo_rows: list[dict[str, object]],
+    top_ns: tuple[int, ...] = (50, 100, 150),
+) -> tuple[dict[str, object], list[dict[str, object]]]:
+    rows: list[dict[str, object]] = []
+    summary: dict[str, object] = {}
+    for top_n in top_ns:
+        tel_top = sorted(tel_rows, key=lambda row: float(row["avg_intensity"]), reverse=True)[:top_n]
+        teo_top = sorted(teo_rows, key=lambda row: float(row["avg_intensity"]), reverse=True)[:top_n]
+        tel_exact = {row["proteoform_id"] for row in tel_top}
+        teo_exact = {row["proteoform_id"] for row in teo_top}
+        tel_canonical = {
+            (row["protein_accession"], row["canonicalized_proteoform"]) for row in tel_top
+        }
+        teo_canonical = {
+            (row["protein_accession"], row["canonicalized_proteoform"]) for row in teo_top
+        }
+        tel_proteins = {row["protein_accession"] for row in tel_top}
+        teo_proteins = {row["protein_accession"] for row in teo_top}
+        tel_genes = {str(row["gene"]) for row in tel_top if str(row["gene"])}
+        teo_genes = {str(row["gene"]) for row in teo_top if str(row["gene"])}
+        marker_alignment = marker_alignment_fraction(markers, tel_top, teo_top)
+
+        metric_values = {
+            "exact_id_jaccard": jaccard(tel_exact, teo_exact),
+            "canonicalized_jaccard": jaccard(tel_canonical, teo_canonical),
+            "protein_jaccard": jaccard(tel_proteins, teo_proteins),
+            "gene_symbol_jaccard": jaccard(tel_genes, teo_genes),
+            "marker_alignment_fraction": marker_alignment,
+        }
+        for metric_name, value in metric_values.items():
+            summary[f"top{top_n}_{metric_name}"] = round(value, 4)
+        summary[f"top{top_n}_shared_exact_ids"] = len(tel_exact & teo_exact)
+        summary[f"top{top_n}_shared_canonical_ids"] = len(tel_canonical & teo_canonical)
+        rows.append(
+            {
+                "top_n_per_region": top_n,
+                "tel_rows": len(tel_top),
+                "teo_rows": len(teo_top),
+                "shared_exact_ids": len(tel_exact & teo_exact),
+                "exact_id_jaccard": round(metric_values["exact_id_jaccard"], 4),
+                "shared_canonical_ids": len(tel_canonical & teo_canonical),
+                "canonicalized_jaccard": round(metric_values["canonicalized_jaccard"], 4),
+                "protein_jaccard": round(metric_values["protein_jaccard"], 4),
+                "gene_symbol_jaccard": round(metric_values["gene_symbol_jaccard"], 4),
+                "marker_alignment_fraction": round(marker_alignment, 4),
+                "note": "Each region was restricted to its highest mean-duplicate-intensity rows before overlap and marker alignment were recomputed.",
+            }
+        )
+    return summary, rows
+
+
+def build_canonicalization_full_map(
+    tel_rows: list[dict[str, object]], teo_rows: list[dict[str, object]]
+) -> tuple[dict[str, object], list[dict[str, object]], list[dict[str, object]]]:
+    rows: list[dict[str, object]] = []
+    canonical_to_accessions: dict[str, set[str]] = {}
+    canonical_to_regions: dict[str, set[str]] = {}
+    for row in tel_rows + teo_rows:
+        canonical_sequence = str(row["canonicalized_proteoform"])
+        canonical_id = f"{row['protein_accession']}|{canonical_sequence}|{row['first_residue']}-{row['last_residue']}"
+        rows.append(
+            {
+                "region": row["region"],
+                "source_table": row["source_table"],
+                "source_row": row["source_row"],
+                "protein_accession": row["protein_accession"],
+                "gene": row["gene"],
+                "raw_proteoform": row["proteoform"],
+                "sequence_core": proteoform_sequence_core(str(row["proteoform"])),
+                "modification_tokens": proteoform_modification_tokens(str(row["proteoform"])),
+                "canonicalized_sequence": canonical_sequence,
+                "residue_window": f"{row['first_residue']}-{row['last_residue']}",
+                "accession_plus_canonical_id": canonical_id,
+            }
+        )
+        canonical_to_accessions.setdefault(canonical_sequence, set()).add(str(row["protein_accession"]))
+        canonical_to_regions.setdefault(canonical_sequence, set()).add(str(row["region"]))
+
+    ambiguity_rows: list[dict[str, object]] = []
+    for canonical_sequence, accessions in sorted(canonical_to_accessions.items()):
+        if len(accessions) <= 1:
+            continue
+        matching_rows = [row for row in rows if row["canonicalized_sequence"] == canonical_sequence]
+        ambiguity_rows.append(
+            {
+                "canonicalized_sequence": canonical_sequence,
+                "accession_count": len(accessions),
+                "accessions": ";".join(sorted(accessions)),
+                "regions": ";".join(sorted(canonical_to_regions[canonical_sequence])),
+                "row_count": len(matching_rows),
+                "example_genes": ";".join(sorted({str(row["gene"]) for row in matching_rows if row["gene"]})[:8]),
+                "note": "Same canonicalized proteoform-like sequence appears under more than one accession; primary analysis therefore retains accession identity.",
+            }
+        )
+    summary = {
+        "canonicalization_full_map_rows": len(rows),
+        "cross_accession_canonical_sequence_groups": len(ambiguity_rows),
+        "cross_accession_canonical_sequence_rows": sum(int(row["row_count"]) for row in ambiguity_rows),
+    }
+    return summary, rows, ambiguity_rows
+
+
 def build_ptm_scope_screen(
     membership_rows: list[dict[str, object]],
 ) -> tuple[dict[str, object], list[dict[str, object]]]:
@@ -2767,12 +3188,17 @@ def build_traceability(
             "results/discrepancy_diagnostic.csv",
             "results/canonicalization_rule_sensitivity.csv",
             "results/canonicalization_examples.csv",
+            "results/canonicalization_full_map.csv",
+            "results/cross_accession_ambiguities.csv",
             "results/occupancy_detectability_model.csv",
             "results/detectability_stratified_sensitivity.csv",
             "results/misidentification_sensitivity.csv",
             "results/source_table_shared_ids.csv",
             "results/marker_family_membership.csv",
             "results/motor_family_breakdown.csv",
+            "results/tissue_purity_sentinels.csv",
+            "results/tissue_purity_sentinel_membership.csv",
+            "results/top_intensity_restriction.csv",
             "results/marker_permutation_test.csv",
             "results/protein_level_permutation_test.csv",
             "results/composition_guardrails.csv",
@@ -2812,13 +3238,25 @@ def main() -> None:
     permutation_summary, permutation_rows = build_marker_permutation_test(marker_rows)
     protein_permutation_summary, protein_permutation_rows = build_protein_level_permutation_test(marker_rows)
     composition_summary, composition_rows = build_composition_guardrails(tel_rows, teo_rows)
+    tissue_sentinel_summary, tissue_sentinel_rows, tissue_sentinel_membership_rows = (
+        build_tissue_purity_sentinel_screen(tel_rows, teo_rows)
+    )
     ptm_scope_summary, ptm_scope_rows = build_ptm_scope_screen(membership_rows)
     overlap_bootstrap_summary, overlap_bootstrap_rows = bootstrap_overlap_intervals(tel_rows, teo_rows)
     run_pair_summary, run_pair_rows = build_run_pair_similarity(tel_rows, teo_rows)
     canonicalization_summary, canonicalization_rows = build_canonicalization_rule_sensitivity(tel_rows, teo_rows)
     canonicalization_example_rows = build_canonicalization_examples(tel_rows, teo_rows)
+    canonical_full_summary, canonical_full_rows, cross_accession_rows = build_canonicalization_full_map(
+        tel_rows, teo_rows
+    )
     overlap_significance_summary, overlap_significance_rows = build_presence_overlap_significance(
         tel_rows, teo_rows
+    )
+    rarefaction_summary, rarefaction_rows = build_identification_count_rarefaction(
+        markers, tel_rows, teo_rows
+    )
+    top_intensity_summary, top_intensity_rows = build_top_intensity_restriction(
+        markers, tel_rows, teo_rows
     )
     occupancy_summary, occupancy_rows = build_occupancy_detectability_model(tel_rows, teo_rows)
     detectability_stratified_summary, detectability_stratified_rows = build_detectability_stratified_sensitivity(
@@ -2941,12 +3379,16 @@ def main() -> None:
     summary.update(permutation_summary)
     summary.update(protein_permutation_summary)
     summary.update(composition_summary)
+    summary.update(tissue_sentinel_summary)
     summary.update(ptm_scope_summary)
     summary.update(overlap_bootstrap_summary)
     summary.update(run_pair_summary)
     summary.update(canonicalization_summary)
     summary["canonicalization_examples_count"] = len(canonicalization_example_rows)
+    summary.update(canonical_full_summary)
     summary.update(overlap_significance_summary)
+    summary.update(rarefaction_summary)
+    summary.update(top_intensity_summary)
     summary.update(occupancy_summary)
     summary.update(detectability_stratified_summary)
     summary.update(misidentification_summary)
@@ -3044,8 +3486,28 @@ def main() -> None:
             "observed_jaccard",
             "expected_jaccard_under_independence",
             "centered_jaccard",
+            "fixed_margin_expected_shared",
+            "fixed_margin_jaccard_mean",
+            "fixed_margin_jaccard_low_95",
+            "fixed_margin_jaccard_high_95",
             "lower_tail_p",
             "lower_tail_neg_log10_p",
+            "note",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "identification_count_rarefaction.csv",
+        rarefaction_rows,
+        [
+            "metric",
+            "trials",
+            "seed",
+            "sampled_region",
+            "sample_size",
+            "low_95",
+            "median",
+            "high_95",
+            "observed_full",
             "note",
         ],
     )
@@ -3194,6 +3656,56 @@ def main() -> None:
         ["panel", "genes", "tel_count", "teo_count", "tel_share", "interpretation"],
     )
     write_csv(
+        RESULTS_DIR / "tissue_purity_sentinels.csv",
+        tissue_sentinel_rows,
+        [
+            "panel",
+            "gene_prefixes",
+            "description_keywords",
+            "tel_count",
+            "teo_count",
+            "tel_count_share",
+            "tel_intensity",
+            "teo_intensity",
+            "tel_intensity_share",
+            "tel_fraction_of_region_intensity",
+            "teo_fraction_of_region_intensity",
+            "interpretation",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "tissue_purity_sentinel_membership.csv",
+        tissue_sentinel_membership_rows,
+        [
+            "panel",
+            "region",
+            "source_table",
+            "source_row",
+            "protein_accession",
+            "gene",
+            "protein_description",
+            "proteoform",
+            "avg_intensity",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "top_intensity_restriction.csv",
+        top_intensity_rows,
+        [
+            "top_n_per_region",
+            "tel_rows",
+            "teo_rows",
+            "shared_exact_ids",
+            "exact_id_jaccard",
+            "shared_canonical_ids",
+            "canonicalized_jaccard",
+            "protein_jaccard",
+            "gene_symbol_jaccard",
+            "marker_alignment_fraction",
+            "note",
+        ],
+    )
+    write_csv(
         RESULTS_DIR / "sensitivity_scenarios.csv",
         sensitivity_rows,
         [
@@ -3252,6 +3764,36 @@ def main() -> None:
             "telencephalon_residue_window",
             "optic_tectum_residue_window",
             "standards_note",
+            "note",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "canonicalization_full_map.csv",
+        canonical_full_rows,
+        [
+            "region",
+            "source_table",
+            "source_row",
+            "protein_accession",
+            "gene",
+            "raw_proteoform",
+            "sequence_core",
+            "modification_tokens",
+            "canonicalized_sequence",
+            "residue_window",
+            "accession_plus_canonical_id",
+        ],
+    )
+    write_csv(
+        RESULTS_DIR / "cross_accession_ambiguities.csv",
+        cross_accession_rows,
+        [
+            "canonicalized_sequence",
+            "accession_count",
+            "accessions",
+            "regions",
+            "row_count",
+            "example_genes",
             "note",
         ],
     )

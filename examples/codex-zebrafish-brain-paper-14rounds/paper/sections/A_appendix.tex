@@ -1,95 +1,39 @@
-\section{Reproducibility Appendix}
+\section{Technical Notes}
 
-\subsection{Local files}
+\subsection{Overlap and representation}
 
-The package is backed by the source files in \texttt{data/}, the local analysis and figure scripts in \texttt{results/}, and the build scripts in \texttt{code/}. A minimal rebuild notebook is provided at \path{code/reproduce_tables_and_figures.ipynb}, and environment metadata is recorded in \path{code/environment_versions.json}.
+The primary overlap unit is accession plus proteoform string. This preserves cases in which similar proteoform-like strings are assigned to different accessions. Protein-level and gene-symbol summaries are reported as coarser views, not as replacements for accession-resolved analysis.
 
-\subsection{Formulas}
+Canonicalized matching was used only to diagnose representation effects. In that view, bracketed PTM annotations were removed with the pattern \texttt{\textbackslash[[\^{}\textbackslash]]+\textbackslash]}, parentheses and periods were stripped, and the remaining string was restricted to capital sequence letters \texttt{A--Z}. Accession identity was retained unless the analysis was explicitly protein- or gene-collapsed. The canonicalized comparison explains why the article-level count of 35 shared proteoforms lies between the strict exact-ID count and the relaxed representation, but it does not change the regional inference. The complete raw-to-canonical table is \texttt{results/canonicalization\_full\_map.csv}; accession conflicts are listed in \texttt{results/cross\_accession\_ambiguities.csv}.
 
-The main derived formulas are the Jaccard overlap, specialization fractions, marker-level stabilized log-bias, Wilson intervals for axis-level alignment fractions, an approximate odds-ratio interval for the $2\times2$ matched-versus-spillover table, an exact test on the same table, a prevalence-adjusted overlap-significance check based on the fixed-margin hypergeometric null, a two-run detectability correction based on duplicate rediscovery, and a conservative misidentification ceiling based on paired collapse of region-unique IDs.
+Prevalence-adjusted overlap was evaluated with fixed telencephalon and optic-tectum margins. Let $n_T$ and $n_O$ be the two regional list sizes, $N$ the union size, and $X$ the observed shared count. The observed Jaccard is $J=X/(n_T+n_O-X)$. The marginal-prevalence baseline is
+\[
+J_0 = \frac{p_Tp_O}{p_T+p_O-p_Tp_O},
+\]
+where $p_T=n_T/N$ and $p_O=n_O/N$. The centered Jaccard is $J-J_0$. For uncertainty under fixed margins, the shared count was treated as $X \sim \mathrm{Hypergeometric}(N,n_T,n_O)$, and the hypergeometric support was transformed to Jaccard values $x/(n_T+n_O-x)$. Under strict exact-ID matching, the observed Jaccard was 0.0360 against an independence baseline of 0.3152 and a 95\% fixed-margin null interval of 0.2890--0.3430. Under canonicalized matching, the observed Jaccard was 0.0615 against a baseline of 0.3243. After protein collapse, the overlap rose to 0.2151 but still remained below the protein-level baseline of 0.4280.
 
-\subsection{Extended computational details}
+\subsection{Detectability and missingness}
 
-The main text reports only the quantities needed to follow the biology. The full computational path remains local and explicit. Exact-ID overlap is defined on accession-plus-proteoform pairs. The discrepancy diagnostic compares that strict unit with relaxed accession-plus-canonicalized-sequence matches that strip bracketed PTM annotations and punctuation while preserving accession identity. Protein-collapsed summaries merge rows at the protein identifier level. Abundance-weighted comparisons use mean duplicate intensities within each region and report both weighted Jaccard and Bray--Curtis similarity.
+Duplicate \texttt{Match}/\texttt{No match} flags in the PRIDE region spreadsheets supplied the incidence counts used for Chao2 and first-order jackknife richness calculations. Blank intensity cells were treated as absent detections in the baseline analysis. A minimal MNAR-style sensitivity filled missing exact IDs to half of the region-specific 5th- or 10th-percentile nonzero intensity.
 
-For prevalence-adjusted overlap, the observed telencephalon and optic-tectum margins are held fixed and the overlap count is evaluated against the fixed-margin hypergeometric null. The paper reports the observed Jaccard, the marginal-prevalence baseline under independence, the centered Jaccard, and the exact lower-tail $p$ value. Parallel summaries are also reported after collapsing the full dataset to gene symbols, so readers can see how much of the regional split depends on accession-resolved proteoform identity. For marker alignment, the analysis uses a matched-versus-spillover table together with Wilson intervals, an approximate odds-ratio interval, and an exact directional test. Family-size-preserving randomization keeps family sizes and the global telencephalon/optic-tectum label totals fixed while shuffling labels across the panel counts.
+The duplicate-based detectability correction treated each exact ID as detected in one run or both runs within a region. The resulting two-run model estimates a region-specific per-run detection probability and an ``observed at least once'' probability. Shared exact IDs were then adjusted by the product of the two region-level detection probabilities. The same calculation was repeated after stratifying exact IDs by precursor-mass tertiles and by mean-intensity tertiles.
 
-Missingness and abundance sensitivities are likewise kept local and inspectable. The duplicate \texttt{Match}/\texttt{No match} flags in the deposited spreadsheets provide the incidence counts used for Chao2 and first-order jackknife lower-bound richness calculations. Blank intensity cells are treated as absent detections in the baseline analysis, and the MNAR-style sensitivity fills missing exact IDs to half of the region-specific 5th-percentile or 10th-percentile nonzero intensity. Alternative abundance normalizations include per-run total-intensity scaling before duplicate averaging, region-level total-sum scaling, upper-quartile scaling, and median-ratio scaling on shared exact IDs.
+Misidentification sensitivity asked how much the exact-ID Jaccard could rise if an equal fraction of region-unique exact IDs in both regions were paired representation or identification errors. The 1\% and 5\% scenarios follow the PrSM- and proteoform-level FDR values reported in the supplement. Even the 5\% scenario left the overlap low.
 
-The detectability bound uses the same duplicate structure in a different way. After collapsing each region to unique accession-plus-proteoform IDs, each exact ID is treated as detected in one run or both runs. Under a simple homogeneous two-run model, the duplicate-rediscovery counts give a region-specific per-run detection probability and therefore an estimated ``seen at least once'' probability for that region. The observed cross-region shared exact IDs are then divided by the product of those two region-level detection probabilities to estimate how much overlap could be hidden by uneven duplicate recovery alone. We also repeated that calculation after stratifying exact IDs by precursor-mass tertiles and by mean-intensity tertiles within each region. When a stratum contained no duplicate rediscovery, the stratum fell back to the corresponding region-level detectability estimate rather than generating an undefined correction. This remains intentionally simpler than a full hierarchical model, but it answers the reviewer's immediate question with quantities that are actually supported by the duplicate-labeled spreadsheets.
+Identification-count rarefaction asked whether the larger optic-tectum list alone created the separation. In each of 10{,}000 trials, the larger regional set was sampled without replacement down to the smaller set size, with the seed fixed at 20260515. The calculation was repeated for exact accession-plus-proteoform IDs, canonicalized accession-plus-sequence IDs, protein accessions, and row-level marker alignment. The output is written to \texttt{results/identification\_count\_rarefaction.csv}.
 
-The misidentification sensitivity files are equally conservative. They do not claim to estimate the true false-discovery process. Instead, they ask how much the exact-ID Jaccard could rise if an equal fraction of region-unique exact IDs in both regions were actually paired representation or identification errors. The 1\% and 5\% scenarios track the PrSM- and proteoform-level FDR values reported in the source supplement. A second set of rows asks what error fractions would be required to raise the exact-ID Jaccard to 0.10 or all the way to the observed protein-level overlap.
+Top-intensity restriction asked whether the low-overlap result depended on weak identifications. Each region was sorted by mean duplicate intensity, and the top 50, 100, and 150 rows per region were compared separately. The top-100 exact-ID Jaccard was 0.0526, with 10 shared exact IDs, and the marker-axis alignment fraction was 1.0000. The output is written to \texttt{results/top\_intensity\_restriction.csv}.
 
-\subsection{Accession conflicts, overlap statistics, and marker traceability}
+\subsection{Marker families and acetylation}
 
-When the same proteoform-like string appeared under more than one accession, the primary overlap analysis retained accession identity rather than collapsing immediately to gene or protein level. The reason is biological and practical: premature collapse can make distinct reported entries appear shared when the deposited spreadsheets still distinguish them. Protein-level summaries are therefore presented as sensitivity analyses, not as the primary unit of inference.
+Marker alignment was evaluated with matched-versus-spillover counts, Wilson intervals, an approximate odds-ratio interval, an exact directional test, and family-size-preserving randomization. The randomization preserved the nine family sizes and the global telencephalon/optic-tectum label totals while shuffling labels across panel counts. Leave-one-family-out analysis, motor-family exclusion, protein collapse, gene-symbol collapse, count-normalized subsampling, and intensity weighting all retained the same regional direction.
 
-The prevalence-adjusted overlap statistics are reported for all three main representations. Under strict exact-ID matching, the observed Jaccard is 0.0360 against an independence baseline of 0.3152, yielding a centered Jaccard of $-0.2792$ with $p = 5.56\times10^{-183}$. Under canonicalized matching, the observed Jaccard is 0.0615 against an independence baseline of 0.3243, yielding a centered Jaccard of $-0.2627$ with $p = 5.01\times10^{-143}$. After protein collapse, the overlap rises to 0.2151, but still remains far below the protein-level independence baseline of 0.4280 with centered Jaccard $-0.2130$ and $p = 5.84\times10^{-33}$.
+A tissue-sentinel screen used review-requested skeletal/cardiac muscle terms, broader contractile-cytoskeleton terms, neuronal/synaptic terms, glial/myelin terms, and housekeeping terms. It reports row counts and mean duplicate intensity shares in \path{results/tissue_purity_sentinels.csv}. Row-level memberships are saved in \path{results/tissue_purity_sentinel_membership.csv}. This screen is a guardrail, not a substitute for direct histological purity measurement.
 
-The marker-based interpretation is designed to remain externally auditable. The file \texttt{results/marker\_family\_membership.csv} links every curated family member to the source spreadsheet, row number, accession, proteoform string, matching rule, and matched-versus-spillover assignment. The file \texttt{results/motor\_family\_breakdown.csv} further expands the myosin and troponin families into accession-level entries together with simple annotation classes, so the contamination question can be inspected directly. The file \texttt{data/evidence\_traceability.json} mirrors the marker mapping at the claim level so that each headline statement in the paper can be traced back to a concrete local artifact.
+The acetylation analysis used matched marker rows only. One logistic model coded region as the outcome and used acetylation status, log precursor mass, sequence span length, and first-residue position as predictors. The inverse model coded acetylation as the outcome and region as the main predictor with the same covariates. A second analysis restricted rows to first residue $\leq 2$ as a stricter N-terminal screen. These checks weakened the apparent telencephalic acetylation enrichment.
 
-\subsection{Scope note}
+\subsection{Limits of the public files}
 
-The computation uses values recoverable from the published article and the deposited region spreadsheets. It does not claim a full raw-data reprocessing pipeline.
+The journal supplement records that the region spreadsheets were generated with 1\% PrSM FDR and 5\% proteoform-level FDR in TopPIC and quantified across duplicate runs in TopDiff. The PRIDE landing page lists the four raw duplicate files, but the processed feature histories needed for a full raw-data rerun are not present. The analysis is therefore strongest for regional overlap, marker-family direction, and conservative PTM sensitivity. It is not a complete proteoform atlas of the adult zebrafish brain.
 
-\subsection{Canonicalization and missing-intensity note}
-
-Canonicalization is used only as a discrepancy diagnostic, not as the paper's primary biological unit. The strict analysis unit remains accession plus proteoform string. In the diagnostic view, bracketed PTM annotations, punctuation, and non-sequence characters are removed before matching. The file \texttt{results/canonicalization\_examples.csv} now separates each example into sequence core, modification tokens, residue window, and canonicalized sequence so that the discrepancy can be inspected in a ProForma-oriented way \citep{leduc2018proforma,leduc2022proforma2}. We do not emit full ProForma 2.0 strings for the whole dataset because the deposited spreadsheets do not expose the localization metadata needed for exact standard-compliant serialization. Blank intensity cells in the deposited spreadsheets are treated as absent detections in the baseline analysis and contribute zero intensity; the reviewer-driven MNAR sensitivity file records two low-intensity-limit alternatives.
-
-\subsection{Reproducibility metadata}
-
-The package records software versions and platform metadata in \path{code/environment_versions.json}. For review, the exact code and derived-table bundle accompanies the manuscript in \texttt{code/}, \texttt{results/}, and \texttt{data/}. The notebook at \path{code/reproduce_tables_and_figures.ipynb} gives a compact path through the main tables and figures. The same metadata file records the public project repository URL, but no archival DOI has yet been minted for this specific example package.
-
-\subsection{Detectability-adjusted acetylation model}
-
-The covariate-adjusted acetylation analysis is intentionally simple. It uses the matched marker rows only. One model codes region as the binary outcome and uses acetylation status, log precursor mass, sequence span length, and first-residue position as predictors, with the continuous covariates standardized before fitting. The inverse model codes acetylation as the outcome and region as the main predictor while keeping the same covariates. The goal is not to claim a complete model of proteoform detectability. It is to ask whether the apparent acetylation asymmetry survives once the strongest public-table correlates of detectability are placed in the same coarse model. It does not. A second analysis then restricts the rows to first residue $\leq 2$ as a stricter N-terminal geometry screen.
-
-\subsection{Public provenance note}
-
-The journal supplement records that the deposited spreadsheets were generated with 1\% PrSM FDR and 5\% proteoform-level FDR in TopPIC and quantified across duplicate runs in TopDiff. The same supplement also embeds \texttt{Tel2} and \texttt{Teo2} sheets that match the standalone PRIDE XLSX files exactly. The PRIDE landing page lists the four raw duplicate files, but this package does not claim a raw-file reprocessing study.
-
-\subsection{Exact rebuild path}
-
-The package can be rebuilt locally with:
-\begin{verbatim}
-cd examples/codex-zebrafish-brain-paper-14rounds
-./code/build_inputs.sh
-./code/build_paper.sh
-\end{verbatim}
-
-The analysis step should regenerate the summary metrics, exact-ID overlap files, marker-membership and robustness files, the run-pair and bootstrap sensitivity files, and the figure assets. The paper step should regenerate \texttt{paper/main.pdf}.
-
-\subsection{Marker-panel curation rule}
-
-The marker panel is intentionally conservative. A family enters the panel only if the source proteomics paper names it in the biological interpretation of telencephalon or optic tectum and if that interpretation can be connected to established zebrafish regional function in the cited background literature. The curated counts and family labels are materialized in \texttt{data/curated\_evidence.json}, while the corresponding exact source-table members, row numbers, and matching rules appear in the marker-membership CSV and the traceability JSON.
-
-\subsection{Why the curation unit is still a marker family}
-
-The deposited region spreadsheets do expose reusable machine-readable proteoform IDs, and this version of the package takes advantage of that fact. Even so, the strongest biological interpretation in the paper still runs through the marker families named in the original article rather than through a full proteoform-by-proteoform atlas. That is deliberate. The exact-ID files strengthen traceability and missingness sensitivity, but the functional claim remains aligned with the families that the original paper itself foregrounded as biologically interpretable.
-
-\subsection{Leave-one-out and sensitivity files}
-
-The full leave-one-out table and the reviewer-driven sensitivity scenarios are saved as \path{results/leave_one_out_alignment.csv} and \path{results/sensitivity_scenarios.csv}. The main text and Figure~\ref{fig:axis-alignment} summarize the same robustness story.
-
-\subsection{Claim-to-evidence ladder}
-
-\begin{table}[ht]
-\centering
-\small
-\caption{Main claims, supporting evidence, and corresponding limits.}
-\label{tab:evidenceladder}
-\begin{tabular}{p{0.26\linewidth}p{0.33\linewidth}p{0.28\linewidth}}
-\toprule
-Claim & Evidence & Main limit \\
-\midrule
-Proteoform-level regional separation & Article Jaccard 0.0434, exact-ID Jaccard 0.0360, occupancy-adjusted Jaccard 0.0432, 5\% misidentification ceiling 0.0540, protein overlap 0.2151 & Public tables, not raw-feature reprocessing \\
-Functional markers align with expected region & Axis alignment, exact test, sign check, leave-one-out table, protein collapse, intensity weighting & Curated marker panel only \\
-PTM layer contains a suggestive but unstable acetylation asymmetry & Unadjusted acetylation 14/23 versus 16/102; detectability and covariate sensitivity files & Public tables do not separate biology cleanly from geometry/coverage bias \\
-Package improves auditability & Local code, figures, manifests, exact marker membership, and evidence traceability & Does not replace the source experiment \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\subsection{Claim-to-file map}
-
-The repository-level package keeps the full claim-to-file map in the local README and machine-readable manifests. In-paper, the important point is simply that every headline result in the main text is backed by a corresponding local CSV/JSON artifact plus the figure that summarizes it.
+All derived tables in this manuscript are produced by \texttt{results/analyze\_region\_proteome.py}. The compact reproduction notebook is \texttt{code/reproduce\_tables\_and\_figures.ipynb}. Canonicalization examples, full raw-to-canonical mappings, marker-family memberships, overlap tests, tissue sentinels, top-intensity restrictions, and the source-to-claim traceability record are saved under \texttt{results/} and \texttt{data/evidence\_traceability.json}.

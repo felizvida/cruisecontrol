@@ -1,0 +1,241 @@
+{
+  "audit_skill": "paper-claim-audit",
+  "verdict": "PASS",
+  "reason_code": "all_claims_supported_after_safe_numeric_fix",
+  "summary": "Twenty-one quantitative or scope-bearing empirical claims were checked against the current result files. One stale table value pair was corrected before finalization; the remaining differences were ordinary rounding only.",
+  "audited_input_hashes": {
+    "main.tex": "sha256:97d0adce76071edba4a1f52423686f5f861cc235cde2b486ebc9294bda944917",
+    "sections/0_abstract.tex": "sha256:fcee49b28d93b86ecc2c98eddbb33c526729b8fe13a95c4da37b4af48a0cb32f",
+    "sections/1_introduction.tex": "sha256:57634fd5b6688c3f37043a53c11a163ef2470b69bd47225544973dbe289f4c27",
+    "sections/2_data_and_methods.tex": "sha256:aac9260d1c3756fcdcbfb8de5bf3e0ea44ee731ba8920f506389a75d48573ece",
+    "sections/3_results.tex": "sha256:fad4303a7c37de51f0fbb1699fd47b504aea9cf6c53839701885022b733d9af5",
+    "sections/4_discussion.tex": "sha256:150b14ff7cc96b4602458b022cfe2bb9c012062c5fcc9a94cb266c32d25c4cc7",
+    "sections/5_conclusion.tex": "sha256:78ca3efc7f78fd94985fdffc55ffd9f1bef45ee3bda3872d9e2e7f36721b35ed",
+    "sections/A_appendix.tex": "sha256:3b860ed2e8d1cd253ec237e9dac86cb154d25041eda85c9cea9c83f92504e525",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/summary_metrics.json": "sha256:7ee3ee8f7fa6df9ef54b6656046384779e9c0e2f7a820cc703a6ac094bc05309",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/presence_overlap_significance.csv": "sha256:bb49624272150da364f3f4f3f6481dd8c5131b1045806a6830bb311737ea5b12",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/gene_symbol_sensitivity.csv": "sha256:95bb6eec6039cfc60bee6c40d421a7e16647cbdab40af68f11138c6760804936",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/abundance_normalization_sensitivity.csv": "sha256:561d361c1baed2d1471fcc15d5379f3a47bd211edc676353b36875e6b75a14c9",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/occupancy_detectability_model.csv": "sha256:02628a489b7626ad819b0d0d199ccfc9c74fbba3579ffca7091700168757848f",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/detectability_stratified_sensitivity.csv": "sha256:cb00fad34313bd2ce1bc98d25858ac20f9572bd71c4e6d9484f00a851c756fc3",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/misidentification_sensitivity.csv": "sha256:18717a392195cac82d3d34d126812488d63679fcb417ff9e9f637ea7b39cd129",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/axis_summary.csv": "sha256:a06f698f8336fd3cff81ec887f49714c009a452fef57eff531e3c62e06a17790",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/sensitivity_scenarios.csv": "sha256:87a52062627a35870d4c79477f1ff44f40b80301ee8a64cce71d3245a18a99a9",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/motor_family_breakdown.csv": "sha256:87b4b60a6b5264f7e46daf61be1a8abdf864ca64a6d68bf27c5e710d98b8f1eb",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/independent_panel_sensitivity.csv": "sha256:fb1e28bfa4eab8e1d3cc22b6d0e6266286177f3068ab93d550f72e60330432d2",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/ptm_summary.csv": "sha256:cfd510b95e428bfb2e4e398ef11691c7953935c4b6acdcaf893873cf7be619cf",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/acetylation_covariate_sensitivity.csv": "sha256:47a897aedeb7f2000a9c56552e692c1f424fb15579b27a3fe5f1651162e090c6",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/technical_replicate_summary.csv": "sha256:613265e556f94e5ed80450f59b2a9b18e202e47d32940b126cf10e8b0d3e4d03",
+    "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/data/curated_evidence.json": "sha256:b5d44d785e5d30b8bd26478271a6475b2c6081f8869ee3479da0e0a382726da1"
+  },
+  "trace_path": ".aris/traces/paper-claim-audit/2026-04-24_run01",
+  "thread_id": "local-zebrafish-assurance-2026-04-24",
+  "reviewer_model": "GPT-5 Codex",
+  "reviewer_reasoning": "high",
+  "generated_at": "2026-04-24T11:47:28-0400",
+  "details": {
+    "claims_checked": 21,
+    "counts": {
+      "exact_match": 13,
+      "rounding_ok": 8,
+      "ambiguous_mapping": 0,
+      "missing_evidence": 0,
+      "config_mismatch": 0,
+      "aggregation_mismatch": 0,
+      "number_mismatch": 0,
+      "scope_overclaim": 0,
+      "unsupported_claim": 0
+    },
+    "claims": [
+      {
+        "claim_id": 1,
+        "location": "sections/3_results.tex:5",
+        "paper_text": "The article reported 309 telencephalic proteoforms and 533 tectal proteoforms, with only 35 shared between them.",
+        "paper_value": "309 / 533 / 35",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/data/curated_evidence.json",
+        "evidence_value": "telencephalon_proteoforms=309; optic_tectum_proteoforms=533; shared_proteoforms=35",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 2,
+        "location": "sections/3_results.tex:5",
+        "paper_text": "Exact accession+proteoform matching ... yielding 29 shared entries among 805 total exact IDs.",
+        "paper_value": "29 shared / 805 total",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/presence_overlap_significance.csv",
+        "evidence_value": "exact_id shared_count=29; universe_count=805",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 3,
+        "location": "sections/3_results.tex:5",
+        "paper_text": "Even after collapsing to gene symbols, the overlap rises only to a Jaccard value of 0.2302, still far below the fixed-margin independence baseline (centered Jaccard -0.2034, p = 6.29×10^-28).",
+        "paper_value": "0.2302 / -0.2034 / 6.29e-28",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/gene_symbol_sensitivity.csv",
+        "evidence_value": "jaccard_overlap=0.2302; centered_jaccard=-0.2034; p=6.29414e-28",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 4,
+        "location": "sections/3_results.tex:7",
+        "paper_text": "Across five normalization schemes, weighted Jaccard remains between 0.0427 and 0.0557, while Bray-Curtis similarity remains between 0.0820 and 0.1055.",
+        "paper_value": "weighted Jaccard 0.0427–0.0557; Bray-Curtis 0.0820–0.1055",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/abundance_normalization_sensitivity.csv",
+        "evidence_value": "weighted_jaccard_overlap range=0.0427–0.0557; bray_curtis_similarity range=0.0820–0.1055",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 5,
+        "location": "sections/3_results.tex:7",
+        "paper_text": "The observed exact-ID overlap [is] far below the fixed-margin independence baseline (expected Jaccard 0.3152, centered Jaccard -0.2792, p = 5.56×10^-183).",
+        "paper_value": "0.3152 / -0.2792 / 5.56e-183",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/presence_overlap_significance.csv",
+        "evidence_value": "exact_id expected_jaccard_under_independence=0.3152; centered_jaccard=-0.2792; p=5.56094e-183",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 6,
+        "location": "sections/3_results.tex:7",
+        "paper_text": "Relaxed matching ... raises the shared count to 44, but the overlap remains very low even in that view (canonicalized Jaccard 0.0615, centered Jaccard -0.2627, p = 5.01×10^-143).",
+        "paper_value": "44 / 0.0615 / -0.2627 / 5.01e-143",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/presence_overlap_significance.csv",
+        "evidence_value": "canonicalized shared_count=44; observed_jaccard=0.0615; centered_jaccard=-0.2627; p=5.01026e-143",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 7,
+        "location": "sections/3_results.tex:9",
+        "paper_text": "Correcting for uneven recovery raises the exact-ID Jaccard only from 0.0360 to 0.0432.",
+        "paper_value": "0.0360 -> 0.0432",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/summary_metrics.json",
+        "evidence_value": "exact_id_jaccard_overlap=0.0360; occupancy_adjusted_jaccard_overlap=0.0432",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 8,
+        "location": "sections/3_results.tex:9",
+        "paper_text": "Recomputing after mass or intensity stratification changes the adjusted Jaccard only to 0.0451 and 0.0445.",
+        "paper_value": "0.0451 / 0.0445",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/detectability_stratified_sensitivity.csv",
+        "evidence_value": "mass_tertiles adjusted_jaccard_overlap=0.0451; intensity_tertiles adjusted_jaccard_overlap=0.0445",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 9,
+        "location": "sections/3_results.tex:9",
+        "paper_text": "Even if 5% of region-unique exact IDs are treated as possible false discoveries ... the Jaccard ceiling rises only to 0.0540.",
+        "paper_value": "0.0540",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/misidentification_sensitivity.csv",
+        "evidence_value": "5% conservative paired reclassification adjusted_jaccard_overlap=0.0540",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 10,
+        "location": "sections/3_results.tex:47",
+        "paper_text": "Telencephalon-associated markers contribute 23 matched counts and 2 spillover counts, whereas optic-tectum-associated markers contribute 102 matched counts and 1 spillover count.",
+        "paper_value": "23/2 and 102/1",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/axis_summary.csv",
+        "evidence_value": "telencephalon matched_count=23 spillover_count=2; optic_tectum matched_count=102 spillover_count=1",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 11,
+        "location": "sections/3_results.tex:47",
+        "paper_text": "Across the full panel, 125 of 128 observations fall in the expected region.",
+        "paper_value": "125 of 128",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/sensitivity_scenarios.csv",
+        "evidence_value": "baseline matched_count=125 spillover_count=3 total=128",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 12,
+        "location": "sections/3_results.tex:49",
+        "paper_text": "The panel yields an odds ratio of 1173 with an approximate 95% confidence interval from 102.0 to 13,495.1 and a one-sided exact p value of 5.12×10^-22.",
+        "paper_value": "1173 / 102.0–13495.1 / 5.12e-22",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/sensitivity_scenarios.csv",
+        "evidence_value": "baseline odds_ratio=1173.0; ci_low=101.9576; ci_high=13495.1061; p=5.124494710467904e-22",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 13,
+        "location": "sections/3_results.tex:49",
+        "paper_text": "Under 200,000 randomizations ... none matched the observed 125 correctly placed counts.",
+        "paper_value": "200000 trials, 0 exceedances",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/summary_metrics.json",
+        "evidence_value": "marker_permutation_trials=200000; marker_permutation_observed_matched_count=125; marker_permutation_exceedances=0",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 14,
+        "location": "sections/3_results.tex:51",
+        "paper_text": "A detailed accession breakdown shows that 86.3% of the myosin and troponin observations carry skeletal- or cardiac-muscle-like annotations.",
+        "paper_value": "86.3%",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/summary_metrics.json",
+        "evidence_value": "motor_family_skeletal_like_fraction=0.8625",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 15,
+        "location": "sections/3_results.tex:51",
+        "paper_text": "After excluding myosin, actin, and troponin altogether, the matched-region fraction remains 0.9310.",
+        "paper_value": "0.9310",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/sensitivity_scenarios.csv",
+        "evidence_value": "exclude myosin/actin/troponin alignment_fraction=0.9310",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 16,
+        "location": "sections/3_results.tex:81",
+        "paper_text": "Adult zebrafish myelin markers and optic-tectum radial-glia markers yield 32 matched counts and only 3 spillover counts, for an alignment fraction of 0.9143 and a one-sided exact p value of 6.68×10^-4.",
+        "paper_value": "32 / 3 / 0.9143 / 6.68e-4",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/independent_panel_sensitivity.csv",
+        "evidence_value": "baseline matched_count=32; spillover_count=3; alignment_fraction=0.9143; p=0.0006684491978609625",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 17,
+        "location": "sections/3_results.tex:96",
+        "paper_text": "The original article reported 807 proteoforms in total, 358 with mass shifts and 211 with N-terminal acetylation.",
+        "paper_value": "807 / 358 / 211",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/ptm_summary.csv",
+        "evidence_value": "total_proteoforms=807; modified_total=358; n_terminal_acetylated=211",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 18,
+        "location": "sections/3_results.tex:96",
+        "paper_text": "In the matched marker subsets, 14 of 23 telencephalon-associated proteoforms are N-terminally acetylated, compared with 16 of 102 optic-tectum-associated proteoforms.",
+        "paper_value": "14/23 and 16/102",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/summary_metrics.json",
+        "evidence_value": "tel_marker_acetylated_fraction=0.6087 over 23 matched tel counts => 14; teo_marker_acetylated_fraction=0.1569 over 102 matched tectal counts => 16",
+        "status": "exact_match"
+      },
+      {
+        "claim_id": 19,
+        "location": "sections/3_results.tex:96",
+        "paper_text": "The adjusted odds ratio falls to 2.94 (95% CI 0.70-12.30; p = 0.140).",
+        "paper_value": "2.94 / 0.70–12.30 / 0.140",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/acetylation_covariate_sensitivity.csv",
+        "evidence_value": "coarse_logistic_adjustment odds_ratio=2.9387; ci_low=0.7022; ci_high=12.2974; p=0.139943",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 20,
+        "location": "sections/3_results.tex:96",
+        "paper_text": "With acetylation as the outcome and region as the main predictor, the regional odds ratio is 0.26 with p = 0.180.",
+        "paper_value": "0.26 / 0.180",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/acetylation_covariate_sensitivity.csv",
+        "evidence_value": "inverse_logistic_region_predictor odds_ratio=0.2556; p=0.180244",
+        "status": "rounding_ok"
+      },
+      {
+        "claim_id": 21,
+        "location": "sections/3_results.tex:98 and table tab:technical",
+        "paper_text": "Duplicate runs recovered a mean of 232 proteoforms in telencephalon and 356 in optic tectum, with recovery fractions of 0.7508 and 0.6680; the technical table reports Chao2 lower bounds of 385.5 and 887.0.",
+        "paper_value": "232 / 356 / 0.7508 / 0.6680 / 385.5 / 887.0",
+        "evidence_file": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/technical_replicate_summary.csv + /Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/results/summary_metrics.json",
+        "evidence_value": "duplicate_mean=232 and 356; duplicate_recovery_fraction=0.7508 and 0.6679; tel_chao2_lower_bound=385.5032; teo_chao2_lower_bound=887.0028",
+        "status": "rounding_ok"
+      }
+    ]
+  }
+}

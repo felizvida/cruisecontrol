@@ -1,0 +1,6 @@
+panel,gene_prefixes,description_keywords,tel_count,teo_count,tel_count_share,tel_intensity,teo_intensity,tel_intensity_share,tel_fraction_of_region_intensity,teo_fraction_of_region_intensity,interpretation
+skeletal_cardiac_muscle,"myh,myl,tnn,ttn,desm","myosin,troponin,titin,desmin,skeletal muscle,cardiac,atrial",2,89,0.022,14940000.0,4806943750.0,0.0031,0.000423,0.109998,skeletal/cardiac muscle carryover sentinels requested by review
+contractile_cytoskeleton,"act,myh,myl,tnn,tpm","actin,myosin,troponin,tropomyosin",2,105,0.0187,14940000.0,5532075900.0,0.0027,0.000423,0.126592,contractile and cytoskeletal motor proteins
+neuronal_synaptic,"snap,stx,syt,syn,nrg,npy,penk,pyy","synaptic,synuclein,neurogranin,neuropeptide,vesicle,neuron",29,15,0.6591,3765360950.0,117362900.0,0.9698,0.106658,0.002686,neuronal and synaptic sentinels
+glial_myelin,"mbp,plp,mpz,gfap,s100,fabp7","myelin,glial,glia,fatty acid binding protein",28,7,0.8,472108850.0,248399500.0,0.6552,0.013373,0.005684,glial and myelin sentinels
+translation_housekeeping,"eef,rpl,rps,gapdh","elongation factor,ribosomal,glyceraldehyde",2,4,0.3333,19352300.0,118709550.0,0.1402,0.000548,0.002716,broad abundant housekeeping sentinels

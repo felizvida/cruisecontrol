@@ -1,0 +1,23 @@
+{
+  "paper_dir": "/Users/liux17/codex/autoresearch/examples/codex-zebrafish-brain-paper-14rounds/paper",
+  "assurance": "submission",
+  "ok": true,
+  "audits": [
+    {
+      "audit": "paper-claim-audit",
+      "artifact": "PAPER_CLAIM_AUDIT.json",
+      "status": "OK",
+      "verdict": "PASS",
+      "stale": false,
+      "issues": []
+    },
+    {
+      "audit": "citation-audit",
+      "artifact": "CITATION_AUDIT.json",
+      "status": "OK",
+      "verdict": "PASS",
+      "stale": false,
+      "issues": []
+    }
+  ]
+}

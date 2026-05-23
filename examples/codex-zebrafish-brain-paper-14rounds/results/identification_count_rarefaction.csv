@@ -1,0 +1,5 @@
+metric,trials,seed,sampled_region,sample_size,low_95,median,high_95,observed_full,note
+exact_id_jaccard,10000,20260515,optic_tectum,303,0.0185,0.0289,0.0377,0.036,Exact accession+proteoform Jaccard after sampling the larger regional exact-ID set down to the smaller set size.
+canonicalized_jaccard,10000,20260515,optic_tectum,274,0.0359,0.0478,0.06,0.0615,Canonicalized accession+sequence Jaccard after the same count-normalized sampling.
+protein_jaccard,10000,20260515,optic_tectum,150,0.1628,0.1905,0.2146,0.2151,Protein-accession Jaccard after the same count-normalized sampling.
+marker_alignment_fraction,10000,20260515,optic_tectum,309,0.9615,0.9756,0.9886,0.9766,"Marker-axis alignment after sampling the larger regional row set down to the smaller row count, preserving the locked marker rules."

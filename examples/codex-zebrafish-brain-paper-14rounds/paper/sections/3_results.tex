@@ -2,15 +2,15 @@
 
 \subsection{Telencephalon and optic tectum are sharply separated at the proteoform level}
 
-At the proteoform level, the two regions are far apart. The article reported 309 telencephalic proteoforms and 533 tectal proteoforms, with only 35 shared between them. Exact accession+proteoform matching of the deposited Tel2 and Teo2 spreadsheets is even stricter, yielding 29 shared entries among 805 total exact IDs. Protein-level overlap is broader, but still modest. Even after collapsing to gene symbols, the overlap rises only to a Jaccard value of 0.2302, still far below the fixed-margin independence baseline (centered Jaccard $-0.2034$, $p = 6.29\times10^{-28}$). By every measure used here, telencephalon and optic tectum do not look like lightly shifted versions of the same local proteoform pool.
+The first result is the simplest one. At intact-proteoform resolution, the two regions share little. The article reported 309 telencephalic proteoforms and 533 tectal proteoforms, with only 35 shared between them. Strict accession-plus-proteoform matching of the PRIDE Tel2 and Teo2 spreadsheets gives an even smaller shared set: 29 shared entries among 805 exact IDs. Coarser summaries increase the apparent overlap, as expected, but they do not remove the regional split. Gene-symbol collapse raises the Jaccard value to 0.2302, still far below its fixed-margin independence baseline (centered Jaccard $-0.2034$, $p = 6.29 \times 10^{-28}$). The two regions are therefore not small variants of a common local proteome.
 
-That conclusion does not depend on one encoding choice. Abundance weighting changes the overlap only slightly: across five normalization schemes, weighted Jaccard remains between 0.0427 and 0.0557, while Bray--Curtis similarity remains between 0.0820 and 0.1055. Prevalence-adjusted testing likewise places the observed exact-ID overlap far below the fixed-margin independence baseline (expected Jaccard 0.3152, centered Jaccard $-0.2792$, $p = 5.56\times10^{-183}$). The difference between the article's 35 shared proteoforms and the spreadsheet-derived exact-ID count of 29 appears to be representational rather than biological: relaxed matching that strips bracketed PTM annotations and punctuation while keeping accessions fixed raises the shared count to 44, but the overlap remains very low even in that view (canonicalized Jaccard 0.0615, centered Jaccard $-0.2627$, $p = 5.01\times10^{-143}$). The biological picture is the same in every case.
+The result is stable to representation. Across five abundance-normalization schemes, weighted Jaccard remains between 0.0427 and 0.0557, and Bray--Curtis similarity remains between 0.0820 and 0.1055. Fixed-margin testing places the observed exact-ID overlap well below the overlap expected from the two regional list sizes alone (expected Jaccard 0.3152, 95\% null interval 0.2890--0.3430, centered Jaccard $-0.2792$, $p = 5.56 \times 10^{-183}$). The small difference between the article's 35 shared proteoforms and the spreadsheet-derived exact-ID count of 29 appears to be notational rather than biological. Relaxed matching that removes bracketed PTM annotations and punctuation while preserving accession identity raises the shared count to 44, but the overlap remains low (canonicalized Jaccard 0.0615, centered Jaccard $-0.2627$, $p = 5.01 \times 10^{-143}$).
 
-Sensitivity analysis leads to the same end point. Duplicate-informed missingness bounds, jackknife estimates, and minimal MNAR-style fills never turn the dataset into a high-overlap case. In a simple occupancy model built from duplicate rediscovery, correcting for uneven recovery raises the exact-ID Jaccard only from 0.0360 to 0.0432. Repeating that correction after stratifying exact IDs by precursor-mass tertiles or by mean-intensity tertiles changes the adjusted Jaccard only to 0.0451 and 0.0445. Conservative identifier-error bounds are equally modest: even if 5\% of region-unique exact IDs are treated as possible false discoveries in the direction most favorable to overlap, the Jaccard ceiling rises only to 0.0540. Uneven detectability and plausible identifier error can soften the edge of the split, but they do not erase it.
+The same conclusion survives the missingness checks. Duplicate-informed bounds, jackknife estimates, and minimal MNAR-style fills never make the pair a high-overlap case. A duplicate-rediscovery occupancy model raises exact-ID Jaccard only from 0.0360 to 0.0432 after correcting for uneven recovery. Stratifying that correction by precursor-mass tertiles or by mean-intensity tertiles changes the adjusted Jaccard only to 0.0451 and 0.0445. Subsampling the larger optic-tectum list down to the telencephalon count gives a median exact-ID Jaccard of 0.0289, with a 95\% sampling interval of 0.0185--0.0377. Restricting each region to its 100 highest-intensity rows gives 10 shared exact IDs and an exact-ID Jaccard of 0.0526; the marker-axis alignment in that top-intensity subset is 1.0000. Conservative identifier-error bounds are similarly small: even if 5\% of region-unique exact IDs are reassigned in the direction most favorable to overlap, the Jaccard ceiling rises only to 0.0540. Unequal recovery, unequal list size, low-intensity identifications, and plausible identifier error soften the edge of the split. They do not change its character.
 
 \begin{table}[t]
 \centering
-\caption{Core regional separation metrics supporting the regional-organization claim. The first two rows preserve the article-level summary, and the remaining rows use the deposited region spreadsheets plus detectability and identifier-error bounds.}
+\caption{Core regional separation metrics. The first two rows preserve the article-level summary, and the remaining rows use the PRIDE region spreadsheets plus detectability and identifier-error bounds.}
 \label{tab:summary}
 \begin{tabular}{lr}
 \toprule
@@ -22,6 +22,7 @@ Exact-ID shared proteoforms & 29 \\
 Exact-ID Jaccard overlap & 0.0360 \\
 Weighted Jaccard overlap & 0.0427 \\
 Protein overlap fraction & 0.2151 \\
+Count-normalized exact-ID Jaccard median & 0.0289 \\
 Occupancy-adjusted shared exact IDs & 43.2 \\
 Occupancy-adjusted Jaccard overlap & 0.0432 \\
 5\% misidentification ceiling & 0.0540 \\
@@ -32,17 +33,17 @@ Occupancy-adjusted Jaccard overlap & 0.0432 \\
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.97\linewidth]{../figures/fig1_region_overview.pdf}
-    \caption{Regional totals and overlap metrics. The deposited region spreadsheets contain 303 exact IDs in telencephalon and 531 in optic tectum, with 29 exact-ID overlaps. This spreadsheet-based count is slightly stricter than the article aggregate, but both support the same low-overlap picture.}
+    \caption{Regional totals and overlap metrics. The PRIDE region spreadsheets contain 303 exact IDs in telencephalon and 531 in optic tectum, with 29 exact-ID overlaps. This spreadsheet-based count is slightly stricter than the article aggregate, but both support the same low-overlap picture.}
     \label{fig:region-overview}
 \end{figure}
 
 \subsection{Marker families follow known regional biology}
 
-Low overlap by itself could still reflect noise. It does not. The curated marker panel is concentrated almost entirely in the region where those proteins would be expected from known biology. Telencephalon-associated markers contribute 23 matched counts and only 2 spillover counts, whereas optic-tectum-associated markers contribute 102 matched counts and 1 spillover count. Across the full panel, 125 of 128 observations fall in the expected region. Because optic tectum contributes the larger raw proteoform total in the original study, this alignment cannot be dismissed as a trivial consequence of abundance imbalance.
+Low overlap need not have biological meaning. Here it does. The curated marker panel is concentrated almost entirely in the region expected from known zebrafish neurobiology. Telencephalon-associated markers contribute 23 matched counts and only 2 spillover counts. Optic-tectum-associated markers contribute 102 matched counts and only 1 spillover count. Across the full panel, 125 of 128 observations fall in the expected region. Because optic tectum contributes the larger raw proteoform list, the alignment is not a trivial consequence of having more tectal identifications.
 
-The statistical support is correspondingly strong. The panel yields an odds ratio of 1173 with an approximate 95\% confidence interval from 102.0 to 13{,}495.1 and a one-sided exact $p$ value of 5.12$\times10^{-22}$. A family-size-preserving randomization reaches the same conclusion without relying on asymptotic logic: under 200{,}000 randomizations that preserved the nine family sizes and the global 25-versus-103 telencephalon/optic-tectum label totals, none matched the observed 125 correctly placed counts. All nine curated marker groups point in the expected direction, and the signal remains strong after protein collapse and intensity weighting. The separating proteoforms are therefore not random residues of sparse sampling. They trace a coherent biological axis.
+The support is strong by several views. The panel yields an odds ratio of 1173 with an approximate 95\% confidence interval from 102.0 to 13{,}495.1 and a one-sided exact $p$ value of $5.12 \times 10^{-22}$. A family-size-preserving randomization reaches the same conclusion without depending on asymptotic assumptions: in 200{,}000 randomizations that preserved the nine family sizes and the global 25-versus-103 telencephalon/optic-tectum label totals, none matched the observed 125 correctly placed counts. All nine marker groups point in the expected direction. Protein collapse, gene-symbol collapse, intensity weighting, count-normalized subsampling, and top-intensity restriction retain the same axis.
 
-The motor-heavy families deserve caution rather than enthusiasm. A detailed accession breakdown shows that 86.3\% of the myosin and troponin observations carry skeletal- or cardiac-muscle-like annotations. For that reason, those families are best treated as an adversarial stress test, not as the sole basis of the regional interpretation. The important point is that the regional axis survives their removal: after excluding myosin, actin, and troponin altogether, the matched-region fraction remains 0.9310.
+The motor-heavy families must be read carefully. A detailed accession breakdown shows that 86.3\% of the myosin and troponin observations carry skeletal- or cardiac-muscle-like annotations. A targeted sentinel screen confirms the concern: skeletal/cardiac muscle sentinels appear as 2 telencephalon rows and 89 optic-tectum rows, contributing 0.042\% of telencephalon mean duplicate intensity but 11.0\% of optic-tectum intensity. They cannot be allowed to bear the biological interpretation by themselves. Their removal is therefore a useful stress test: after excluding myosin, actin, and troponin altogether, the matched-region fraction remains 0.9310.
 
 \begin{figure}[t]
     \centering
@@ -93,9 +94,9 @@ Optic-tectum-associated & 0.9903 & 0.9470--0.9983 & 0.8125 & 0.1778 \\
 \end{tabular}
 \end{table}
 
-The same pattern survives more stringent perturbations. Leave-one-out removal of any single marker family keeps the matched-region fraction between 0.9625 and 0.9911. Conservative spillover reassignment still leaves the panel strongly aligned, and removing the motor-associated myosin, actin, and troponin families leaves an alignment fraction of 0.9310. A simple contamination screen argues against an obvious purity artifact: the deposited spreadsheets contain only two optic-tectum glial-support sentinels but 23 telencephalon myelin sentinels versus three in optic tectum.
+The same pattern survives sharper perturbations. Leave-one-out removal of any single marker family keeps the matched-region fraction between 0.9625 and 0.9911. Conservative spillover reassignment still leaves the panel strongly aligned. The expanded sentinel screen also argues against a contamination-only explanation. The muscle signal is real and tectal-heavy, but neuronal/synaptic sentinels are concentrated by intensity in telencephalon (96.98\% of panel intensity), glial/myelin sentinels also favor telencephalon by count (28 versus 7), and the non-motor panels remain regionally structured.
 
-An independent panel curated from the broader zebrafish literature reaches the same qualitative conclusion. Adult zebrafish myelin markers and optic-tectum radial-glia markers yield 32 matched counts and only 3 spillover counts, for an alignment fraction of 0.9143 and a one-sided exact $p$ value of $6.68\times10^{-4}$. The panel is smaller and composition-oriented, so it does not replace the original functional families. It does show that the regional split is not an artifact of one favored vocabulary.
+An independent panel curated from the broader zebrafish literature reaches the same conclusion. Adult zebrafish myelin markers and optic-tectum radial-glia markers yield 32 matched counts and only 3 spillover counts, for an alignment fraction of 0.9143 and a one-sided exact $p$ value of $6.68 \times 10^{-4}$. The panel is smaller and more composition-oriented, but it matters because it widens the result beyond the original marker vocabulary. Count-normalized subsampling also preserves the original marker axis: when the larger optic-tectum row set is sampled down to the telencephalon row count, the median marker-alignment fraction is 0.9756.
 
 \begin{table}[t]
 \centering
@@ -105,31 +106,31 @@ An independent panel curated from the broader zebrafish literature reaches the s
 \toprule
 Scenario & Alignment & Odds ratio & One-sided $p$ \\
 \midrule
-Observed panel & 0.9766 & 1173.0 & 5.12$\times10^{-22}$ \\
-Shift 1 matched count per axis & 0.9609 & 370.3 & 2.01$\times10^{-19}$ \\
-Shift 2 matched counts per axis & 0.9453 & 175.0 & 3.73$\times10^{-17}$ \\
-Shift 3 matched counts per axis & 0.9297 & 99.0 & 3.93$\times10^{-15}$ \\
-Exclude myosin, actin, troponin & 0.9310 & 84.6 & 6.32$\times10^{-4}$ \\
+Observed panel & 0.9766 & 1173.0 & $5.12 \times 10^{-22}$ \\
+Shift 1 matched count per axis & 0.9609 & 370.3 & $2.01 \times 10^{-19}$ \\
+Shift 2 matched counts per axis & 0.9453 & 175.0 & $3.73 \times 10^{-17}$ \\
+Shift 3 matched counts per axis & 0.9297 & 99.0 & $3.93 \times 10^{-15}$ \\
+Exclude myosin, actin, troponin & 0.9310 & 84.6 & $6.32 \times 10^{-4}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\subsection{The PTM layer is interesting, but the acetylation signal is not yet stable}
+\subsection{The PTM layer is rich, but the acetylation contrast is not yet stable}
 
-The PTM layer tells a more cautious story. The original article reported 807 proteoforms in total, 358 with mass shifts and 211 with N-terminal acetylation, so the dataset is plainly proteoform-rich rather than a protein list in another format. Yet the specific acetylation contrast is less secure than the regional overlap and marker results. In the matched marker subsets, 14 of 23 telencephalon-associated proteoforms are N-terminally acetylated, compared with 16 of 102 optic-tectum-associated proteoforms. We therefore treated the PTM follow-up as a sensitivity problem rather than as a discovery claim. In a coarse logistic model with region as the outcome and acetylation, log precursor mass, sequence span length, and first-residue position as predictors, the effect weakens markedly. The adjusted odds ratio falls to 2.94 (95\% CI 0.70--12.30; $p = 0.140$), and the first-residue$\leq2$ subset shows no enrichment. Reversing the model makes the same point: with acetylation as the outcome and region as the main predictor, the regional odds ratio is 0.26 with $p = 0.180$. The safest reading is therefore that acetylation remains a lead for future work rather than a settled regional program.
+The modification layer gives the paper a useful boundary. The original article reported 807 proteoforms, 358 with mass shifts and 211 with N-terminal acetylation. The material is plainly proteoform-rich, not merely a protein list in another format. But the specific acetylation contrast is weaker than the regional-overlap and marker-family results. In the matched marker subsets, 14 of 23 telencephalon-associated proteoforms are N-terminally acetylated, compared with 16 of 102 optic-tectum-associated proteoforms. After adjustment, that apparent difference fades. In a coarse logistic model with region as the outcome and acetylation, log precursor mass, sequence span length, and first-residue position as predictors, the adjusted odds ratio falls to 2.94 (95\% CI 0.70--12.30; $p = 0.140$). The subset restricted to first residue $\leq 2$ shows no enrichment. Reversing the model gives the same lesson: with acetylation as the outcome and region as the main predictor, the regional odds ratio is 0.26 with $p = 0.180$. Acetylation remains a lead, not a settled regional program.
 
-The duplicate analyses help explain why a small study can nevertheless reveal a clear regional structure. Duplicate runs recovered a mean of 232 proteoforms in telencephalon and 356 in optic tectum, corresponding to recovery fractions of 0.7508 and 0.6680 relative to the regional totals. The design remains limited, but the regional split is not a single-run accident.
+The duplicate analyses explain why a small study can nevertheless support a clear regional result. Duplicate runs recovered a mean of 232 proteoforms in telencephalon and 356 in optic tectum, corresponding to recovery fractions of 0.7508 and 0.6680 relative to the regional totals. The design is limited, but the regional split is not a single-run accident.
 
 \begin{table}[t]
 \centering
-\caption{Technical sensitivity values reported in the original study and extended with exact-ID duplicate-incidence counts from the deposited region spreadsheets.}
+\caption{Technical sensitivity values reported in the original study and extended with exact-ID duplicate-incidence counts from the PRIDE region spreadsheets.}
 \label{tab:technical}
 \begin{tabular}{lrrrrrr}
 \toprule
 Region & Mean & SD & CV & Recovery & exact-ID $q_1$ & Chao2 \\
 \midrule
-Telencephalon & 232 & 28 & 0.1207 & 0.7508 & 152 & 379.5 \\
-Optic tectum & 356 & 88 & 0.2472 & 0.6680 & 351 & 873.2 \\
+Telencephalon & 232 & 28 & 0.1207 & 0.7508 & 152 & 385.5 \\
+Optic tectum & 356 & 88 & 0.2472 & 0.6680 & 351 & 887.0 \\
 \bottomrule
 \end{tabular}
 \end{table}

@@ -1,0 +1,24 @@
+sections/0_abstract.tex:1 | lubeckyj2022lcmcze | The region-resolved LCM-CZE-MS/MS dataset of Lubeckyj et al. and the accompanying PRIDE Tel2 and Teo2 spreadsheets support the sharply sparse shared proteoform set.
+sections/1_introduction.tex:3 | stednitz2018social | The telencephalon participates in social behavior, learning, memory, and other forebrain functions.
+sections/1_introduction.tex:3 | reemst2023memory | The telencephalon participates in social behavior, learning, memory, and other forebrain functions.
+sections/1_introduction.tex:3 | pandey2023telencephalon | The telencephalon participates in social behavior, learning, memory, and other forebrain functions.
+sections/1_introduction.tex:3 | roeser2003tectum | The optic tectum is a visuomotor center that transforms sensory input into orienting and avoidance behavior.
+sections/1_introduction.tex:3 | orger2016visuomotor | The optic tectum is a visuomotor center that transforms sensory input into orienting and avoidance behavior.
+sections/1_introduction.tex:5 | lubeckyj2022lcmcze | The LCM-CZE-MS/MS study of Lubeckyj et al. reported hundreds of proteoforms from adult zebrafish telencephalon and optic tectum and supplied PRIDE Tel2 and Teo2 spreadsheets.
+sections/1_introduction.tex:9 | stednitz2018social | Prior functional studies and atlases establish the broad biology of the two regions.
+sections/1_introduction.tex:9 | pandey2023telencephalon | Prior functional studies and atlases establish the broad biology of the two regions.
+sections/1_introduction.tex:9 | roeser2003tectum | Prior functional studies and atlases establish the broad biology of the two regions.
+sections/1_introduction.tex:9 | orger2016visuomotor | Prior functional studies and atlases establish the broad biology of the two regions.
+sections/1_introduction.tex:9 | askarani2025aging | Recent top-down work shows that proteoform-level structure in zebrafish brain remains informative beyond a single pilot study.
+sections/2_data_and_methods.tex:5 | lubeckyj2022lcmcze | The adult zebrafish dataset used laser capture microdissection coupled to capillary zone electrophoresis tandem mass spectrometry and reported TopPIC- and TopDiff-based processed outputs.
+sections/4_discussion.tex:13 | kiss2014laesi | Imaging-based top-down workflows such as LAESI bring direct spatial fidelity and on-tissue proteoform mapping.
+sections/4_discussion.tex:13 | yang2022nanodesi | Imaging-based top-down workflows such as nano-DESI MSI bring direct spatial fidelity and on-tissue proteoform mapping.
+sections/4_discussion.tex:15 | leduc2018proforma | ProForma standards help separate notational variation from biological difference.
+sections/4_discussion.tex:15 | leduc2022proforma2 | ProForma 2.0 standards help separate notational variation from biological difference.
+sections/4_discussion.tex:15 | vanderaa2023singlecell | Data-analysis choices, missingness handling, and provenance shape the conclusions readers can trust.
+sections/4_discussion.tex:17 | schaffer2018proteoformfamilies | Proteoform-family thinking matters because biological meaning is lost step by step as identifiers are relaxed.
+sections/4_discussion.tex:25 | choi2022toppic | Raw TopPIC-style outputs would expose feature histories and localization confidence beyond what the deposited spreadsheets provide.
+sections/4_discussion.tex:27 | karpievitch2012missing | Richer missingness models would be possible with raw files plus search intermediates.
+sections/4_discussion.tex:27 | lazar2016missing | Richer missingness models would be possible with raw files plus search intermediates.
+sections/A_appendix.tex:37 | leduc2018proforma | Canonicalization is a discrepancy diagnostic; ProForma-oriented representation clarifies notation-level differences.
+sections/A_appendix.tex:37 | leduc2022proforma2 | Canonicalization is a discrepancy diagnostic; ProForma-oriented representation clarifies notation-level differences.
